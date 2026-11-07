@@ -6,7 +6,8 @@ import { ORACLE_DELAY_MS } from './config'
 import { COURSES, courseById, coursesFor } from './courses'
 import { allCopy } from './copy'
 import { certificatePdf, pdfIncludes, receiptPdf, voucherQrText } from './documents'
-import { createDeviceKeys } from './keys'
+import { DEMO_LEDGER_PUBLIC_JWK } from '../../fixtures/demoLedger'
+import { createDeviceKeys, verifyText } from './keys'
 import { createSimulatedOracle } from './oracle'
 import { assertCanonical, canonicalFromSession, publicSyncRecord } from './payload'
 import { QUIZZES, gradeQuiz } from './quizzes'
@@ -216,6 +217,16 @@ describe('flujo crítico', () => {
     })
     expect(typeof qr.sig).toBe('string')
     expect(qr.sig).toHaveLength(86)
+    // La terminal de comercios verifica contra el llavero del ledger, no contra
+    // la llave del teléfono: el QR tiene que venir firmado por el ledger.
+    const qrPayload = stableStringify({
+      benefitId: 'metro-semanal',
+      costPoints: 30,
+      folio: voucher.folio,
+      issuedAt: voucher.issuedAt,
+      validUntil: voucher.validUntil,
+    })
+    expect(await verifyText(DEMO_LEDGER_PUBLIC_JWK, qrPayload, String(qr.sig))).toBe(true)
     let snap = await care.snapshot()
     expect(snap.wallet.points).toBe(5)
     advance(31 * 24 * 60 * 60 * 1000)
