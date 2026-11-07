@@ -83,6 +83,7 @@ antifraude (`docs/spike-verificacion-antifraude.md`). Resta:
   `apps/cuidared`. La integración completa al monorepo sigue la spec `09`:
   paridad hora-hora, saldo −5h, doble confirmación QR, topes 8h/día y
   20h/mes por par de cuentas; volumen del piloto por decidir (doc v4: ~20 al día).
+  Copy de revisión de la landing "Hora por Hora": `docs/hora-por-hora-landing.md`; todavía no hay código de esta landing.
 - Verificación foto antes/después on-device con solo hash a BD en México
   (REQ-ORA-024): decidir con base en el spike.
 - Canal WhatsApp: evaluar Capsule (partner de Meta, free tier) contra Twilio.

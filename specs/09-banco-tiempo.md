@@ -32,7 +32,8 @@ en bancarrota de tiempo: el sistema existe para devolvérselo.
 | REQ-BT-009 | THE catálogo SHALL asignar a cada servicio un nivel mínimo de habilitación: N0 sin requisito (compañía, compras, trámites, aseo, jardinería), N1 capacitación básica (movilización, comida asistida, medicamentos simples), N2 certificado o profesional (enfermería, terapia, odontología, fisioterapia). La hora vale lo mismo en todos los niveles; el nivel solo decide quién puede ofrecer qué. | Test de catálogo |
 | REQ-BT-011 | THE sistema SHALL tener dos tipos de membresía (doc v4, opción B): demandante, que necesita cuidado para un familiar dependiente y puede ofrecer su profesión u oficio; y vecino cuidador, sin familiar dependiente, que ofrece horas de cuidado y las intercambia por el oficio o profesión de un demandante. | Test de alta |
 | REQ-BT-012 | THE sistema SHALL rechazar un intercambio sin cuidado en ninguno de los dos lados: no hay oficio por oficio. **Interpretación por confirmar con el equipo** (doc v4): cambia si dos profesionales pueden intercambiar entre sí. | Test de intercambio |
-| REQ-BT-010 | THE persona cuidada SHALL tener un tier de dificultad 1 a 3 (carga física, cognitiva/emocional y logística, 0 a 2 cada una, medido con escala funcional y validado por un tercero). El tier solo afecta el emparejamiento (nivel mínimo del relevo) y la prioridad en la lista de relevo. SHALL NOT alterar el valor de la hora ni emitir créditos: la dificultad ya se paga en Puntos Cívicos vía `multiplicadorCarga` (REQ-ORA-011). | Test de emparejamiento |
+| REQ-BT-013 | WHEN una persona se dé de alta, THE sistema SHALL verificar su identidad y usar esa verificación como ancla anti-sybil. La modalidad de verificación y su uso para habilitar el saldo negativo de REQ-BT-004 quedan por decidir. | Test de alta y rechazo de identidad duplicada |
+| REQ-BT-014 | WHEN una membresía declare necesidad de cuidado, THE sistema SHALL exigir que un tercero valide el tier de REQ-BT-010 sin guardar nombres de pacientes, diagnósticos ni fotos. | Test de alta, tier y minimización de datos |
 
 ## Reglas de estandarización de la hora (sesión de diseño 2026-11-07)
 
@@ -67,10 +68,18 @@ Play Integrity, NFC en domicilio y liveness se activan al crecer, no antes.
 - **Doble emisión:** si una sesión de cuidado da puntos (spec `02`) y además
   horas, quién financia cada una. La spec dice que comparten la atestación de
   origen pero no aclara si el crédito es doble.
-- **BT-004:** a quién se le permite saldo negativo.
-- **BT-003:** confirmación de familia o tercero (doc v4) contra doble confirmación por código (spike).
-- **BT-012:** si dos profesionales pueden intercambiar entre sí.
-- **Pendientes del doc v4:** métodos concretos para verificar dependencia y horas; qué pasa con las horas de quien deja la comunidad; seguro de responsabilidad civil; métrica de éxito del piloto más allá del volumen; tratamiento fiscal y aviso de privacidad para datos de salud.
+- **BT-003:** confirmación de familia o tercero (doc v4) contra doble confirmación por código (spike). El copy debe seguir lo que se decida.
+- **BT-004 y BT-013:** a quién se le permite saldo negativo y qué ancla de
+  identidad se acepta en el alta.
+- **BT-012:** si todo intercambio debe incluir cuidado y si dos profesionales
+  pueden intercambiar entre sí. Ver la tabla de la landing pública.
+- **Landing pública:** redactar las respuestas de sus cinco preguntas
+  frecuentes. La respuesta sobre confianza debe explicar los niveles N0 a N2
+  y el relevo habilitado de REQ-BT-009. El aviso de privacidad requiere
+  redacción legal y debe publicarse antes de abrir el registro del piloto.
+- **Pendientes del doc v4:** qué pasa con las horas de quien deja la comunidad;
+  seguro de responsabilidad civil; métrica de éxito del piloto más allá del
+  volumen; tratamiento fiscal.
 - **Disputas:** responsable y plazo.
 - **BT-006:** cómo se verifica que alguien es servidor público (hoy es
   autodeclaración en el catálogo).
@@ -89,7 +98,28 @@ cualquier localidad.
 
 El doc v4 propone **EntreManos** como nombre de la app, adoptado como nombre
 de producto (ver spec 00). `CuidaRed` queda como nombre interno del prototipo
-del banco de tiempo; el programa madre es "Cuando cuidas, te descuidas".
+del banco de tiempo; el programa madre es "Cuando cuidas, te descuidas". La
+landing de revisión usa "Hora por Hora" (ver tabla abajo).
+
+## Landing pública (Hora por Hora)
+
+Copy de revisión: [`docs/hora-por-hora-landing.md`](../docs/hora-por-hora-landing.md).
+
+### Copy contra spec
+
+| Copy o ausencia | Diferencia real | Resolución propuesta |
+| --- | --- | --- |
+| "Sin dinero. Las horas no se compran ni se venden" | No contradice la versión vigente de REQ-BT-007. Su inciso (b) es B2B y la compra de horas por familiares ya está fuera. La premisa de una compra familiar vigente está desactualizada. | Mantener el copy. REQ-BT-007 dice "3 fuentes", pero solo enumera dos; corregir el número o definir la fuente faltante queda por decidir. |
+| "Todo intercambio incluye cuidado" | REQ-BT-001 permite intercambiar cualquier servicio por cualquier otro, mientras la regla REQ-BT-012 exige cuidado en uno de los lados. El copy adopta la regla más estricta antes de decidirla. | Por decidir (interpretación por confirmar, REQ-BT-012). Si se acepta, armonizar REQ-BT-001 y confirmar REQ-BT-014; mientras tanto, marcarla como propuesta en la landing. |
+| "Confirmación de la familia cuidada o de una tercera persona" | Coincide con el texto de doc v4 de REQ-BT-003; la propuesta del spike (doble confirmación, tercero solo desempata) sigue por decidir. | Por decidir con REQ-BT-003. Si gana el spike, cambiar a: "Cada hora se confirma: quien da y quien recibe confirman el intercambio. Si no coinciden, una tercera persona revisa el caso." |
+| "Verificamos tu identidad" | No existía un requisito de alta con ancla anti-sybil. | Cubierto por REQ-BT-013. El mecanismo y su relación con el saldo negativo de REQ-BT-004 quedan por decidir. |
+| "Necesidad de cuidado comprobada" | No existía un requisito explícito de comprobación y el copy no limita los datos recopilados. | Cubierto por REQ-BT-014: un tercero valida el tier de REQ-BT-010 sin guardar nombres de pacientes, diagnósticos ni fotos. |
+| "Información de salud y de tu familia solo se usa para el servicio" | Implica recopilar información de salud, pero REQ-BT-014 exige minimizarla y el aviso de privacidad no está redactado. | Cambiar a: "No guardamos nombres de la persona cuidada, diagnósticos ni fotos. Consulta el aviso de privacidad." No abrir el registro hasta publicar el aviso. |
+| Saldo de hasta 5 horas por debajo de cero | El copy lo ofrece sin condición; REQ-BT-004 deja por decidir quién puede usarlo. | Ajustar el copy cuando se resuelva REQ-BT-004. |
+| Cuidado de niñas y niños | El copy lo incluye, pero REQ-BT-009 no fija su nivel mínimo de habilitación. | Por decidir antes de publicar el catálogo. |
+| Cinco preguntas frecuentes sin respuesta | REQ-WEB-005 exige FAQ con copy de confianza. | Redactarlas antes de publicar. "¿Cómo sé que puedo confiar en quien cuida?" debe explicar REQ-BT-009. |
+| No menciona niveles N0 a N2 ni relevo habilitado | Omite la regla de confianza para servicios y cuidado de REQ-BT-009. | Incluirla en la respuesta de confianza de la FAQ. |
+| Nombre "Hora por Hora" | El equipo adoptó EntreManos como nombre de producto (spec 00); la landing de revisión usa otro. | Por decidir si se unifica. |
 
 ## Estado del prototipo
 
