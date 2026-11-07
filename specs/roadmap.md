@@ -47,6 +47,12 @@ uno en su worktree, sin tocar los archivos de otro.
 ## Fase 5 — Piloto
 
 - Landing con FAQ completo + folleto PDF.
+- Canal WhatsApp (notificaciones de validación/solicitudes): evaluar Capsule
+  (partner de Meta, free tier) vs Twilio (caro). Descartar Baileys/librerías
+  no oficiales por riesgo de ban. Meta es hostil a automatizaciones, ir por
+  canal oficial.
+- Resultado del spike de verificación de tareas (deep research Gemini
+  2026-11-07 + REQ-ORA-024): decidir si entra anti-fraude por foto on-device.
 - Datos del piloto semilla (Coyoacán / Santa Úrsula: −53% caídas, 94%
   satisfacción) solo si la alcaldía los valida; si no, se marcan como
   "proyección metodológica".
