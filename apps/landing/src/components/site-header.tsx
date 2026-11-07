@@ -6,6 +6,8 @@ const NAV = [
   { href: '#calculadora', label: 'Calculadora' },
   { href: '#garantias', label: 'Garantías' },
   { href: '#comercios', label: 'Comercios' },
+  { href: '/cuidared/', label: 'Banco de tiempo' },
+  { href: '/explainer/', label: 'El proyecto' },
   { href: '#faq', label: 'Preguntas' },
 ]
 
