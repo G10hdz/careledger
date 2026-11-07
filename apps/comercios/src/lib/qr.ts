@@ -1,11 +1,14 @@
 import type { Voucher } from '@careledger/domain'
 import { folioValido } from './folio'
+import { voucherDesdeCompacto, type ValeCompacto } from './vale'
 
 export interface QrDecodificado {
   folio: string
   manualCode?: string
   /** Vale completo embebido en el QR (la cuidadora puede mostrarlo offline). */
   voucher?: Voucher
+  /** Vale compacto firmado Ed25519 emitido por la PWA (contrato v1). */
+  compacto?: ValeCompacto
 }
 
 function esVoucher(v: unknown): v is Voucher {
@@ -22,9 +25,25 @@ function esVoucher(v: unknown): v is Voucher {
   )
 }
 
+function esValeCompacto(v: unknown): v is ValeCompacto {
+  if (typeof v !== 'object' || v === null) return false
+  const o = v as Record<string, unknown>
+  return (
+    typeof o.folio === 'string' &&
+    typeof o.benefitId === 'string' &&
+    typeof o.points === 'number' &&
+    typeof o.mxn === 'number' &&
+    typeof o.issuedAt === 'string' &&
+    typeof o.validUntil === 'string' &&
+    typeof o.sig === 'string' &&
+    (o.code === undefined || typeof o.code === 'string')
+  )
+}
+
 /**
  * Decodifica el contenido de un QR de vale:
- * - JSON con el vale completo (verificación de firma offline)
+ * - JSON vale compacto ed25519 de la PWA {folio, benefitId, points, mxn, issuedAt, validUntil, code?, sig}
+ * - JSON con el vale completo (esquema hmac-dev)
  * - JSON { folio, manualCode }
  * - texto plano con el folio CV-AAAA-NNNN-MX
  * - prefijo careledger://vale/<folio>
@@ -36,6 +55,12 @@ export function decodificarQr(raw: string): QrDecodificado | null {
 
   const json = parseJsonSeguro(limpio)
   if (json !== undefined) {
+    if (esValeCompacto(json)) {
+      const voucher = voucherDesdeCompacto(json)
+      const resultado: QrDecodificado = { folio: voucher.folio, voucher, compacto: json }
+      if (voucher.manualCode) resultado.manualCode = voucher.manualCode
+      return resultado
+    }
     if (esVoucher(json)) {
       return { folio: json.folio, manualCode: json.manualCode, voucher: json }
     }

@@ -2,11 +2,13 @@ import type { Voucher } from '@careledger/domain'
 import { pointsToMxn } from '@careledger/domain'
 import type { CobroRecord, CobroRejectReason, CobroResult, ComercioStore } from './types'
 import { normalizarFolio } from './folio'
-import { verificarVale } from './vale'
+import { verificarVale, type ValeCompacto } from './vale'
 import { benefitPoints } from './catalogo'
 
 export interface CobroInput {
   voucher: Voucher
+  /** Vale compacto ed25519 del QR de la PWA, si el cobro viene de ese QR. */
+  compacto?: ValeCompacto
   /** Código manual tecleado junto al folio; si viene en el QR ya está en el vale. */
   manualCode?: string
   now?: Date
@@ -17,14 +19,14 @@ export interface CobroInput {
  * idempotencia es local (mismo folio dos veces = rechazo), funciona
  * 100% offline y el cobro entra a la cola de sync como `synced: false`.
  */
-export function cobrarVale(store: ComercioStore, input: CobroInput): CobroResult {
+export async function cobrarVale(store: ComercioStore, input: CobroInput): Promise<CobroResult> {
   const { voucher } = input
   const folio = normalizarFolio(voucher.folio)
 
   const yaCobrado = store.cobros.some((c) => c.folio === folio)
   if (yaCobrado) return { ok: false, reason: 'ya_cobrado', folio }
 
-  const verificacion = verificarVale(voucher, input.now)
+  const verificacion = await verificarVale(voucher, input.now, input.compacto)
   if (!verificacion.ok) {
     let reason: CobroRejectReason
     switch (verificacion.reason) {

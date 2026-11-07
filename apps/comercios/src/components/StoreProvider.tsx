@@ -18,7 +18,7 @@ import type { CobroResult } from '@/lib/types'
 
 export interface StoreActions {
   registrar: (datos: AfiliacionDatos) => AfiliacionResult
-  cobrar: (input: CobroInput) => CobroResult
+  cobrar: (input: CobroInput) => Promise<CobroResult>
   sincronizar: () => void
   liquidar: () => LiquidarResult
   confirmarLiquidacion: (id: string) => boolean
@@ -57,9 +57,9 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   )
 
   const cobrar = useCallback(
-    (input: CobroInput): CobroResult => {
+    async (input: CobroInput): Promise<CobroResult> => {
       if (!store) return { ok: false, reason: 'folio_invalido', folio: '' }
-      const resultado = cobrarVale(store, input)
+      const resultado = await cobrarVale(store, input)
       if (resultado.ok) setStore({ ...store })
       return resultado
     },
