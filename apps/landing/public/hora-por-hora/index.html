@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hora por Hora</title>
+<meta name="description" content="Banco de tiempo de cuidados. Una hora de cuidado, una hora de vuelta. Piloto en Iztapalapa.">
+<style>
+:root{--bg:#f7f9fb;--card:#fff;--ink:#191c1e;--muted:#3d4947;--line:#bcc9c6;--p:#00685f;--on-p:#fff;--soft:#e6f6f3;--s:#4059aa}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#101415;--card:#191c1e;--ink:#eff1f3;--muted:#c3cecb;--line:#3d4947;--p:#6bd8cb;--on-p:#00201d;--soft:#12302d;--s:#b4c5ff}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:1.0625rem/1.6 "Atkinson Hyperlegible Next","Atkinson Hyperlegible",system-ui,sans-serif}
+h1,h2,h3{font-family:"Plus Jakarta Sans",system-ui,sans-serif;line-height:1.15;margin:0 0 .5em}
+h1{font-size:clamp(2rem,6vw,3.25rem)}h2{font-size:clamp(1.5rem,4vw,2.1rem)}h3{font-size:1.1rem}
+p{margin:0 0 1em}a{color:var(--p)}
+.wrap{max-width:60rem;margin:0 auto;padding:0 16px}
+section{padding:3rem 0;border-top:1px solid var(--line)}
+header{padding:12px 0}header .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.brand{font:700 1.15rem "Plus Jakarta Sans",system-ui,sans-serif}
+.kicker{color:var(--s);font-weight:700;font-size:.9rem;text-transform:uppercase;letter-spacing:.04em;margin-bottom:.5rem}
+.btn{display:inline-flex;align-items:center;min-height:48px;padding:0 22px;border-radius:999px;background:var(--p);color:var(--on-p);font-weight:700;text-decoration:none}
+.btn.alt{background:transparent;color:var(--p);border:2px solid var(--p)}
+.hero{padding:2.5rem 0 3.5rem}.hero p.lead{font-size:1.2rem;max-width:40rem;color:var(--muted)}
+.grid{display:grid;gap:16px}@media(min-width:720px){.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+.card h3{margin-bottom:.35em}.card p{margin:0;color:var(--muted)}
+.swap{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin:1.5rem 0}
+.pill{background:var(--soft);border-radius:14px;padding:12px 16px;font-weight:700}.pill small{display:block;font-weight:400;color:var(--muted)}
+.arrow{font-size:1.6rem;color:var(--p)}
+.num{display:inline-grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--p);color:var(--on-p);font-weight:700;margin-bottom:.5rem}
+.tags{display:flex;flex-wrap:wrap;gap:8px;padding:0;list-style:none;margin:1rem 0}
+.tags li{border:1px solid var(--line);border-radius:999px;padding:6px 14px;background:var(--card)}
+ul.check{padding:0;list-style:none}ul.check li{padding-left:1.6em;position:relative;margin-bottom:.6em}
+ul.check li::before{content:"\2713";position:absolute;left:0;color:var(--p);font-weight:700}
+details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px}
+summary{cursor:pointer;font-weight:700;min-height:24px}details p{margin:.7em 0 0;color:var(--muted)}
+.soon{background:var(--soft);border-radius:20px;padding:2rem}
+footer{padding:2rem 0;border-top:1px solid var(--line);color:var(--muted);font-size:.95rem}
+:focus-visible{outline:3px solid var(--s);outline-offset:2px}
+</style>
+</head>
+<body>
+<header><div class="wrap"><span class="brand">Hora por Hora</span><a class="btn" href="#proximamente">Unirme</a></div></header>
+<main>
+<section class="hero" style="border:0">
+ <div class="wrap">
+  <p class="kicker">Banco de tiempo de cuidados · Piloto en Iztapalapa</p>
+  <h1>Una hora de cuidado, una hora de vuelta.</h1>
+  <p class="lead">Si cuidas a tu familia, no tendrías que hacerlo sola. Dedica horas al cuidado de otra familia de tu comunidad y recibe horas de cuidado, o un servicio profesional, cuando tú lo necesites. Sin dinero de por medio.</p>
+  <p><a class="btn" href="#proximamente">Quiero participar</a> <a class="btn alt" href="#como">Cómo funciona</a></p>
+  <p>Estamos arrancando en Iztapalapa. El registro abre pronto.</p>
+  <div class="swap" aria-label="Ejemplo de intercambio">
+   <div class="pill">2 h<small>de limpieza dental</small></div><span class="arrow" aria-hidden="true">&#8644;</span><div class="pill">2 h<small>cuidando a su mamá</small></div>
+  </div>
+  <p>Una dentista que necesita apoyo con el cuidado de su familiar intercambia su servicio por horas de cuidado. Cada hora vale lo mismo.</p>
+ </div>
+</section>
+
+<section><div class="wrap">
+ <p class="kicker">Por qué existe</p>
+ <h2>Cuidar es trabajo. Casi nunca se ve y casi nunca se paga.</h2>
+ <p>Quien cuida a un hijo, a una madre o a un familiar con discapacidad suele hacerlo sin descanso, sin ingreso y sin red. Y cuando necesita ayuda, contratar cuesta dinero que no sobra.</p>
+ <div class="grid g3">
+  <div class="card"><h3>Tiempo</h3><p>Citas médicas, traslados y cuidado diario no dejan horas libres.</p></div>
+  <div class="card"><h3>Dinero</h3><p>Pagar a alguien más para cuidar o para un servicio no siempre es posible.</p></div>
+  <div class="card"><h3>Comunidad</h3><p>La gente cerca de ti sí tiene tiempo y habilidades. Falta una forma de conectarlas.</p></div>
+ </div>
+</div></section>
+
+<section id="como"><div class="wrap">
+ <p class="kicker">Cómo funciona</p>
+ <h2>Tres pasos, una sola moneda: la hora.</h2>
+ <div class="grid g3">
+  <div class="card"><span class="num">1</span><h3>Regístrate y verifica</h3><p>Cuéntanos si necesitas cuidado para un familiar, si quieres cuidar, o ambas cosas. Verificamos tu identidad.</p></div>
+  <div class="card"><span class="num">2</span><h3>Ofrece tus horas</h3><p>Ofrece horas de cuidado. Si tienes una profesión u oficio, también puedes ofrecerlo.</p></div>
+  <div class="card"><span class="num">3</span><h3>Usa tus horas</h3><p>Cuando necesites cuidado, usa las horas que ganaste con personas de tu comunidad. Cada hora se confirma.</p></div>
+ </div>
+ <h3 style="margin-top:2rem">¿Qué cuenta como cuidado?</h3>
+ <ul class="tags"><li>Acompañar a citas médicas</li><li>Cuidar niñas y niños</li><li>Cuidar adultos mayores</li><li>Traslados</li><li>Apoyo en casa a personas dependientes</li></ul>
+ <h3>¿Y si tengo un oficio o una profesión?</h3>
+ <p>Puedes ofrecerlo a cambio de horas de cuidado: terapia, odontología, plomería, estética, jardinería, limpieza, mantenimiento y lo que tu comunidad necesite.</p>
+ <ul class="tags"><li>Terapia</li><li>Dentista</li><li>Plomería</li><li>Estética</li><li>Jardinería</li><li>Limpieza</li><li>Mantenimiento</li></ul>
+</div></section>
+
+<section><div class="wrap">
+ <p class="kicker">Un ejemplo</p>
+ <h2>Ana cuida a su papá. Luis es su vecino.</h2>
+ <p>Luis cuida 2 horas al papá de Ana mientras ella va a su cita. A cambio, Ana, que es estilista, le corta el cabello a la familia de Luis durante 2 horas. Nadie pagó. Los dos tuvieron lo que necesitaban.</p>
+ <div class="grid g2">
+  <div class="card"><h3>Luis da 2 h</h3><p>de cuidado y recibe 2 h de estética</p></div>
+  <div class="card"><h3>Ana da 2 h</h3><p>de estética y recibe 2 h de cuidado</p></div>
+ </div>
+</div></section>
+
+<section><div class="wrap">
+ <p class="kicker">Reglas claras</p>
+ <h2>Simple de entender. Justo para todas y todos.</h2>
+ <div class="grid g4">
+  <div class="card"><h3>Una hora vale una hora</h3><p>Sin excepciones. Una hora de una profesión vale lo mismo que una hora de cuidado.</p></div>
+  <div class="card"><h3>Todo intercambio incluye cuidado</h3><p>Se intercambian horas de cuidado por horas de cuidado, o por un servicio profesional u oficio.</p></div>
+  <div class="card"><h3>Sin dinero</h3><p>Las horas no se compran ni se venden. Se dan y se reciben.</p></div>
+  <div class="card"><h3>Puedes pedir primero</h3><p>Puedes quedar hasta 5 horas por debajo de cero para recibir ayuda cuando más lo necesitas y devolverla después.</p></div>
+ </div>
+</div></section>
+
+<section><div class="wrap">
+ <p class="kicker">Para quién es</p>
+ <h2>Dos formas de formar parte.</h2>
+ <div class="grid g2">
+  <div class="card"><h3>Cuido a un familiar</h3><ul class="check"><li>Necesitas apoyo con el cuidado de alguien de tu familia.</li><li>Ofreces tu profesión u oficio a cambio de horas de cuidado.</li><li>También puedes ganar horas cuidando a otras familias.</li></ul><a class="btn" href="#proximamente">Unirme como familia</a></div>
+  <div class="card"><h3>Quiero cuidar</h3><ul class="check"><li>Eres vecina o vecino con tiempo y ganas de ayudar.</li><li>Das horas de cuidado a familias de tu comunidad.</li><li>Recibes a cambio un servicio de oficio o profesión que ofrece la familia.</li></ul><a class="btn" href="#proximamente">Unirme como cuidadora o cuidador</a></div>
+ </div>
+ <p style="margin-top:1rem">También puedes formar tu propia red de apoyo con tu familia, amigas, amigos y vecinos, o buscar personas cuidadoras de tu comunidad.</p>
+</div></section>
+
+<section><div class="wrap">
+ <p class="kicker">Confianza</p>
+ <h2>Cuidar es de confianza. Lo tomamos en serio.</h2>
+ <div class="grid g2">
+  <div class="card"><h3>Personas verificadas</h3><p>Verificamos la identidad de quienes participan al registrarse. El método se define con la alcaldía durante el piloto.</p></div>
+  <div class="card"><h3>Necesidad de cuidado comprobada</h3><p>Una tercera persona de la comunidad valida que existe un familiar que requiere cuidado.</p></div>
+  <div class="card"><h3>Cada hora se confirma</h3><p>La hora se acredita cuando confirman las dos partes, quien da y quien recibe. Si no coinciden, no se acredita y una tercera persona ayuda a resolverlo.</p></div>
+  <div class="card"><h3>Tus datos, protegidos</h3><p>Solo guardamos duración y tipo de apoyo. Nunca diagnósticos, nombres de pacientes ni fotos. Consulta el aviso de privacidad.</p></div>
+ </div>
+ <p style="margin-top:1rem">Hay tres niveles según el tipo de ayuda. Compañía, compras y trámites no piden requisitos. Movilizar o dar medicamentos simples pide capacitación básica. Enfermería, terapia u odontología piden certificado o ser profesional. La hora vale lo mismo en todos.</p>
+</div></section>
+
+<section><div class="wrap">
+ <p class="kicker">Preguntas frecuentes</p>
+ <h2>Lo que más nos preguntan</h2>
+ <details><summary>¿Necesito tener un familiar dependiente para participar?</summary><p>No. Puedes participar solo como persona cuidadora, si tienes tiempo y ganas de ayudar a familias de tu comunidad.</p></details>
+ <details><summary>¿Qué pasa si debo horas?</summary><p>Puedes quedar hasta 5 horas por debajo de cero y devolverlas después cuidando o con tu oficio. Las reglas para quien no devuelve sus horas se están definiendo con el piloto.</p></details>
+ <details><summary>¿Se paga con dinero?</summary><p>No. Las horas no se compran ni se venden. Una hora de cuidado se intercambia por una hora de cuidado o de un servicio.</p></details>
+ <details><summary>¿Cómo sé que puedo confiar en quien cuida a mi familiar?</summary><p>Verificamos la identidad, cada hora la confirman las dos partes y hay niveles de habilitación según el tipo de ayuda. Tú eliges con quién intercambiar.</p></details>
+ <details><summary>¿Dónde funciona?</summary><p>El piloto arranca en la alcaldía Iztapalapa, Ciudad de México. Después queremos llevarlo a otras localidades.</p></details>
+</div></section>
+
+<section id="proximamente"><div class="wrap">
+ <div class="soon">
+  <p class="kicker">Próximamente</p>
+  <h2>El registro del piloto abre pronto.</h2>
+  <p>Estamos preparando el primer grupo en Iztapalapa. Cuando el registro esté listo, aquí mismo podrás apuntarte como familia que necesita apoyo de cuidado o como vecina o vecino que quiere cuidar.</p>
+  <p><strong>Esta es una versión de revisión. Todavía no recibe registros.</strong></p>
+ </div>
+</div></section>
+</main>
+<footer><div class="wrap"><p>Hora por Hora · Banco de tiempo de cuidados · Piloto en la alcaldía Iztapalapa, Ciudad de México.</p><p>Aviso de privacidad · Texto pendiente de redacción legal.</p></div></footer>
+</body>
+</html>
