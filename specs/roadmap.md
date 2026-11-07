@@ -44,6 +44,14 @@ uno en su worktree, sin tocar los archivos de otro.
   on-device con solo hash a BD en México (REQ-ORA-024). Resultado documentado
   en `docs/` antes de decidir implementación.
 
+## Fase 4.7 — Banco de tiempo (doc v3)
+
+- `apps/cuidared`: prototipo single-file ya existe como demo navegable en
+  GitHub Pages (`docs/cuidared/`). Reescritura dentro del monorepo queda por
+  spec `09`: paridad hora-hora, mapa de servicios, saldo −5h, doble
+  confirmación QR, topes 8h/día y 20h/mes por par de cuentas, piloto
+  Iztapalapa ~20 tx/día.
+
 ## Fase 5 — Piloto
 
 - Landing con FAQ completo + folleto PDF.
