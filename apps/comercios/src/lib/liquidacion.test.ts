@@ -30,10 +30,10 @@ function storeConComercio(): ComercioStore {
   }
 }
 
-function cobrar(store: ComercioStore, folio: string, hora: Date) {
+async function cobrar(store: ComercioStore, folio: string, hora: Date) {
   const [activo] = valesFixture(hora)
   const vale = firmarVale({ ...activo!, folio })
-  const resultado = cobrarVale(store, { voucher: vale, now: hora })
+  const resultado = await cobrarVale(store, { voucher: vale, now: hora })
   if (!resultado.ok) throw new Error(`cobro de fixture falló: ${resultado.reason}`)
   return resultado.cobro
 }
@@ -46,10 +46,10 @@ describe('dateKey', () => {
 })
 
 describe('liquidarDia (REQ-COM-004: 100% del día, 0% comisión, ≤24h)', () => {
-  it('agrupa los cobros del día y transfiere la suma exacta sin comisión', () => {
+  it('agrupa los cobros del día y transfiere la suma exacta sin comisión', async () => {
     const store = storeConComercio()
-    cobrar(store, 'CV-2026-0087-MX', new Date('2026-11-07T09:15:00-06:00')) // $100
-    cobrar(store, 'CV-2026-0088-MX', new Date('2026-11-07T11:40:00-06:00')) // $100
+    await cobrar(store, 'CV-2026-0087-MX', new Date('2026-11-07T09:15:00-06:00')) // $100
+    await cobrar(store, 'CV-2026-0088-MX', new Date('2026-11-07T11:40:00-06:00')) // $100
     const resultado = liquidarDia(store, HOY)
 
     expect(resultado.ok).toBe(true)
@@ -71,15 +71,15 @@ describe('liquidarDia (REQ-COM-004: 100% del día, 0% comisión, ≤24h)', () =>
     expect(liquidarDia(store, HOY)).toEqual({ ok: false, reason: 'sin_comercio' })
   })
 
-  it('sin cobros del día no liquida', () => {
+  it('sin cobros del día no liquida', async () => {
     const store = storeConComercio()
-    cobrar(store, 'CV-2026-0087-MX', new Date('2026-11-06T18:00:00-06:00')) // ayer
+    await cobrar(store, 'CV-2026-0087-MX', new Date('2026-11-06T18:00:00-06:00')) // ayer
     expect(liquidarDia(store, HOY)).toEqual({ ok: false, reason: 'sin_cobros' })
   })
 
-  it('un folio entra en una sola liquidación (idempotencia del batch)', () => {
+  it('un folio entra en una sola liquidación (idempotencia del batch)', async () => {
     const store = storeConComercio()
-    cobrar(store, 'CV-2026-0087-MX', new Date('2026-11-07T09:15:00-06:00'))
+    await cobrar(store, 'CV-2026-0087-MX', new Date('2026-11-07T09:15:00-06:00'))
     const primera = liquidarDia(store, HOY)
     expect(primera.ok).toBe(true)
 
@@ -89,11 +89,11 @@ describe('liquidarDia (REQ-COM-004: 100% del día, 0% comisión, ≤24h)', () =>
     expect(store.liquidaciones).toHaveLength(1)
   })
 
-  it('un cobro nuevo tras liquidar entra en el siguiente batch, no en el anterior', () => {
+  it('un cobro nuevo tras liquidar entra en el siguiente batch, no en el anterior', async () => {
     const store = storeConComercio()
-    cobrar(store, 'CV-2026-0087-MX', new Date('2026-11-07T09:15:00-06:00'))
+    await cobrar(store, 'CV-2026-0087-MX', new Date('2026-11-07T09:15:00-06:00'))
     liquidarDia(store, new Date('2026-11-07T10:00:00-06:00'))
-    cobrar(store, 'CV-2026-0088-MX', new Date('2026-11-07T12:30:00-06:00'))
+    await cobrar(store, 'CV-2026-0088-MX', new Date('2026-11-07T12:30:00-06:00'))
 
     const segundo = liquidarDia(store, new Date('2026-11-07T13:00:00-06:00'))
     expect(segundo.ok).toBe(true)
@@ -105,9 +105,9 @@ describe('liquidarDia (REQ-COM-004: 100% del día, 0% comisión, ≤24h)', () =>
 })
 
 describe('confirmarLiquidacion', () => {
-  it('confirma una liquidación programada con acuse simulado', () => {
+  it('confirma una liquidación programada con acuse simulado', async () => {
     const store = storeConComercio()
-    cobrar(store, 'CV-2026-0087-MX', new Date('2026-11-07T09:15:00-06:00'))
+    await cobrar(store, 'CV-2026-0087-MX', new Date('2026-11-07T09:15:00-06:00'))
     const resultado = liquidarDia(store, HOY)
     if (!resultado.ok) throw new Error('no liquidó')
 
@@ -122,9 +122,9 @@ describe('confirmarLiquidacion', () => {
     expect(liquidacionesPendientes(store)).toHaveLength(0)
   })
 
-  it('no confirma dos veces ni ids desconocidos', () => {
+  it('no confirma dos veces ni ids desconocidos', async () => {
     const store = storeConComercio()
-    cobrar(store, 'CV-2026-0087-MX', new Date('2026-11-07T09:15:00-06:00'))
+    await cobrar(store, 'CV-2026-0087-MX', new Date('2026-11-07T09:15:00-06:00'))
     const resultado = liquidarDia(store, HOY)
     if (!resultado.ok) throw new Error('no liquidó')
     confirmarLiquidacion(store, resultado.liquidacion.id, HOY)
@@ -134,10 +134,10 @@ describe('confirmarLiquidacion', () => {
 })
 
 describe('cobrosDelDia y sincronizarTodo', () => {
-  it('filtra por día y sincroniza toda la cola', () => {
+  it('filtra por día y sincroniza toda la cola', async () => {
     const store = storeConComercio()
-    cobrar(store, 'CV-2026-0087-MX', new Date('2026-11-07T09:15:00-06:00'))
-    cobrar(store, 'CV-2026-0088-MX', new Date('2026-11-06T18:00:00-06:00'))
+    await cobrar(store, 'CV-2026-0087-MX', new Date('2026-11-07T09:15:00-06:00'))
+    await cobrar(store, 'CV-2026-0088-MX', new Date('2026-11-06T18:00:00-06:00'))
 
     expect(cobrosDelDia(store, '2026-11-07')).toHaveLength(1)
     expect(sincronizarTodo(store)).toBe(2)

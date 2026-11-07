@@ -97,7 +97,12 @@ export default function TerminalPage() {
     )
   }
 
-  function cobrarDesdeInput(input: { folio: string; manualCode?: string; voucher?: QrDecodificado['voucher'] }) {
+  async function cobrarDesdeInput(input: {
+    folio: string
+    manualCode?: string
+    voucher?: QrDecodificado['voucher']
+    compacto?: QrDecodificado['compacto']
+  }) {
     const folioLimpio = normalizarFolio(input.folio)
     if (!folioValido(folioLimpio)) {
       setUltimo({ ok: false, reason: 'folio_invalido', folio: input.folio })
@@ -109,8 +114,9 @@ export default function TerminalPage() {
       return
     }
     setUltimo(
-      actions.cobrar({
+      await actions.cobrar({
         voucher,
+        ...(input.compacto ? { compacto: input.compacto } : {}),
         ...(input.manualCode?.trim() ? { manualCode: input.manualCode.trim() } : {}),
       }),
     )
@@ -118,7 +124,7 @@ export default function TerminalPage() {
 
   function procesar(e: React.FormEvent) {
     e.preventDefault()
-    cobrarDesdeInput({ folio, manualCode })
+    void cobrarDesdeInput({ folio, manualCode })
   }
 
   function procesarQr() {
@@ -128,17 +134,18 @@ export default function TerminalPage() {
       return
     }
     setFolio(decodificado.folio)
-    cobrarDesdeInput({
+    void cobrarDesdeInput({
       folio: decodificado.folio,
       ...(decodificado.manualCode ? { manualCode: decodificado.manualCode } : {}),
       ...(decodificado.voucher ? { voucher: decodificado.voucher } : {}),
+      ...(decodificado.compacto ? { compacto: decodificado.compacto } : {}),
     })
   }
 
   function probarVale(index: number) {
     const vale = vales[index]!
     setQrTexto(qrDeVale(vale))
-    cobrarDesdeInput({ folio: vale.folio, voucher: vale })
+    void cobrarDesdeInput({ folio: vale.folio, voucher: vale })
   }
 
   return (

@@ -84,8 +84,8 @@ export function sha256(data: Uint8Array): Uint8Array {
   return out
 }
 
-export function utf8(s: string): Uint8Array {
-  return new TextEncoder().encode(s)
+export function utf8(s: string): Uint8Array<ArrayBuffer> {
+  return new Uint8Array(new TextEncoder().encode(s))
 }
 
 export function hex(bytes: Uint8Array): string {
