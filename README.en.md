@@ -31,10 +31,10 @@ from the prototype live in `design/stitch/`.
 
 Live demos:
 
-- Landing (public site): <https://entremanos-g10hdzs-projects.vercel.app>
-- Explainer: <https://g10hdz.github.io/careledger/>
-- CuidaRed (time-bank prototype, spec 09):
-  <https://g10hdz.github.io/careledger/cuidared/>
+- Site (landing + demos on one domain): <https://entremanos-mx.vercel.app>
+- Time bank: <https://entremanos-mx.vercel.app/cuidared>
+- Explainer: <https://entremanos-mx.vercel.app/explainer>
+- GitHub Pages mirror: <https://g10hdz.github.io/careledger/>
 
 The app is named **EntreManos**; the program is *Cuando cuidas, te
 descuidas*. Internal identifiers keep the `careledger` slug: `@careledger/*`

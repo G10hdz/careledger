@@ -35,10 +35,10 @@ referencia exportadas del prototipo están en `design/stitch/`.
 
 Demos en vivo:
 
-- Landing (sitio público): <https://entremanos-g10hdzs-projects.vercel.app>
-- Explainer: <https://g10hdz.github.io/careledger/>
-- CuidaRed (prototipo del banco de tiempo, spec 09):
-  <https://g10hdz.github.io/careledger/cuidared/>
+- Sitio (landing + demos en el mismo dominio): <https://entremanos-mx.vercel.app>
+- Banco de tiempo: <https://entremanos-mx.vercel.app/cuidared>
+- Explainer: <https://entremanos-mx.vercel.app/explainer>
+- Espejo en GitHub Pages: <https://g10hdz.github.io/careledger/>
 
 La app se llama **EntreManos**; el programa es "Cuando cuidas, te
 descuidas". Los identificadores internos conservan el slug `careledger`:
