@@ -6,6 +6,7 @@ import type { ReactNode } from 'react'
 
 const RUTAS = [
   { href: '/', label: 'Cobrar' },
+  { href: '/historial', label: 'Historial' },
   { href: '/afiliacion', label: 'Afiliación' },
   { href: '/distintivo', label: 'Mi placa' },
 ] as const
@@ -34,7 +35,7 @@ export function AppShell({ children }: { children: ReactNode }) {
       <main className="flex-1 px-gutter pb-[88px] pt-md">{children}</main>
 
       <nav className="sticky bottom-0 border-t border-outline-variant bg-surface-container-lowest">
-        <div className="grid grid-cols-3" aria-label="Navegación principal">
+        <div className="grid grid-cols-4" aria-label="Navegación principal">
           {RUTAS.map((ruta) => {
             const activa = pathname === ruta.href
             return (
