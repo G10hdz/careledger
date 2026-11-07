@@ -1,16 +1,34 @@
 import type { AttestationView, CertificateView } from './app'
 import type { StoredVoucher } from './db'
+import { pointsToMxn } from '@careledger/domain'
 import { formatCode, formatDuration, formatWhen } from './format'
 import { pdfIncludes, simplePdf } from './pdf'
 
 export { pdfIncludes }
 
-export function voucherQrText(voucher: Pick<StoredVoucher, 'folio' | 'benefitId' | 'manualCode' | 'validUntil'>): string {
+/**
+ * Contrato del QR de vale (v1, espejo del terminal de comercios):
+ * {folio, benefitId, points, mxn, issuedAt, validUntil, code, sig}.
+ * `sig` es Ed25519 (WebCrypto) sobre el payload canónico
+ * stableStringify({benefitId, costPoints, folio, issuedAt, validUntil}),
+ * sin caregiverId: lo único que sale del dispositivo es lo necesario
+ * para el cobro (REQ-PWA-011).
+ */
+export function voucherQrText(
+  voucher: Pick<
+    StoredVoucher,
+    'folio' | 'benefitId' | 'costPoints' | 'issuedAt' | 'validUntil' | 'manualCode' | 'qrSignature'
+  >,
+): string {
   return JSON.stringify({
     folio: voucher.folio,
     benefitId: voucher.benefitId,
-    code: voucher.manualCode,
+    points: voucher.costPoints,
+    mxn: pointsToMxn(voucher.costPoints),
+    issuedAt: voucher.issuedAt,
     validUntil: voucher.validUntil,
+    code: voucher.manualCode,
+    sig: voucher.qrSignature,
   })
 }
 

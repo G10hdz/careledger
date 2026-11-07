@@ -580,6 +580,17 @@ export function createCareApp(opts: CareAppOptions = {}) {
         })
         const payloadHash = await Dexie.waitFor(sha256Hex(payload))
         const ledgerSignature = await Dexie.waitFor(signText(profile.privateJwk, payload))
+        // Firma separada para el QR: payload compacto sin caregiverId
+        // (REQ-PWA-011). El terminal del comercio la verifica con la
+        // clave pública del llavero municipal distribuida en su app.
+        const qrPayload = stableStringify({
+          benefitId: benefit.id,
+          costPoints: benefit.costPoints,
+          folio,
+          issuedAt,
+          validUntil,
+        })
+        const qrSignature = await Dexie.waitFor(signText(profile.privateJwk, qrPayload))
         const voucher: StoredVoucher = {
           folio,
           benefitId: benefit.id,
@@ -592,6 +603,7 @@ export function createCareApp(opts: CareAppOptions = {}) {
           manualCode: manualCode(payloadHash),
           costPoints: benefit.costPoints,
           payloadHash,
+          qrSignature,
         }
         await db.wallet.put({ ...wallet, pointsBalance: wallet.pointsBalance - benefit.costPoints })
         opts.onBeforeVoucher?.()
