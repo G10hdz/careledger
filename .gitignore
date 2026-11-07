@@ -1,0 +1,13 @@
+node_modules/
+.next/
+out/
+dist/
+*.tsbuildinfo
+.env
+.env.*
+!.env.example
+.wt-port
+.DS_Store
+coverage/
+playwright-report/
+test-results/

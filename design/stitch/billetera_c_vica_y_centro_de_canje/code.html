@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+
+<html lang="es"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400..700;1,400..700&amp;family=Plus+Jakarta+Sans:ital,wght@0,400..800;1,400..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "inverse-surface": "#2d3133", "surface-variant": "#e0e3e5", "on-error-container": "#93000a", "on-secondary-container": "#1d3989", "tertiary-fixed-dim": "#ffb77d", "on-secondary": "#ffffff", "on-background": "#191c1e", "on-tertiary": "#ffffff", "on-tertiary-container": "#fffbff", "primary-fixed-dim": "#6bd8cb", "on-tertiary-fixed-variant": "#6e3900", "surface-container-highest": "#e0e3e5", "on-primary-container": "#f4fffc", "surface": "#f7f9fb", "secondary": "#4059aa", "outline-variant": "#bcc9c6", "on-surface": "#191c1e", "on-surface-variant": "#3d4947", "on-secondary-fixed-variant": "#264191", "secondary-fixed-dim": "#b6c4ff", "primary": "#00685f", "on-secondary-fixed": "#00164e", "surface-container-low": "#f2f4f6", "error-container": "#ffdad6", "inverse-primary": "#6bd8cb", "inverse-on-surface": "#eff1f3", "tertiary": "#8d4b00", "surface-container-lowest": "#ffffff", "tertiary-container": "#b15f00", "on-primary-fixed": "#00201d", "surface-container-high": "#e6e8ea", "secondary-fixed": "#dce1ff", "secondary-container": "#8fa7fe", "surface-container": "#eceef0", "background": "#f7f9fb", "on-error": "#ffffff", "on-primary": "#ffffff", "error": "#ba1a1a", "primary-fixed": "#89f5e7", "on-tertiary-fixed": "#2f1500", "surface-bright": "#f7f9fb", "on-primary-fixed-variant": "#005049", "primary-container": "#008378", "outline": "#6d7a77", "tertiary-fixed": "#ffdcc3", "surface-tint": "#006a61", "surface-dim": "#d8dadc" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "gutter-desktop": "2rem", "margin-desktop": "3rem", "space-xs": "0.25rem", "margin": "1rem", "margin-tablet": "2rem", "space-sm": "0.5rem", "gutter": "1rem", "space-lg": "1.5rem", "space-xl": "2.5rem", "gutter-tablet": "1.5rem", "space-md": "1rem" }, "fontFamily": { "display-lg-mobile": [ "Plus Jakarta Sans" ], "headline-lg": [ "Plus Jakarta Sans" ], "headline-sm": [ "Plus Jakarta Sans" ], "headline-lg-mobile": [ "Plus Jakarta Sans" ], "body-lg": [ "Atkinson Hyperlegible Next" ], "label-md": [ "Plus Jakarta Sans" ], "numeral-voucher": [ "Plus Jakarta Sans" ], "body-sm": [ "Atkinson Hyperlegible Next" ], "headline-md": [ "Plus Jakarta Sans" ], "label-sm": [ "Plus Jakarta Sans" ], "body-md": [ "Atkinson Hyperlegible Next" ], "display-lg": [ "Plus Jakarta Sans" ], "label-lg": [ "Plus Jakarta Sans" ] }, "fontSize": { "display-lg-mobile": [ "32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" } ], "headline-lg": [ "30px", { "lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "700" } ], "headline-sm": [ "18px", { "lineHeight": "26px", "fontWeight": "600" } ], "headline-lg-mobile": [ "26px", { "lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "700" } ], "body-lg": [ "18px", { "lineHeight": "28px", "fontWeight": "400" } ], "label-md": [ "14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" } ], "numeral-voucher": [ "28px", { "lineHeight": "32px", "letterSpacing": "0.02em", "fontWeight": "700" } ], "body-sm": [ "14px", { "lineHeight": "20px", "fontWeight": "400" } ], "headline-md": [ "22px", { "lineHeight": "30px", "letterSpacing": "-0.005em", "fontWeight": "600" } ], "label-sm": [ "12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" } ], "body-md": [ "16px", { "lineHeight": "24px", "fontWeight": "400" } ], "display-lg": [ "40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" } ], "label-lg": [ "16px", { "lineHeight": "24px", "letterSpacing": "0.01em", "fontWeight": "600" } ] } } } };</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-on-surface flex flex-col min-h-screen"><header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl pt-safe shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-20 px-margin flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0 flex-1"><img alt="CareLedger Brand Logo" class="h-8 w-auto object-contain flex-shrink-0" src="https://lh3.googleusercontent.com/aida/AEtjO1Xvkdv2pw6nri9uIaAZTrr-SbSecFp5JaCiFbuYABwKHmsrSy3NhKh8mZ_JcGzND_Ah5qW87MgQGSV1-cIjofVeqLZYdOKZ64ttd4OgFkwCIMJqrE2jAApqs39WGV0hkoY__A4Uw1Bu1n2C10W43aiNQ_Gdr9UGatM8WRj9nhKSM5EOPAlD5Pv-_Ro0vRDt7QCRFkIS1ZbN546gUvjHjBK-3p6v6re2nLb1gQP1-jze7A"/><div class="flex flex-col min-w-0"><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm text-on-surface truncate">CareLedger</span><span class="font-label-sm text-label-sm text-on-surface-variant font-normal hidden sm:inline">•</span><span class="font-label-sm text-label-sm text-on-surface-variant truncate">Billetera</span></div><span class="font-label-sm text-label-sm text-primary font-semibold truncate">Hola, Carmen</span></div></div><div class="flex items-center gap-space-xs flex-shrink-0"><div class="relative flex items-center"><label class="sr-only" for="lang-select-tab">Idioma</label><select class="h-12 pl-2 pr-7 bg-surface-container-low text-on-surface font-label-sm text-label-sm rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-primary cursor-pointer" id="lang-select-tab"><option value="es">ES</option><option value="nah">NAH</option><option value="en">EN</option></select><span class="material-symbols-outlined absolute right-1 pointer-events-none text-on-surface-variant text-[18px]">expand_more</span></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover flex-shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4ZMYnh5oVcbTeW9h1vuaUb5Oo5TlMGh5WpqU4LlVcfsyeiAES6t774Sq_ulPmbN366nB-CoeLc1ahl1C_wutdG6FHU5JQV5IlHGxY1iPEEKDItPB0rfb1xfSeJk3k54K8fBNSHkz24ZGCHHMxKbGeANAWJF0AkUjm0wLRMOjUKLA4Lnjb4KoQi60Rhmn7GT3WzIW6U5eT84j4MMXi68ge86wvv6WqCzcty7l__YUb"/></div></div><div class="px-margin pb-space-xs flex items-center justify-between"><div class="inline-flex items-center gap-1.5 py-0.5 px-2 bg-secondary-fixed/40 rounded-full"><span class="material-symbols-outlined text-secondary text-[14px]">verified</span><span class="font-label-sm text-label-sm text-on-secondary-fixed font-semibold truncate">Nodo Activo: Roma-Condesa</span></div><div class="flex items-center gap-1 text-on-surface-variant"><span class="material-symbols-outlined text-[14px] text-primary">cloud_done</span><span class="font-label-sm text-label-sm">Sincronizado</span></div></div></header><main class="flex flex-col relative w-full pt-20 pb-28 px-margin bg-surface"><div class="flex flex-col w-full gap-space-lg pb-space-xl">
+<!-- Offline Guarantee Banner -->
+<div class="flex items-center justify-between p-space-sm bg-secondary-fixed/40 rounded-xl">
+<div class="flex items-center gap-space-xs min-w-0">
+<span class="material-symbols-outlined text-secondary text-[20px] flex-shrink-0 animate-pulse">offline_pin</span>
+<span class="font-label-sm text-label-sm text-on-secondary-fixed font-semibold truncate">Billetera Cívica Offline Activa</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant flex-shrink-0 bg-surface-container-highest px-2 py-0.5 rounded-full">Cripto-Cuidado v2.4</span>
+</div>
+<!-- Hero Card: Civic Care Balance -->
+<section class="relative overflow-hidden rounded-xl bg-primary text-on-primary p-space-lg shadow-md">
+<div class="absolute -top-12 -right-12 w-44 h-44 rounded-full bg-primary-fixed-dim/15 blur-2xl pointer-events-none"></div>
+<div class="absolute -bottom-8 -left-8 w-36 h-36 rounded-full bg-primary-container/30 blur-xl pointer-events-none"></div>
+<div class="relative flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="inline-flex items-center gap-1.5 py-1 px-2.5 bg-primary-container text-on-primary rounded-full">
+<span class="material-symbols-outlined text-[16px]">volunteer_activism</span>
+<span class="font-label-sm text-label-sm font-semibold tracking-wide uppercase">Billetera de Cuidado Comunitario</span>
+</div>
+<div class="flex items-center gap-1 text-primary-fixed">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+<span class="font-label-sm text-label-sm font-semibold">Respaldo Ciudadano</span>
+</div>
+</div>
+<div class="flex flex-col gap-0.5">
+<div class="flex items-baseline gap-space-xs">
+<span class="font-display-lg-mobile text-display-lg-mobile font-bold tracking-tight text-on-primary" id="user-balance">140</span>
+<span class="font-headline-md text-headline-md font-semibold text-primary-fixed">$CARE</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-primary-container">
+          (~ $70 USD en subsidios públicos, insumos y servicios de bienestar)
+        </p>
+</div>
+<div class="bg-on-primary/10 rounded-lg p-space-sm flex items-center justify-between gap-space-xs text-on-primary">
+<div class="flex items-center gap-1.5 min-w-0">
+<span class="material-symbols-outlined text-primary-fixed text-[18px] flex-shrink-0">trending_up</span>
+<span class="font-label-sm text-label-sm font-medium truncate">Ganados este mes: <strong class="text-primary-fixed font-semibold">+75 $CARE</strong></span>
+</div>
+<div class="flex items-center gap-1.5 flex-shrink-0">
+<span class="material-symbols-outlined text-primary-fixed text-[18px]">schedule</span>
+<span class="font-label-sm text-label-sm font-semibold">22h reconocidas</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Photo Strip: Caregivers Community Dignity -->
+<section class="grid grid-cols-2 gap-space-sm">
+<div class="relative h-28 rounded-xl overflow-hidden shadow-sm bg-surface-container-high">
+<img class="w-full h-full object-cover" data-alt="A warm and respectful portrait of an elderly adult smiling peacefully beside a caring social community assistant in Mexico City, warm natural afternoon light, high dignity, cinematic realism, emerald teal and amber tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8_w-DJZujrbs7icWr-JB8d6pOCIQqDQrIzz8IX3TT8MjKZR3oge5tCPgzfodbKv-8Dl_GZJaDiOnyx-4eJvqCKbeTaka7u_eEVo-7ZGusm-nClvjzGcrunOk49qfNJ5I2gnvk2a2FIiyQ2gV1to4cRgPYqmPOmyuQ582au2HjCikrZXSZaJg40ql9DoErSqYMgUuq7cKzthLKCPoCfcdNsZ7w5G7ZMdJ3s0d5WW_a"/>
+<div class="absolute inset-0 bg-gradient-to-t from-inverse-surface/80 via-transparent to-transparent flex items-end p-2">
+<span class="font-label-sm text-label-sm text-inverse-on-surface font-medium truncate">Cuidado Digno Familiar</span>
+</div>
+</div>
+<div class="relative h-28 rounded-xl overflow-hidden shadow-sm bg-surface-container-high">
+<img class="w-full h-full object-cover" data-alt="Close up photograph of compassionate caregiver hands sharing a healthy warm meal container in a friendly neighborhood community center, vibrant fresh colors, soft atmospheric daylight, warm tones, civic solidarity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvtfz4U03unsAi-HPVnQ2jpxkxJ2FcVpEHSnTdWwC7QA7W2bJgtCqQXHyqD-TrQEd3GQ3ywv_Epz3rWKBawwtbi6Ueuh3jX7iNoqQIUjpa_ecldMZ9M-Hsg1NHpQXq1rFNVcMclSOWANLsOwgT8fBgD1VVjDZA9la1cwSt67bhFbGe9FwGWbrMB1SSIgVbTRqWSgkPUgP2XIO-XWwn5IPGvzahDvaGuDia01a6BVPQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-inverse-surface/80 via-transparent to-transparent flex items-end p-2">
+<span class="font-label-sm text-label-sm text-inverse-on-surface font-medium truncate">Red Solidaria Local</span>
+</div>
+</div>
+</section>
+<!-- Voucher Marketplace Header -->
+<section class="flex flex-col gap-1">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[24px]">storefront</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Canje Inmediato de Beneficios Ciudadanos</h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+      Canjea tus horas de cuidado registradas por subsidios directos en servicios básicos o tiempo de relevo asistido para tu propio descanso.
+    </p>
+</section>
+<!-- Voucher Cards List -->
+<div class="flex flex-col gap-space-md">
+<!-- Tarjeta A: Subsidio Energía Eléctrica -->
+<article class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm transition-transform active:scale-[0.99]">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="w-12 h-12 rounded-lg bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed flex-shrink-0">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<div class="flex items-center gap-1.5 flex-wrap">
+<span class="font-label-sm text-label-sm bg-surface-container text-on-surface-variant px-2 py-0.5 rounded-full font-medium">Hogar Sustentable</span>
+<span class="font-label-sm text-label-sm bg-secondary-fixed/50 text-on-secondary-fixed px-2 py-0.5 rounded-full font-medium">Subsidio Directo</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mt-1 leading-snug">Descuento del 30% en tu próximo recibo de Luz / Energía</h3>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+        Convenio con la Comisión Federal de Electricidad &amp; Secretaría del Bienestar. Aplicable para tarifas residenciales 1A, 1B y 1C.
+      </p>
+<div class="pt-space-xs flex items-center justify-between gap-space-sm">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-normal">Costo cívico</span>
+<span class="font-headline-sm text-headline-sm text-primary font-bold">50 $CARE</span>
+</div>
+<button class="h-12 px-space-md bg-primary text-on-primary rounded-xl font-label-md text-label-md font-semibold flex items-center gap-space-xs active:scale-[0.98] transition-all cursor-pointer shadow-sm" onclick="openVoucherModal('Descuento 30% en Recibo de Luz', 'CFE &amp; Secretaría del Bienestar', 50, '#CARE-2025-8841-MX', 'bolt')">
+<span>Canjear Beneficio</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</article>
+<!-- Tarjeta B: Transporte Metropolitano -->
+<article class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm transition-transform active:scale-[0.99]">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="w-12 h-12 rounded-lg bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed flex-shrink-0">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">directions_bus</span>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<div class="flex items-center gap-1.5 flex-wrap">
+<span class="font-label-sm text-label-sm bg-surface-container text-on-surface-variant px-2 py-0.5 rounded-full font-medium">Movilidad Integrada</span>
+<span class="font-label-sm text-label-sm bg-primary-fixed/50 text-on-primary-fixed px-2 py-0.5 rounded-full font-medium">7 Días Libres</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mt-1 leading-snug">Pase Semanal Ilimitado de Transporte Público</h3>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+        Válido en red Metro, Metrobús y Red de Transporte de Pasajeros (RTP). Carga directa por NFC o en taquilla municipal.
+      </p>
+<div class="pt-space-xs flex items-center justify-between gap-space-sm">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-normal">Costo cívico</span>
+<span class="font-headline-sm text-headline-sm text-primary font-bold">30 $CARE</span>
+</div>
+<button class="h-12 px-space-md bg-primary text-on-primary rounded-xl font-label-md text-label-md font-semibold flex items-center gap-space-xs active:scale-[0.98] transition-all cursor-pointer shadow-sm" onclick="openVoucherModal('Pase Semanal Ilimitado de Transporte', 'Red de Movilidad Integrada CDMX', 30, '#CARE-2025-4192-TR', 'directions_bus')">
+<span>Canjear Beneficio</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</article>
+<!-- Tarjeta C: Banco de Relevo Comunitario (Autocuidado) -->
+<article class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm transition-transform active:scale-[0.99] relative overflow-hidden">
+<!-- Empathetic Badge -->
+<div class="flex items-center gap-1 self-start bg-tertiary-fixed text-on-tertiary-fixed-variant px-2.5 py-1 rounded-full">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="font-label-sm text-label-sm font-bold">Más solicitado por cuidadoras</span>
+</div>
+<div class="flex items-start justify-between gap-space-sm">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center text-tertiary flex-shrink-0">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">spa</span>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<div class="flex items-center gap-1.5 flex-wrap">
+<span class="font-label-sm text-label-sm bg-surface-container text-on-surface-variant px-2 py-0.5 rounded-full font-medium">Autocuidado y Salud</span>
+<span class="font-label-sm text-label-sm bg-primary-fixed/40 text-on-primary-fixed px-2 py-0.5 rounded-full font-medium">Personal Certificado</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mt-1 leading-snug">3 horas de Asistente de Relevo Certificado para tu descanso</h3>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+        Un profesional certificado por el Sistema Municipal de Cuidados releva tus labores para que asistas a consultas médicas, descanso personal o recreación.
+      </p>
+<div class="pt-space-xs flex items-center justify-between gap-space-sm">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-normal">Costo cívico</span>
+<span class="font-headline-sm text-headline-sm text-primary font-bold">40 $CARE</span>
+</div>
+<button class="h-12 px-space-md bg-primary text-on-primary rounded-xl font-label-md text-label-md font-semibold flex items-center gap-space-xs active:scale-[0.98] transition-all cursor-pointer shadow-sm" onclick="openVoucherModal('3h Asistente de Relevo Certificado', 'Red Municipal de Cuidados &amp; DIF', 40, '#CARE-2025-9923-RV', 'spa')">
+<span>Canjear Beneficio</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</article>
+</div>
+<!-- Civic Transparency & Trust Note -->
+<section class="bg-surface-container-low rounded-xl p-space-md flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs text-primary">
+<span class="material-symbols-outlined text-[20px]">account_balance</span>
+<span class="font-label-sm text-label-sm font-bold uppercase tracking-wider">Garantía del Fondo Municipal</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+      Cada $CARE emitido está auditado y garantizado por las partidas presupuestales de Economía Social y Cuidados 2025. Los vales no caducan una vez generados y mantienen su validez jurídica sin conectividad.
+    </p>
+</section>
+<!-- Offline QR Voucher Modal / Drawer Overlay -->
+<div class="hidden fixed inset-0 z-50 bg-inverse-surface/60 backdrop-blur-sm flex flex-col justify-end p-margin sm:justify-center sm:items-center" id="voucher-modal">
+<div class="bg-surface-container-lowest text-on-surface w-full max-w-lg rounded-xl p-space-lg shadow-xl flex flex-col gap-space-md max-h-[795px] overflow-y-auto">
+<!-- Modal Header -->
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex items-center gap-space-xs">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed">
+<span class="material-symbols-outlined text-[22px]" id="modal-icon">verified</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-primary font-bold uppercase tracking-wide">Vale Cívico Acreditado</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface" id="modal-title">Subsidio 30% Energía Eléctrica</h3>
+</div>
+</div>
+<button class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high cursor-pointer" onclick="closeVoucherModal()">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<!-- Folio & Agency Badge -->
+<div class="flex items-center justify-between p-space-sm bg-surface-container rounded-lg">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Folio de Canje Único</span>
+<span class="font-numeral-voucher text-headline-sm text-on-surface font-bold tracking-wider" id="modal-folio">#CARE-2025-8841-MX</span>
+</div>
+<div class="text-right">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Emisor</span>
+<p class="font-label-sm text-label-sm text-primary font-semibold truncate max-w-[140px]" id="modal-agency">CFE &amp; Bienestar</p>
+</div>
+</div>
+<!-- High-Contrast Civic QR Code Block -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-inner flex flex-col items-center justify-center gap-space-sm">
+<div class="p-4 bg-surface-container-lowest rounded-xl shadow-md flex items-center justify-center">
+<!-- Accessible Crisp Vector QR Pattern -->
+<svg aria-label="Código QR de Verificación Cívica para Ventanilla Oficial" class="w-48 h-48 text-inverse-surface" fill="currentColor" role="img" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+<!-- Position Marks (Top Left, Top Right, Bottom Left) -->
+<path d="M5 5 h30 v30 h-30 z M11 11 h18 v18 h-18 z M16 16 h8 v8 h-8 z"></path>
+<path d="M65 5 h30 v30 h-30 z M71 11 h18 v18 h-18 z M76 16 h8 v8 h-8 z"></path>
+<path d="M5 65 h30 v30 h-30 z M11 71 h18 v18 h-18 z M16 76 h8 v8 h-8 z"></path>
+<!-- Alignment and Timing Elements -->
+<path d="M42 8 h6 v6 h-6 z M52 8 h6 v6 h-6 z M42 22 h6 v6 h-6 z M52 22 h6 v6 h-6 z"></path>
+<path d="M8 42 h6 v6 h-6 z M8 52 h6 v6 h-6 z M22 42 h6 v6 h-6 z M22 52 h6 v6 h-6 z"></path>
+<!-- Data Grid Simulation Blocks -->
+<path d="M40 40 h10 v10 h-10 z M55 40 h8 v8 h-8 z M70 40 h12 v6 h-12 z M85 42 h8 v8 h-8 z"></path>
+<path d="M40 55 h6 v12 h-6 z M50 52 h12 v6 h-12 z M68 50 h8 v14 h-8 z M80 55 h12 v10 h-12 z"></path>
+<path d="M40 70 h14 v6 h-14 z M58 68 h8 v8 h-8 z M70 70 h8 v12 h-8 z M82 72 h12 v6 h-12 z"></path>
+<path d="M42 82 h6 v12 h-6 z M54 80 h12 v6 h-12 z M70 86 h10 v8 h-10 z M84 84 h10 v10 h-10 z"></path>
+<circle cx="50" cy="50" fill="#00685f" r="4"></circle>
+</svg>
+</div>
+<div class="flex items-center gap-1.5 text-primary">
+<span class="material-symbols-outlined text-[18px]">lock</span>
+<span class="font-label-sm text-label-sm font-semibold tracking-wide">Firma Ledger: sha256_8841c_ok</span>
+</div>
+</div>
+<!-- Offline Reading Instructions -->
+<div class="flex items-start gap-space-xs p-space-sm bg-secondary-fixed/30 rounded-lg">
+<span class="material-symbols-outlined text-secondary text-[20px] flex-shrink-0 mt-0.5">info</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-bold text-on-secondary-fixed">Canje Offline Garantizado</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Presenta este código en ventanilla oficial, taquilla o con el personal de relevo. Válido por 30 días naturales sin requerir datos móviles ni conexión a internet activa.
+          </p>
+</div>
+</div>
+<!-- Modal Action Buttons -->
+<div class="flex flex-col gap-space-xs pt-space-xs">
+<button class="h-12 w-full bg-primary text-on-primary rounded-xl font-label-md text-label-md font-semibold flex items-center justify-center gap-space-xs active:scale-[0.98] transition-all cursor-pointer shadow-sm" id="btn-save-voucher" onclick="simulateSaveVoucher()">
+<span class="material-symbols-outlined text-[20px]">download_for_offline</span>
+<span>Guardar en Fotos / Imprimir Vale</span>
+</button>
+<button class="h-12 w-full bg-surface-container text-on-surface font-label-md text-label-md font-semibold rounded-xl flex items-center justify-center cursor-pointer" onclick="closeVoucherModal()">
+          Cerrar
+        </button>
+</div>
+</div>
+</div>
+<!-- Notification Toast for Delight & Offline Feedback -->
+<div class="hidden fixed bottom-20 left-4 right-4 z-50 bg-inverse-surface text-inverse-on-surface p-space-md rounded-xl shadow-xl flex items-center justify-between gap-space-sm" id="toast-message">
+<div class="flex items-center gap-space-xs min-w-0">
+<span class="material-symbols-outlined text-primary-fixed text-[24px] flex-shrink-0">check_circle</span>
+<span class="font-label-md text-label-md font-semibold truncate" id="toast-text">Vale guardado en tu galería local</span>
+</div>
+<button class="text-inverse-on-surface font-label-sm text-label-sm underline flex-shrink-0" onclick="hideToast()">Listo</button>
+</div>
+</div>
+<script>
+  let currentCost = 0;
+  let currentBalance = 140;
+
+  function openVoucherModal(title, agency, cost, folio, iconName) {
+    currentCost = cost;
+    document.getElementById('modal-title').textContent = title;
+    document.getElementById('modal-agency').textContent = agency;
+    document.getElementById('modal-folio').textContent = folio;
+    document.getElementById('modal-icon').textContent = iconName || 'verified';
+    document.getElementById('voucher-modal').classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeVoucherModal() {
+    document.getElementById('voucher-modal').classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+
+  function simulateSaveVoucher() {
+    const btn = document.getElementById('btn-save-voucher');
+    const originalText = btn.innerHTML;
+    
+    // Provide tactile feedback
+    btn.innerHTML = '<span class="material-symbols-outlined text-[20px] animate-spin">sync</span><span>Acreditando en Billetera Offline...</span>';
+    
+    setTimeout(() => {
+      btn.innerHTML = '<span class="material-symbols-outlined text-[20px]">done_all</span><span>¡Guardado con Éxito!</span>';
+      
+      // Update balance if not already deducted
+      if (currentBalance >= currentCost) {
+        currentBalance -= currentCost;
+        document.getElementById('user-balance').textContent = currentBalance;
+      }
+
+      setTimeout(() => {
+        closeVoucherModal();
+        btn.innerHTML = originalText;
+        showToast('Vale listo para usar sin internet. Saldo actualizado: ' + currentBalance + ' $CARE');
+      }, 900);
+    }, 1100);
+  }
+
+  function showToast(msg) {
+    const toast = document.getElementById('toast-message');
+    document.getElementById('toast-text').textContent = msg;
+    toast.classList.remove('hidden');
+    setTimeout(() => {
+      toast.classList.add('hidden');
+    }, 4500);
+  }
+
+  function hideToast() {
+    document.getElementById('toast-message').classList.add('hidden');
+  }
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-1px_12px_rgba(0,0,0,0.05)]" data-active-classes="text-primary font-semibold"><div class="flex items-center justify-around h-16 px-space-sm"><a class="flex flex-col items-center justify-center min-w-[64px] min-h-[48px] py-1 text-on-surface-variant transition-colors" data-path="registrar" href="#"><span class="material-symbols-outlined text-[24px]">favorite</span><span class="font-label-sm text-label-sm mt-0.5">Registrar</span></a><a class="flex flex-col items-center justify-center min-w-[64px] min-h-[48px] py-1 text-on-surface-variant transition-colors" data-path="impacto" href="#"><span class="material-symbols-outlined text-[24px]">diversity_1</span><span class="font-label-sm text-label-sm mt-0.5">Impacto</span></a><a aria-current="page" class="flex flex-col items-center justify-center min-w-[64px] min-h-[48px] py-1 transition-colors text-primary font-semibold" data-path="billetera" href="#"><span class="material-symbols-outlined text-[24px]">account_balance_wallet</span><span class="font-label-sm text-label-sm mt-0.5">Billetera</span></a></div></nav></body></html>

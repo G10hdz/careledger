@@ -1,0 +1,129 @@
+/* CareLedger — Civic Care & Human Dignity (design/DESIGN.md)
+   Tema Tailwind v4: importar con `@import "@careledger/design-tokens";`
+   Fuentes: Plus Jakarta Sans (display/labels) + Atkinson Hyperlegible Next
+   (body/forms — desambigua I/l/1/O/0 para usuarias vulnerables). */
+
+@theme {
+  /* Superficies */
+  --color-surface: #f7f9fb;
+  --color-surface-dim: #d8dadc;
+  --color-surface-bright: #f7f9fb;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f2f4f6;
+  --color-surface-container: #eceef0;
+  --color-surface-container-high: #e6e8ea;
+  --color-surface-container-highest: #e0e3e5;
+  --color-surface-variant: #e0e3e5;
+  --color-on-surface: #191c1e;
+  --color-on-surface-variant: #3d4947;
+  --color-on-background: #191c1e;
+  --color-background: #f7f9fb;
+  --color-inverse-surface: #2d3133;
+  --color-inverse-on-surface: #eff1f3;
+  --color-outline: #6d7a77;
+  --color-outline-variant: #bcc9c6;
+
+  /* Primario: teal cívico (cuidado, créditos verificados, CTA) */
+  --color-primary: #00685f;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #008378;
+  --color-on-primary-container: #f4fffc;
+  --color-inverse-primary: #6bd8cb;
+  --color-primary-fixed: #89f5e7;
+  --color-primary-fixed-dim: #6bd8cb;
+  --color-on-primary-fixed: #00201d;
+  --color-on-primary-fixed-variant: #005049;
+  --color-surface-tint: #006a61;
+
+  /* Secundario: azul institucional (autoridad municipal, ledger) */
+  --color-secondary: #4059aa;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #8fa7fe;
+  --color-on-secondary-container: #1d3989;
+  --color-secondary-fixed: #dce1ff;
+  --color-secondary-fixed-dim: #b6c4ff;
+  --color-on-secondary-fixed: #00164e;
+  --color-on-secondary-fixed-variant: #264191;
+
+  /* Terciario: ámbar terracota (empatía, urgencias humanas, pendientes) */
+  --color-tertiary: #8d4b00;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #b15f00;
+  --color-on-tertiary-container: #fffbff;
+  --color-tertiary-fixed: #ffdcc3;
+  --color-tertiary-fixed-dim: #ffb77d;
+  --color-on-tertiary-fixed: #2f1500;
+  --color-on-tertiary-fixed-variant: #6e3900;
+
+  /* Error */
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #93000a;
+
+  /* Tipografía */
+  --font-display: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Atkinson Hyperlegible Next", ui-sans-serif, system-ui, sans-serif;
+
+  /* Escala (px→rem del DESIGN.md) */
+  --text-display-lg: 2.5rem;
+  --text-display-lg--line-height: 3rem;
+  --text-display-lg--letter-spacing: -0.02em;
+  --text-display-lg-mobile: 2rem;
+  --text-display-lg-mobile--line-height: 2.5rem;
+  --text-display-lg-mobile--letter-spacing: -0.01em;
+  --text-headline-lg: 1.875rem;
+  --text-headline-lg--line-height: 2.375rem;
+  --text-headline-lg-mobile: 1.625rem;
+  --text-headline-lg-mobile--line-height: 2.125rem;
+  --text-headline-md: 1.375rem;
+  --text-headline-md--line-height: 1.875rem;
+  --text-headline-sm: 1.125rem;
+  --text-headline-sm--line-height: 1.625rem;
+  --text-body-lg: 1.125rem;
+  --text-body-lg--line-height: 1.75rem;
+  --text-body-md: 1rem;
+  --text-body-md--line-height: 1.5rem;
+  --text-body-sm: 0.875rem;
+  --text-body-sm--line-height: 1.25rem;
+  --text-label-lg: 1rem;
+  --text-label-lg--line-height: 1.5rem;
+  --text-label-md: 0.875rem;
+  --text-label-md--line-height: 1.25rem;
+  --text-label-sm: 0.75rem;
+  --text-label-sm--line-height: 1rem;
+  --text-numeral-voucher: 1.75rem;
+  --text-numeral-voucher--line-height: 2rem;
+
+  /* Radios */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-card: 1.25rem;
+
+  /* Espaciado (gutters/margins del DESIGN.md) */
+  --spacing-gutter: 1rem;
+  --spacing-gutter-tablet: 1.5rem;
+  --spacing-gutter-desktop: 2rem;
+  --spacing-margin: 1rem;
+  --spacing-margin-tablet: 2rem;
+  --spacing-margin-desktop: 3rem;
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2.5rem;
+
+  /* Elevación tonal (sombras suaves, nada dramático) */
+  --shadow-level-2: 0 4px 16px -2px rgb(15 23 42 / 0.06), 0 2px 6px -1px rgb(15 23 42 / 0.04);
+  --shadow-level-3: 0 16px 36px -4px rgb(15 23 42 / 0.12);
+}
+
+/* Reglas duras del sistema:
+   - nada < 12px de fuente
+   - line-height >= 1.45 en párrafos
+   - targets táctiles >= 48x48px con >= 8px de separación
+   - labels de formulario SIEMPRE arriba del input (no flotantes)
+   - focus: borde 2px primary + anillo 3px #99F6E4
+   - vales QR: tarjeta blanca, QR >= 180x180px, micro-borde 2px primary */

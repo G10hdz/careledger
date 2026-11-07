@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+
+<html lang="es"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400..700;1,400..700&amp;family=Plus+Jakarta+Sans:ital,wght@0,400..800;1,400..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-primary-fixed":"#00201d","on-tertiary-container":"#fffbff","on-surface":"#191c1e","on-secondary-fixed":"#00164e","background":"#f7f9fb","primary":"#00685f","outline-variant":"#bcc9c6","primary-fixed":"#89f5e7","surface-bright":"#f7f9fb","error-container":"#ffdad6","surface-container-high":"#e6e8ea","secondary":"#4059aa","tertiary":"#8d4b00","on-primary":"#ffffff","surface-container-highest":"#e0e3e5","surface":"#f7f9fb","surface-container-lowest":"#ffffff","inverse-on-surface":"#eff1f3","on-background":"#191c1e","on-surface-variant":"#3d4947","on-tertiary-fixed":"#2f1500","tertiary-fixed":"#ffdcc3","tertiary-fixed-dim":"#ffb77d","on-secondary":"#ffffff","secondary-fixed-dim":"#b6c4ff","inverse-primary":"#6bd8cb","primary-container":"#008378","surface-tint":"#006a61","outline":"#6d7a77","surface-container-low":"#f2f4f6","on-secondary-container":"#1d3989","surface-container":"#eceef0","on-error-container":"#93000a","on-primary-container":"#f4fffc","on-tertiary-fixed-variant":"#6e3900","secondary-container":"#8fa7fe","tertiary-container":"#b15f00","secondary-fixed":"#dce1ff","on-primary-fixed-variant":"#005049","surface-variant":"#e0e3e5","on-secondary-fixed-variant":"#264191","inverse-surface":"#2d3133","primary-fixed-dim":"#6bd8cb","on-tertiary":"#ffffff","on-error":"#ffffff","error":"#ba1a1a","surface-dim":"#d8dadc"},borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},spacing:{"margin":"1rem","margin-desktop":"3rem","space-sm":"0.5rem","space-xs":"0.25rem","space-md":"1rem","margin-tablet":"2rem","space-lg":"1.5rem","space-xl":"2.5rem","gutter":"1rem","gutter-desktop":"2rem","gutter-tablet":"1.5rem"},fontFamily:{"label-md":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"body-md":["Atkinson Hyperlegible Next"],"label-lg":["Plus Jakarta Sans"],"label-sm":["Plus Jakarta Sans"],"display-lg":["Plus Jakarta Sans"],"body-lg":["Atkinson Hyperlegible Next"],"numeral-voucher":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"display-lg-mobile":["Plus Jakarta Sans"],"headline-sm":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"body-sm":["Atkinson Hyperlegible Next"]},fontSize:{"label-md":["14px",{lineHeight:"20px",letterSpacing:"0.01em",fontWeight:"600"}],"headline-lg":["30px",{lineHeight:"38px",letterSpacing:"-0.01em",fontWeight:"700"}],"body-md":["16px",{lineHeight:"24px",fontWeight:"400"}],"label-lg":["16px",{lineHeight:"24px",letterSpacing:"0.01em",fontWeight:"600"}],"label-sm":["12px",{lineHeight:"16px",letterSpacing:"0.02em",fontWeight:"600"}],"display-lg":["40px",{lineHeight:"48px",letterSpacing:"-0.02em",fontWeight:"700"}],"body-lg":["18px",{lineHeight:"28px",fontWeight:"400"}],"numeral-voucher":["28px",{lineHeight:"32px",letterSpacing:"0.02em",fontWeight:"700"}],"headline-md":["22px",{lineHeight:"30px",letterSpacing:"-0.005em",fontWeight:"600"}],"display-lg-mobile":["32px",{lineHeight:"40px",letterSpacing:"-0.01em",fontWeight:"700"}],"headline-sm":["18px",{lineHeight:"26px",fontWeight:"600"}],"headline-lg-mobile":["26px",{lineHeight:"34px",letterSpacing:"-0.01em",fontWeight:"700"}],"body-sm":["14px",{lineHeight:"20px",fontWeight:"400"}]}}}};</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-20 max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between gap-6"><div class="flex items-center gap-4"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-on-primary shadow-sm"><span class="material-symbols-outlined text-[24px]">account_balance</span></div><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight leading-none">CareLedger</span><span class="font-label-sm text-label-sm text-primary tracking-wide leading-tight">La Red del Cuidado Cívico</span></div></div><div class="hidden xl:flex items-center gap-1.5 px-3 py-1 bg-surface-container rounded-full"><span class="material-symbols-outlined text-primary text-[16px]">assured_workload</span><span class="font-label-sm text-label-sm text-on-surface-variant">Finanzas Cívicas y Economía del Cuidado</span></div></div><nav class="hidden md:flex items-center gap-2 p-1.5 bg-surface-container-low rounded-xl" data-active-classes="bg-primary-container text-on-primary-container font-label-md rounded-lg"><a class="px-4 py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="flujo-completo" href="#">Flujo Completo</a><a class="px-4 py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="metodologia-de-impacto" href="#">Metodología de Impacto</a><a class="px-4 py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="documentacion-govtech" href="#">Documentación GovTech</a></nav><div class="flex items-center gap-3"><div class="flex items-center gap-2 px-3 py-1.5 bg-surface-container-lowest rounded-full shadow-[0_1px_4px_rgba(0,0,0,0.04)]"><span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span><span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Nodo Central CDMX</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-20 bg-surface min-h-[calc(100vh-14rem)]"><div class="flex flex-col w-full">
+<!-- Top Offline & Protocol Resiliency Status Bar -->
+<aside aria-label="Estado de Sincronización del Protocolo" class="w-full bg-secondary-fixed text-on-secondary-fixed px-6 lg:px-12 py-2.5 flex items-center justify-between">
+<div class="max-w-7xl mx-auto w-full flex items-center justify-between text-label-sm font-label-sm">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span>CareLedger Metodología V3.8 • Protocolo Actuarial Activo • Nodo CDMX-Coyoacán Sincronizado</span>
+</div>
+<div class="hidden sm:flex items-center gap-4 text-on-secondary-fixed-variant">
+<span>Estándar ISO 26000 &amp; SROI Social Value UK Cert</span>
+<span class="inline-flex items-center gap-1 font-semibold">
+<span class="material-symbols-outlined text-[14px]">lock</span> Privacidad Diferencial ZK-SNARKs
+        </span>
+</div>
+</div>
+</aside>
+<!-- Editorial Institutional Hero -->
+<section class="w-full px-6 lg:px-12 pt-10 pb-12 bg-surface">
+<div class="max-w-7xl mx-auto flex flex-col gap-8">
+<!-- Meta & Protocol Pills -->
+<div class="flex flex-wrap items-center gap-3">
+<div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary-fixed text-on-primary-fixed text-label-sm font-label-sm shadow-sm">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+<span>Marco Metodológico Certificado • Estándar Social Value International &amp; SROI Protocol</span>
+</div>
+<div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant text-label-sm font-label-sm">
+<span class="material-symbols-outlined text-[15px]">analytics</span>
+<span>Auditoría Actuarial Q1-2025</span>
+</div>
+</div>
+<!-- Main Typographic Block & Actions Split -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+<div class="lg:col-span-8 flex flex-col gap-4">
+<h1 class="font-display-lg text-display-lg text-on-surface tracking-tight">
+            Metodología de Impacto y Retorno Social de la Inversión (SROI)
+          </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl">
+            Formulación econométrica y social de cómo cada hora de cuidado no remunerado registrada en CareLedger se transforma en valor tangible para el sistema de salud pública, la solvencia municipal y la cohesión comunitaria.
+          </p>
+</div>
+<!-- Primary Action Cluster -->
+<div class="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-3 justify-end">
+<button class="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-primary text-on-primary font-label-md text-label-md shadow-md hover:bg-primary-container active:scale-[0.98] transition-all" type="button">
+<span class="material-symbols-outlined text-[20px]">download</span>
+<span>Descargar Whitepaper Metodológico (PDF)</span>
+</button>
+<div class="grid grid-cols-2 gap-2">
+<button class="inline-flex items-center justify-center gap-1.5 px-4 py-3 rounded-xl bg-surface-container-lowest text-primary font-label-sm text-label-sm shadow-sm hover:bg-surface-container transition-all" onclick="document.getElementById('simulador-sroi').scrollIntoView({ behavior: 'smooth' })" type="button">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+<span>Simulador</span>
+</button>
+<button class="inline-flex items-center justify-center gap-1.5 px-4 py-3 rounded-xl bg-secondary text-on-secondary font-label-sm text-label-sm shadow-sm hover:opacity-95 transition-all" onclick="document.getElementById('registro-hashes').scrollIntoView({ behavior: 'smooth' })" type="button">
+<span class="material-symbols-outlined text-[18px]">fact_check</span>
+<span>Libro Mayor</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Executive KPIs: SROI Metric Ledger -->
+<section class="w-full px-6 lg:px-12 py-6 bg-surface-container-low">
+<div class="max-w-7xl mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
+<!-- Metric Card 1: Global SROI -->
+<div class="p-6 rounded-2xl bg-surface-container-lowest shadow-sm flex flex-col justify-between relative overflow-hidden group hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between mb-4">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Ratio SROI Consolidado</span>
+<span class="w-8 h-8 rounded-lg bg-primary-fixed flex items-center justify-center text-on-primary-fixed">
+<span class="material-symbols-outlined text-[18px]">query_stats</span>
+</span>
+</div>
+<div>
+<div class="flex items-baseline gap-2">
+<span class="font-display-lg text-display-lg font-bold text-primary">3.42x</span>
+<span class="inline-flex items-center text-label-sm font-label-sm text-primary font-semibold bg-primary-fixed/40 px-2 py-0.5 rounded-full">+0.28 vs 2024</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2">
+              Por cada <strong class="text-on-surface font-semibold">$1.00 USD</strong> en subsidios municipales activos, se generan <strong class="text-on-surface font-semibold">$3.42 USD</strong> en retorno social neto descontado.
+            </p>
+</div>
+<div class="mt-4 pt-3 flex items-center justify-between text-label-sm font-label-sm text-on-surface-variant">
+<span>Intervalo de confianza (95%)</span>
+<span class="font-mono font-semibold text-on-surface">3.28x – 3.56x</span>
+</div>
+</div>
+<!-- Metric Card 2: Hospital Savings -->
+<div class="p-6 rounded-2xl bg-surface-container-lowest shadow-sm flex flex-col justify-between relative overflow-hidden group hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between mb-4">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Ahorro Clínico Preventivo</span>
+<span class="w-8 h-8 rounded-lg bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed">
+<span class="material-symbols-outlined text-[18px]">local_hospital</span>
+</span>
+</div>
+<div>
+<div class="flex items-baseline gap-2">
+<span class="font-display-lg text-display-lg font-bold text-secondary">$120.00</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">USD / sesión</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2">
+              Mitigación directa de urgencias hospitalarias, reingresos geriátricos prematuros y caídas evitadas en hogares supervisados (3.5h prom.).
+            </p>
+</div>
+<div class="mt-4 pt-3 flex items-center justify-between text-label-sm font-label-sm text-on-surface-variant">
+<span>Base de cálculo</span>
+<span class="font-semibold text-on-surface">Tarifario IMSS / SEDESA</span>
+</div>
+</div>
+<!-- Metric Card 3: Caregiver Dignity & Wellbeing -->
+<div class="p-6 rounded-2xl bg-surface-container-lowest shadow-sm flex flex-col justify-between relative overflow-hidden group hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between mb-4">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Dignidad y Respiro Cuidadoras</span>
+<span class="w-8 h-8 rounded-lg bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed">
+<span class="material-symbols-outlined text-[18px]">self_improvement</span>
+</span>
+</div>
+<div>
+<div class="flex items-baseline gap-2">
+<span class="font-display-lg text-display-lg font-bold text-tertiary">+41.0%</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">respiro neto</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2">
+              Medido mediante Escala Zarit de Sobrecarga del Cuidador reducida, posibilitando acceso a autonomía económica y descanso reparador.
+            </p>
+</div>
+<div class="mt-4 pt-3 flex items-center justify-between text-label-sm font-label-sm text-on-surface-variant">
+<span>Participantes activas</span>
+<span class="font-semibold text-on-surface">14,820 cuidadoras</span>
+</div>
+</div>
+<!-- Metric Card 4: Civic Attestation Consensus -->
+<div class="p-6 rounded-2xl bg-surface-container-lowest shadow-sm flex flex-col justify-between relative overflow-hidden group hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between mb-4">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Consenso Barrial sin Fraude</span>
+<span class="w-8 h-8 rounded-lg bg-primary-fixed flex items-center justify-center text-on-primary-fixed">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+</span>
+</div>
+<div>
+<div class="flex items-baseline gap-2">
+<span class="font-display-lg text-display-lg font-bold text-primary">99.4%</span>
+<span class="font-label-sm text-label-sm text-primary font-semibold bg-primary-fixed/40 px-2 py-0.5 rounded-full">Oráculo 3-Firmas</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2">
+              Atestación de horas validadas sin reporte de anomalías mediante el protocolo multifirma vecinal y geolocalización cívica protegida.
+            </p>
+</div>
+<div class="mt-4 pt-3 flex items-center justify-between text-label-sm font-label-sm text-on-surface-variant">
+<span>Disputas resueltas</span>
+<span class="font-semibold text-on-surface">&lt; 0.6% vía Asamblea</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 3: Cadena de Valor del Impacto (5 Etapas SROI) -->
+<section class="w-full px-6 lg:px-12 py-16 bg-surface">
+<div class="max-w-7xl mx-auto flex flex-col gap-10">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<span class="font-label-sm text-label-sm uppercase text-primary font-bold tracking-widest">Trazabilidad de Causa y Efecto</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mt-1">La Cadena de Valor del Impacto Cívico</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mt-1">
+            Cada peso público invertido pasa por una cadena de conversión auditable desde el esfuerzo humano en el hogar hasta las deducciones actuariales de peso muerto y atribución.
+          </p>
+</div>
+<div class="px-4 py-2 rounded-xl bg-surface-container flex items-center gap-2 text-label-sm font-label-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-[18px]">account_tree</span>
+<span>Modelo de Evaluación Multietapa Social Value Int.</span>
+</div>
+</div>
+<!-- 5-Step Pipeline Grid with Progressive Visual Continuity -->
+<div class="grid grid-cols-1 md:grid-cols-5 gap-4 relative">
+<!-- Step 1: Input -->
+<div class="p-5 rounded-2xl bg-surface-container-lowest shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm font-bold text-primary px-2.5 py-1 rounded-md bg-primary-fixed">ETAPA 01</span>
+<span class="material-symbols-outlined text-primary text-[20px]">savings</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Insumo (Input)</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2">
+              Subsidios presupuestarios municipales focalizados y horas voluntarias de la red comunitaria barrial.
+            </p>
+</div>
+<div class="mt-4 pt-4 bg-surface-container-low p-3 rounded-xl">
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Métricas Insumo:</span>
+<span class="font-label-md text-label-md font-bold text-on-surface">$2.4M USD Fondo Cívico</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block mt-0.5">385,000 hrs voluntarias</span>
+</div>
+</div>
+<!-- Step 2: Activity -->
+<div class="p-5 rounded-2xl bg-surface-container-lowest shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm font-bold text-secondary px-2.5 py-1 rounded-md bg-secondary-fixed">ETAPA 02</span>
+<span class="material-symbols-outlined text-secondary text-[20px]">diversity_1</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Actividad (Activity)</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2">
+              Acompañamiento diurno, administración segura de fármacos, preparación de alimentos nutritivos y escucha activa.
+            </p>
+</div>
+<div class="mt-4 pt-4 bg-surface-container-low p-3 rounded-xl">
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Volumen registrado:</span>
+<span class="font-label-md text-label-md font-bold text-on-surface">114,200 visitas efectivas</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block mt-0.5">Promedio: 3.5 hrs/visita</span>
+</div>
+</div>
+<!-- Step 3: Output -->
+<div class="p-5 rounded-2xl bg-surface-container-lowest shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm font-bold text-primary px-2.5 py-1 rounded-md bg-primary-fixed">ETAPA 03</span>
+<span class="material-symbols-outlined text-primary text-[20px]">token</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Producto (Output)</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2">
+              Horas auditadas criptográficamente. Emisión de vouchers cívicos locales y créditos de tiempo canjeables.
+            </p>
+</div>
+<div class="mt-4 pt-4 bg-surface-container-low p-3 rounded-xl">
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Outputs Certificados:</span>
+<span class="font-label-md text-label-md font-bold text-on-surface">399,700 Tokens emitidos</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block mt-0.5">0.02% rechazo de prueba</span>
+</div>
+</div>
+<!-- Step 4: Outcome -->
+<div class="p-5 rounded-2xl bg-surface-container-lowest shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm font-bold text-tertiary px-2.5 py-1 rounded-md bg-tertiary-fixed">ETAPA 04</span>
+<span class="material-symbols-outlined text-tertiary text-[20px]">favorite</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Resultado (Outcome)</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2">
+              Descongestión del primer nivel hospitalario, menor incidencia de depresión senil y envejecimiento en el entorno natal.
+            </p>
+</div>
+<div class="mt-4 pt-4 bg-surface-container-low p-3 rounded-xl">
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Impacto en salud:</span>
+<span class="font-label-md text-label-md font-bold text-on-surface">-38% admisiones guardia</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block mt-0.5">+62% adherencia médica</span>
+</div>
+</div>
+<!-- Step 5: Net SROI Impact (Discount factors) -->
+<div class="p-5 rounded-2xl bg-primary text-on-primary shadow-md flex flex-col justify-between relative">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-sm text-label-sm font-bold text-primary px-2.5 py-1 rounded-md bg-on-primary">ETAPA 05</span>
+<span class="material-symbols-outlined text-on-primary text-[20px]">balance</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-primary">Impacto Neto (SROI)</h3>
+<p class="font-body-sm text-body-sm text-primary-fixed mt-2">
+              Deducción rigurosa de factores de ajuste metodológico para evitar sobreestimación económica.
+            </p>
+</div>
+<div class="mt-4 pt-3 space-y-1.5 bg-primary-container p-3 rounded-xl text-label-sm font-label-sm">
+<div class="flex justify-between text-on-primary-container">
+<span>Peso Muerto (Deadweight):</span>
+<span class="font-bold">-18%</span>
+</div>
+<div class="flex justify-between text-on-primary-container">
+<span>Desplazamiento:</span>
+<span class="font-bold">-12%</span>
+</div>
+<div class="flex justify-between text-on-primary-container">
+<span>Atribución Externa:</span>
+<span class="font-bold">-24%</span>
+</div>
+<div class="pt-1.5 mt-1 text-right font-bold text-primary-fixed">
+              Resultado Neto: 3.42x
+            </div>
+</div>
+</div>
+</div>
+<!-- Photographic Context Row: Field Caseworkers & Community Grounding -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
+<div class="relative rounded-2xl overflow-hidden shadow-sm h-64 bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A caring community nurse in Mexico City gently checking the vitals of an elderly woman inside a sunlit living room with plants, documentary photojournalism style, natural warm light, teal and slate accents" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAotkeGeS7RrgRUGJWBectHmQU-JQCdEhD7aE5gR1gGcgrMof76NDhOfg3ABGBAL8pAnUXYJcUCF-XJcJLoSVFRoM8lBY0RohWNdTUlkf4gvw_u7PWOWjbyJzG3VyVMHrS1nFrEIWEGcDrEu66-v1iG072RhtjlEEI3UFMWeroaeIJwogD6jF3e4JkKRC6u6_SlQqTCdpfkDXFr8hNLnOX1QOuHoWsuJQYBNYkwBS6B"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-transparent to-transparent flex items-end p-5">
+<span class="text-on-primary font-label-md text-label-md font-semibold">Atención Domiciliaria Preventiva In Situ</span>
+</div>
+</div>
+<div class="relative rounded-2xl overflow-hidden shadow-sm h-64 bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A municipal social caseworker reviewing digital records on a tablet with female caregivers gathered in a modern, welcoming public community center in CDMX, vibrant warm daylight, authentic public service" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBw1OD2P6PldX0r7k8XFB4epImm0xXIv17BZoODVb_NWsbj0c_BDdaI2X7rL7AaZrRoUzYsSR2gNhATt1r8iJxH-KtuaM4hapc8vLKMR6us41Hu775JS749YyUWAHfLJe_lBpYel7kUhTT5mJCSEb7m6frEeUwWxPbfs1HN-PjZ-CRzG3pUSL-48pLkM5fZpx9BxMarzMqOJFbAxI5U2l_Ynxd14mnjP_9G1VCrBA7j"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-transparent to-transparent flex items-end p-5">
+<span class="text-on-primary font-label-md text-label-md font-semibold">Validación Cívica y Acompañamiento Barrial</span>
+</div>
+</div>
+<div class="relative rounded-2xl overflow-hidden shadow-sm h-64 bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A neighborhood grocer in Mexico City smiling warmly while accepting a digital CareLedger civic voucher on a mobile phone counter, fresh fruits and produce around, soft natural ambient lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwiKc2heCK2G5BnTHM3E1aHalq4znLE9arOkR39Pu-Vv3V9xLW_6pDuw5quQvf5htrwbSaKo77-1RVW2d4z8txexMtvDewtYT9Wqhe8nm8swiHzXND714rCC_xy7GO1Wg8DhVJnb-ZHtRDpas6SkWB4LI2kLBSX7z-RUoconLrzmAcZyD-AojVp1Iu1gsp4ANWEeYAQUYF5OibRql3jmAvEFwn4QG2jZ3wFqLUQquo"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-transparent to-transparent flex items-end p-5">
+<span class="text-on-primary font-label-md text-label-md font-semibold">Canje de Valor en la Red Comercial Local</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 4: Algoritmo del Oráculo de Impacto & Comparador Actuarial -->
+<section class="w-full px-6 lg:px-12 py-16 bg-surface-container-low" id="simulador-sroi">
+<div class="max-w-7xl mx-auto flex flex-col gap-10">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<span class="font-label-sm text-label-sm uppercase text-secondary font-bold tracking-widest">Matemática Financiera &amp; GovTech</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mt-1">Formulación Econométrica del Oráculo de Impacto</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mt-1">
+            Transformación de eventos de cuidado verificados en proxy financiero auditable mediante smart contracts y parámetros actuariales de salud.
+          </p>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-3 py-1.5 rounded-lg bg-surface-container-lowest text-on-surface font-label-sm text-label-sm shadow-sm flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[18px]">calculate</span>
+<span>Algoritmo V3.82 (Deterministic)</span>
+</span>
+</div>
+</div>
+<!-- Bento Grid: Interactive Formula + Cost Comparison Deck -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- Left Column: Formula Visualizer & Dynamic SROI Interactive Simulation -->
+<div class="lg:col-span-7 flex flex-col gap-6">
+<!-- Mathematical Formula Presentation Box -->
+<div class="p-6 rounded-2xl bg-surface-container-lowest shadow-sm flex flex-col gap-5">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-bold text-on-surface">Ecuación de Retorno Cívico Unitario</span>
+<span class="text-label-sm font-label-sm font-mono text-primary font-semibold px-2 py-0.5 rounded bg-primary-fixed/40">Fórmula de Oráculo</span>
+</div>
+<!-- Monospace Equation Display Block -->
+<div class="p-5 rounded-xl bg-surface-container-highest text-on-surface overflow-x-auto">
+<div class="font-mono text-headline-sm text-headline-sm font-bold tracking-tight text-primary leading-relaxed whitespace-nowrap">
+                V<sub>cívico</sub> = [ (ΔS<sub>prev</sub> + ΔC<sub>barrio</sub> + ΔE<sub>fam</sub>) × Q<sub>barrial</sub> ] × (1 - δ<sub>dw</sub> - δ<sub>disp</sub> - δ<sub>atrib</sub>)
+              </div>
+</div>
+<!-- Variable Descriptions Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2">
+<div class="p-3 rounded-lg bg-surface-container-low flex items-start gap-3">
+<span class="font-mono font-bold text-primary text-label-md">ΔS<sub>prev</sub></span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Ahorro en admisiones hospitalarias y ambulancias evitadas.</span>
+</div>
+<div class="p-3 rounded-lg bg-surface-container-low flex items-start gap-3">
+<span class="font-mono font-bold text-primary text-label-md">ΔC<sub>barrio</sub></span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Proxy de capital social y seguridad vecinal asistida.</span>
+</div>
+<div class="p-3 rounded-lg bg-surface-container-low flex items-start gap-3">
+<span class="font-mono font-bold text-primary text-label-md">ΔE<sub>fam</sub></span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Reincorporación laboral parcial de cuidadores primarios.</span>
+</div>
+<div class="p-3 rounded-lg bg-surface-container-low flex items-start gap-3">
+<span class="font-mono font-bold text-primary text-label-md">Q<sub>barrial</sub></span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Factor de reputación validado por el oráculo social (0.85 – 1.15).</span>
+</div>
+</div>
+</div>
+<!-- Interactive Client-side SROI Simulator Card -->
+<div class="p-6 rounded-2xl bg-surface-container-lowest shadow-sm flex flex-col gap-6">
+<div class="flex items-center justify-between">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Simulador Actuarial de Impacto Municipal</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Modula la inversión pública y observa el retorno proyectado en salud y comunidad.</p>
+</div>
+<span class="material-symbols-outlined text-secondary text-[24px]">tune</span>
+</div>
+<div class="space-y-5">
+<div>
+<div class="flex justify-between items-center mb-2">
+<label class="font-label-md text-label-md font-semibold text-on-surface" for="input-inversion">Inversión Municipal Anual (USD)</label>
+<span class="font-mono font-bold text-label-lg text-primary" id="label-inversion">$1,000,000</span>
+</div>
+<input class="w-full accent-primary h-2 bg-surface-container-highest rounded-lg cursor-pointer" id="input-inversion" max="5000000" min="200000" step="100000" type="range" value="1000000"/>
+</div>
+<div>
+<div class="flex justify-between items-center mb-2">
+<label class="font-label-md text-label-md font-semibold text-on-surface" for="input-horas">Horas de Cuidado Proyectadas</label>
+<span class="font-mono font-bold text-label-lg text-secondary" id="label-horas">50,000 hrs</span>
+</div>
+<input class="w-full accent-secondary h-2 bg-surface-container-highest rounded-lg cursor-pointer" id="input-horas" max="250000" min="10000" step="5000" type="range" value="50000"/>
+</div>
+</div>
+<!-- Real-time Computed Projection Banner -->
+<div class="p-4 rounded-xl bg-surface-container-low flex flex-col sm:flex-row items-center justify-between gap-4">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Valor Social Neto Estimado:</span>
+<span class="font-display-lg text-display-lg font-bold text-primary" id="resultado-valor-neto">$3,420,000 USD</span>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Ratio Resultante:</span>
+<span class="font-mono text-headline-lg text-headline-lg font-bold text-secondary" id="resultado-ratio">3.42x SROI</span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              * El cálculo descuenta automáticamente el 46% agregado (peso muerto, desplazamiento y factor de atribución institucional externa).
+            </p>
+</div>
+</div>
+<!-- Right Column: Institutional Hospital vs Home Companion Cost Benchmark -->
+<div class="lg:col-span-5 flex flex-col gap-6">
+<div class="p-6 rounded-2xl bg-surface-container-lowest shadow-sm flex flex-col gap-6">
+<div>
+<span class="font-label-sm text-label-sm uppercase text-primary font-bold tracking-widest">Comparativa Económica Directa</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mt-1">Costo Hospitalario vs Red Cívica</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                Brecha de eficiencia entre la atención reactiva en emergencias vs el cuidado domiciliario preventivo comunitario.
+              </p>
+</div>
+<!-- Cost Comparison Pair -->
+<div class="space-y-4">
+<!-- Cost 1: Hospitalization -->
+<div class="p-4 rounded-xl bg-error-container/40 flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Hospitalización Reactiva (1 Día Cama)</span>
+<span class="font-mono font-bold text-headline-sm text-error">$450.00 USD</span>
+</div>
+<div class="w-full bg-surface-container-highest h-3 rounded-full overflow-hidden">
+<div class="bg-error h-full rounded-full w-full"></div>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">
+                  Incluye cama clínica, terapia intensiva intermedia, medicamentos de urgencia y estrés familiar.
+                </span>
+</div>
+<!-- Cost 2: CareLedger Token Session -->
+<div class="p-4 rounded-xl bg-primary-fixed/30 flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Acompañamiento Domiciliario CareLedger</span>
+<span class="font-mono font-bold text-headline-sm text-primary">$35.00 USD</span>
+</div>
+<div class="w-full bg-surface-container-highest h-3 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 7.8%;"></div>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">
+                  Sesión preventiva completa de 3.5 hrs certificadas + incentivo canjeable para la cuidadora en comercios locales.
+                </span>
+</div>
+</div>
+<!-- Net Difference Highlight -->
+<div class="p-4 rounded-xl bg-surface-container flex items-center justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Ahorro Neto por Intervención</span>
+<span class="font-headline-sm text-headline-sm font-bold text-primary">+$120.00 USD</span>
+</div>
+<span class="material-symbols-outlined text-primary text-[32px]">trending_up</span>
+</div>
+<!-- Civic Oracles Mitigations -->
+<div class="pt-2 flex flex-col gap-2.5">
+<span class="font-label-md text-label-md font-bold text-on-surface">Gobernanza del Oráculo Barrial</span>
+<div class="flex items-start gap-2.5 text-body-sm text-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-[18px] mt-0.5">check_circle</span>
+<span>Firma tripartite requerida: Cuidadora, Persona Mayor/Tutor y Veedor Comunitario colegiado.</span>
+</div>
+<div class="flex items-start gap-2.5 text-body-sm text-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-[18px] mt-0.5">check_circle</span>
+<span>Detección de colusión mediante análisis heurístico de proximidad física por Bluetooth Zero-Knowledge.</span>
+</div>
+<div class="flex items-start gap-2.5 text-body-sm text-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-[18px] mt-0.5">check_circle</span>
+<span>Auditoría muestral aleatoria del 5% administrada por la Dirección de Bienestar de la Alcaldía.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 5: Distribución por Sectores Beneficiados & Casos de Estudio -->
+<section class="w-full px-6 lg:px-12 py-16 bg-surface">
+<div class="max-w-7xl mx-auto flex flex-col gap-10">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<span class="font-label-sm text-label-sm uppercase text-primary font-bold tracking-widest">Alineación Interinstitucional</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mt-1">Distribución del Valor Cívico Generado</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mt-1">
+            Validado y cruzado con los registros de la Secretaría de Salud y el Sistema de Cuidados Integral de la Ciudad de México.
+          </p>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Periodo de Análisis: Ene – Dic 2024</span>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+<!-- Sector Distribution Card & Inline Visual Chart (7 Cols) -->
+<div class="lg:col-span-7 p-6 rounded-2xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Desglose de Retorno por Ecosistema</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6">
+              El retorno de $3.42 se redistribuye transversalmente entre ahorro hospitalario, bienestar familiar y dinamismo de pequeños negocios de proximidad.
+            </p>
+<!-- Vector SVG Proportional Horizontal Bar Breakdown -->
+<div class="space-y-5">
+<!-- Sector 1: Salud Pública -->
+<div>
+<div class="flex justify-between items-center text-label-sm font-label-sm mb-1.5">
+<span class="flex items-center gap-2 font-semibold text-on-surface">
+<span class="w-3 h-3 rounded-full bg-primary inline-block"></span>
+                    Sistema de Salud Pública (Hospitales &amp; Ambulancias)
+                  </span>
+<span class="font-mono font-bold text-primary">48% ($1.64 USD)</span>
+</div>
+<div class="w-full bg-surface-container-highest h-3.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 48%;"></div>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-1 block">
+                  Ahorro en admisiones de urgencias, mitigación de estrés en personal médico y disponibilidad de camas.
+                </span>
+</div>
+<!-- Sector 2: Cuidado y Familias -->
+<div>
+<div class="flex justify-between items-center text-label-sm font-label-sm mb-1.5">
+<span class="flex items-center gap-2 font-semibold text-on-surface">
+<span class="w-3 h-3 rounded-full bg-secondary inline-block"></span>
+                    Economía de Cuidados y Familias Cuidadoras
+                  </span>
+<span class="font-mono font-bold text-secondary">32% ($1.10 USD)</span>
+</div>
+<div class="w-full bg-surface-container-highest h-3.5 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 32%;"></div>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-1 block">
+                  Horas de descanso efectivo, reducción de licencias laborales no pagadas y salud mental comunitaria.
+                </span>
+</div>
+<!-- Sector 3: Comercio Local -->
+<div>
+<div class="flex justify-between items-center text-label-sm font-label-sm mb-1.5">
+<span class="flex items-center gap-2 font-semibold text-on-surface">
+<span class="w-3 h-3 rounded-full bg-tertiary inline-block"></span>
+                    Comercio Local y Circulación de Vouchers
+                  </span>
+<span class="font-mono font-bold text-tertiary">20% ($0.68 USD)</span>
+</div>
+<div class="w-full bg-surface-container-highest h-3.5 rounded-full overflow-hidden">
+<div class="bg-tertiary h-full rounded-full" style="width: 20%;"></div>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-1 block">
+                  Gasto redireccionado a fruterías, farmacias de barrio y cooperativas de abastecimiento de la alcaldía.
+                </span>
+</div>
+</div>
+</div>
+<div class="mt-8 pt-4 bg-surface-container-low p-4 rounded-xl flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Factor Multiplicador de Dinero Local:</span>
+<span class="font-mono font-bold text-label-md text-primary">1.38x velocidad de circulación M1</span>
+</div>
+</div>
+<!-- Case Study & Empirical Cohort (5 Cols) -->
+<div class="lg:col-span-5 p-6 rounded-2xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-2 mb-3">
+<span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+<span class="font-label-sm text-label-sm font-bold text-primary uppercase tracking-wider">Cohorte Demostrada • Caso Coyoacán</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Piloto de Intervención Barrial: Colonia Santa Úrsula</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2">
+              Evaluación longitudinal sobre 420 hogares con personas de 75+ años durante 18 meses consecutivos bajo el protocolo CareLedger.
+            </p>
+<div class="grid grid-cols-2 gap-3 my-5">
+<div class="p-3 rounded-xl bg-surface-container-low">
+<span class="font-display-lg text-headline-lg font-bold text-primary block leading-none">-53%</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-1 block">Caídas graves en casa</span>
+</div>
+<div class="p-3 rounded-xl bg-surface-container-low">
+<span class="font-display-lg text-headline-lg font-bold text-secondary block leading-none">94%</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-1 block">Satisfacción ciudadana</span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant italic">
+              "El acompañamiento de dos horas diarias no solo evitó hospitalizaciones costosas, sino que devolvió a las familias la tranquilidad y el tiempo para trabajar."
+            </p>
+</div>
+<div class="pt-4 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-primary">
+<span class="material-symbols-outlined text-[20px]">badge</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm font-bold text-on-surface block">Dra. Marcela Godoy</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block">Coordinadora de Salud Preventiva, Alcaldía Coyoacán</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 6: Transparencia, Cripto-Auditoría y Privacidad Diferencial Zero-Knowledge -->
+<section class="w-full px-6 lg:px-12 py-16 bg-surface-container-low" id="registro-hashes">
+<div class="max-w-7xl mx-auto flex flex-col gap-10">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<span class="font-label-sm text-label-sm uppercase text-primary font-bold tracking-widest">Seguridad de Datos &amp; Integridad Cívica</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mt-1">Gobernanza Criptográfica y Registro de Auditoría Abierto</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mt-1">
+            Ningún dato médico sensible abandona el dispositivo del ciudadano. La validación del oráculo opera sobre pruebas de conocimiento cero (Zero-Knowledge Proofs).
+          </p>
+</div>
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container-lowest text-primary font-label-sm text-label-sm shadow-sm font-semibold">
+<span class="material-symbols-outlined text-[16px]">lock_reset</span>
+<span>Zero-Knowledge Rollup Activo</span>
+</span>
+</div>
+</div>
+<!-- Audit Log & Cryptographic Proof Ledger -->
+<div class="p-6 rounded-2xl bg-surface-container-lowest shadow-sm flex flex-col gap-5">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3">
+<div class="flex items-center gap-3">
+<span class="w-3 h-3 rounded-full bg-primary"></span>
+<span class="font-label-md text-label-md font-bold text-on-surface">Últimos Bloques de Atestación de Horas Certificadas (Ledger Público)</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Actualización en tiempo real • Intervalo de bloque: 12 seg</span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left font-body-sm text-body-sm">
+<thead>
+<tr class="bg-surface-container text-on-surface-variant font-label-sm text-label-sm">
+<th class="p-3.5 rounded-l-lg">Bloque / Época</th>
+<th class="p-3.5">Hash Criptográfico (ZK-Proof)</th>
+<th class="p-3.5">Nodo Validador Barrial</th>
+<th class="p-3.5">Horas Validadas</th>
+<th class="p-3.5">SROI Atribuido</th>
+<th class="p-3.5 rounded-r-lg text-right">Estado</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-high">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="p-3.5 font-mono font-semibold text-on-surface">#1,849,204</td>
+<td class="p-3.5 font-mono text-primary text-label-sm">0x8f2a...c39e81d7</td>
+<td class="p-3.5 text-on-surface">Nodo Coyoacán Sur-04</td>
+<td class="p-3.5 font-semibold text-on-surface">42.5 hrs</td>
+<td class="p-3.5 font-mono text-secondary font-bold">$145.35 USD</td>
+<td class="p-3.5 text-right">
+<span class="inline-flex items-center gap-1 text-label-sm font-label-sm font-semibold text-primary bg-primary-fixed/40 px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[14px]">check</span> Verificado
+                  </span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="p-3.5 font-mono font-semibold text-on-surface">#1,849,203</td>
+<td class="p-3.5 font-mono text-primary text-label-sm">0x3b1c...99ef52aa</td>
+<td class="p-3.5 text-on-surface">Nodo Iztapalapa Centro-12</td>
+<td class="p-3.5 font-semibold text-on-surface">118.0 hrs</td>
+<td class="p-3.5 font-mono text-secondary font-bold">$403.56 USD</td>
+<td class="p-3.5 text-right">
+<span class="inline-flex items-center gap-1 text-label-sm font-label-sm font-semibold text-primary bg-primary-fixed/40 px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[14px]">check</span> Verificado
+                  </span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="p-3.5 font-mono font-semibold text-on-surface">#1,849,202</td>
+<td class="p-3.5 font-mono text-primary text-label-sm">0x6e90...11a4db42</td>
+<td class="p-3.5 text-on-surface">Nodo Tlalpan Poniente-02</td>
+<td class="p-3.5 font-semibold text-on-surface">63.0 hrs</td>
+<td class="p-3.5 font-mono text-secondary font-bold">$215.46 USD</td>
+<td class="p-3.5 text-right">
+<span class="inline-flex items-center gap-1 text-label-sm font-label-sm font-semibold text-primary bg-primary-fixed/40 px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[14px]">check</span> Verificado
+                  </span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="p-3.5 font-mono font-semibold text-on-surface">#1,849,201</td>
+<td class="p-3.5 font-mono text-primary text-label-sm">0xcd44...fe88419c</td>
+<td class="p-3.5 text-on-surface">Nodo Cuauhtémoc Norte-08</td>
+<td class="p-3.5 font-semibold text-on-surface">84.5 hrs</td>
+<td class="p-3.5 font-mono text-secondary font-bold">$288.99 USD</td>
+<td class="p-3.5 text-right">
+<span class="inline-flex items-center gap-1 text-label-sm font-label-sm font-semibold text-primary bg-primary-fixed/40 px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[14px]">check</span> Verificado
+                  </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Privacy Assurance Banner -->
+<div class="mt-2 p-4 rounded-xl bg-surface-container flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary text-[24px]">shield</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Protección de Datos Médicos Garantizada</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Cero historiales médicos, diagnósticos o nombres completos almacenados en la cadena pública. Cumplimiento LFPDPPP y RGPD.</span>
+</div>
+</div>
+<button class="px-4 py-2 rounded-xl bg-surface-container-lowest text-secondary font-label-sm text-label-sm shadow-sm hover:bg-surface-container-high transition-colors whitespace-nowrap" type="button">
+            Ver Especificación Técnica ZK
+          </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 7: Call to Action for GovTech Partners and Development Banks -->
+<section class="w-full px-6 lg:px-12 py-16 bg-surface">
+<div class="max-w-7xl mx-auto">
+<div class="p-8 lg:p-12 rounded-3xl bg-primary text-on-primary flex flex-col lg:flex-row items-center justify-between gap-8 shadow-xl relative overflow-hidden">
+<div class="max-w-2xl flex flex-col gap-3">
+<span class="font-label-sm text-label-sm font-bold text-primary-fixed uppercase tracking-widest">Para Gobiernos Locales, BID y Banco Mundial</span>
+<h2 class="font-headline-lg text-headline-lg font-bold text-on-primary">
+            ¿Listo para implementar el protocolo de SROI en su municipio?
+          </h2>
+<p class="font-body-md text-body-md text-primary-fixed">
+            CareLedger provee el software soberano, la formación para cuadrillas de campo y la infraestructura actuarial para monetizar el cuidado y justificar presupuestos sociales con rigor matemático.
+          </p>
+</div>
+<div class="flex flex-col sm:flex-row gap-3 w-full lg:w-auto shrink-0">
+<button class="px-6 py-4 rounded-xl bg-on-primary text-primary font-label-md text-label-md shadow-md hover:bg-primary-fixed hover:text-on-primary-fixed transition-all font-semibold flex items-center justify-center gap-2" type="button">
+<span class="material-symbols-outlined text-[20px]">handshake</span>
+<span>Solicitar Adhesión Municipal</span>
+</button>
+<button class="px-6 py-4 rounded-xl bg-primary-container text-on-primary-container font-label-md text-label-md hover:bg-surface-tint transition-all font-semibold flex items-center justify-center gap-2" type="button">
+<span class="material-symbols-outlined text-[20px]">menu_book</span>
+<span>Revisar Guía de Adopción</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Simulator Vanilla JS Script -->
+<script>
+    (function initSROISimulator() {
+      const inputInversion = document.getElementById('input-inversion');
+      const inputHoras = document.getElementById('input-horas');
+      const labelInversion = document.getElementById('label-inversion');
+      const labelHoras = document.getElementById('label-horas');
+      const resultadoValorNeto = document.getElementById('resultado-valor-neto');
+      const resultadoRatio = document.getElementById('resultado-ratio');
+
+      function formatCurrency(val) {
+        return '$' + Math.round(val).toLocaleString('en-US');
+      }
+
+      function updateCalculation() {
+        if (!inputInversion || !inputHoras) return;
+        const inv = parseFloat(inputInversion.value);
+        const hrs = parseFloat(inputHoras.value);
+
+        if (labelInversion) labelInversion.textContent = formatCurrency(inv);
+        if (labelHoras) labelHoras.textContent = hrs.toLocaleString('en-US') + ' hrs';
+
+        // SROI formula parameters:
+        // Direct preventive hospital savings per session (~$34.28/hr gross)
+        // Social cohesion + family stability factor
+        // Net deduction of 46% (deadweight, displacement, attribution)
+        const grossValue = (hrs * 35.00 * 2.85) + (inv * 0.95);
+        const netValue = grossValue * (1 - 0.46);
+        const computedRatio = (netValue / inv).toFixed(2);
+
+        if (resultadoValorNeto) resultadoValorNeto.textContent = formatCurrency(netValue) + ' USD';
+        if (resultadoRatio) resultadoRatio.textContent = computedRatio + 'x SROI';
+      }
+
+      if (inputInversion) inputInversion.addEventListener('input', updateCalculation);
+      if (inputHoras) inputHoras.addEventListener('input', updateCalculation);
+    })();
+  </script>
+</div></main><footer class="w-full bg-surface-container-low mt-auto"><div class="max-w-7xl mx-auto px-6 lg:px-12 py-10 flex flex-col md:flex-row items-center justify-between gap-6"><div class="flex items-center gap-3"><div class="w-7 h-7 rounded-lg bg-surface-container-high flex items-center justify-center text-primary"><span class="material-symbols-outlined text-[18px]">verified_user</span></div><div class="flex flex-col"><span class="font-label-md text-label-md text-on-surface">Infraestructura Pública Digital GovTech</span><span class="font-body-sm text-body-sm text-on-surface-variant">Protocolo Soberano de Liquidación Social y Horas-Cuidado • Secretaría de Bienestar</span></div></div><div class="flex items-center gap-6"><span class="font-body-sm text-body-sm text-on-surface-variant">Red Municipal Verificada CDMX © 2025</span><div class="flex items-center gap-2 px-2.5 py-1 bg-surface-container rounded font-label-sm text-label-sm text-on-surface-variant"><span class="material-symbols-outlined text-secondary text-[14px]">shield</span><span>Cripto-Auditoría Abierta</span></div></div></div></footer></body></html>

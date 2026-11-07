@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+
+<html lang="es"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400..700;1,400..700&amp;family=Plus+Jakarta+Sans:ital,wght@0,400..800;1,400..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "inverse-surface": "#2d3133", "surface-variant": "#e0e3e5", "on-error-container": "#93000a", "on-secondary-container": "#1d3989", "tertiary-fixed-dim": "#ffb77d", "on-secondary": "#ffffff", "on-background": "#191c1e", "on-tertiary": "#ffffff", "on-tertiary-container": "#fffbff", "primary-fixed-dim": "#6bd8cb", "on-tertiary-fixed-variant": "#6e3900", "surface-container-highest": "#e0e3e5", "on-primary-container": "#f4fffc", "surface": "#f7f9fb", "secondary": "#4059aa", "outline-variant": "#bcc9c6", "on-surface": "#191c1e", "on-surface-variant": "#3d4947", "on-secondary-fixed-variant": "#264191", "secondary-fixed-dim": "#b6c4ff", "primary": "#00685f", "on-secondary-fixed": "#00164e", "surface-container-low": "#f2f4f6", "error-container": "#ffdad6", "inverse-primary": "#6bd8cb", "inverse-on-surface": "#eff1f3", "tertiary": "#8d4b00", "surface-container-lowest": "#ffffff", "tertiary-container": "#b15f00", "on-primary-fixed": "#00201d", "surface-container-high": "#e6e8ea", "secondary-fixed": "#dce1ff", "secondary-container": "#8fa7fe", "surface-container": "#eceef0", "background": "#f7f9fb", "on-error": "#ffffff", "on-primary": "#ffffff", "error": "#ba1a1a", "primary-fixed": "#89f5e7", "on-tertiary-fixed": "#2f1500", "surface-bright": "#f7f9fb", "on-primary-fixed-variant": "#005049", "primary-container": "#008378", "outline": "#6d7a77", "tertiary-fixed": "#ffdcc3", "surface-tint": "#006a61", "surface-dim": "#d8dadc" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "gutter-desktop": "2rem", "margin-desktop": "3rem", "space-xs": "0.25rem", "margin": "1rem", "margin-tablet": "2rem", "space-sm": "0.5rem", "gutter": "1rem", "space-lg": "1.5rem", "space-xl": "2.5rem", "gutter-tablet": "1.5rem", "space-md": "1rem" }, "fontFamily": { "display-lg-mobile": [ "Plus Jakarta Sans" ], "headline-lg": [ "Plus Jakarta Sans" ], "headline-sm": [ "Plus Jakarta Sans" ], "headline-lg-mobile": [ "Plus Jakarta Sans" ], "body-lg": [ "Atkinson Hyperlegible Next" ], "label-md": [ "Plus Jakarta Sans" ], "numeral-voucher": [ "Plus Jakarta Sans" ], "body-sm": [ "Atkinson Hyperlegible Next" ], "headline-md": [ "Plus Jakarta Sans" ], "label-sm": [ "Plus Jakarta Sans" ], "body-md": [ "Atkinson Hyperlegible Next" ], "display-lg": [ "Plus Jakarta Sans" ], "label-lg": [ "Plus Jakarta Sans" ] }, "fontSize": { "display-lg-mobile": [ "32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" } ], "headline-lg": [ "30px", { "lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "700" } ], "headline-sm": [ "18px", { "lineHeight": "26px", "fontWeight": "600" } ], "headline-lg-mobile": [ "26px", { "lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "700" } ], "body-lg": [ "18px", { "lineHeight": "28px", "fontWeight": "400" } ], "label-md": [ "14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" } ], "numeral-voucher": [ "28px", { "lineHeight": "32px", "letterSpacing": "0.02em", "fontWeight": "700" } ], "body-sm": [ "14px", { "lineHeight": "20px", "fontWeight": "400" } ], "headline-md": [ "22px", { "lineHeight": "30px", "letterSpacing": "-0.005em", "fontWeight": "600" } ], "label-sm": [ "12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" } ], "body-md": [ "16px", { "lineHeight": "24px", "fontWeight": "400" } ], "display-lg": [ "40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" } ], "label-lg": [ "16px", { "lineHeight": "24px", "letterSpacing": "0.01em", "fontWeight": "600" } ] } } } };</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-on-surface flex flex-col min-h-screen"><header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl pt-safe shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-20 px-margin flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0 flex-1"><img alt="CareLedger Brand Logo" class="h-8 w-auto object-contain flex-shrink-0" src="https://lh3.googleusercontent.com/aida/AEtjO1Xvkdv2pw6nri9uIaAZTrr-SbSecFp5JaCiFbuYABwKHmsrSy3NhKh8mZ_JcGzND_Ah5qW87MgQGSV1-cIjofVeqLZYdOKZ64ttd4OgFkwCIMJqrE2jAApqs39WGV0hkoY__A4Uw1Bu1n2C10W43aiNQ_Gdr9UGatM8WRj9nhKSM5EOPAlD5Pv-_Ro0vRDt7QCRFkIS1ZbN546gUvjHjBK-3p6v6re2nLb1gQP1-jze7A"/><div class="flex flex-col min-w-0"><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm text-on-surface truncate">CareLedger</span><span class="font-label-sm text-label-sm text-on-surface-variant font-normal hidden sm:inline">•</span><span class="font-label-sm text-label-sm text-on-surface-variant truncate">Registrar</span></div><span class="font-label-sm text-label-sm text-primary font-semibold truncate">Hola, Carmen</span></div></div><div class="flex items-center gap-space-xs flex-shrink-0"><div class="relative flex items-center"><label class="sr-only" for="lang-select-tab">Idioma</label><select class="h-12 pl-2 pr-7 bg-surface-container-low text-on-surface font-label-sm text-label-sm rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-primary cursor-pointer" id="lang-select-tab"><option value="es">ES</option><option value="nah">NAH</option><option value="en">EN</option></select><span class="material-symbols-outlined absolute right-1 pointer-events-none text-on-surface-variant text-[18px]">expand_more</span></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover flex-shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4ZMYnh5oVcbTeW9h1vuaUb5Oo5TlMGh5WpqU4LlVcfsyeiAES6t774Sq_ulPmbN366nB-CoeLc1ahl1C_wutdG6FHU5JQV5IlHGxY1iPEEKDItPB0rfb1xfSeJk3k54K8fBNSHkz24ZGCHHMxKbGeANAWJF0AkUjm0wLRMOjUKLA4Lnjb4KoQi60Rhmn7GT3WzIW6U5eT84j4MMXi68ge86wvv6WqCzcty7l__YUb"/></div></div><div class="px-margin pb-space-xs flex items-center justify-between"><div class="inline-flex items-center gap-1.5 py-0.5 px-2 bg-secondary-fixed/40 rounded-full"><span class="material-symbols-outlined text-secondary text-[14px]">verified</span><span class="font-label-sm text-label-sm text-on-secondary-fixed font-semibold truncate">Nodo Activo: Roma-Condesa</span></div><div class="flex items-center gap-1 text-on-surface-variant"><span class="material-symbols-outlined text-[14px] text-primary">cloud_done</span><span class="font-label-sm text-label-sm">Sincronizado</span></div></div></header><main class="flex flex-col relative w-full pt-20 pb-28 px-margin bg-surface"><div class="flex flex-col w-full pb-6 space-y-5">
+<!-- Friendly Civic Welcome Banner -->
+<div class="bg-surface-container-low rounded-xl p-4 shadow-sm relative overflow-hidden">
+<div class="flex items-start justify-between gap-3">
+<div class="flex-1 min-w-0">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary-fixed text-on-primary-fixed mb-2 shadow-xs">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">eco</span>
+<span class="font-label-sm text-label-sm">Economía del Cuidado Comunitario</span>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Hola, Carmen <span class="inline-block animate-bounce">👋</span></h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">
+          Tu labor diaria sostiene la vida de nuestra comunidad. Registra tus horas para certificar tu impacto cívico.
+        </p>
+</div>
+<div class="w-14 h-14 rounded-xl overflow-hidden flex-shrink-0 bg-primary/10 shadow-inner">
+<img class="w-full h-full object-cover" data-alt="Warm documentary portrait of a caring Latin American woman smiling gently, natural warm daylight, civic community setting, soft teal and amber tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKWng0leGLL7SZtF_bf3pmkIJkdS5HLHgZ1p1RCbUcZT_71WgafJjO3hJdYpLCD9OLxw_wtWiwNlFqg6fTBOuWLhLPg9MKa7ZjV3sqGWJsf8SfIEutXdCNFiRscGtrOt_iT59rtFeFSVseE3kza6drRSyJJ0-3_zG7JHqA0uBE5be3nMDDMcY9fCV_tuv8iSa5OduZkf-lEkSlvWPnAweprtEHEBLXE4kgMtGJKkhY"/>
+</div>
+</div>
+<!-- PWA Offline Status Chip -->
+<div class="mt-3.5 pt-3 border-t-0 bg-surface-container-lowest rounded-lg p-2.5 flex items-center justify-between shadow-xs">
+<div class="flex items-center gap-2">
+<span class="relative flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
+</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">Modo Barrial Activo</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Funciona 100% sin internet</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary text-[22px]" style="font-variation-settings: 'FILL' 1;">offline_bolt</span>
+</div>
+</div>
+<!-- Form Section -->
+<form class="flex flex-col space-y-6" id="careForm" onsubmit="event.preventDefault();">
+<!-- Field 1: Recipient Selection -->
+<div class="flex flex-col space-y-2.5">
+<div class="flex items-center justify-between">
+<label class="font-label-lg text-label-lg text-on-surface flex items-center gap-1.5">
+<span class="w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-sm text-label-sm">1</span>
+          ¿A quién cuidaste hoy?
+        </label>
+<span class="font-label-sm text-label-sm text-primary font-medium">Requerido</span>
+</div>
+<div aria-label="Beneficiario de cuidado" class="grid grid-cols-1 gap-2.5" id="recipientGroup" role="radiogroup">
+<!-- Option 1: Selected by default -->
+<button aria-checked="true" class="recipient-card text-left p-3.5 rounded-xl bg-primary-fixed/20 shadow-sm transition-all duration-150 flex items-center justify-between cursor-pointer" data-recipient="familiar" role="radio" type="button">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-xl bg-primary text-on-primary flex items-center justify-center shadow-xs flex-shrink-0">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">family_restroom</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-headline-sm text-on-surface">Familiar dependiente</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Madre, padre, familiar con apoyo diario</span>
+</div>
+</div>
+<div class="radio-indicator w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center flex-shrink-0 shadow-xs">
+<span class="material-symbols-outlined text-[20px]">check</span>
+</div>
+</button>
+<!-- Option 2 -->
+<button aria-checked="false" class="recipient-card text-left p-3.5 rounded-xl bg-surface-container-lowest shadow-sm hover:bg-surface-container-low transition-all duration-150 flex items-center justify-between cursor-pointer" data-recipient="vecino" role="radio" type="button">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high text-on-surface flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[28px]">elderly</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-headline-sm text-on-surface">Vecino adulto mayor</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Cuidado barrial, víveres o movilidad</span>
+</div>
+</div>
+<div class="radio-indicator w-8 h-8 rounded-full bg-surface-container-high text-transparent flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[20px]">check</span>
+</div>
+</button>
+<!-- Option 3 -->
+<button aria-checked="false" class="recipient-card text-left p-3.5 rounded-xl bg-surface-container-lowest shadow-sm hover:bg-surface-container-low transition-all duration-150 flex items-center justify-between cursor-pointer" data-recipient="infancia" role="radio" type="button">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high text-on-surface flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[28px]">child_care</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-headline-sm text-on-surface">Infancias comunitarias</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Crianza colectiva, apoyo escolar</span>
+</div>
+</div>
+<div class="radio-indicator w-8 h-8 rounded-full bg-surface-container-high text-transparent flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[20px]">check</span>
+</div>
+</button>
+</div>
+</div>
+<!-- Field 2: Tactile Time Counter -->
+<div class="flex flex-col space-y-2.5">
+<div class="flex items-center justify-between">
+<label class="font-label-lg text-label-lg text-on-surface flex items-center gap-1.5">
+<span class="w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-sm text-label-sm">2</span>
+          Tiempo dedicado
+        </label>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Unidad: Horas y Minutos</span>
+</div>
+<!-- Time adjustment tactile panel -->
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm flex flex-col items-center">
+<!-- Big Display -->
+<div class="flex items-baseline justify-center gap-1.5 my-1">
+<span class="font-numeral-voucher text-display-lg text-primary tracking-tight" id="displayHours">3</span>
+<span class="font-headline-sm text-headline-sm text-on-surface-variant">h</span>
+<span class="font-numeral-voucher text-display-lg text-primary tracking-tight ml-2" id="displayMinutes">30</span>
+<span class="font-headline-sm text-headline-sm text-on-surface-variant">m</span>
+</div>
+<p class="font-body-sm text-body-sm text-center text-on-surface-variant mb-4 bg-surface-container-low px-3 py-1 rounded-full" id="timeEquivalence">
+          Equivalente a una jornada matutina de bienestar asistido
+        </p>
+<!-- Steppers Grid with generous touch sizes (min 52px) -->
+<div class="grid grid-cols-2 gap-3 w-full">
+<!-- Hours Stepper -->
+<div class="flex flex-col items-center bg-surface-container p-2 rounded-xl">
+<span class="font-label-sm text-label-sm text-on-surface-variant mb-1.5 font-semibold">Horas</span>
+<div class="flex items-center justify-between w-full px-1">
+<button aria-label="Restar 1 hora" class="w-12 h-12 rounded-lg bg-surface-container-lowest text-on-surface flex items-center justify-center shadow-xs active:scale-95 transition-transform" id="btnMinusHour" type="button">
+<span class="material-symbols-outlined text-[24px]">remove</span>
+</button>
+<span class="font-headline-md text-headline-md text-on-surface" id="labelHoursVal">3h</span>
+<button aria-label="Sumar 1 hora" class="w-12 h-12 rounded-lg bg-primary text-on-primary flex items-center justify-center shadow-xs active:scale-95 transition-transform" id="btnAddHour" type="button">
+<span class="material-symbols-outlined text-[24px]">add</span>
+</button>
+</div>
+</div>
+<!-- Minutes Stepper -->
+<div class="flex flex-col items-center bg-surface-container p-2 rounded-xl">
+<span class="font-label-sm text-label-sm text-on-surface-variant mb-1.5 font-semibold">Minutos</span>
+<div class="flex items-center justify-between w-full px-1">
+<button aria-label="Restar 15 minutos" class="w-12 h-12 rounded-lg bg-surface-container-lowest text-on-surface flex items-center justify-center shadow-xs active:scale-95 transition-transform" id="btnMinusMin" type="button">
+<span class="material-symbols-outlined text-[24px]">remove</span>
+</button>
+<span class="font-headline-md text-headline-md text-on-surface" id="labelMinutesVal">30m</span>
+<button aria-label="Sumar 15 minutos" class="w-12 h-12 rounded-lg bg-primary text-on-primary flex items-center justify-center shadow-xs active:scale-95 transition-transform" id="btnAddMin" type="button">
+<span class="material-symbols-outlined text-[24px]">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Quick Preset Pills -->
+<div class="flex items-center justify-center gap-2 mt-3.5 w-full">
+<button class="preset-btn px-3 py-1.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm hover:bg-surface-variant transition-colors" data-preset="60" type="button">1h básica</button>
+<button class="preset-btn px-3 py-1.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm hover:bg-surface-variant transition-colors" data-preset="150" type="button">2h 30m</button>
+<button class="preset-btn px-3 py-1.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm" data-preset="210" type="button">3h 30m</button>
+<button class="preset-btn px-3 py-1.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm hover:bg-surface-variant transition-colors" data-preset="300" type="button">5h intensa</button>
+</div>
+</div>
+</div>
+<!-- Field 3: Type of Support (Accessible chips) -->
+<div class="flex flex-col space-y-2.5">
+<div class="flex items-center justify-between">
+<label class="font-label-lg text-label-lg text-on-surface flex items-center gap-1.5">
+<span class="w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-sm text-label-sm">3</span>
+          Tipo de apoyo realizado
+        </label>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Elige uno o varios</span>
+</div>
+<div class="grid grid-cols-2 gap-2.5" id="careTypesGrid">
+<!-- Chip 1: Selected -->
+<button class="care-chip flex flex-col justify-between p-3 min-h-[72px] rounded-xl text-left transition-all duration-150 cursor-pointer bg-primary-fixed/30 text-on-primary-fixed shadow-xs" data-active="true" type="button">
+<div class="flex items-center justify-between w-full">
+<span class="material-symbols-outlined text-[24px] text-primary" style="font-variation-settings: 'FILL' 1;">medical_services</span>
+<span class="chip-status material-symbols-outlined text-[18px] text-primary">check_circle</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface font-semibold mt-2 leading-tight">Acompañamiento médico</span>
+</button>
+<!-- Chip 2: Selected -->
+<button class="care-chip flex flex-col justify-between p-3 min-h-[72px] rounded-xl text-left transition-all duration-150 cursor-pointer bg-primary-fixed/30 text-on-primary-fixed shadow-xs" data-active="true" type="button">
+<div class="flex items-center justify-between w-full">
+<span class="material-symbols-outlined text-[24px] text-primary" style="font-variation-settings: 'FILL' 1;">soup_kitchen</span>
+<span class="chip-status material-symbols-outlined text-[18px] text-primary">check_circle</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface font-semibold mt-2 leading-tight">Alimentación y aseo</span>
+</button>
+<!-- Chip 3: Unselected -->
+<button class="care-chip flex flex-col justify-between p-3 min-h-[72px] rounded-xl text-left transition-all duration-150 cursor-pointer bg-surface-container-lowest text-on-surface hover:bg-surface-container-low shadow-xs" data-active="false" type="button">
+<div class="flex items-center justify-between w-full">
+<span class="material-symbols-outlined text-[24px] text-on-surface-variant">psychology</span>
+<span class="chip-status material-symbols-outlined text-[18px] text-transparent">check_circle</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant font-medium mt-2 leading-tight">Estimulación cognitiva</span>
+</button>
+<!-- Chip 4: Unselected -->
+<button class="care-chip flex flex-col justify-between p-3 min-h-[72px] rounded-xl text-left transition-all duration-150 cursor-pointer bg-surface-container-lowest text-on-surface hover:bg-surface-container-low shadow-xs" data-active="false" type="button">
+<div class="flex items-center justify-between w-full">
+<span class="material-symbols-outlined text-[24px] text-on-surface-variant">bedtime</span>
+<span class="chip-status material-symbols-outlined text-[18px] text-transparent">check_circle</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant font-medium mt-2 leading-tight">Guardia nocturna</span>
+</button>
+</div>
+</div>
+<!-- Field 4: Committee Sync Toggle Switch -->
+<div class="bg-secondary-fixed/30 rounded-xl p-4 shadow-sm flex flex-col space-y-3">
+<div class="flex items-start justify-between gap-3">
+<div class="flex items-start gap-2.5 min-w-0">
+<div class="w-9 h-9 rounded-lg bg-secondary text-on-secondary flex items-center justify-center flex-shrink-0 mt-0.5 shadow-xs">
+<span class="material-symbols-outlined text-[20px]">how_to_reg</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-secondary-fixed font-semibold">Sincronizar con comité barrial verificado</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+              Permite al Nodo Barrial Roma-Condesa validar las horas sin burocracia para liberar tus $CARE tokens automáticamente.
+            </span>
+</div>
+</div>
+<!-- Accessible Toggle Switch (48px target) -->
+<button aria-checked="true" class="w-14 h-8 flex-shrink-0 bg-primary rounded-full p-1 transition-colors duration-200 focus:outline-none flex items-center cursor-pointer" id="toggleSync" role="switch" type="button">
+<span class="bg-surface-container-lowest w-6 h-6 rounded-full shadow-md transform translate-x-6 transition-transform duration-200" id="toggleKnob"></span>
+</button>
+</div>
+<!-- Trust Badge inside card -->
+<div class="flex items-center gap-1.5 pt-1 text-on-secondary-fixed font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-secondary">verified_user</span>
+<span>Validación descentralizada garantizada por 3 promotoras locales</span>
+</div>
+</div>
+<!-- Action Section: High-vis primary CTA -->
+<div class="flex flex-col space-y-2 pt-1">
+<button class="w-full h-16 rounded-xl bg-primary text-on-primary font-headline-sm text-headline-sm shadow-md hover:bg-primary-container active:scale-[0.98] transition-all flex items-center justify-between px-5 cursor-pointer" id="btnSubmitCare" type="button">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[26px]">volunteer_activism</span>
+<span class="font-semibold text-left">Registrar y Validar Cuidado</span>
+</div>
+<div class="flex items-center gap-1.5 bg-primary-container px-3 py-1.5 rounded-lg shadow-inner flex-shrink-0">
+<span class="font-label-md text-label-md text-on-primary-container font-bold" id="rewardLabel">+35 $CARE</span>
+<span class="material-symbols-outlined text-[18px] text-on-primary-container">arrow_forward</span>
+</div>
+</button>
+<!-- Micro reassurance text -->
+<p class="font-label-sm text-label-sm text-center text-on-surface-variant flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary">lock</span>
+        Registro firmado localmente • Tu privacidad ciudadana está protegida
+      </p>
+</div>
+</form>
+<!-- Educational Trust Card -->
+<div class="bg-surface-container rounded-xl p-4 shadow-sm flex items-start gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-lowest text-primary flex items-center justify-center flex-shrink-0 shadow-xs">
+<span class="material-symbols-outlined text-[22px]">shield_person</span>
+</div>
+<div class="flex flex-col min-w-0">
+<h2 class="font-label-md text-label-md text-on-surface font-semibold">¿Cómo se protegen tus datos?</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+        CareLedger utiliza validación comunitaria encriptada y <strong>no comparte información médica sensible</strong> ni nombres de pacientes. Solo certifica la dedicación de tiempo y el bienestar generado.
+      </p>
+</div>
+</div>
+<!-- Neighborhood Community Photo Snapshot -->
+<div class="bg-surface-container-lowest rounded-xl p-3 shadow-sm flex items-center gap-3">
+<div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Community center living room in Mexico City with caregivers gathered around a table with tea and notebooks, joyful mutual support atmosphere, warm daylight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDC09wHapHwz7mx36Wsv3G_w473xzbc5FFxr0Spj0DtuX__P7Z3pB87o5vZ9SMzI-I32SY3jMBgCOb2ConkoiL5SiVFSZPFv-0AT7FqpDhqwfefc5GWrSgUbai94Kmw7L6xPRPDdS2Qz5KI3nCEaCLdeIiRtGnC0uMWJtLDhxBTwR-NdF9XGXQFid4sYQMUQDBsi33tfK2xiNcRR5U2qmWdOU-K59-LMgHzR6imE24j"/>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm text-primary font-semibold">Red Barrial Roma-Condesa</span>
+<span class="font-body-sm text-body-sm text-on-surface">128 cuidadoras han registrado 412 horas esta semana.</span>
+</div>
+</div>
+<!-- Toast Notification Container (Hidden by default) -->
+<div class="fixed top-24 left-4 right-4 z-50 transform -translate-y-12 opacity-0 pointer-events-none transition-all duration-300 bg-primary text-on-primary p-4 rounded-xl shadow-xl flex items-center justify-between" id="toastNotification">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[26px]">task_alt</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold">¡Cuidado Registrado con Éxito!</span>
+<span class="font-body-sm text-body-sm opacity-90">+35 $CARE sumados a tu billetera comunitaria.</span>
+</div>
+</div>
+<button class="text-on-primary hover:opacity-80 p-1" id="closeToast" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+</div>
+<script>
+  (function initCareLogger() {
+    let totalMinutes = 210; // 3h 30m default
+    let isSyncActive = true;
+
+    const displayHours = document.getElementById('displayHours');
+    const displayMinutes = document.getElementById('displayMinutes');
+    const labelHoursVal = document.getElementById('labelHoursVal');
+    const labelMinutesVal = document.getElementById('labelMinutesVal');
+    const timeEquivalence = document.getElementById('timeEquivalence');
+    const rewardLabel = document.getElementById('rewardLabel');
+
+    function updateTimeDisplay() {
+      const h = Math.floor(totalMinutes / 60);
+      const m = totalMinutes % 60;
+
+      displayHours.textContent = h;
+      displayMinutes.textContent = m < 10 ? '0' + m : m;
+      labelHoursVal.textContent = h + 'h';
+      labelMinutesVal.textContent = m + 'm';
+
+      // Estimate CARE tokens (10 $CARE per hour)
+      const careTokens = Math.max(5, Math.round((totalMinutes / 60) * 10));
+      rewardLabel.textContent = `+${careTokens} $CARE`;
+
+      // Dynamic qualitative equivalence
+      if (totalMinutes <= 60) {
+        timeEquivalence.textContent = "Equivalente a un micro-apoyo puntual de compañía";
+      } else if (totalMinutes <= 180) {
+        timeEquivalence.textContent = "Equivalente a media jornada de cuidado intensivo";
+      } else if (totalMinutes <= 300) {
+        timeEquivalence.textContent = "Equivalente a una jornada matutina de bienestar asistido";
+      } else {
+        timeEquivalence.textContent = "Equivalente a una jornada integral de soporte vital";
+      }
+    }
+
+    // Stepper listeners
+    document.getElementById('btnAddHour').addEventListener('click', () => {
+      if (totalMinutes < 720) {
+        totalMinutes += 60;
+        updateTimeDisplay();
+      }
+    });
+
+    document.getElementById('btnMinusHour').addEventListener('click', () => {
+      if (totalMinutes >= 75) {
+        totalMinutes -= 60;
+        updateTimeDisplay();
+      }
+    });
+
+    document.getElementById('btnAddMin').addEventListener('click', () => {
+      if (totalMinutes < 720) {
+        totalMinutes += 15;
+        updateTimeDisplay();
+      }
+    });
+
+    document.getElementById('btnMinusMin').addEventListener('click', () => {
+      if (totalMinutes >= 30) {
+        totalMinutes -= 15;
+        updateTimeDisplay();
+      }
+    });
+
+    // Preset buttons
+    document.querySelectorAll('.preset-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        document.querySelectorAll('.preset-btn').forEach(b => {
+          b.className = "preset-btn px-3 py-1.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm hover:bg-surface-variant transition-colors";
+        });
+        e.currentTarget.className = "preset-btn px-3 py-1.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm";
+        totalMinutes = parseInt(e.currentTarget.getAttribute('data-preset'), 10);
+        updateTimeDisplay();
+      });
+    });
+
+    // Recipient selection cards
+    const recipientCards = document.querySelectorAll('.recipient-card');
+    recipientCards.forEach(card => {
+      card.addEventListener('click', () => {
+        recipientCards.forEach(c => {
+          c.setAttribute('aria-checked', 'false');
+          c.className = "recipient-card text-left p-3.5 rounded-xl bg-surface-container-lowest shadow-sm hover:bg-surface-container-low transition-all duration-150 flex items-center justify-between cursor-pointer";
+          const iconWrapper = c.querySelector('div > div:first-child');
+          iconWrapper.className = "w-12 h-12 rounded-xl bg-surface-container-high text-on-surface flex items-center justify-center flex-shrink-0";
+          const indicator = c.querySelector('.radio-indicator');
+          indicator.className = "radio-indicator w-8 h-8 rounded-full bg-surface-container-high text-transparent flex items-center justify-center flex-shrink-0";
+        });
+
+        card.setAttribute('aria-checked', 'true');
+        card.className = "recipient-card text-left p-3.5 rounded-xl bg-primary-fixed/20 shadow-sm transition-all duration-150 flex items-center justify-between cursor-pointer";
+        const selectedIconWrapper = card.querySelector('div > div:first-child');
+        selectedIconWrapper.className = "w-12 h-12 rounded-xl bg-primary text-on-primary flex items-center justify-center shadow-xs flex-shrink-0";
+        const selectedIndicator = card.querySelector('.radio-indicator');
+        selectedIndicator.className = "radio-indicator w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center flex-shrink-0 shadow-xs";
+      });
+    });
+
+    // Care types multi-toggle chips
+    const careChips = document.querySelectorAll('.care-chip');
+    careChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        const isActive = chip.getAttribute('data-active') === 'true';
+        const nextState = !isActive;
+        chip.setAttribute('data-active', nextState ? 'true' : 'false');
+
+        const icon = chip.querySelector('span.material-symbols-outlined:first-child');
+        const check = chip.querySelector('.chip-status');
+        const label = chip.querySelector('span:last-child');
+
+        if (nextState) {
+          chip.className = "care-chip flex flex-col justify-between p-3 min-h-[72px] rounded-xl text-left transition-all duration-150 cursor-pointer bg-primary-fixed/30 text-on-primary-fixed shadow-xs";
+          icon.className = "material-symbols-outlined text-[24px] text-primary";
+          check.className = "chip-status material-symbols-outlined text-[18px] text-primary";
+          label.className = "font-label-md text-label-md text-on-surface font-semibold mt-2 leading-tight";
+        } else {
+          chip.className = "care-chip flex flex-col justify-between p-3 min-h-[72px] rounded-xl text-left transition-all duration-150 cursor-pointer bg-surface-container-lowest text-on-surface hover:bg-surface-container-low shadow-xs";
+          icon.className = "material-symbols-outlined text-[24px] text-on-surface-variant";
+          check.className = "chip-status material-symbols-outlined text-[18px] text-transparent";
+          label.className = "font-label-md text-label-md text-on-surface-variant font-medium mt-2 leading-tight";
+        }
+      });
+    });
+
+    // Accessible Toggle Switch logic
+    const toggleSync = document.getElementById('toggleSync');
+    const toggleKnob = document.getElementById('toggleKnob');
+    toggleSync.addEventListener('click', () => {
+      isSyncActive = !isSyncActive;
+      toggleSync.setAttribute('aria-checked', isSyncActive ? 'true' : 'false');
+      if (isSyncActive) {
+        toggleSync.className = "w-14 h-8 flex-shrink-0 bg-primary rounded-full p-1 transition-colors duration-200 focus:outline-none flex items-center cursor-pointer";
+        toggleKnob.className = "bg-surface-container-lowest w-6 h-6 rounded-full shadow-md transform translate-x-6 transition-transform duration-200";
+      } else {
+        toggleSync.className = "w-14 h-8 flex-shrink-0 bg-surface-container-highest rounded-full p-1 transition-colors duration-200 focus:outline-none flex items-center cursor-pointer";
+        toggleKnob.className = "bg-surface-container-lowest w-6 h-6 rounded-full shadow-md transform translate-x-0 transition-transform duration-200";
+      }
+    });
+
+    // Form submission & celebration toast
+    const submitBtn = document.getElementById('btnSubmitCare');
+    const toast = document.getElementById('toastNotification');
+    const closeToast = document.getElementById('closeToast');
+
+    submitBtn.addEventListener('click', () => {
+      // Haptic feedback simulated with UI motion
+      submitBtn.classList.add('scale-95');
+      setTimeout(() => submitBtn.classList.remove('scale-95'), 150);
+
+      // Show toast
+      toast.classList.remove('opacity-0', '-translate-y-12', 'pointer-events-none');
+      toast.classList.add('opacity-100', 'translate-y-0');
+
+      setTimeout(() => {
+        toast.classList.add('opacity-0', '-translate-y-12', 'pointer-events-none');
+        toast.classList.remove('opacity-100', 'translate-y-0');
+      }, 4000);
+    });
+
+    closeToast.addEventListener('click', () => {
+      toast.classList.add('opacity-0', '-translate-y-12', 'pointer-events-none');
+      toast.classList.remove('opacity-100', 'translate-y-0');
+    });
+
+    updateTimeDisplay();
+  })();
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-1px_12px_rgba(0,0,0,0.05)]" data-active-classes="text-primary font-semibold"><div class="flex items-center justify-around h-16 px-space-sm"><a aria-current="page" class="flex flex-col items-center justify-center min-w-[64px] min-h-[48px] py-1 transition-colors text-primary font-semibold" data-path="registrar" href="#"><span class="material-symbols-outlined text-[24px]">favorite</span><span class="font-label-sm text-label-sm mt-0.5">Registrar</span></a><a class="flex flex-col items-center justify-center min-w-[64px] min-h-[48px] py-1 text-on-surface-variant transition-colors" data-path="impacto" href="#"><span class="material-symbols-outlined text-[24px]">diversity_1</span><span class="font-label-sm text-label-sm mt-0.5">Impacto</span></a><a class="flex flex-col items-center justify-center min-w-[64px] min-h-[48px] py-1 text-on-surface-variant transition-colors" data-path="billetera" href="#"><span class="material-symbols-outlined text-[24px]">account_balance_wallet</span><span class="font-label-sm text-label-sm mt-0.5">Billetera</span></a></div></nav></body></html>

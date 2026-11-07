@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CareLedger — Explicación del proyecto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --surface: #f7f9fb; --card: #ffffff; --ink: #191c1e; --muted: #3d4947;
+    --line: #bcc9c6; --primary: #00685f; --primary-soft: #f0fdfa;
+    --secondary: #4059aa; --amber: #8d4b00; --amber-soft: #fffbef;
+    --radius: 20px;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body {
+    background: var(--surface); color: var(--ink);
+    font-family: "Atkinson Hyperlegible Next", system-ui, sans-serif;
+    font-size: 16px; line-height: 1.55; padding: 0 1rem 4rem;
+  }
+  h1, h2, h3, .num { font-family: "Plus Jakarta Sans", system-ui, sans-serif; }
+  .wrap { max-width: 860px; margin: 0 auto; }
+  header.hero { padding: 3.5rem 0 2rem; border-bottom: 1px solid var(--line); }
+  .kicker { font: 700 .75rem "Plus Jakarta Sans"; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--primary); margin-bottom: .75rem; }
+  h1 { font-size: clamp(1.9rem, 5vw, 2.8rem); line-height: 1.15;
+    letter-spacing: -0.02em; font-weight: 800; }
+  .verdict { margin-top: 1.25rem; font-size: 1.1rem; color: var(--muted);
+    max-width: 62ch; }
+  .verdict strong { color: var(--ink); }
+  section { padding: 2.5rem 0 0; }
+  h2 { font-size: 1.35rem; font-weight: 700; letter-spacing: -0.01em;
+    margin-bottom: 1rem; }
+  .grid { display: grid; gap: 1rem; }
+  .grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+  .grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 720px) {
+    .grid.cols-4, .grid.cols-3, .grid.cols-2 { grid-template-columns: 1fr; }
+  }
+  .card { background: var(--card); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 1.25rem 1.5rem; }
+  .card h3 { font-size: 1rem; font-weight: 700; margin-bottom: .35rem; }
+  .card p, .card li { font-size: .92rem; color: var(--muted); }
+  .phase { border-top: 4px solid var(--primary); }
+  .phase .step { font: 800 .75rem "Plus Jakarta Sans"; color: var(--primary);
+    letter-spacing: .08em; margin-bottom: .5rem; }
+  .num { font-size: 2rem; font-weight: 800; letter-spacing: -0.02em;
+    color: var(--primary); display: block; }
+  .num small { font-size: .8rem; color: var(--muted); font-weight: 600; }
+  .tag { display: inline-block; font: 600 .7rem "Plus Jakarta Sans";
+    padding: .2rem .6rem; border-radius: 999px; background: var(--primary-soft);
+    color: var(--primary); margin-bottom: .5rem; }
+  .tag.amber { background: var(--amber-soft); color: var(--amber); }
+  .tag.blue { background: #eff4ff; color: var(--secondary); }
+  table { width: 100%; border-collapse: collapse; background: var(--card);
+    border-radius: var(--radius); overflow: hidden; font-size: .9rem;
+    border: 1px solid var(--line); }
+  th, td { text-align: left; padding: .7rem .9rem; border-bottom: 1px solid var(--line); }
+  th { font: 700 .72rem "Plus Jakarta Sans"; text-transform: uppercase;
+    letter-spacing: .06em; color: var(--muted); background: var(--surface); }
+  td b { font-family: "Plus Jakarta Sans"; }
+  .flow { display: flex; gap: .5rem; align-items: center; flex-wrap: wrap;
+    font: 600 .85rem "Plus Jakarta Sans"; margin: .75rem 0 1.25rem; }
+  .flow span { background: var(--card); border: 1px solid var(--line);
+    padding: .4rem .8rem; border-radius: 999px; }
+  .flow i { color: var(--primary); font-style: normal; font-weight: 800; }
+  ul.tight li { margin-bottom: .4rem; }
+  .footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line);
+    font-size: .82rem; color: var(--muted); }
+  code { font-family: ui-monospace, monospace; font-size: .85em;
+    background: var(--surface); padding: .1em .4em; border-radius: 6px;
+    border: 1px solid var(--line); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="kicker">CareLedger · Red del Cuidado Cívico</div>
+    <h1>El tiempo que cuidas, vuelve a ti en beneficios.</h1>
+    <p class="verdict">
+      <strong>En 3 líneas:</strong> CareLedger certifica las horas de cuidado
+      informal (familiares, vecinos mayores, infancias) con una app offline-first,
+      las valida con un oráculo vecinal de 3 firmas y las convierte en
+      <strong>Puntos Cívicos</strong> canjeables por luz, transporte, horas de
+      relevo y comercios del barrio — respaldados por presupuesto municipal.
+    </p>
+  </header>
+
+  <section>
+    <h2>El problema</h2>
+    <div class="card">
+      <p>El 99% de la tecnología de salud mira al paciente. La persona que cuida
+      — la "generación sándwich" (~38 años, mayoría mujeres) que sostiene a sus
+      hijos y a un mayor enfermo a la vez — es invisible para el sistema.
+      Trabaja sin descanso, sin pago y al borde del colapso. Su desgaste le
+      cuesta millones al sistema de salud en crisis y reingresos evitables.</p>
+      <p style="margin-top:.6rem"><strong>La idea central:</strong> no solo se
+      paga el cuidado a terceros — <strong>también se ganan puntos por
+      autocuidado</strong> (hora libre, descanso, red de apoyo). Se ataca el
+      deterioro de la cuidadora, no solo su factura.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Cómo funciona: la ruta del tiempo en 4 fases</h2>
+    <div class="flow">
+      <span>Registra &lt;60s</span><i>→</i><span>Vecindad valida 3/3</span><i>→</i><span>Se emiten puntos</span><i>→</i><span>Canjea beneficios</span>
+    </div>
+    <div class="grid cols-4">
+      <div class="card phase"><div class="step">1 · HOGAR</div>
+        <h3>Registro sin fricción</h3>
+        <p>PWA en su teléfono. Una tap para elegir a quién cuidó, presets de
+        horas, firma local. <strong>Funciona 100% sin internet</strong> y
+        sincroniza después.</p></div>
+      <div class="card phase"><div class="step">2 · COMUNIDAD</div>
+        <h3>Oráculo vecinal</h3>
+        <p>Consenso 3-de-3: cuidadora + beneficiario + veedor comunitario
+        acreditado. Sin filas ni burócratas; con anti-fraude y auditoría
+        muestral del 5%.</p></div>
+      <div class="card phase"><div class="step">3 · SALUD PÚBLICA</div>
+        <h3>El sistema ahorra</h3>
+        <p>Cada sesión preventiva evita urgencias: ~$120 USD ahorrados por
+        jornada de 3.5h vs $450 USD por día de cama hospitalaria.</p></div>
+      <div class="card phase"><div class="step">4 · RECOMPENSA</div>
+        <h3>Puntos canjeables</h3>
+        <p>10 pts/hora × multiplicador de carga (física, cognitiva, logística).
+        Vales QR/folio que funcionan offline en ventanilla y comercio aliado.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>La economía en números</h2>
+    <div class="grid cols-3">
+      <div class="card"><span class="num">3.42x<small> SROI</small></span>
+        <p>Cada $1 invertido retorna $3.42 en valor social neto (descontando
+        peso muerto, desplazamiento y atribución).</p></div>
+      <div class="card"><span class="num">10 pts<small> /hora</small></span>
+        <p>Emisión determinística. 3.5h → 35 pts, 14h/semana → 140 pts.
+        Paridad contable: 1 pt = $10 MXN.</p></div>
+      <div class="card"><span class="num">0%<small> comisión comercio</small></span>
+        <p>El comercio aliado cobra por QR/folio y recibe liquidación SPEI
+        completa en 24h, sin intermediarios.</p></div>
+    </div>
+    <div style="margin-top:1rem">
+      <table>
+        <tr><th>Beneficio del catálogo</th><th>Costo</th><th>Categoría</th></tr>
+        <tr><td><b>30% desc. recibo de luz CFE</b> — convenio CFE &amp; Bienestar</td><td>50 pts</td><td>Hogar</td></tr>
+        <tr><td><b>Pase semanal ilimitado</b> — Metro, Metrobús y RTP</td><td>30 pts</td><td>Movilidad</td></tr>
+        <tr><td><b>3h de relevo certificado</b> — para su propio descanso</td><td>40 pts</td><td>Autocuidado</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Las 4 superficies del producto (y del repo)</h2>
+    <p style="color:var(--muted); margin-bottom:1rem">Monorepo con un
+    territorio por app: cada agente trabaja en su propio worktree sin pisar a
+    otro. Las specs de <code>specs/</code> son la fuente de verdad.</p>
+    <div class="grid cols-2">
+      <div class="card"><span class="tag">apps/pwa</span>
+        <h3>PWA de la cuidadora</h3>
+        <ul class="tight"><li>Registro offline &lt;60s, firma Ed25519 local</li>
+        <li>Autocuidado como categoría propia</li>
+        <li>Billetera + catálogo + vales QR offline</li>
+        <li>48px táctil, WCAG AA, ES/NAH/EN</li></ul></div>
+      <div class="card"><span class="tag blue">apps/gobierno</span>
+        <h3>Panel de gobierno</h3>
+        <ul class="tight"><li>Dashboard SROI con IC 95%</li>
+        <li>Simulador actuarial (inversión × horas)</li>
+        <li>Libro mayor auditable por folio</li>
+        <li>Métricas: 99.4% validación sin fraude</li></ul></div>
+      <div class="card"><span class="tag amber">apps/comercios</span>
+        <h3>Terminal de comercios</h3>
+        <ul class="tight"><li>Alta en ≤5 min (ID + domicilio + CLABE)</li>
+        <li>Cobro por QR/folio, funciona offline</li>
+        <li>Liquidación SPEI ≤24h, 0% comisión</li>
+        <li>Distintivo "Comercio Solidario"</li></ul></div>
+      <div class="card"><span class="tag">apps/landing</span>
+        <h3>Sitio público</h3>
+        <ul class="tight"><li>Narrativa de 4 fases + calculadora de horas</li>
+        <li>3 audiencias: cuidadoras, comercios, gobiernos</li>
+        <li>Copy ciudadano: "Puntos Cívicos" (no crypto)</li></ul></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Garantías innegociables</h2>
+    <div class="grid cols-3">
+      <div class="card"><h3>Cuidar no es favor, es trabajo</h3>
+        <p>Reconocimiento económico de la economía no remunerada. No es
+        caridad: es infraestructura cívica.</p></div>
+      <div class="card"><h3>Privacidad sagrada</h3>
+        <p>Ningún dato médico, nombre de paciente ni foto sale del teléfono.
+        La atestación transporta duración, tipo de apoyo y firmas — nada más.</p></div>
+      <div class="card"><h3>Respaldo municipal real</h3>
+        <p>Cada punto emitido tiene suficiencia presupuestaria en el Fondo
+        Municipal de Cuidados. Los vales no caducan una vez generados.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Cómo sigue el dinero</h2>
+    <div class="card">
+      <ul class="tight">
+        <li><strong>Fondo municipal</strong> — partida presupuestaria respalda
+        cada punto emitido.</li>
+        <li><strong>Propinas familiares</strong> — el familiar ausente fondea
+        la cuenta de la cuidadora; comisión de procesamiento (5%).</li>
+        <li><strong>Afiliados B2B</strong> — farmacias e insumos compran acceso
+        a demanda segmentada.</li>
+        <li><strong>Licencias corporativas</strong> — RRHH la compra como
+        prestación anti-burnout. A 5 años: aseguradoras; a 10: infra de datos
+        para política pública.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Mapa del repo</h2>
+    <table>
+      <tr><th>Ruta</th><th>Qué vive ahí</th></tr>
+      <tr><td><code>specs/00–06</code></td><td>La fuente de verdad: plataforma, PWA, oráculo, billetera, gobierno, comercios, landing + roadmap</td></tr>
+      <tr><td><code>design/</code></td><td>DESIGN.md (sistema Civic Care &amp; Human Dignity) + <code>stitch/</code> con las pantallas exportadas de referencia</td></tr>
+      <tr><td><code>packages/domain</code></td><td>Contrato compartido: tipos, emisión de puntos, consenso, SROI, catálogo — con tests dorados</td></tr>
+      <tr><td><code>packages/design-tokens</code></td><td>Tema Tailwind v4 (colores, tipografía, radios, elevación)</td></tr>
+      <tr><td><code>docs/</code></td><td>Documento fuente "Cuando cuidas, te descuidas" + ADR-0001 de stack</td></tr>
+    </table>
+  </section>
+
+  <div class="footer">
+    CareLedger · "Cuando cuidas, te descuidas" · specs en español, términos
+    técnicos en inglés · noviembre 2026.
+  </div>
+
+</div>
+</body>
+</html>

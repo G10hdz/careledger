@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+
+<html lang="es"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400..700;1,400..700&amp;family=Plus+Jakarta+Sans:ital,wght@0,400..800;1,400..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-primary-fixed":"#00201d","on-tertiary-container":"#fffbff","on-surface":"#191c1e","on-secondary-fixed":"#00164e","background":"#f7f9fb","primary":"#00685f","outline-variant":"#bcc9c6","primary-fixed":"#89f5e7","surface-bright":"#f7f9fb","error-container":"#ffdad6","surface-container-high":"#e6e8ea","secondary":"#4059aa","tertiary":"#8d4b00","on-primary":"#ffffff","surface-container-highest":"#e0e3e5","surface":"#f7f9fb","surface-container-lowest":"#ffffff","inverse-on-surface":"#eff1f3","on-background":"#191c1e","on-surface-variant":"#3d4947","on-tertiary-fixed":"#2f1500","tertiary-fixed":"#ffdcc3","tertiary-fixed-dim":"#ffb77d","on-secondary":"#ffffff","secondary-fixed-dim":"#b6c4ff","inverse-primary":"#6bd8cb","primary-container":"#008378","surface-tint":"#006a61","outline":"#6d7a77","surface-container-low":"#f2f4f6","on-secondary-container":"#1d3989","surface-container":"#eceef0","on-error-container":"#93000a","on-primary-container":"#f4fffc","on-tertiary-fixed-variant":"#6e3900","secondary-container":"#8fa7fe","tertiary-container":"#b15f00","secondary-fixed":"#dce1ff","on-primary-fixed-variant":"#005049","surface-variant":"#e0e3e5","on-secondary-fixed-variant":"#264191","inverse-surface":"#2d3133","primary-fixed-dim":"#6bd8cb","on-tertiary":"#ffffff","on-error":"#ffffff","error":"#ba1a1a","surface-dim":"#d8dadc"},borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},spacing:{"margin":"1rem","margin-desktop":"3rem","space-sm":"0.5rem","space-xs":"0.25rem","space-md":"1rem","margin-tablet":"2rem","space-lg":"1.5rem","space-xl":"2.5rem","gutter":"1rem","gutter-desktop":"2rem","gutter-tablet":"1.5rem"},fontFamily:{"label-md":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"body-md":["Atkinson Hyperlegible Next"],"label-lg":["Plus Jakarta Sans"],"label-sm":["Plus Jakarta Sans"],"display-lg":["Plus Jakarta Sans"],"body-lg":["Atkinson Hyperlegible Next"],"numeral-voucher":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"display-lg-mobile":["Plus Jakarta Sans"],"headline-sm":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"body-sm":["Atkinson Hyperlegible Next"]},fontSize:{"label-md":["14px",{lineHeight:"20px",letterSpacing:"0.01em",fontWeight:"600"}],"headline-lg":["30px",{lineHeight:"38px",letterSpacing:"-0.01em",fontWeight:"700"}],"body-md":["16px",{lineHeight:"24px",fontWeight:"400"}],"label-lg":["16px",{lineHeight:"24px",letterSpacing:"0.01em",fontWeight:"600"}],"label-sm":["12px",{lineHeight:"16px",letterSpacing:"0.02em",fontWeight:"600"}],"display-lg":["40px",{lineHeight:"48px",letterSpacing:"-0.02em",fontWeight:"700"}],"body-lg":["18px",{lineHeight:"28px",fontWeight:"400"}],"numeral-voucher":["28px",{lineHeight:"32px",letterSpacing:"0.02em",fontWeight:"700"}],"headline-md":["22px",{lineHeight:"30px",letterSpacing:"-0.005em",fontWeight:"600"}],"display-lg-mobile":["32px",{lineHeight:"40px",letterSpacing:"-0.01em",fontWeight:"700"}],"headline-sm":["18px",{lineHeight:"26px",fontWeight:"600"}],"headline-lg-mobile":["26px",{lineHeight:"34px",letterSpacing:"-0.01em",fontWeight:"700"}],"body-sm":["14px",{lineHeight:"20px",fontWeight:"400"}]}}}};</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-20 max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between gap-6"><div class="flex items-center gap-4"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-on-primary shadow-sm"><span class="material-symbols-outlined text-[24px]">account_balance</span></div><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight leading-none">CareLedger</span><span class="font-label-sm text-label-sm text-primary tracking-wide leading-tight">La Red del Cuidado Cívico</span></div></div><div class="hidden xl:flex items-center gap-1.5 px-3 py-1 bg-surface-container rounded-full"><span class="material-symbols-outlined text-primary text-[16px]">assured_workload</span><span class="font-label-sm text-label-sm text-on-surface-variant">Finanzas Cívicas y Economía del Cuidado</span></div></div><nav class="hidden md:flex items-center gap-2 p-1.5 bg-surface-container-low rounded-xl" data-active-classes="bg-primary-container text-on-primary-container font-label-md rounded-lg"><a class="px-4 py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="flujo-completo" href="#">Flujo Completo</a><a class="px-4 py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="metodologia-de-impacto" href="#">Metodología de Impacto</a><a class="px-4 py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="documentacion-govtech" href="#">Documentación GovTech</a></nav><div class="flex items-center gap-3"><div class="flex items-center gap-2 px-3 py-1.5 bg-surface-container-lowest rounded-full shadow-[0_1px_4px_rgba(0,0,0,0.04)]"><span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span><span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Nodo Central CDMX</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-20 bg-surface min-h-[calc(100vh-14rem)]"><div class="flex flex-col w-full">
+<!-- PWA Offline Durability Notification -->
+<div class="w-full bg-surface-container-high px-6 py-2.5 flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<div class="max-w-7xl mx-auto w-full flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+<span class="">Red Municipal de Cuidados CDMX • Sistema Activo y Sincronizado Offline</span>
+</div>
+<div class="hidden sm:flex items-center gap-2 text-primary font-semibold">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+<span class="">Garantía Pública Secretaría de Bienestar</span>
+</div>
+</div>
+</div>
+<div class="max-w-7xl mx-auto w-full px-6 lg:px-12 py-10 flex flex-col gap-16">
+<!-- 1. HEADER & INTRODUCCIÓN CÁLIDA -->
+<header class="flex flex-col gap-8 relative">
+<div class="flex flex-col gap-4 max-w-4xl">
+<div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface-container-highest w-fit text-primary">
+<span class="material-symbols-outlined text-[18px]">volunteer_activism</span>
+<span class="font-label-sm text-label-sm tracking-wide uppercase">Economía del Cuidado en Acción</span>
+</div>
+<h1 class="font-display-lg text-display-lg text-on-surface leading-tight font-bold tracking-tight">
+          Del Corazón del Hogar a la Mesa de la Familia: La Ruta de tu Tiempo
+        </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+          Cuidar es trabajar. Descubre de forma simple y transparente cómo cada minuto dedicado al cuidado de un familiar o vecino se certifica, ahorra millones al sistema de salud y regresa a ti en subsidios de luz, transporte y tiempo libre garantizado.
+        </p>
+</div>
+<!-- Control Bar: Persona Switcher & Action Button -->
+<div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-6 p-4 rounded-xl bg-surface-container-low shadow-sm">
+<div class="flex flex-wrap items-center gap-2" id="persona-tabs">
+<button class="persona-tab px-5 py-3 rounded-lg font-label-md text-label-md flex items-center gap-2 bg-primary text-on-primary shadow-sm transition-all duration-200" id="tab-cuidadoras" onclick="setPersona('cuidadoras')">
+<span class="material-symbols-outlined text-[20px]">person_heart</span>
+<span class="">Para Cuidadoras (Lenguaje Sencillo)</span>
+</button>
+<button class="persona-tab px-5 py-3 rounded-lg font-label-md text-label-md flex items-center gap-2 bg-surface-container-highest text-on-surface-variant hover:text-on-surface transition-all duration-200" id="tab-familias" onclick="setPersona('familias')">
+<span class="material-symbols-outlined text-[20px]">storefront</span>
+<span class="">Para Familias y Comercios Locales</span>
+</button>
+<button class="persona-tab px-5 py-3 rounded-lg font-label-md text-label-md flex items-center gap-2 bg-surface-container-highest text-on-surface-variant hover:text-on-surface transition-all duration-200" id="tab-gobierno" onclick="setPersona('gobierno')">
+<span class="material-symbols-outlined text-[20px]">domain</span>
+<span class="">Para Gobiernos y Funcionarios</span>
+</button>
+</div>
+<button class="h-12 px-6 rounded-lg font-label-md text-label-md bg-secondary text-on-secondary flex items-center justify-center gap-2.5 shadow-sm hover:opacity-95 transition-opacity" onclick="downloadBrochure()">
+<span class="material-symbols-outlined text-[20px]">picture_as_pdf</span>
+<span class="">Descargar Folleto Barrial (PDF)</span>
+</button>
+</div>
+<!-- Resumen Formula Banner -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 p-6 rounded-xl bg-surface-container-lowest shadow-sm">
+<div class="flex items-center gap-4 p-3 rounded-lg bg-surface-container-low">
+<div class="w-12 h-12 rounded-xl bg-primary text-on-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[26px]">schedule</span>
+</div>
+<div>
+<div class="font-headline-sm text-headline-sm text-on-surface">1 Hora de Cuidado</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Dedicación comprobada en el hogar</div>
+</div>
+</div>
+<div class="flex items-center gap-4 p-3 rounded-lg bg-surface-container-low">
+<div class="w-12 h-12 rounded-xl bg-secondary text-on-secondary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[26px]">health_and_safety</span>
+</div>
+<div>
+<div class="font-headline-sm text-headline-sm text-on-surface">Ahorro Preventivo</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Evita hospitalizaciones costosas</div>
+</div>
+</div>
+<div class="flex items-center gap-4 p-3 rounded-lg bg-surface-container-low">
+<div class="w-12 h-12 rounded-xl bg-tertiary-container text-on-tertiary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[26px]">redeem</span>
+</div>
+<div>
+<div class="font-headline-sm text-headline-sm text-on-surface">Beneficio Inmediato</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Luz, Metro y horas de descanso</div>
+</div>
+</div>
+</div>
+</header>
+<!-- 2. EL VIAJE PASO A PASO (4 Fases Interactivas) -->
+<section class="flex flex-col gap-8">
+<div class="flex flex-col gap-2">
+<div class="inline-flex items-center gap-2 text-primary font-label-sm text-label-sm uppercase font-semibold">
+<span class="material-symbols-outlined text-[16px]">route</span>
+<span class="">Proceso Transparente de 4 Fases</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-bold">
+          El Caso Real: Doña Elena (84 años) y Carmen (Cuidadora)
+        </h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-3xl">
+          Sigue el camino diario donde el cuidado doméstico invisible se transforma en alivio monetario y respaldo institucional concreto.
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- PASO 1 -->
+<div class="flex flex-col rounded-xl bg-surface-container-lowest p-6 shadow-sm justify-between transition-transform duration-200 hover:-translate-y-1">
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<span class="w-10 h-10 rounded-full bg-primary text-on-primary font-label-lg text-label-lg flex items-center justify-center font-bold">1</span>
+<span class="px-2.5 py-1 rounded-md bg-surface-container text-primary font-label-sm text-label-sm font-semibold">Hogar</span>
+</div>
+<div class="w-full h-36 rounded-lg overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="A warm, respectful documentary style photo of a Mexican caregiver woman affectionately serving a healthy breakfast soup and organizing medicine pills for an 84-year-old grandmother in a sunlit Mexico City living room with calm emerald and slate-blue home textiles." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBERbnKGd-noytlQVLkDWVwf-bJt4Xcdp3ansbGbRTrAfMVeliVjSxDDFB5TsLKiCxQ7Z3fHdnuNFyhQaLr2tWzme7JIHO9WFXclh6NCtv-31D2yA5gZirTxfUd0jE3CCBFBe2eaPAY_LgZhctkeQOTQFAZ--6KvMIucyvj40St6E8mGza7gj_C4pGpTKjM9kbu6ZxXo78tOIqxoBLkKbYoq5spmSd4ifNahux2B7R7"/>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Tú Cuidas con Amor y Dedicación</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1.5" id="desc-step-1">
+                Carmen dedica 3.5 horas a preparar alimentos nutritivos, monitorear presión y dar compañía afectuosa a Doña Elena.
+              </p>
+</div>
+<div class="p-3.5 rounded-lg bg-surface-container-low flex flex-col gap-2">
+<div class="flex items-center gap-2 text-on-surface font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[18px] text-primary">timer</span>
+<span class="">3.5 Horas de Cuidado Esencial</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Previene caídas graves, úlceras o deshidratación que terminarían en urgencias.
+              </p>
+</div>
+</div>
+<div class="mt-4 pt-3 flex items-center gap-2 text-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[18px]">wifi_off</span>
+<span class="">Registro en 40s (100% Sin Internet)</span>
+</div>
+</div>
+<!-- PASO 2 -->
+<div class="flex flex-col rounded-xl bg-surface-container-lowest p-6 shadow-sm justify-between transition-transform duration-200 hover:-translate-y-1">
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<span class="w-10 h-10 rounded-full bg-secondary text-on-secondary font-label-lg text-label-lg flex items-center justify-center font-bold">2</span>
+<span class="px-2.5 py-1 rounded-md bg-surface-container text-secondary font-label-sm text-label-sm font-semibold">Comunidad</span>
+</div>
+<div class="w-full h-36 rounded-lg overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="Community health nurse in professional scrub and a local neighbor checking a community logbook smiling outside a family house in a friendly urban neighborhood, high trust social interaction, soft ambient natural daylight." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA91aZB3AvGOlBJ12NnjgMjglEHb6LPWaM2HzLxstVKpSlhQJUTWoYgyrcMvpjekgO1cMGyD_gaqb3UHDBc65Ic7h3lqdqIzIx_ThDTasQ_yBnDON3M85gNu9IUqnvdRH-hP6Ng9ZtMcY-rJOBkCQsSOXzLrHOv36eCOJCFBeKVv_6vEa_QtQNJki7ZomK6cWm_lw0VzmDlMjKXXd4kJqva73u3OA9FWl5Cq6rVEJrz"/>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">El Barrio Avala y Da Fe</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1.5" id="desc-step-2">
+                Dos vecinas acreditadas y la promotora de salud confirman con un solo toque seguro que Doña Elena recibió atención digna.
+              </p>
+</div>
+<div class="p-3.5 rounded-lg bg-surface-container-low flex flex-col gap-2">
+<div class="flex items-center gap-2 text-on-surface font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[18px] text-secondary">thumb_up</span>
+<span class="">Cero Papeleos Ni Burocracia</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Sin filas ni sellos estatales. Validación comunitaria por cercanía vecinal.
+              </p>
+</div>
+</div>
+<div class="mt-4 pt-3 flex items-center gap-2 text-secondary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[18px]">lock</span>
+<span class="">Privacidad médica total garantizada</span>
+</div>
+</div>
+<!-- PASO 3 -->
+<div class="flex flex-col rounded-xl bg-surface-container-lowest p-6 shadow-sm justify-between transition-transform duration-200 hover:-translate-y-1">
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<span class="w-10 h-10 rounded-full bg-tertiary-container text-on-tertiary-container font-label-lg text-label-lg flex items-center justify-center font-bold">3</span>
+<span class="px-2.5 py-1 rounded-md bg-surface-container text-tertiary font-label-sm text-label-sm font-semibold">Salud Pública</span>
+</div>
+<div class="w-full h-36 rounded-lg bg-surface-container-low p-4 flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Costo Urgencias</span>
+<span class="font-label-sm text-label-sm text-error font-bold line-through">$450 USD</span>
+</div>
+<!-- Small inline SVG Sparkline/Bar comparison -->
+<svg class="w-full h-12 text-primary" fill="none" viewbox="0 0 200 40">
+<rect fill="#ffdad6" height="18" rx="4" width="75" x="0" y="22"></rect>
+<rect fill="currentColor" height="34" rx="4" width="115" x="85" y="6"></rect>
+<text fill="#93000a" font-size="10" font-weight="bold" text-anchor="middle" x="37" y="34">Urgencias</text>
+<text fill="#ffffff" font-size="10" font-weight="bold" text-anchor="middle" x="142" y="27">Ahorro Activo</text>
+</svg>
+<div class="text-right">
+<span class="font-label-sm text-label-sm text-primary font-bold">+$120 USD ahorrados hoy</span>
+</div>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">El Sistema Ahorra Millones</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1.5" id="desc-step-3">
+                Evitar una crisis hospitalaria le cuesta al gobierno mucho menos. El fondo municipal premia esa prevención activa.
+              </p>
+</div>
+<div class="p-3.5 rounded-lg bg-surface-container-low flex flex-col gap-2">
+<div class="flex items-center gap-2 text-on-surface font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[18px] text-tertiary">savings</span>
+<span class="">Fondo Municipal de Cuidados</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                El ahorro público se reinyecta directamente al bienestar de Carmen.
+              </p>
+</div>
+</div>
+<div class="mt-4 pt-3 flex items-center gap-2 text-tertiary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[18px]">account_balance</span>
+<span class="">Retorno de inversión social 1:3.8</span>
+</div>
+</div>
+<!-- PASO 4 -->
+<div class="flex flex-col rounded-xl bg-surface-container-lowest p-6 shadow-sm justify-between transition-transform duration-200 hover:-translate-y-1">
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<span class="w-10 h-10 rounded-full bg-primary text-on-primary font-label-lg text-label-lg flex items-center justify-center font-bold">4</span>
+<span class="px-2.5 py-1 rounded-md bg-surface-container text-primary font-label-sm text-label-sm font-semibold">Recompensa</span>
+</div>
+<div class="w-full h-36 rounded-lg bg-primary-fixed-dim/20 p-4 flex flex-col items-center justify-center text-center">
+<span class="font-numeral-voucher text-numeral-voucher text-primary font-bold">+35 Puntos Cívicos</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-1 font-semibold">de Bienestar Inmediatos</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Carmen Recibe Beneficios Reales</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1.5" id="desc-step-4">
+                Los puntos se acumulan en su cuenta comunitaria y son canjeables inmediatamente por sus 3 beneficios para ella y su familia.
+              </p>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2 p-2 rounded-md bg-surface-container-low text-on-surface font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-primary text-[18px]">bolt</span>
+<span class="">30% dto. Recibo de Luz CFE</span>
+</div>
+<div class="flex items-center gap-2 p-2 rounded-md bg-surface-container-low text-on-surface font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-secondary text-[18px]">directions_subway</span>
+<span class="">Pase semanal ilimitado Metro</span>
+</div>
+<div class="flex items-center gap-2 p-2 rounded-md bg-surface-container-low text-on-surface font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-tertiary text-[18px]">bedtime</span>
+<span class="">3h de Cuidadora de Relevo</span>
+</div>
+</div>
+</div>
+<div class="mt-4 pt-3 flex items-center gap-2 text-primary font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span class="">El ciclo de dignidad está completo</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. CALCULADORA Y EQUIVALENCIAS VISUALES -->
+<section class="flex flex-col gap-8 p-8 rounded-xl bg-surface-container-low shadow-sm">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div class="flex flex-col gap-2">
+<div class="inline-flex items-center gap-2 text-primary font-label-sm text-label-sm uppercase font-semibold">
+<span class="material-symbols-outlined text-[16px]">calculate</span>
+<span class="">Matriz Pedagógica de Canje</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-bold">
+            ¿A qué equivale mi tiempo?
+          </h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">
+            Cada bloque de cuidado dedicado genera un impacto medible en la salud comunitaria y se transforma en un alivio directo para el gasto de tu casa.
+          </p>
+</div>
+<!-- Interactive Calculator Widget -->
+<div class="flex items-center gap-3 bg-surface-container-lowest p-2 rounded-lg shadow-sm">
+<span class="font-label-md text-label-md text-on-surface pl-2">Calcula tus horas semanales:</span>
+<div class="flex items-center gap-1">
+<button class="w-10 h-10 rounded-md bg-surface-container flex items-center justify-center text-on-surface hover:bg-surface-container-high transition-colors" onclick="adjustHours(-1)">
+<span class="material-symbols-outlined text-[20px]">remove</span>
+</button>
+<span class="w-12 text-center font-numeral-voucher text-numeral-voucher text-primary font-bold" id="interactive-hours">7</span>
+<button class="w-10 h-10 rounded-md bg-surface-container flex items-center justify-center text-on-surface hover:bg-surface-container-high transition-colors" onclick="adjustHours(1)">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Live Dynamic Output from Calculator -->
+<div class="p-6 rounded-xl bg-surface-container-lowest flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm">
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 rounded-xl bg-primary text-on-primary flex items-center justify-center font-bold">
+<span class="material-symbols-outlined text-[32px]">payments</span>
+</div>
+<div>
+<div class="font-headline-sm text-headline-sm text-on-surface">Resultado estimado para tu semana:</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant" id="calc-subtext">Con 7 horas de cuidado generarás 70 Pts Cívicos</div>
+</div>
+</div>
+<div class="flex items-center gap-6 flex-wrap">
+<div class="text-right">
+<div class="font-label-sm text-label-sm text-on-surface-variant">Puntos Cívicos acumulados</div>
+<div class="font-numeral-voucher text-numeral-voucher text-primary font-bold" id="calc-tokens">70 Pts Cívicos</div>
+</div>
+<div class="text-right">
+<div class="font-label-sm text-label-sm text-on-surface-variant">Ahorro social evitado</div>
+<div class="font-numeral-voucher text-numeral-voucher text-secondary font-bold" id="calc-savings">$245 USD</div>
+</div>
+<div class="text-right">
+<div class="font-label-sm text-label-sm text-on-surface-variant">Horas de descanso ganadas</div>
+<div class="font-numeral-voucher text-numeral-voucher text-tertiary font-bold" id="calc-rest">2.0 Horas</div>
+</div>
+</div>
+</div>
+<!-- Static Grid of 3 Core Equivalencies -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Card 1 -->
+<div class="p-6 rounded-xl bg-surface-container-lowest flex flex-col justify-between gap-6 shadow-sm">
+<div class="flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<span class="px-3 py-1 rounded-full bg-surface-container text-primary font-label-sm text-label-sm font-semibold">Nivel Básico</span>
+<span class="font-headline-sm text-headline-sm text-primary font-bold">10 Puntos Cívicos</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold">1 Hora de Acompañamiento</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Apoyo en toma de signos vitales, lectura compartida, o paseo seguro en la manzana.
+            </p>
+</div>
+<div class="space-y-2 pt-4 bg-surface-container-low p-4 rounded-lg">
+<div class="flex items-center gap-2 text-on-surface font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-secondary text-[18px]">directions_bus</span>
+<span class=""><strong>Movilidad:</strong> 2 días de transporte público gratis</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-primary text-[18px]">price_check</span>
+<span class=""><strong>Salud:</strong> $35 USD ahorrados en prevención</span>
+</div>
+</div>
+</div>
+<!-- Card 2 (Featured) -->
+<div class="p-6 rounded-xl bg-surface-container-lowest flex flex-col justify-between gap-6 shadow-sm relative">
+<div class="absolute -top-3 right-6 px-3 py-0.5 rounded-full bg-primary text-on-primary font-label-sm text-label-sm font-semibold">
+            Más Frecuente
+          </div>
+<div class="flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<span class="px-3 py-1 rounded-full bg-surface-container text-primary font-label-sm text-label-sm font-semibold">Nivel Cotidiano</span>
+<span class="font-headline-sm text-headline-sm text-primary font-bold">35 Puntos Cívicos</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold">3.5 Horas de Cuidado Diario</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Higiene personal, alimentación especial y supervisión activa de adulto mayor o infante.
+            </p>
+</div>
+<div class="space-y-2 pt-4 bg-surface-container-low p-4 rounded-lg">
+<div class="flex items-center gap-2 text-on-surface font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-primary text-[18px]">lightbulb</span>
+<span class=""><strong>Hogar:</strong> 30% dto. en recibo CFE de luz</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-secondary text-[18px]">local_hospital</span>
+<span class=""><strong>Salud:</strong> $120 USD de ahorro hospitalario directo</span>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="p-6 rounded-xl bg-surface-container-lowest flex flex-col justify-between gap-6 shadow-sm">
+<div class="flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<span class="px-3 py-1 rounded-full bg-surface-container text-tertiary font-label-sm text-label-sm font-semibold">Compromiso Integral</span>
+<span class="font-headline-sm text-headline-sm text-tertiary font-bold">140 Puntos Cívicos</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold">1 Semana Certificada (14h)</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Cuidadora principal con bitácora validada por comités de barrio e inspector de salud.
+            </p>
+</div>
+<div class="space-y-2 pt-4 bg-surface-container-low p-4 rounded-lg">
+<div class="flex items-center gap-2 text-on-surface font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-tertiary text-[18px]">spa</span>
+<span class=""><strong>Respiro:</strong> 3 horas de Cuidador de Relevo para ti</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-primary text-[18px]">shopping_basket</span>
+<span class=""><strong>Canasta:</strong> Bono para mercados locales aliados</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. TRES PRINCIPIOS ÉTICOS (GARANTÍAS DE DIGNIDAD) -->
+<section class="flex flex-col gap-8">
+<div class="flex flex-col gap-2">
+<div class="inline-flex items-center gap-2 text-secondary font-label-sm text-label-sm uppercase font-semibold">
+<span class="material-symbols-outlined text-[16px]">security</span>
+<span class="">Marco Constitucional y Ético</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-bold">
+          Tres Garantías Innegociables de Dignidad Ciudadana
+        </h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-3xl">
+          CareLedger no es caridad ni asistencia arbitraria. Es una infraestructura cívica protegida por ley municipal.
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="p-8 rounded-xl bg-surface-container-lowest flex flex-col gap-4 shadow-sm">
+<div class="w-12 h-12 rounded-xl bg-primary text-on-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[28px]">handshake</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">1. Cuidar No Es Favor, Es Trabajo</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            Reconocimiento formal de la economía no remunerada. El trabajo doméstico sostiene el 26% del PIB nacional y merece contraprestación económica tangible y respeto cívico.
+          </p>
+<div class="mt-auto flex items-center gap-2 text-primary font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span class="">Reconocido por Ley CDMX Art. 9</span>
+</div>
+</div>
+<div class="p-8 rounded-xl bg-surface-container-lowest flex flex-col gap-4 shadow-sm">
+<div class="w-12 h-12 rounded-xl bg-secondary text-on-secondary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[28px]">enhanced_encryption</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">2. Tu Privacidad es Sagrada</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            Protección integral de datos sensibles. Ningún historial médico personal, diagnóstico privado ni fotografía íntima se guarda en servidores centrales; solo se prueba la validez de la jornada de cuidado.
+          </p>
+<div class="mt-auto flex items-center gap-2 text-secondary font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[16px]">shield_with_heart</span>
+<span class="">Protección Ciudadana Blindada</span>
+</div>
+</div>
+<div class="p-8 rounded-xl bg-surface-container-lowest flex flex-col gap-4 shadow-sm">
+<div class="w-12 h-12 rounded-xl bg-tertiary-container text-on-tertiary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[28px]">assured_workload</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">3. Respaldo Municipal Real</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            Convenios vinculantes auditados. Cada bono tiene suficiencia presupuestaria en el Fondo Municipal de Cuidados, garantizando aceptación en CFE, Metro y cooperativas de alimentos.
+          </p>
+<div class="mt-auto flex items-center gap-2 text-tertiary font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[16px]">account_balance_wallet</span>
+<span class="">Fondo Fiduciario Blindado</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. COMERCIOS ALIADOS -->
+<section class="flex flex-col gap-8 p-8 lg:p-12 rounded-xl bg-surface-container-low shadow-sm"><div class="flex flex-col md:flex-row md:items-end justify-between gap-6"><div class="flex flex-col gap-2 max-w-3xl"><div class="inline-flex items-center gap-2 text-primary font-label-sm text-label-sm uppercase font-semibold"><span class="material-symbols-outlined text-[16px]">storefront</span><span class="">Comercio y Economía Circular</span></div><h2 class="font-headline-lg text-headline-lg text-on-surface font-bold">Comercios Aliados: Multiplica tus Ventas Aceptando Puntos Cívicos de Bienestar</h2><p class="font-body-md text-body-md text-on-surface-variant">Panaderías, fruterías, farmacias de barrio, cooperativas y tiendas de abarrotes reciben una clientela leal y cobran el reembolso íntegro en dinero real garantizado por el fondo fiduciario municipal.</p></div><div class="flex items-center gap-3 shrink-0"><div class="px-4 py-2 rounded-lg bg-surface-container-lowest shadow-sm flex items-center gap-2 text-primary font-label-md text-label-md font-bold"><span class="material-symbols-outlined text-[20px]">verified</span><span class="">Paridad Oficial Garantizada: 1 Punto Cívico = $10 MXN</span></div></div></div><div class="flex flex-col gap-4"><div class="font-headline-sm text-headline-sm text-on-surface font-bold flex items-center gap-2"><span class="material-symbols-outlined text-primary text-[22px]">sync_alt</span><span class="">La Ruta del Comercio Aliado en 3 Pasos</span></div><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><div class="p-6 rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-4"><div class="flex items-center justify-between"><span class="w-10 h-10 rounded-full bg-primary text-on-primary font-label-lg text-label-lg flex items-center justify-center font-bold">1</span><span class="px-2.5 py-1 rounded-md bg-surface-container text-primary font-label-sm text-label-sm font-semibold">5 Minutos</span></div><h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Registro Barrial Ágil</h3><p class="font-body-sm text-body-sm text-on-surface-variant">Sin trámites burocráticos ni terminales bancarias costosas. Solo necesitas identificación oficial, comprobante de domicilio comercial y cuenta para depósito.</p><div class="mt-auto flex items-center gap-2 text-primary font-label-sm text-label-sm font-semibold"><span class="material-symbols-outlined text-[16px]">check_circle</span><span class="">0 Trámites Notariados</span></div></div><div class="p-6 rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-4"><div class="flex items-center justify-between"><span class="w-10 h-10 rounded-full bg-secondary text-on-secondary font-label-lg text-label-lg flex items-center justify-center font-bold">2</span><span class="px-2.5 py-1 rounded-md bg-surface-container text-secondary font-label-sm text-label-sm font-semibold">Cero Fallas</span></div><h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Cobro Inmediato con QR, Folio o Carnet Físico</h3><p class="font-body-sm text-body-sm text-on-surface-variant">Canjea los Puntos Cívicos de las familias cuidadoras en 5 segundos sin comisiones. La cuidadora muestra su vale en celular o carnet impreso y escaneas con la app gratuita del comercio.</p><div class="mt-auto flex items-center gap-2 text-secondary font-label-sm text-label-sm font-semibold"><span class="material-symbols-outlined text-[16px]">qr_code_scanner</span><span class="">Funciona con o sin señal</span></div></div><div class="p-6 rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-4"><div class="flex items-center justify-between"><span class="w-10 h-10 rounded-full bg-tertiary-container text-on-tertiary-container font-label-lg text-label-lg flex items-center justify-center font-bold">3</span><span class="px-2.5 py-1 rounded-md bg-surface-container text-tertiary font-label-sm text-label-sm font-semibold">Depósito Seguro</span></div><h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Liquidación en 24h a tu Cuenta</h3><p class="font-body-sm text-body-sm text-on-surface-variant">La Tesorería Municipal liquida los Puntos recibidos en pesos mexicanos (1 Punto = 10 MXN) vía transferencia SPEI en 24 horas sin intermediarios, descuentos ni comisiones ocultas.</p><div class="mt-auto flex items-center gap-2 text-tertiary font-label-sm text-label-sm font-semibold"><span class="material-symbols-outlined text-[16px]">account_balance</span><span class="">Garantía de Tesorería CDMX</span></div></div></div></div><div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2"><div class="p-6 rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-3"><div class="w-10 h-10 rounded-lg bg-primary-fixed-dim/20 text-primary flex items-center justify-center"><span class="material-symbols-outlined text-[24px]">percent</span></div><h4 class="font-headline-sm text-headline-sm text-on-surface font-bold">0% Comisiones por Transacción</h4><p class="font-body-sm text-body-sm text-on-surface-variant">Mantienes el 100% del margen de tu venta frente al 3% al 5% que cobran las terminales bancarias y plataformas comerciales privadas.</p></div><div class="p-6 rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-3"><div class="w-10 h-10 rounded-lg bg-primary-fixed-dim/20 text-primary flex items-center justify-center"><span class="material-symbols-outlined text-[24px]">loyalty</span></div><h4 class="font-headline-sm text-headline-sm text-on-surface font-bold">Clientes Leales del Barrio</h4><p class="font-body-sm text-body-sm text-on-surface-variant">Miles de familias cuidadoras del cuadrante redirigen su gasto semanal en despensa y bienes esenciales exclusivamente a los comercios afiliados.</p></div><div class="p-6 rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-3"><div class="w-10 h-10 rounded-lg bg-primary-fixed-dim/20 text-primary flex items-center justify-center"><span class="material-symbols-outlined text-[24px]">badge</span></div><h4 class="font-headline-sm text-headline-sm text-on-surface font-bold">Distintivo Oficial 'Comercio Solidario'</h4><p class="font-body-sm text-body-sm text-on-surface-variant">Placa oficial de la Secretaría de Bienestar para tu aparador y geolocalización prioritaria en el mapa digital del directorio de cuidados de tu alcaldía.</p></div></div><div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pt-4"><div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3"><button class="h-12 px-6 rounded-lg bg-primary text-on-primary font-label-md text-label-md font-bold flex items-center justify-center gap-2 shadow-sm hover:opacity-95 transition-opacity" onclick="alert('Abriendo Formulario de Registro para Comercios Aliados')"><span class="material-symbols-outlined text-[20px]">app_registration</span><span class="">Afiliar Mi Comercio en Línea</span></button><button class="h-12 px-6 rounded-lg bg-surface-container-highest text-on-surface-variant hover:text-on-surface font-label-md text-label-md font-bold flex items-center justify-center gap-2 transition-colors" onclick="alert('Descargando Convenio Marco de Afiliación Comercial y Tarifario Municipal CDMX')"><span class="material-symbols-outlined text-[20px]">description</span><span class="">Descargar Convenio Marco y Tarifario Municipal</span></button></div><div class="flex items-center gap-2 text-on-surface-variant font-label-sm text-label-sm"><span class="material-symbols-outlined text-primary text-[18px]">support_agent</span><span class="">Atención a locatarios: 800-CUIDA-CDMX</span></div></div></section>
+<!-- 6. PREGUNTAS FRECUENTES INTERACTIVAS (ACORDEÓN) -->
+<section class="flex flex-col gap-8">
+<div class="flex flex-col gap-2">
+<div class="inline-flex items-center gap-2 text-primary font-label-sm text-label-sm uppercase font-semibold">
+<span class="material-symbols-outlined text-[16px]">help_center</span>
+<span class="">Resolución de Dudas Claras</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-bold">
+          Preguntas Frecuentes de la Comunidad
+        </h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          Diseñado para que cualquier persona participe sin barreras tecnológicas ni financieras.
+        </p>
+</div>
+<div class="flex flex-col gap-4 max-w-4xl" id="faq-accordion">
+<!-- FAQ Item 1 -->
+<div class="p-6 rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-3 cursor-pointer" onclick="toggleFaq(1)">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary font-bold">?</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">¿Necesito tener tarjeta de crédito o cuenta de banco?</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant transition-transform duration-200" id="faq-icon-1">expand_more</span>
+</div>
+<div class="faq-content pt-2 hidden" id="faq-body-1">
+<p class="font-body-md text-body-md text-on-surface-variant">
+<strong>No, en lo absoluto.</strong> CareLedger fue diseñado con inclusión total. Puedes utilizar tu carnet físico con código QR impreso entregado gratuitamente en tu centro comunitario. Los comercios y ventanillas públicas lo escanean como si fuera un boleto o vale físico. No pagas comisiones ni necesitas banco.
+            </p>
+</div>
+</div>
+<!-- FAQ Item 2 -->
+<div class="p-6 rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-3 cursor-pointer" onclick="toggleFaq(2)">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary font-bold">?</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">¿Qué pasa si en mi casa no hay señal de celular ni internet?</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant transition-transform duration-200" id="faq-icon-2">expand_more</span>
+</div>
+<div class="faq-content pt-2 hidden" id="faq-body-2">
+<p class="font-body-md text-body-md text-on-surface-variant">
+              La tecnología de CareLedger opera <strong>completamente fuera de línea (offline-first)</strong>. La aplicación o la tarjeta almacenan de forma segura tu jornada en tu propio teléfono o carnet. Cuando camines por la calle y te conectes a un punto WiFi público, o cuando una promotora del centro barrial pase por tu calle, el sistema se sincroniza en 3 segundos sin gastar tus datos móviles.
+            </p>
+</div>
+</div>
+<!-- FAQ Item 3 -->
+<div class="p-6 rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-3 cursor-pointer" onclick="toggleFaq(3)">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary font-bold">?</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">¿Los Puntos Cívicos son una criptomoneda o pierden valor?</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant transition-transform duration-200" id="faq-icon-3">expand_more</span>
+</div>
+<div class="faq-content pt-2 hidden" id="faq-body-3">
+<p class="font-body-md text-body-md text-on-surface-variant">
+<strong>No. No son criptomonedas ni tienen riesgo financiero.</strong> Los Puntos Cívicos son un derecho social garantizado por ley municipal y respaldado 1 a 1 por el Fondo Fiduciario de Bienestar (1 Punto = $10 MXN fijos), canjeables directamente por servicios básicos, alimentos y descanso sin volatilidad de ningún tipo.
+            </p>
+</div>
+</div>
+</div>
+</section>
+<!-- 7. BANNER DE CIERRE BARRIAL CON ACCIÓN INMEDIATA -->
+<section class="rounded-xl bg-primary text-on-primary p-8 lg:p-12 relative overflow-hidden shadow-sm">
+<div class="max-w-3xl flex flex-col gap-6 relative z-10">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container-lowest/20 backdrop-blur-sm text-on-primary font-label-sm text-label-sm w-fit">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+<span class="">Red Barrial Territorial CDMX</span>
+</div>
+<h2 class="font-display-lg text-display-lg font-bold leading-tight">
+          ¿Cuidas a un familiar o vecino en tu alcaldía? Tu esfuerzo vale hoy mismo.
+        </h2>
+<p class="font-body-lg text-body-lg opacity-90">
+          Inscríbete hoy mismo al padrón soberano de cuidados. Acércate a tu PILARES o Centro Comunitario más cercano o regístrate en línea en 1 minuto.
+        </p>
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mt-2">
+<button class="h-14 px-8 rounded-lg bg-surface-container-lowest text-primary font-label-lg text-label-lg font-bold flex items-center justify-center gap-2 hover:bg-surface-bright transition-colors shadow-sm" onclick="openRegistrationModal()">
+<span class="material-symbols-outlined text-[22px]">how_to_reg</span>
+<span class="">Iniciar Registro en 1 Minuto</span>
+</button>
+<button class="h-14 px-8 rounded-lg bg-primary-container text-on-primary-container font-label-lg text-label-lg font-bold flex items-center justify-center gap-2 hover:bg-primary-container/80 transition-colors" onclick="locateModule()">
+<span class="material-symbols-outlined text-[22px]">map</span>
+<span class="">Localizar Módulo Barrial</span>
+</button>
+</div>
+</div>
+<!-- Subtle background civic seal watermark SVG -->
+<svg class="absolute -right-16 -bottom-16 w-96 h-96 opacity-10 pointer-events-none" fill="currentColor" viewbox="0 0 100 100">
+<circle cx="50" cy="50" fill="none" r="45" stroke="currentColor" stroke-width="2"></circle>
+<path d="M50 15 L50 85 M15 50 L85 50 M25 25 L75 75 M25 75 L75 25" stroke="currentColor" stroke-width="2"></path>
+<circle cx="50" cy="50" fill="none" r="20" stroke="currentColor" stroke-width="2"></circle>
+</svg>
+</section>
+</div>
+<!-- Interactive Modal for Immediate Registration Simulation -->
+<div class="fixed inset-0 z-50 bg-inverse-surface/60 backdrop-blur-sm hidden items-center justify-center p-4" id="registration-modal">
+<div class="bg-surface-container-lowest rounded-xl max-w-lg w-full p-8 shadow-xl flex flex-col gap-6 relative">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-primary text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">assignment</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Registro Barrial Express</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Sin requisitos bancarios • Gratuito</p>
+</div>
+</div>
+<button class="w-8 h-8 rounded-full bg-surface-container-low flex items-center justify-center text-on-surface-variant hover:text-on-surface" onclick="closeRegistrationModal()">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="flex flex-col gap-4">
+<div>
+<label class="font-label-md text-label-md text-on-surface block mb-1.5 font-bold">¿A quién cuidas actualmente?</label>
+<div class="grid grid-cols-2 gap-2">
+<button class="p-3 rounded-lg bg-surface-container text-on-surface font-label-sm text-label-sm text-left focus:bg-primary-fixed focus:text-on-primary-fixed" type="button">
+              Adulto Mayor Familiar
+            </button>
+<button class="p-3 rounded-lg bg-surface-container text-on-surface font-label-sm text-label-sm text-left focus:bg-primary-fixed focus:text-on-primary-fixed" type="button">
+              Persona con Discapacidad
+            </button>
+<button class="p-3 rounded-lg bg-surface-container text-on-surface font-label-sm text-label-sm text-left focus:bg-primary-fixed focus:text-on-primary-prev" type="button">
+              Infancias en el Hogar
+            </button>
+<button class="p-3 rounded-lg bg-surface-container text-on-surface font-label-sm text-label-sm text-left focus:bg-primary-fixed focus:text-on-primary-fixed" type="button">
+              Cuidado Comunitario
+            </button>
+</div>
+</div>
+<div>
+<label class="font-label-md text-label-md text-on-surface block mb-1.5 font-bold">Tu Nombre o Seudónimo Comunitario</label>
+<input class="w-full h-12 px-4 rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Ej: Carmen Gómez" type="text"/>
+</div>
+<div>
+<label class="font-label-md text-label-md text-on-surface block mb-1.5 font-bold">Alcaldía / Municipio</label>
+<select class="w-full h-12 px-4 rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary">
+<option>Iztapalapa, CDMX</option>
+<option>Gustavo A. Madero, CDMX</option>
+<option>Cuauhtémoc, CDMX</option>
+<option>Tlalpan, CDMX</option>
+<option>Otra alcaldía participante</option>
+</select>
+</div>
+</div>
+<div class="flex items-center gap-3 pt-2">
+<button class="flex-1 h-12 rounded-lg bg-primary text-on-primary font-label-md text-label-md font-bold flex items-center justify-center gap-2 hover:opacity-95" onclick="confirmRegistration()">
+<span class="material-symbols-outlined text-[20px]">check</span>
+<span class="">Generar mi Carnet Digital QR</span>
+</button>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-center">
+        Tus datos son resguardados localmente con absoluta confidencialidad municipal.
+      </p>
+</div>
+</div>
+<script>
+    // Persona Switcher Logic
+    const personaData = {
+      cuidadoras: {
+        step1: "Carmen dedica 3.5 horas a preparar alimentos nutritivos, monitorear presión y dar compañía afectuosa a Doña Elena.",
+        step2: "Dos vecinas acreditadas y la promotora de salud confirman con un solo toque seguro que Doña Elena recibió atención digna.",
+        step3: "Evitar una crisis hospitalaria le cuesta al gobierno mucho menos. El fondo municipal premia esa prevención activa.",
+        step4: "Los puntos se acumulan en su cuenta comunitaria y son canjeables inmediatamente por sus 3 beneficios para ella y su familia."
+      },
+      familias: {
+        step1: "La familia ahorra gastos catastróficos en ambulancias y medicamentos imprevistos gracias al seguimiento constante en el hogar.",
+        step2: "Los comercios de la colonia aceptan los Puntos Cívicos y reciben reembolso directo de la tesorería local cada 24 horas.",
+        step3: "El dinero público de bienestar circula dentro de la misma colonia, fortaleciendo tiendas de abarrotes y farmacias barriales.",
+        step4: "Las familias obtienen descuento directo en servicios básicos (luz y agua) y acceso a cuidadores certificados de relevo."
+      },
+      gobierno: {
+        step1: "Atención preventiva primaria documentada con registros verificables y trazabilidad institucional soberana.",
+        step2: "Validación por consenso social de 3 nodos (comité vecinal + salud pública) que elimina inspectores y burocracia innecesaria.",
+        step3: "Reducción documentada de ocupación en salas de emergencia de tercer nivel. Retorno medible de $1 invertido por $3.8 ahorrados.",
+        step4: "Dispersión eficiente de programas sociales con canje directo en servicios y empresas públicas (CFE, Movilidad Integrada)."
+      }
+    };
+
+    function setPersona(persona) {
+      // Update UI Tabs
+      const tabs = ['cuidadoras', 'familias', 'gobierno'];
+      tabs.forEach(t => {
+        const btn = document.getElementById(`tab-${t}`);
+        if (t === persona) {
+          btn.className = "persona-tab px-5 py-3 rounded-lg font-label-md text-label-md flex items-center gap-2 bg-primary text-on-primary shadow-sm transition-all duration-200";
+        } else {
+          btn.className = "persona-tab px-5 py-3 rounded-lg font-label-md text-label-md flex items-center gap-2 bg-surface-container-highest text-on-surface-variant hover:text-on-surface transition-all duration-200";
+        }
+      });
+
+      // Update descriptions
+      document.getElementById('desc-step-1').textContent = personaData[persona].step1;
+      document.getElementById('desc-step-2').textContent = personaData[persona].step2;
+      document.getElementById('desc-step-3').textContent = personaData[persona].step3;
+      document.getElementById('desc-step-4').textContent = personaData[persona].step4;
+    }
+
+    // Dynamic Calculator Logic
+    let currentHours = 7;
+    function adjustHours(delta) {
+      currentHours = Math.max(1, Math.min(40, currentHours + delta));
+      document.getElementById('interactive-hours').textContent = currentHours;
+      
+      const points = currentHours * 10;
+      const savings = currentHours * 35;
+      const rest = (currentHours * 0.3).toFixed(1);
+
+      document.getElementById('calc-tokens').textContent = `${points} Pts Cívicos`;
+      document.getElementById('calc-savings').textContent = `$${savings} USD`;
+      document.getElementById('calc-rest').textContent = `${rest} Horas`;
+      document.getElementById('calc-subtext').textContent = `Con ${currentHours} horas de cuidado generarás ${points} Pts Cívicos`;
+    }
+
+    // Interactive Accordion
+    function toggleFaq(id) {
+      const body = document.getElementById(`faq-body-${id}`);
+      const icon = document.getElementById(`faq-icon-${id}`);
+      const isHidden = body.classList.contains('hidden');
+
+      // Close all
+      for (let i = 1; i <= 3; i++) {
+        document.getElementById(`faq-body-${i}`).classList.add('hidden');
+        document.getElementById(`faq-icon-${i}`).textContent = 'expand_more';
+      }
+
+      if (isHidden) {
+        body.classList.remove('hidden');
+        icon.textContent = 'expand_less';
+      }
+    }
+
+    // Modal Registration Flow
+    function openRegistrationModal() {
+      const modal = document.getElementById('registration-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeRegistrationModal() {
+      const modal = document.getElementById('registration-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function confirmRegistration() {
+      alert("¡Registro Exitoso! Tu Carnet Barrial CareLedger ha sido inicializado. Puedes acudir por tu credencial física o usarla sin conexión.");
+      closeRegistrationModal();
+    }
+
+    function downloadBrochure() {
+      alert("Generando 'Afiche_Barrial_CareLedger_CDMX.pdf' para impresión barrial en formato cartel A3 y folleto tríptico.");
+    }
+
+    function locateModule() {
+      alert("Abriendo mapa de Módulos Barriales: Localizados 42 módulos PILARES con acreditación de cuidados activa.");
+    }
+  </script>
+</div></main><footer class="w-full bg-surface-container-low mt-auto"><div class="max-w-7xl mx-auto px-6 lg:px-12 py-10 flex flex-col md:flex-row items-center justify-between gap-6"><div class="flex items-center gap-3"><div class="w-7 h-7 rounded-lg bg-surface-container-high flex items-center justify-center text-primary"><span class="material-symbols-outlined text-[18px]">verified_user</span></div><div class="flex flex-col"><span class="font-label-md text-label-md text-on-surface">Infraestructura Pública Digital GovTech</span><span class="font-body-sm text-body-sm text-on-surface-variant">Protocolo Soberano de Liquidación Social y Horas-Cuidado • Secretaría de Bienestar</span></div></div><div class="flex items-center gap-6"><span class="font-body-sm text-body-sm text-on-surface-variant">Red Municipal Verificada CDMX © 2025</span><div class="flex items-center gap-2 px-2.5 py-1 bg-surface-container rounded font-label-sm text-label-sm text-on-surface-variant"><span class="material-symbols-outlined text-secondary text-[14px]">shield</span><span class="">Auditoría Cívica Abierta y Transparente</span></div></div></div></footer>
+</body></html>
