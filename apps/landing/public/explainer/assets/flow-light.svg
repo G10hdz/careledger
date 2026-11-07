@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 640" font-family="system-ui,-apple-system,sans-serif">
+  <text x="280" y="38" text-anchor="middle" font-size="26" font-weight="700" fill="#191c1e">EntreManos</text>
+
+  <rect x="60" y="66" width="440" height="78" rx="16" fill="#ffffff" stroke="#bcc9c6" stroke-width="1.5"/>
+  <text x="84" y="98" font-size="20" font-weight="700" fill="#00685f">1 · PWA de la cuidadora</text>
+  <text x="84" y="124" font-size="17" fill="#3d4947">Registro offline &lt;60s · autocuidado · firma Ed25519</text>
+
+  <path d="M280 144v36" stroke="#6d7a77" stroke-width="2" marker-end="url(#aL)"/>
+  <text x="300" y="168" font-size="15" fill="#6d7a77">payload firmado</text>
+
+  <rect x="60" y="186" width="440" height="78" rx="16" fill="#ffffff" stroke="#bcc9c6" stroke-width="1.5"/>
+  <text x="84" y="218" font-size="20" font-weight="700" fill="#00685f">2 · Oráculo vecinal</text>
+  <text x="84" y="244" font-size="17" fill="#3d4947">Consenso 3/3: cuidadora · beneficiario · veedor</text>
+
+  <path d="M280 264v36" stroke="#6d7a77" stroke-width="2" marker-end="url(#aL)"/>
+  <text x="300" y="288" font-size="15" fill="#6d7a77">emite puntos · 10 pts/h × carga</text>
+
+  <rect x="60" y="306" width="440" height="78" rx="16" fill="#ffffff" stroke="#bcc9c6" stroke-width="1.5"/>
+  <text x="84" y="338" font-size="20" font-weight="700" fill="#4059aa">3 · Ledger municipal</text>
+  <text x="84" y="364" font-size="17" fill="#3d4947">Doble entrada · partida presupuestaria · folio verificable</text>
+
+  <path d="M280 384v36" stroke="#6d7a77" stroke-width="2" marker-end="url(#aL)"/>
+  <text x="300" y="408" font-size="15" fill="#6d7a77">vale QR / folio (válido offline)</text>
+
+  <rect x="60" y="426" width="440" height="78" rx="16" fill="#ffffff" stroke="#bcc9c6" stroke-width="1.5"/>
+  <text x="84" y="458" font-size="20" font-weight="700" fill="#8d4b00">4 · Canje de beneficios</text>
+  <text x="84" y="484" font-size="17" fill="#3d4947">Luz · transporte · relevo 3h · comercios del barrio</text>
+
+  <rect x="60" y="536" width="440" height="66" rx="16" fill="#f0fdfa" stroke="#89f5e7" stroke-width="1.5"/>
+  <text x="84" y="562" font-size="16" font-weight="600" fill="#005049">Cierre del ciclo</text>
+  <text x="84" y="586" font-size="15" fill="#3d4947">Comercios liquidan SPEI ≤24h · 0% comisión · fondo municipal</text>
+
+  <defs>
+    <marker id="aL" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0L10 5L0 10z" fill="#6d7a77"/>
+    </marker>
+  </defs>
+</svg>
