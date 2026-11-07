@@ -21,18 +21,26 @@ valor social medible (SROI).
 
 ## Estado del proyecto
 
-Etapa de especificación y contratos. `packages/domain` ya tiene la matemática
-de puntos, consenso y SROI con tests; las apps (`apps/`) se construyen sobre
-estas specs. Las pantallas de referencia exportadas del prototipo están en
-`design/stitch/`.
+Monorepo funcional con las seis superficies implementadas como demo: la PWA
+registra y canjea offline, la terminal de comercios verifica el vale con
+firma Ed25519 y cobra, el panel de gobierno calcula el SROI, y el marketplace
+de servicios cubre el ciclo de solicitud completo. `packages/domain` concentra
+la matemática compartida (puntos, consenso, SROI, catálogo). Las pantallas de
+referencia exportadas del prototipo están en `design/stitch/`.
+
+Demos en vivo:
+
+- Explainer: <https://g10hdz.github.io/careledger/>
+- CuidaRed (prototipo del banco de tiempo, spec 09):
+  <https://g10hdz.github.io/careledger/cuidared/>
 
 ## Estructura
 
 ```
-specs/            fuente de verdad: 00 plataforma → 08 formación + roadmap
+specs/            fuente de verdad: 00 plataforma → 09 banco de tiempo + roadmap
 design/           DESIGN.md (sistema) + stitch/ (pantallas de referencia)
-docs/             documento fuente, ADRs, assets del README
-apps/             pwa, gobierno, comercios, landing, servicios (por spec)
+docs/             documento fuente, ADRs, spike antifraude, assets, Pages
+apps/             pwa, gobierno, comercios, landing, servicios, cuidared
 packages/
   domain/         tipos + puntos + consenso + SROI + catálogo (contrato)
   design-tokens/  tema Tailwind v4 "Civic Care & Human Dignity"

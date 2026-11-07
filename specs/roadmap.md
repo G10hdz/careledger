@@ -4,27 +4,25 @@ Orden de ataque. Cada fase sale por PRs chicos (<400 líneas) a `main`.
 Territorios independientes: varios agentes pueden avanzar en paralelo, cada
 uno en su worktree, sin tocar los archivos de otro.
 
-## Hoy: Build for Her (cierre 21:00, 2026-11-07)
+## Build for Her (cierre 21:00, 2026-11-07) — entregado
 
-Alcance congelado. No entran specs ni REQs nuevos hasta después del pitch.
+Demo de punta a punta funcional: la cuidadora registra en la PWA (<60 s,
+offline), el oráculo valida 3 de 3 y emite Puntos Cívicos, la cuidadora
+canjea un vale QR y la terminal de comercios lo cobra con verificación
+Ed25519. El panel de gobierno muestra horas certificadas y SROI.
 
-Demo único, de punta a punta:
+Entregado en main (CI verde, 0 PRs abiertos):
 
-1. La cuidadora registra su jornada y su autocuidado en la PWA (<60 s, offline).
-2. El oráculo simulado valida 3 de 3 y emite Puntos Cívicos.
-3. La cuidadora canjea un vale QR.
-4. La terminal de comercios cobra ese vale.
-5. Gobierno ve horas certificadas y SROI (panel o calculadora de la landing).
+- Vale PWA cobrable en comercios: contrato QR v1 Ed25519, PRs #13 y #14.
+  Documentado en `docs/adr/0002-firma-vales-ed25519.md`.
+- Panel de gobierno con simulador y libro mayor: PR #11.
+- Marketplace de servicios con ciclo completo y tarifa uniforme: PR #1.
+  Documentado en `docs/adr/0003-tarifa-uniforme-marketplace.md`.
+- URLs públicas del demo en GitHub Pages: explainer y CuidaRed.
 
-| Pendiente | Dueño | Estado |
-| --- | --- | --- |
-| Deploy con URL pública para el jurado | integración | en curso |
-| Vale de la PWA cobrable en comercios (firma Ed25519) | pwa + comercios | PR #13 y #14, CI verde |
-| Catálogo único: PWA (`cfe-30`...) y comercios (`despensa-basica`...) usan ids distintos | comercios | por verificar tras #13/#14 |
-| Panel de gobierno | gobierno | PR #11 en draft, CI rojo por lockfile; si no entra a las 18:30 se usa la calculadora de la landing |
-| Guion de demo y slides | landing | pendiente |
-
-Cortes: 19:30 features cerradas, 20:00 deploy final, 20:30 ensayo del pitch.
+Pendiente externo (no es código): la URL de la landing en Vercel existe pero
+el proyecto trae Deployment Protection activada; hay que apagarla en el
+dashboard del proyecto para que el jurado entre.
 
 Datos del piloto semilla (−53% caídas, 94% satisfacción) y SROI 3.42x se
 presentan como proyección metodológica, no como resultado medido.
@@ -39,13 +37,13 @@ presentan como proyección metodológica, no como resultado medido.
 - `apps/pwa`: registro offline (REQ-PWA-001..008). PR #8.
 - `apps/landing`: 4 fases + calculadora (REQ-WEB-001..003, 007). PR #7.
 
-## Fase 2: Dinero visible (hecho, integración pendiente)
+## Fase 2: Dinero visible (hecho)
 
 - `apps/pwa`: billetera + catálogo + vales QR (REQ-BIL-001..009).
 - Oráculo simulado: veedores auto-firman en dev tras N segundos.
-- Falta que el vale emitido aquí se cobre en `apps/comercios` (ver Hoy).
+- El vale de la PWA se cobra en `apps/comercios` (contrato Ed25519, ADR 0002).
 
-## Fase 3: Prueba para gobierno (en curso)
+## Fase 3: Prueba para gobierno (hecho)
 
 - `apps/gobierno`: dashboard SROI + simulador (REQ-GOB-001..005). PR #11.
 - Libro mayor consultable por folio.
@@ -58,19 +56,18 @@ presentan como proyección metodológica, no como resultado medido.
 
 ## Después del hackatón
 
-Congelado hoy. Nada de esto entra antes del pitch; va como visión en slides.
+Congelado durante el pitch. Hecho ya: servicios (PR #1) y el spike
+antifraude (`docs/spike-verificacion-antifraude.md`). Resta:
 
-- `apps/servicios`: directorio por zona + presupuesto + solicitudes
-  (REQ-SER-001..007). PR #1 en draft, no se mergea hoy.
 - `apps/pwa`, Formación (REQ-FOR-001..007): puntos por curso (tabla
   `COURSE_POINTS` ya en domain) y evaluaciones con revisión agéntica.
 - Banco de tiempo `cuidared` (doc v3): el prototipo single-file ya está en
-  GitHub Pages (`docs/cuidared/`). La reescritura en el monorepo espera spec
-  `09`.
-  Paridad hora-hora, saldo −5h, doble confirmación QR, topes 8h/día y
+  GitHub Pages (`docs/cuidared/`) y hay una primera versión en
+  `apps/cuidared`. La integración completa al monorepo sigue la spec `09`:
+  paridad hora-hora, saldo −5h, doble confirmación QR, topes 8h/día y
   20h/mes por par de cuentas, piloto Iztapalapa ~20 tx/día.
-- Spike de verificación foto antes/después on-device con solo hash a BD en
-  México (REQ-ORA-024). Resultado en `docs/` antes de decidir.
+- Verificación foto antes/después on-device con solo hash a BD en México
+  (REQ-ORA-024): decidir con base en el spike.
 - Canal WhatsApp: evaluar Capsule (partner de Meta, free tier) contra Twilio.
   Descartar Baileys y librerías no oficiales por riesgo de ban.
 - Landing con FAQ completo + folleto PDF.

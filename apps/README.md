@@ -10,3 +10,4 @@ Cada agente crea su app dentro de su worktree; no tocar la raíz.
 | `comercios/` | Terminal de cobro + liquidación SPEI | `05` | `.wt-port` |
 | `landing/` | Sitio público e infografía | `06` | `.wt-port` |
 | `servicios/` | Marketplace de servicios por zona/presupuesto | `07` | `.wt-port` |
+| `cuidared/` | Banco de tiempo hora por hora (segunda economía) | `09` | `.wt-port` |
