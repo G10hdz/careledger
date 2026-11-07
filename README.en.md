@@ -31,7 +31,7 @@ from the prototype live in `design/stitch/`.
 
 Live demos:
 
-- Landing (public site): <https://entremanos.vercel.app>
+- Landing (public site): <https://entremanos-g10hdzs-projects.vercel.app>
 - Explainer: <https://g10hdz.github.io/careledger/>
 - CuidaRed (time-bank prototype, spec 09):
   <https://g10hdz.github.io/careledger/cuidared/>

@@ -35,7 +35,7 @@ referencia exportadas del prototipo están en `design/stitch/`.
 
 Demos en vivo:
 
-- Landing (sitio público): <https://entremanos.vercel.app>
+- Landing (sitio público): <https://entremanos-g10hdzs-projects.vercel.app>
 - Explainer: <https://g10hdz.github.io/careledger/>
 - CuidaRed (prototipo del banco de tiempo, spec 09):
   <https://g10hdz.github.io/careledger/cuidared/>
