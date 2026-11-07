@@ -50,3 +50,23 @@ export function isConsensusComplete(signatures: {
 export function folioFor(seq: number, year: number): string {
   return `CV-${year}-${String(seq).padStart(4, '0')}-MX`
 }
+
+/** Emisión fija por curso completado. specs/08 REQ-FOR-007, 02 REQ-ORA-013b.
+   Montos provisionales; los ajusta contenido con ADR. */
+export const COURSE_POINTS: Record<string, number> = {
+  'cuidado-infancias-1': 20,
+  'aseo-bano-paciente-1': 25,
+  'jerga-del-sector-1': 10,
+  'alfabetizacion-digital-1': 15,
+}
+
+/** Tope de puntos por cursos por periodo (anti-farming). Default 60/mes. */
+export const COURSE_POINTS_PERIOD_CAP = 60
+
+export function coursePoints(courseId: string): number {
+  return COURSE_POINTS[courseId] ?? 0
+}
+
+export function applyCourseCap(earned: number, alreadyEarned: number): number {
+  return Math.max(0, Math.min(earned, COURSE_POINTS_PERIOD_CAP - alreadyEarned))
+}

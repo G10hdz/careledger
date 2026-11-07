@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest'
 import {
+  applyCourseCap,
   applySelfCareCap,
+  coursePoints,
   clinicalSavingsUsd,
   computePoints,
   folioFor,
@@ -31,6 +33,18 @@ describe('autocuidado', () => {
     expect(applySelfCareCap(8, 0)).toBe(8)
     expect(applySelfCareCap(8, 6)).toBe(4)
     expect(applySelfCareCap(8, 10)).toBe(0)
+  })
+})
+
+describe('cursos', () => {
+  it('emite puntos fijos por curso aprobado', () => {
+    expect(coursePoints('aseo-bano-paciente-1')).toBe(25)
+    expect(coursePoints('curso-inexistente')).toBe(0)
+  })
+  it('tope por periodo contra farming', () => {
+    expect(applyCourseCap(25, 0)).toBe(25)
+    expect(applyCourseCap(25, 50)).toBe(10)
+    expect(applyCourseCap(25, 60)).toBe(0)
   })
 })
 

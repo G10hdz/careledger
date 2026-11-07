@@ -53,7 +53,9 @@ doble entrada, respaldado por partida presupuestaria.
 El diferencial del documento fuente: **los puntos también se ganan por
 autocuidado** — registrar tiempo libre, hidratación, asistencia a red de apoyo.
 Se ataca el deterioro de la cuidadora, no solo se paga su trabajo. Esto es
-obligatorio en el modelo de puntos, no opcional.
+obligatorio en el modelo de puntos, no opcional. Y por decisión de diseño
+(nota Granola 2026-11-07): **también por completar cursos** — la formación es
+la tercera vía de acumulación (tabla `COURSE_POINTS` en `packages/domain`).
 
 ## Modelo de capital
 
