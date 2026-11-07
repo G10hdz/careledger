@@ -21,10 +21,18 @@ social value (SROI).
 
 ## Project status
 
-Specification and contracts stage. `packages/domain` already ships the points,
-consensus and SROI math with golden tests; the apps under `apps/` are built
-against these specs. Reference screens exported from the prototype live in
-`design/stitch/`.
+Working monorepo with all six surfaces implemented as a demo: the PWA logs
+and redeems offline, the merchant terminal verifies the Ed25519-signed voucher
+and charges it, the government panel computes SROI, and the services
+marketplace covers the full request lifecycle. `packages/domain` holds the
+shared math (points, consensus, SROI, catalog). Reference screens exported
+from the prototype live in `design/stitch/`.
+
+Live demos:
+
+- Explainer: <https://g10hdz.github.io/careledger/>
+- CuidaRed (time-bank prototype, spec 09):
+  <https://g10hdz.github.io/careledger/cuidared/>
 
 ## Layout
 
