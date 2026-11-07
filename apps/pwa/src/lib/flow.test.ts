@@ -1,4 +1,5 @@
 import { COURSE_POINTS, coursePoints, type CareSession } from '@careledger/domain'
+import Dexie from 'dexie'
 import { describe, expect, it } from 'vitest'
 import { createCareApp, isFolio, type CareApp, type CareAppOptions, type CareDraft } from './app'
 import { sha256Hex, stableStringify } from './codec'
@@ -7,7 +8,8 @@ import { COURSES, courseById, coursesFor } from './courses'
 import { allCopy } from './copy'
 import { certificatePdf, pdfIncludes, receiptPdf, voucherQrText } from './documents'
 import { DEMO_LEDGER_PUBLIC_JWK } from '../../fixtures/demoLedger'
-import { createDeviceKeys, verifyText } from './keys'
+import { CareDB } from './db'
+import { createDeviceKeys, signText, verifyText } from './keys'
 import { createSimulatedOracle } from './oracle'
 import { assertCanonical, canonicalFromSession, publicSyncRecord } from './payload'
 import { QUIZZES, gradeQuiz } from './quizzes'
@@ -150,6 +152,39 @@ describe('flujo crítico', () => {
       status: 'pendiente',
     })
     expect(JSON.stringify(body)).not.toContain(String(keys.privateJwk.d))
+  })
+
+  it('migra la llave privada v1 a CryptoKey no extraíble', async () => {
+    const dbName = `t-${crypto.randomUUID()}`
+    const legacy = new Dexie(dbName)
+    legacy.version(1).stores({ profile: 'id' })
+    const pair = await crypto.subtle.generateKey({ name: 'Ed25519' }, true, ['sign', 'verify'])
+    const publicJwk = await crypto.subtle.exportKey('jwk', pair.publicKey)
+    const privateJwk = await crypto.subtle.exportKey('jwk', pair.privateKey)
+    await legacy.table('profile').add({
+      id: 'local',
+      caregiverId: 'cuidadora-local',
+      nodeId: 'nodo-roma-condesa',
+      nodeName: 'Nodo Roma-Condesa',
+      lang: 'es',
+      publicJwk,
+      privateJwk,
+    })
+    legacy.close()
+
+    const db = new CareDB(dbName)
+    try {
+      const profile = await db.profile.get('local')
+      expect(profile).toBeDefined()
+      expect(profile).not.toHaveProperty('privateJwk')
+      expect(profile?.privateKey.extractable).toBe(false)
+      const text = 'migración v2'
+      const signature = await signText(profile!.privateKey, text)
+      expect(await verifyText(publicJwk, text, signature)).toBe(true)
+    } finally {
+      db.close()
+      await Dexie.delete(dbName)
+    }
   })
 
   it('sin red deja el registro pendiente y al volver lo suelta', async () => {
