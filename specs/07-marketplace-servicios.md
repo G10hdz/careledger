@@ -28,6 +28,7 @@ también encuentra quién la releva.
 | REQ-SER-007 | THE proveedor SHALL poder aceptar o rechazar la solicitud; la familia ve el estado (enviada, aceptada, agendada, completada). | Test de ciclo |
 | REQ-SER-008 | WHEN un servicio contratado se completa, THE sistema SHALL poder registrarlo como jornada de cuidado en el ledger si quien lo prestó es cuidadora acreditada (reutiliza `02`). | Test de integración |
 | REQ-SER-009 | THE marketplace SHALL ser mobile web (misma PWA base o `apps/servicios`), con la misma exigencia de baja fricción que `01`. | Lighthouse + E2E |
+| REQ-SER-010 | THE tarifa de servicios prestados por cuidadoras acreditadas SHALL ser por hora y uniforme en toda la plataforma, sin excepciones ("la hora vale igual para todos los servicios"). La oferta pública mantiene su etiqueta gratuita/subsidiada y no entra a esta regla. | Test de tarifa uniforme |
 
 ## Cómo se conecta con la economía
 
