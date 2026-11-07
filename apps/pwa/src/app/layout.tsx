@@ -19,11 +19,11 @@ const body = Atkinson_Hyperlegible({
 })
 
 export const metadata: Metadata = {
-  title: 'CareLedger',
+  title: 'Cuando cuidas, te descuidas',
   description: 'Registra tu cuidado y recibe Puntos Cívicos.',
-  applicationName: 'CareLedger',
+  applicationName: 'Cuando cuidas, te descuidas',
   manifest: '/manifest.webmanifest',
-  appleWebApp: { capable: true, title: 'CareLedger', statusBarStyle: 'default' },
+  appleWebApp: { capable: true, title: 'Cuando cuidas, te descuidas', statusBarStyle: 'default' },
   icons: { icon: '/icons/icon-192.png', apple: '/icons/icon-192.png' },
 }
 

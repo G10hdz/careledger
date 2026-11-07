@@ -1,6 +1,6 @@
 {
-  "name": "CareLedger",
-  "short_name": "CareLedger",
+  "name": "Cuando cuidas, te descuidas",
+  "short_name": "Cuando cuidas",
   "description": "Registra tu cuidado y recibe Puntos Cívicos.",
   "start_url": "/",
   "scope": "/",

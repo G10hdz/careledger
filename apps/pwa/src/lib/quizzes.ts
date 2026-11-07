@@ -75,7 +75,7 @@ export const QUIZZES: Record<string, QuizQuestion[]> = {
       'med-q2',
       t('¿Dónde anotas un diagnóstico?', 'Where do you write a diagnosis?', '¿Kanin tikijkuiloa se diagnóstico?'),
       [
-        t('En CareLedger', 'In CareLedger', 'Ipan CareLedger'),
+        t('En Cuando cuidas, te descuidas', 'In Cuando cuidas, te descuidas', 'Ipan Cuando cuidas, te descuidas'),
         t('No en esta app. Si hay duda, preguntas en el centro o la farmacia', 'Not in this app. If unsure, ask the clinic or pharmacy', 'Amo nikan. Xiktlajtlani en el centro'),
       ],
       1,
@@ -107,7 +107,7 @@ export const QUIZZES: Record<string, QuizQuestion[]> = {
       t('Tu clave de otro sitio…', 'Your password for another site…', 'Moklave de otro sitio…'),
       [
         t('Se dicta por mensaje si lo piden', 'You read it in a message if they ask', 'Xiktemaka por mensaje'),
-        t('No se manda por chat. CareLedger no la pide', 'You do not send it in chat. CareLedger does not ask for it', 'Amo por chat. CareLedger amo kitlajtlanilia'),
+        t('No se manda por chat. Cuando cuidas, te descuidas no la pide', 'You do not send it in chat. Cuando cuidas, te descuidas does not ask for it', 'Amo por chat. Cuando cuidas, te descuidas amo kitlajtlanilia'),
       ],
       1,
     ),

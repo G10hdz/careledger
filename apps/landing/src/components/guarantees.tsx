@@ -34,7 +34,7 @@ export function Guarantees() {
         <SectionHeading
           eyebrow="Marco ético"
           title="Tres garantías innegociables."
-          lead="CareLedger no es asistencia arbitraria ni una campaña de buena voluntad. Es infraestructura cívica con reglas escritas."
+          lead="Cuando cuidas, te descuidas no es asistencia arbitraria ni una campaña de buena voluntad. Es infraestructura cívica con reglas escritas."
         />
 
         <ul className="mt-12 grid gap-8 md:grid-cols-3 md:gap-0">

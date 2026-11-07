@@ -92,8 +92,8 @@ export const COURSES: Course[] = [
         minutes: 8,
         title: { es: 'Observar, no diagnosticar', en: 'Notice, do not diagnose', nah: 'Xikita' },
         body: {
-          es: 'Mira si respira con calma, si el pecho se mueve parejo y si la piel está muy caliente o muy fría. Observar no es poner un diagnóstico. No anotes eso en CareLedger.',
-          en: 'Notice calm breathing, an even chest, and skin that is very hot or very cold. Noticing is not a diagnosis. Do not enter it in CareLedger.',
+          es: 'Mira si respira con calma, si el pecho se mueve parejo y si la piel está muy caliente o muy fría. Observar no es poner un diagnóstico. No anotes eso en Cuando cuidas, te descuidas.',
+          en: 'Notice calm breathing, an even chest, and skin that is very hot or very cold. Noticing is not a diagnosis. Do not enter it in Cuando cuidas, te descuidas.',
           nah: 'Xikita tla kualtzin ijiiotl. Amo diagnóstico. En español: observa la respiración y la temperatura de la piel, y no lo anotes en la app.',
         },
       },
@@ -168,8 +168,8 @@ export const COURSES: Course[] = [
         minutes: 8,
         title: { es: 'Ver mejor', en: 'See it clearly', nah: 'Xikita kualtzin' },
         body: {
-          es: 'En ajustes del teléfono sube el tamaño de letra. En CareLedger los botones miden al menos el alto de un dedo y el texto no baja de 12.',
-          en: 'In the phone settings, increase the text size. In CareLedger the buttons are at least a finger tall and the text stays at 12 or more.',
+          es: 'En ajustes del teléfono sube el tamaño de letra. En Cuando cuidas, te descuidas los botones miden al menos el alto de un dedo y el texto no baja de 12.',
+          en: 'In the phone settings, increase the text size. In Cuando cuidas, te descuidas the buttons are at least a finger tall and the text stays at 12 or more.',
           nah: 'Xikueyilia in tlakuilolli. En español: sube el tamaño de letra en los ajustes del teléfono.',
         },
       },
@@ -206,8 +206,8 @@ export const COURSES: Course[] = [
         minutes: 10,
         title: { es: 'Datos que sí piden', en: 'Details they may ask', nah: 'Datos' },
         body: {
-          es: 'Un trámite puede pedir CURP o correo. La clave no se manda por mensaje ni se le dicta a desconocidos. CareLedger no te pide la clave de otro sitio.',
-          en: 'A procedure may ask for an ID number or an email. Do not send a password in a message or read it to a stranger. CareLedger does not ask for another site’s password.',
+          es: 'Un trámite puede pedir CURP o correo. La clave no se manda por mensaje ni se le dicta a desconocidos. Cuando cuidas, te descuidas no te pide la clave de otro sitio.',
+          en: 'A procedure may ask for an ID number or an email. Do not send a password in a message or read it to a stranger. Cuando cuidas, te descuidas does not ask for another site’s password.',
           nah: 'Amo xiktemaka moklave por mensaje. En español: un trámite puede pedir CURP o correo, nunca tu clave por chat.',
         },
       },
@@ -254,8 +254,8 @@ export const COURSES: Course[] = [
         minutes: 10,
         title: { es: 'Fuera de lo cotidiano', en: 'Out of the ordinary', nah: 'Amo kualtzin' },
         body: {
-          es: 'Si no despierta, se pega fuerte o le falta el aire, buscas ayuda de salud en ese momento. Eso no se anota en CareLedger.',
-          en: 'If they will not wake, take a hard fall, or cannot breathe, get health help right then. Do not write that in CareLedger.',
+          es: 'Si no despierta, se pega fuerte o le falta el aire, buscas ayuda de salud en ese momento. Eso no se anota en Cuando cuidas, te descuidas.',
+          en: 'If they will not wake, take a hard fall, or cannot breathe, get health help right then. Do not write that in Cuando cuidas, te descuidas.',
           nah: 'Xiktemo palehuiliztli de salud. En español: no despertar, un golpe fuerte o falta de aire: pide ayuda ya. No lo anotes aquí.',
         },
       },

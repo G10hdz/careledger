@@ -106,7 +106,7 @@ export default function Home() {
     <>
       <header>
         <div className="shell header">
-          <a href="#inicio" className="brand"><span className="mark">✳</span> CareLedger <small> / servicios</small></a>
+          <a href="#inicio" className="brand"><span className="mark">✳</span> Cuando cuidas, te descuidas <small> / servicios</small></a>
           <nav aria-label="Navegación principal">
             <button onClick={() => setView('directorio')} aria-current={view === 'directorio' ? 'page' : undefined}>Directorio</button>
             <button onClick={() => setView('familia')} aria-current={view === 'familia' ? 'page' : undefined}>Mis solicitudes</button>
@@ -214,7 +214,7 @@ export default function Home() {
           </section>
         )}
       </main>
-      <footer><div className="shell">CareLedger · Una comunidad que cuida</div></footer>
+      <footer><div className="shell">Cuando cuidas, te descuidas · Una comunidad que cuida</div></footer>
       {selected && (
         <div className="overlay">
           <section className="dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title">

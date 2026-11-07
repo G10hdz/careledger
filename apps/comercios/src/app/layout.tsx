@@ -17,7 +17,7 @@ const body = Atkinson_Hyperlegible_Next({
 })
 
 export const metadata: Metadata = {
-  title: 'Comercios · CareLedger',
+  title: 'Comercios · Cuando cuidas, te descuidas',
   description:
     'Terminal de cobro para comercios solidarios: vales de Puntos Cívicos y liquidación SPEI sin comisión.',
 }

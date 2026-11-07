@@ -1,4 +1,4 @@
-# CareLedger — Civic Care Network
+# Cuando cuidas, te descuidas — Civic Care Network
 
 **[Español](README.md)** · Specs and monorepo for civic infrastructure that
 certifies informal care hours and turns them into **Civic Points** redeemable

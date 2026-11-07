@@ -1,12 +1,12 @@
-# CareLedger — Red del Cuidado Cívico
+# Cuando cuidas, te descuidas
 
 **[English](README.en.md)** · Especificación y monorepo de una infraestructura
 cívica que certifica horas de cuidado informal y las convierte en **Puntos
 Cívicos** canjeables por beneficios reales: luz, transporte, horas de relevo y
 comercios del barrio.
 
-> Cuando cuidas, te descuidas. La plataforma existe para que cuidar no te
-> cueste la salud: también se ganan puntos por autocuidado.
+> La plataforma existe para que cuidar no te cueste la salud: también se
+> ganan puntos por autocuidado.
 
 La cuidadora (la "generación sándwich", ~38 años, mayoría mujeres) registra su
 jornada en menos de 60 segundos, sin internet. Un oráculo vecinal valida
