@@ -32,13 +32,17 @@ uno en su worktree, sin tocar los archivos de otro.
 - `apps/comercios`: afiliación + terminal de cobro + liquidación SPEI simulada.
 - Propinas familiares en billetera (REQ-BIL-020..023).
 
-## Fase 4.5 — Marketplace y formación (doc v2)
+## Fase 4.5 — Marketplace y formación (doc v2 + decisión puntos-cursos)
 
 - `apps/servicios`: directorio por zona + filtro de presupuesto + solicitudes
   (REQ-SER-001..007). El canje de "relevo certificado" de la billetera aterriza
   aquí como solicitud de servicio.
-- `apps/pwa`: sección Formación (REQ-FOR-001..005) — puede hacerla el agente
-  de `pwa` o uno extra dentro del mismo worktree, serializado.
+- `apps/pwa`: sección Formación (REQ-FOR-001..007) con emisión de puntos por
+  curso completado (tabla `COURSE_POINTS` en domain) y evaluaciones con
+  revisión agéntica (REQ-FOR-006).
+- Spike paralelo (no bloqueante): investigar verificación foto antes/después
+  on-device con solo hash a BD en México (REQ-ORA-024). Resultado documentado
+  en `docs/` antes de decidir implementación.
 
 ## Fase 5 — Piloto
 
