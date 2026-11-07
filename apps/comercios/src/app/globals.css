@@ -1,0 +1,65 @@
+@import "tailwindcss";
+@import "@careledger/design-tokens";
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-background text-on-background font-body text-body-md;
+    line-height: 1.45;
+  }
+
+  /* Focus siempre visible: borde 2px primary + anillo suave (DESIGN.md). */
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 3px var(--color-primary-fixed-dim);
+  }
+
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+@layer components {
+  /* Tarjeta nivel 1: blanca, borde estructural, sin sombras dramáticas. */
+  .card {
+    @apply rounded-card border border-outline-variant bg-surface-container-lowest p-lg;
+  }
+
+  /* Tarjeta nivel 4 (distintivos/vales): micro-borde 2px primary. */
+  .card-destacada {
+    @apply rounded-card border-2 border-primary bg-surface-container-lowest p-lg;
+  }
+
+  /* CTA primario táctil: min 52px, radio 16px, peso 600. */
+  .btn-primario {
+    @apply inline-flex min-h-[52px] items-center justify-center gap-sm rounded-lg bg-primary px-lg py-sm font-display text-label-lg font-semibold text-on-primary;
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+
+  .btn-secundario {
+    @apply inline-flex min-h-[52px] items-center justify-center gap-sm rounded-lg border-2 border-primary bg-surface-container-lowest px-lg py-sm font-display text-label-lg font-semibold text-primary;
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+
+  /* Input táctil: 52px alto, borde 1.5px, foco teal. */
+  .campo {
+    @apply min-h-[52px] w-full rounded-lg border-[1.5px] border-outline-variant bg-surface-container-lowest px-md py-sm text-body-md text-on-surface;
+    &::placeholder {
+      color: var(--color-outline);
+    }
+  }
+
+  .etiqueta {
+    @apply mb-xs block text-label-md font-semibold text-on-surface-variant;
+  }
+}
