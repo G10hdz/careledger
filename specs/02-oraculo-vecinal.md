@@ -36,6 +36,7 @@ y `design/stitch/metodolog_a_de_impacto_sroi_y_auditor_a_c_vica/`
 | REQ-ORA-022 | THE sistema SHALL NOT almacenar geolocalización cruda; solo prueba de proximidad agregada/zero-knowledge entre los 3 firmantes. | Revisión de esquema de datos |
 | REQ-ORA-023 | THE sistema SHALL rechazar emisión duplicada: mismo payload firmado dos veces produce un solo crédito (idempotencia por hash). | Test de idempotencia |
 | REQ-ORA-024 | (Diferido, spike pendiente) Verificación foto antes/después de la acción, procesada 100% en el dispositivo: solo sale un hash numérico hacia la base de datos en México (cumplimiento de ley de protección de datos). Bloqueada por complejidad — primero investigar si existe solución ligera disponible (spike de investigación documentado en `docs/`). | Documento del spike |
+| REQ-ORA-025 | THE app SHALL dejar que la cuidadora arme su propia red de apoyo registrando a familiares/amigos como posibles firmantes ("forma tu propia comunidad"). Si su red no alcanza, THE app SHALL ofrecer un buscador de comunidad/nodo cercano como primera adhesión. | Test de alta de red + buscador |
 
 ## Valor social (SROI por evento)
 
