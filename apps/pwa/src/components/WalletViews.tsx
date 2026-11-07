@@ -139,7 +139,7 @@ export function VoucherCard({ folio }: { folio: string }) {
     ctx.strokeRect(24, 24, 752, 1052)
     ctx.fillStyle = '#191c1e'
     ctx.font = '700 40px sans-serif'
-    ctx.fillText('CareLedger', 64, 110)
+    ctx.fillText('Cuando cuidas, te descuidas', 64, 110)
     ctx.font = '600 28px sans-serif'
     ctx.fillText(voucher.folio, 64, 180)
     const image = new Image()

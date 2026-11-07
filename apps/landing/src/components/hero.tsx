@@ -24,7 +24,7 @@ export function Hero() {
           </h1>
 
           <p className="mt-6 max-w-[36rem] text-pretty text-body-md text-on-surface-variant sm:text-body-lg">
-            CareLedger convierte horas de cuidado no remunerado en{' '}
+            Cuando cuidas, te descuidas convierte horas de cuidado no remunerado en{' '}
             <strong className="font-semibold text-on-surface">Puntos Cívicos</strong>: luz,
             transporte y relevo. No es caridad: es trabajo que merece pago.
           </p>

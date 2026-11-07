@@ -15,7 +15,7 @@ convierte en beneficios. Referencia:
 | REQ-WEB-003 | THE landing SHALL segmentar en 3 audiencias con CTA propio: para cuidadoras (lenguaje sencillo), para familias y comercios, para gobiernos y funcionarios. | Test de navegación |
 | REQ-WEB-004 | THE landing SHALL fijar las 3 garantías innegociables: "Cuidar no es favor, es trabajo" / "Tu privacidad es sagrada" (ZK, nada médico en servidores) / "Respaldo municipal real" (suficiencia presupuestaria por vale). | Screenshot |
 | REQ-WEB-005 | THE landing SHALL incluir FAQ con copy de confianza y contacto; y descargable "Folleto Barrial" en PDF. | Test de assets |
-| REQ-WEB-006 | THE landing SHALL usar el naming público "Puntos Cívicos" (no `$CARE` ni "token") en todo el copy orientado a ciudadanía; `CareLedger` solo como nombre de producto. | Revisión de copy |
+| REQ-WEB-006 | THE landing SHALL usar el naming público "Puntos Cívicos" (no `$CARE` ni "token") en todo el copy orientado a ciudadanía; `Cuando cuidas, te descuidas` solo como nombre de producto. | Revisión de copy |
 | REQ-WEB-007 | THE landing SHALL ser responsive mobile-first, LCP <2.5s en 4G, y cumplir WCAG 2.1 AA. | Lighthouse |
 
 ## Tono

@@ -22,20 +22,20 @@ const atkinson = localFont({
 
 export const metadata: Metadata = {
   title: {
-    default: 'CareLedger · El tiempo de cuidado se convierte en Puntos Cívicos',
-    template: '%s · CareLedger',
+    default: 'Cuando cuidas, te descuidas · El tiempo de cuidado se convierte en Puntos Cívicos',
+    template: '%s · Cuando cuidas, te descuidas',
   },
   description:
-    'CareLedger certifica las horas de cuidado no remunerado y las convierte en Puntos Cívicos canjeables por luz, transporte y horas de relevo. Infraestructura cívica, no caridad.',
-  applicationName: 'CareLedger',
-  authors: [{ name: 'CareLedger' }],
-  creator: 'CareLedger',
+    'Cuando cuidas, te descuidas certifica las horas de cuidado no remunerado y las convierte en Puntos Cívicos canjeables por luz, transporte y horas de relevo. Infraestructura cívica, no caridad.',
+  applicationName: 'Cuando cuidas, te descuidas',
+  authors: [{ name: 'Cuando cuidas, te descuidas' }],
+  creator: 'Cuando cuidas, te descuidas',
   robots: { index: true, follow: true },
   openGraph: {
     type: 'website',
     locale: 'es_MX',
-    siteName: 'CareLedger',
-    title: 'CareLedger · El tiempo de cuidado se convierte en Puntos Cívicos',
+    siteName: 'Cuando cuidas, te descuidas',
+    title: 'Cuando cuidas, te descuidas · El tiempo de cuidado se convierte en Puntos Cívicos',
     description:
       'Horas de cuidado certificadas, Puntos Cívicos y beneficios reales: luz, transporte y relevo. Conoce la ruta del tiempo.',
   },

@@ -1,4 +1,4 @@
-# 00 — CareLedger: plataforma
+# 00 — Cuando cuidas, te descuidas: plataforma
 
 La spec manda. Lo que no está en `specs/` no se construye.
 

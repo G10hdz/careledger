@@ -16,11 +16,11 @@ export function SiteHeader() {
         <a
           href="#inicio"
           className="flex min-h-12 shrink-0 items-center gap-2.5"
-          aria-label="CareLedger, volver al inicio"
+          aria-label="Cuando cuidas, te descuidas, volver al inicio"
         >
           <LogoMark />
           <span className="font-display text-headline-sm font-bold tracking-[-0.02em]">
-            CareLedger
+            Cuando cuidas, te descuidas
           </span>
         </a>
 
