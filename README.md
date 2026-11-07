@@ -30,9 +30,14 @@ referencia exportadas del prototipo están en `design/stitch/`.
 
 Demos en vivo:
 
+- Landing (sitio público): <https://careledger-ashy.vercel.app>
 - Explainer: <https://g10hdz.github.io/careledger/>
 - CuidaRed (prototipo del banco de tiempo, spec 09):
   <https://g10hdz.github.io/careledger/cuidared/>
+
+El producto se llama **Cuando cuidas, te descuidas**. Los identificadores
+internos conservan el slug `careledger`: paquetes `@careledger/*`, esquema
+`careledger://`, claves de almacenamiento y el nombre del repositorio.
 
 ## Estructura
 

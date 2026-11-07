@@ -1,4 +1,4 @@
-# 09 — Banco de tiempo (`apps/cuidared` prototipo; destino por definir)
+# 09 — Banco de tiempo (`apps/cuidared` prototipo; nombre propuesto: EntreManos)
 
 Del documento fuente v3: además de los Puntos Cívicos (respaldados por el
 municipio, se canjean por beneficios), existe una segunda economía: el
@@ -44,10 +44,17 @@ en bancarrota de tiempo: el sistema existe para devolvérselo.
 
 ## Piloto
 
-Alcaldía Iztapalapa, ~20 transacciones/día iniciales. Impacto buscado:
+Alcaldía Iztapalapa, ~20 transacciones/**semana** iniciales (corrección del
+doc v4: volumen semanal, no diario). Impacto buscado:
 romper la idea de que solo las mujeres cuidan (valor comunitario), cualquier
 persona/género/idioma ofrece y recibe sin distinción, redes replicables en
 cualquier localidad.
+
+## Nombre
+
+El doc v4 propone **EntreManos** como nombre de la app del banco de tiempo.
+`CuidaRed` es el nombre de trabajo del prototipo; la decisión final queda
+abierta — el programa madre es "Cuando cuidas, te descuidas".
 
 ## Estado del prototipo
 

@@ -83,6 +83,7 @@ atestación de origen con el ledger municipal pero no el libro mayor.
 | `06-landing.md` | `apps/landing` | Narrativa pública, matriz de canje, FAQ |
 | `07-marketplace-servicios.md` | `apps/servicios` | Directorio por zona, presupuesto, oferta pública+privada |
 | `08-formacion.md` | `apps/pwa` (sección) | Cursos, progreso, certificados con folio |
+| `09-banco-tiempo.md` | `apps/cuidared` | Trueque hora por hora, red de apoyo, liquidez externa |
 
 `packages/domain` es el contrato compartido (tipos + matemática de puntos y
 SROI). `packages/design-tokens` es el tema Tailwind v4 sacado de
