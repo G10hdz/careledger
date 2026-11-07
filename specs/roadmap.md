@@ -35,7 +35,9 @@ Pendiente para el pitch:
 | Confirmación de horas: familia o tercero contra doble código | REQ-BT-003 | decisión del equipo |
 | Volumen del piloto: 20 al día (doc v4) o por semana | 09 | decisión del equipo |
 | Video de respaldo del demo | REQ-EVA-021 | pendiente |
-| Landing en Vercel accesible sin Deployment Protection | REQ-EVA-020 | por verificar |
+| Demo público | REQ-EVA-020 | hecho: `entremanos-mx.vercel.app` y `/cuidared` responden 200 (verificado 17:46) |
+| Nombre único: sigue en línea `/hora-por-hora/` además de EntreManos | REQ-EVA-019 | decisión del equipo: quitarla del pitch o enlazarla como versión alterna |
+| Ensayo cronometrado del pitch completo | REQ-EVA-031 | pendiente |
 
 Detalle y puntaje estimado (~68, meta ~80): `docs/auditoria-rubrica.md`.
 
