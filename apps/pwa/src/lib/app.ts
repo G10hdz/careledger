@@ -172,7 +172,7 @@ export function createCareApp(opts: CareAppOptions = {}) {
       nodeName: NODE_NAME,
       lang: 'es',
       publicJwk: keys.publicJwk,
-      privateJwk: keys.privateJwk,
+      privateKey: keys.privateKey,
     }
     await db.profile.add(profile)
     await db.wallet.add({ caregiverId: profile.caregiverId, pointsBalance: 0, tipsBalanceMxn: 0 })
@@ -534,7 +534,7 @@ export function createCareApp(opts: CareAppOptions = {}) {
       const canonical = canonicalFromSession(session)
       assertCanonical(canonical)
       const canonicalHash = await sha256Hex(canonical)
-      const signature = await signText(profile.privateJwk, canonical)
+      const signature = await signText(profile.privateKey, canonical)
       const createdAt = now().toISOString()
       const attestation: LocalAttestation = {
         sessionId: id,
@@ -580,7 +580,7 @@ export function createCareApp(opts: CareAppOptions = {}) {
           validUntil,
         })
         const payloadHash = await Dexie.waitFor(sha256Hex(payload))
-        const ledgerSignature = await Dexie.waitFor(signText(profile.privateJwk, payload))
+        const ledgerSignature = await Dexie.waitFor(signText(profile.privateKey, payload))
         // Firma separada para el QR: payload compacto sin caregiverId
         // (REQ-PWA-011). La firma el ledger, no el teléfono: el terminal
         // del comercio verifica contra el llavero municipal. En el demo el

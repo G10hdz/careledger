@@ -49,8 +49,8 @@ export function createSimulatedOracle(opts: {
       const veedorId = assignVeedor(request.sessionId, veedores)
       const [beneficiarioKeys, veedorKeys] = await Promise.all([createDeviceKeys(), createDeviceKeys()])
       const [beneficiarioSig, veedorSig] = await Promise.all([
-        signText(beneficiarioKeys.privateJwk, request.canonical),
-        signText(veedorKeys.privateJwk, request.canonical),
+        signText(beneficiarioKeys.privateKey, request.canonical),
+        signText(veedorKeys.privateKey, request.canonical),
       ])
       return {
         beneficiario: { signature: beneficiarioSig, publicJwk: beneficiarioKeys.publicJwk },

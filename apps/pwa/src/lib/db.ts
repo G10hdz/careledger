@@ -1,6 +1,7 @@
 import type { AttestationStatus, CareSession, VoucherStatus, Wallet } from '@careledger/domain'
 import Dexie, { type Table } from 'dexie'
 import type { CourseLine } from './courses'
+import { importPrivate } from './keys'
 import type { Lang } from './langs'
 
 export interface DeviceProfile {
@@ -10,7 +11,7 @@ export interface DeviceProfile {
   nodeName: string
   lang: Lang
   publicJwk: JsonWebKey
-  privateJwk: JsonWebKey
+  privateKey: CryptoKey
   accreditationFolio?: string
 }
 
@@ -112,6 +113,15 @@ export class CareDB extends Dexie {
       certificates: 'folio, courseId',
       meta: 'key',
     })
+    // v2: la llave privada deja de guardarse como JWK legible.
+    this.version(2)
+      .stores({})
+      .upgrade(async (tx) => {
+        const legacy = (await tx.table('profile').get('local')) as (Record<string, unknown> & { privateJwk?: JsonWebKey }) | undefined
+        if (!legacy?.privateJwk) return
+        const { privateJwk, ...rest } = legacy
+        await tx.table('profile').put({ ...rest, privateKey: await Dexie.waitFor(importPrivate(privateJwk)) })
+      })
   }
 }
 
