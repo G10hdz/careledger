@@ -1,9 +1,9 @@
-# Cuando cuidas, te descuidas
+# EntreManos
 
-**[English](README.en.md)** · Especificación y monorepo de una infraestructura
-cívica que certifica horas de cuidado informal y las convierte en **Puntos
-Cívicos** canjeables por beneficios reales: luz, transporte, horas de relevo y
-comercios del barrio.
+**[English](README.en.md)** · Cuando cuidas, te descuidas. Especificación y
+monorepo de una infraestructura cívica que certifica horas de cuidado informal
+y las convierte en **Puntos Cívicos** canjeables por beneficios reales: luz,
+transporte, horas de relevo y comercios del barrio.
 
 > La plataforma existe para que cuidar no te cueste la salud: también se
 > ganan puntos por autocuidado.
@@ -19,6 +19,11 @@ valor social medible (SROI).
   <img alt="Flujo: la PWA registra offline, el oráculo vecinal valida 3/3, el ledger municipal emite puntos y la cuidadora canjea beneficios; los comercios liquidan por SPEI" src="docs/assets/flow-light.svg" width="560">
 </picture>
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/arch-dark.svg">
+  <img alt="Mapa de conexiones: cuidadora → PWA → oráculo vecinal → packages/domain → billetera → terminal de comercios → SPEI; gobierno lee el ledger, el marketplace alimenta jornadas y el banco de tiempo comparte la atestación como economía separada" src="docs/assets/arch-light.svg" width="720">
+</picture>
+
 ## Estado del proyecto
 
 Monorepo funcional con las seis superficies implementadas como demo: la PWA
@@ -30,14 +35,15 @@ referencia exportadas del prototipo están en `design/stitch/`.
 
 Demos en vivo:
 
-- Landing (sitio público): <https://careledger-ashy.vercel.app>
+- Landing (sitio público): <https://entremanos.vercel.app>
 - Explainer: <https://g10hdz.github.io/careledger/>
 - CuidaRed (prototipo del banco de tiempo, spec 09):
   <https://g10hdz.github.io/careledger/cuidared/>
 
-El producto se llama **Cuando cuidas, te descuidas**. Los identificadores
-internos conservan el slug `careledger`: paquetes `@careledger/*`, esquema
-`careledger://`, claves de almacenamiento y el nombre del repositorio.
+La app se llama **EntreManos**; el programa es "Cuando cuidas, te
+descuidas". Los identificadores internos conservan el slug `careledger`:
+paquetes `@careledger/*`, esquema `careledger://`, claves de almacenamiento
+y el nombre del repositorio.
 
 ## Estructura
 

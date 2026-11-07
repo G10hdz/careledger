@@ -1,4 +1,4 @@
-/** Cuando cuidas, te descuidas — tipos del territorio comercios. specs/05. */
+/** EntreManos — tipos del territorio comercios. specs/05. */
 
 export interface Comercio {
   nombre: string

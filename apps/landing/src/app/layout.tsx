@@ -22,20 +22,20 @@ const atkinson = localFont({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Cuando cuidas, te descuidas · El tiempo de cuidado se convierte en Puntos Cívicos',
-    template: '%s · Cuando cuidas, te descuidas',
+    default: 'EntreManos · El tiempo de cuidado se convierte en Puntos Cívicos',
+    template: '%s · EntreManos',
   },
   description:
-    'Cuando cuidas, te descuidas certifica las horas de cuidado no remunerado y las convierte en Puntos Cívicos canjeables por luz, transporte y horas de relevo. Infraestructura cívica, no caridad.',
-  applicationName: 'Cuando cuidas, te descuidas',
-  authors: [{ name: 'Cuando cuidas, te descuidas' }],
-  creator: 'Cuando cuidas, te descuidas',
+    'EntreManos certifica las horas de cuidado no remunerado y las convierte en Puntos Cívicos canjeables por luz, transporte y horas de relevo. Infraestructura cívica, no caridad.',
+  applicationName: 'EntreManos',
+  authors: [{ name: 'EntreManos' }],
+  creator: 'EntreManos',
   robots: { index: true, follow: true },
   openGraph: {
     type: 'website',
     locale: 'es_MX',
-    siteName: 'Cuando cuidas, te descuidas',
-    title: 'Cuando cuidas, te descuidas · El tiempo de cuidado se convierte en Puntos Cívicos',
+    siteName: 'EntreManos',
+    title: 'EntreManos · El tiempo de cuidado se convierte en Puntos Cívicos',
     description:
       'Horas de cuidado certificadas, Puntos Cívicos y beneficios reales: luz, transporte y relevo. Conoce la ruta del tiempo.',
   },

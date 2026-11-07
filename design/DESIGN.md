@@ -252,4 +252,4 @@ The shape vocabulary employs human-scaled curvature (`rounded-2xl` and `rounded-
 - **Official GovTech Verification:** Background `#EFF6FF`, text `#1E40AF`, leading municipal crest or shield icon.
 
 ### Offline & PWA Sync Indicator
-- A persistent, calm indicator at the top or bottom of the screen signaling local cache durability: "Cuando cuidas, te descuidas Offline Ready: Actions will automatically sync upon connection", styled in calming slate blue with an unobtrusive sync pulse.
+- A persistent, calm indicator at the top or bottom of the screen signaling local cache durability: "EntreManos Offline Ready: Actions will automatically sync upon connection", styled in calming slate blue with an unobtrusive sync pulse.

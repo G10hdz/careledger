@@ -19,11 +19,11 @@ const body = Atkinson_Hyperlegible({
 })
 
 export const metadata: Metadata = {
-  title: 'Cuando cuidas, te descuidas',
+  title: 'EntreManos',
   description: 'Registra tu cuidado y recibe Puntos Cívicos.',
-  applicationName: 'Cuando cuidas, te descuidas',
+  applicationName: 'EntreManos',
   manifest: '/manifest.webmanifest',
-  appleWebApp: { capable: true, title: 'Cuando cuidas, te descuidas', statusBarStyle: 'default' },
+  appleWebApp: { capable: true, title: 'EntreManos', statusBarStyle: 'default' },
   icons: { icon: '/icons/icon-192.png', apple: '/icons/icon-192.png' },
 }
 

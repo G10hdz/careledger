@@ -72,7 +72,7 @@ export function Shell({ children }: { children: ReactNode }) {
       <header className="no-print sticky top-0 z-20 border-b border-outline-variant bg-background/95 px-4 py-3 backdrop-blur">
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">
-            <p className="font-display text-sm font-semibold text-on-surface">Cuando cuidas, te descuidas</p>
+            <p className="font-display text-sm font-semibold text-on-surface">EntreManos</p>
             <p className="mt-1 flex items-center gap-2 text-sm text-on-surface" data-testid="status-node">
               <span className="inline-block size-2.5 rounded-full bg-primary" aria-hidden="true" />
               <span>
@@ -110,7 +110,7 @@ export function Shell({ children }: { children: ReactNode }) {
         {error ? <p className="text-base text-error">{t('saveError')}</p> : null}
         {!snap && !error ? <p className="text-base text-on-surface-variant">{t('loading')}</p> : children}
       </main>
-      <nav className="no-print fixed bottom-0 z-20 mx-auto flex w-full max-w-[430px] border-t border-outline-variant bg-background" aria-label="Cuando cuidas, te descuidas">
+      <nav className="no-print fixed bottom-0 z-20 mx-auto flex w-full max-w-[430px] border-t border-outline-variant bg-background" aria-label="EntreManos">
         {TABS.map((tab) => {
           const active = tab.href === '/' ? pathname === '/' : pathname.startsWith(tab.href)
           const Icon = tab.icon

@@ -18,7 +18,7 @@ export function SiteFooter() {
             <a href="#inicio" className="flex w-fit items-center gap-2.5">
               <LogoMark inverted />
               <span className="font-display text-headline-sm font-bold tracking-[-0.02em]">
-                Cuando cuidas, te descuidas
+                EntreManos
               </span>
             </a>
             <p className="mt-3 max-w-[20rem] text-body-sm text-inverse-on-surface/65">

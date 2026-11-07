@@ -1,6 +1,6 @@
 # apps/landing
 
-Sitio público de Cuando cuidas, te descuidas. Explica la ruta del tiempo, la calculadora de
+Sitio público de EntreManos. Explica la ruta del tiempo, la calculadora de
 Puntos Cívicos, las garantías, la afiliación de comercios y la FAQ.
 
 ## Comandos

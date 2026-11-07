@@ -20,7 +20,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         <div className="flex items-center justify-between px-gutter py-sm">
           <div className="flex flex-col">
             <span className="font-display text-label-lg font-semibold text-on-surface">
-              Cuando cuidas, te descuidas Comercios
+              EntreManos Comercios
             </span>
             <span className="text-label-sm text-on-surface-variant">
               Terminal de cobro y liquidación

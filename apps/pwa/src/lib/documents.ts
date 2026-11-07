@@ -43,7 +43,7 @@ export function certificateQrText(cert: Pick<CertificateView, 'folio' | 'courseI
 
 export function receiptPdf(view: AttestationView, nodeName: string): Uint8Array {
   const lines = [
-    'Cuando cuidas, te descuidas',
+    'EntreManos',
     'Comprobante civico',
     `Folio: ${view.folio ?? 'pendiente'}`,
     `Puntos Civicos: ${view.points ?? 0}`,
@@ -60,7 +60,7 @@ export function receiptPdf(view: AttestationView, nodeName: string): Uint8Array 
 
 export function certificatePdf(cert: CertificateView): Uint8Array {
   return simplePdf([
-    'Cuando cuidas, te descuidas',
+    'EntreManos',
     'Certificado de formacion',
     cert.courseName,
     `Folio: ${cert.folio}`,
@@ -73,7 +73,7 @@ export function certificatePdf(cert: CertificateView): Uint8Array {
 
 export function voucherPdf(voucher: StoredVoucher, issuer: string): Uint8Array {
   return simplePdf([
-    'Cuando cuidas, te descuidas',
+    'EntreManos',
     'Vale civico',
     voucher.benefitName,
     `Folio: ${voucher.folio}`,

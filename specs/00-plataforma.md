@@ -1,4 +1,4 @@
-# 00 — Cuando cuidas, te descuidas: plataforma
+# 00 — EntreManos: plataforma
 
 La spec manda. Lo que no está en `specs/` no se construye.
 
@@ -88,6 +88,9 @@ atestación de origen con el ledger municipal pero no el libro mayor.
 `packages/domain` es el contrato compartido (tipos + matemática de puntos y
 SROI). `packages/design-tokens` es el tema Tailwind v4 sacado de
 `design/DESIGN.md`. Referencia visual: `design/stitch/*/code.html` + `screen.png`.
+
+Mapa de conexiones entre superficies: `docs/assets/arch-light.svg` /
+`arch-dark.svg` (también embebido en el README).
 
 ## Definición de "hecho" por fase
 

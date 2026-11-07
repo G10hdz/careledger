@@ -1,4 +1,4 @@
-/** Cuando cuidas, te descuidas — tipos del dominio cívico. specs/00 y 02. */
+/** EntreManos — tipos del dominio cívico. specs/00 y 02. */
 
 export type BeneficiaryCategory =
   | 'familiar_dependiente'

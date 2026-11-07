@@ -4,7 +4,7 @@ Estado: aceptado · 2026-11-07
 
 ## Contexto
 
-Cuando cuidas, te descuidas necesita 4 superficies (PWA cuidadora, panel de gobierno, terminal
+EntreManos necesita 4 superficies (PWA cuidadora, panel de gobierno, terminal
 de comercios, landing pública) desarrolladas en paralelo por agentes
 independientes en worktrees, sin que se pisen archivos. La referencia visual
 viene de un export de Google Stitch (HTML + Tailwind CDN + Material Symbols).
