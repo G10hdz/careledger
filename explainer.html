@@ -87,6 +87,8 @@
       las valida con un oráculo vecinal de 3 firmas y las convierte en
       <strong>Puntos Cívicos</strong> canjeables por luz, transporte, horas de
       relevo y comercios del barrio — respaldados por presupuesto municipal.
+      Además, conecta a las familias con proveedores de cuidado por zona y
+      presupuesto, y forma a las cuidadoras con certificados.
     </p>
   </header>
 
@@ -156,16 +158,23 @@
   </section>
 
   <section>
-    <h2>Las 4 superficies del producto (y del repo)</h2>
+    <h2>Las 5 superficies del producto (y del repo)</h2>
     <p style="color:var(--muted); margin-bottom:1rem">Monorepo con un
     territorio por app: cada agente trabaja en su propio worktree sin pisar a
     otro. Las specs de <code>specs/</code> son la fuente de verdad.</p>
     <div class="grid cols-2">
+      <div class="card"><span class="tag blue">apps/servicios</span>
+        <h3>Marketplace de servicios</h3>
+        <ul class="tight"><li>Proveedores por zona y presupuesto familiar</li>
+        <li>Médicos, terapeutas, fisio, enfermeras, transporte a citas</li>
+        <li>Oferta pública y privada distinguibles</li>
+        <li>Solicitud sin datos médicos: necesidad + zona + horario</li></ul></div>
       <div class="card"><span class="tag">apps/pwa</span>
         <h3>PWA de la cuidadora</h3>
         <ul class="tight"><li>Registro offline &lt;60s, firma Ed25519 local</li>
         <li>Autocuidado como categoría propia</li>
         <li>Billetera + catálogo + vales QR offline</li>
+        <li>Formación y certificados (folio verificable)</li>
         <li>48px táctil, WCAG AA, ES/NAH/EN</li></ul></div>
       <div class="card"><span class="tag blue">apps/gobierno</span>
         <h3>Panel de gobierno</h3>
@@ -223,7 +232,7 @@
     <h2>Mapa del repo</h2>
     <table>
       <tr><th>Ruta</th><th>Qué vive ahí</th></tr>
-      <tr><td><code>specs/00–06</code></td><td>La fuente de verdad: plataforma, PWA, oráculo, billetera, gobierno, comercios, landing + roadmap</td></tr>
+      <tr><td><code>specs/00–08</code></td><td>La fuente de verdad: plataforma, PWA, oráculo, billetera, gobierno, comercios, landing, marketplace, formación + roadmap</td></tr>
       <tr><td><code>design/</code></td><td>DESIGN.md (sistema Civic Care &amp; Human Dignity) + <code>stitch/</code> con las pantallas exportadas de referencia</td></tr>
       <tr><td><code>packages/domain</code></td><td>Contrato compartido: tipos, emisión de puntos, consenso, SROI, catálogo — con tests dorados</td></tr>
       <tr><td><code>packages/design-tokens</code></td><td>Tema Tailwind v4 (colores, tipografía, radios, elevación)</td></tr>

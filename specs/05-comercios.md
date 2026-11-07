@@ -1,7 +1,9 @@
 # 05 — Comercios aliados (`apps/comercios`)
 
 Terminal para comercios del barrio que aceptan vales de puntos y liquidan en
-dinero real. Referencia: `design/stitch/infograf_a_c_mo_tu_tiempo_se_convierte_en_beneficios/`
+dinero real. Tipos de comercio esperados (documento fuente): panaderías,
+fruterías, farmacias, cooperativas, tiendas de abarrotes, estéticas y
+espacios deportivos. Referencia: `design/stitch/infograf_a_c_mo_tu_tiempo_se_convierte_en_beneficios/`
 (sección "Comercio y Economía Circular") y el pedido pendiente en Stitch:
 "flujo dedicado para Comercios Locales (terminal móvil de cobro de puntos y
 liquidación SPEI)".

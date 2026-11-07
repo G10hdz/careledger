@@ -4,9 +4,18 @@ La spec manda. Lo que no está en `specs/` no se construye.
 
 ## Qué es
 
-Infraestructura cívica que certifica las horas de cuidado informal y las convierte
-en **Puntos Cívicos** canjeables por beneficios concretos: subsidios de luz,
-transporte público, horas de relevo certificado y apoyos de comercios locales.
+Plataforma mobile web que **visibiliza la economía del cuidado e incentiva a
+quienes cuidan**. Dos brazos:
+
+1. **Puntos Cívicos**: certifica las horas de cuidado informal y las convierte
+   en vales canjeables por beneficios concretos: subsidios de luz, agua,
+   transporte (público y especializado a citas médicas), guarderías, horas de
+   relevo certificado y comercios del barrio.
+2. **Marketplace de servicios**: conecta a las familias con proveedores de
+   cuidado por zona y presupuesto — médicos, terapeutas, fisioterapeutas,
+   enfermeras — mezclando oferta privada y servicios públicos. Además, la
+   cuidadora accede a formación profesional y alfabetización digital con
+   certificados.
 
 Tesis del documento fuente (`docs/fuente-cuando-cuidas-te-descuidas.md`):
 "cuando cuidas, te descuidas". El 99% de la HealthTech mira al paciente; esta
@@ -26,8 +35,10 @@ doble entrada, respaldado por partida presupuestaria.
 | Beneficiario | Persona cuidada: familiar dependiente, vecino adulto mayor, infancia comunitaria. | Solo atestiguar; sus datos médicos nunca se suben. |
 | Veedor comunitario | Vecina acreditada o promotora de salud del nodo barrial. | Confirmar jornadas con un toque; sin papeleo. |
 | Familiar ausente | Pariente que no ayuda físicamente pero tiene dinero. | Fondear la cuenta de la cuidadora / mandar propinas. |
-| Comercio aliado | Panadería, farmacia, frutería, cooperativa del barrio. | Cobrar vales con QR/folio y liquidar por SPEI en 24h, 0% comisión. |
+| Comercio aliado | Panadería, farmacia, frutería, cooperativa, estética, gimnasio/deportivo, tienda del barrio. | Cobrar vales con QR/folio y liquidar por SPEI en 24h, 0% comisión. |
 | Funcionario municipal | Secretaría de Bienestar / alcaldía. | SROI auditable, simulador actuarial, libro mayor trazable. |
+| Familia que busca | Núcleo que necesita apoyo profesional para su mayor/enfermo. | Encontrar proveedores por zona y presupuesto, incluida oferta pública. |
+| Proveedor de servicios | Médico, terapeuta, fisioterapeuta, enfermera, transporte especializado. | Publicar oferta por zona, recibir solicitudes claras, cobrar. |
 
 ## Flujo de valor (4 fases)
 
@@ -63,6 +74,8 @@ obligatorio en el modelo de puntos, no opcional.
 | `04-panel-gobierno.md` | `apps/gobierno` | SROI, simulador actuarial, libro mayor |
 | `05-comercios.md` | `apps/comercios` | Afiliación, terminal de cobro, liquidación SPEI |
 | `06-landing.md` | `apps/landing` | Narrativa pública, matriz de canje, FAQ |
+| `07-marketplace-servicios.md` | `apps/servicios` | Directorio por zona, presupuesto, oferta pública+privada |
+| `08-formacion.md` | `apps/pwa` (sección) | Cursos, progreso, certificados con folio |
 
 `packages/domain` es el contrato compartido (tipos + matemática de puntos y
 SROI). `packages/design-tokens` es el tema Tailwind v4 sacado de

@@ -119,3 +119,9 @@ Financiamiento (Las Propinas): Habilita una función para que la familia extendi
 
 "Empezamos gestionando propinas y descuentos comunitarios. Pero en 5 años, nuestra base de datos sobre la fatiga del cuidador será el estándar predictivo para aseguradoras y hospitales. No estamos diseñando una app de caridad; estamos construyendo la infraestructura financiera y de datos para sostener la economía del cuidado. Porque sostener al cuidador es la inversión preventiva más rentable que existe."
 
+Problema: Visibilizar la economía del cuidado y ofrecer incentivos a las personas cuidadoras.
+
+Crea una plataforma mobile web que conecta proveedores de servicios de cuidado con familias, de acuerdo a tu zona podrás acceder a los servicios públicos y privados que se ofrecen, como médicos, terapeutas, fisioterapeutas, enfermeras, los servicios se ofrecen de acuerdo al presupuesto familiar pero también tendrán acceso a la oferta de servicios públicos. Además si eres persona cuidadora podrás registrar las tareas que registras y obtener puntos en distintos comercios afiliados (accediendo a comercios en tu colonia como estéticas, deportivos, tiendas, diversos servicios) descuentos en servicios (luz, agua, transporte, guarderías, transporte especializado para adultos mayores o discapacitados haca una cita médica). Además los cuidadores también podrían acceder a formación profesional y alfabetización digital con  cursos y obtener  certificados.  
+Hazme todas las preguntas necesarias para entender el problema que quiero solucionar y definir qué debe tener mi landing.  
+Haz una revisión adversarial
+

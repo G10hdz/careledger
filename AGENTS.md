@@ -17,11 +17,12 @@ Cada cambio entra por PR a `main`. Se empuja la rama al terminar el commit.
 
 | Agente | Dueño de | Spec |
 | --- | --- | --- |
-| pwa | `apps/pwa` | `01`, `03` |
+| pwa | `apps/pwa` | `01`, `03`, `08` |
 | oráculo | `packages/domain` | `02` |
 | gobierno | `apps/gobierno` | `04` |
 | comercios | `apps/comercios` | `05` |
 | landing | `apps/landing` | `06` |
+| servicios | `apps/servicios` | `07` |
 
 `packages/domain` y `packages/design-tokens` son contratos compartidos: se
 extienden, no se reescriben. Cambio de fórmulas (puntos, SROI) → PR propio con

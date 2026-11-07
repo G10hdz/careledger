@@ -32,6 +32,14 @@ uno en su worktree, sin tocar los archivos de otro.
 - `apps/comercios`: afiliación + terminal de cobro + liquidación SPEI simulada.
 - Propinas familiares en billetera (REQ-BIL-020..023).
 
+## Fase 4.5 — Marketplace y formación (doc v2)
+
+- `apps/servicios`: directorio por zona + filtro de presupuesto + solicitudes
+  (REQ-SER-001..007). El canje de "relevo certificado" de la billetera aterriza
+  aquí como solicitud de servicio.
+- `apps/pwa`: sección Formación (REQ-FOR-001..005) — puede hacerla el agente
+  de `pwa` o uno extra dentro del mismo worktree, serializado.
+
 ## Fase 5 — Piloto
 
 - Landing con FAQ completo + folleto PDF.
