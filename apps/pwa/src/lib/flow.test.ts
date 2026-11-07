@@ -7,6 +7,7 @@ import { COURSES, courseById, coursesFor } from './courses'
 import { allCopy } from './copy'
 import { certificatePdf, pdfIncludes, receiptPdf, voucherQrText } from './documents'
 import { DEMO_LEDGER_PUBLIC_JWK } from '../../fixtures/demoLedger'
+import { CareDB } from './db'
 import { createDeviceKeys, verifyText } from './keys'
 import { createSimulatedOracle } from './oracle'
 import { assertCanonical, canonicalFromSession, publicSyncRecord } from './payload'
@@ -149,7 +150,23 @@ describe('flujo crítico', () => {
       publicKeys: { cuidadora: keys.publicJwk },
       status: 'pendiente',
     })
-    expect(JSON.stringify(body)).not.toContain(String(keys.privateJwk.d))
+    expect(keys.privateKey.extractable).toBe(false)
+    expect(JSON.stringify(body)).not.toContain('"d"')
+  })
+
+  it('la llave privada del dispositivo no es extraíble y firma tras guardarse', async () => {
+    const dbName = `t-${crypto.randomUUID()}`
+    const { care } = harness({ dbName })
+    const { done } = await care.submit(cuidado('2026-11-07T15:00:00.000Z'))
+    await done
+    const raw = await new CareDB(dbName).profile.get('local')
+    expect(raw).toBeDefined()
+    expect(raw).not.toHaveProperty('privateJwk')
+    const key = (raw as unknown as { privateKey: CryptoKey }).privateKey
+    expect(key.extractable).toBe(false)
+    await expect(crypto.subtle.exportKey('jwk', key)).rejects.toThrow()
+    const snap = await care.snapshot()
+    expect(snap.attestations[0]?.status).toBe('validada')
   })
 
   it('sin red deja el registro pendiente y al volver lo suelta', async () => {
