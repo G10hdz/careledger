@@ -1,0 +1,33 @@
+{
+  "name": "@careledger/pwa",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev -p $(cat ../../.wt-port)",
+    "build": "next build",
+    "start": "next start -p $(cat ../../.wt-port)",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@careledger/design-tokens": "workspace:*",
+    "@careledger/domain": "workspace:*",
+    "dexie": "^4.0.11",
+    "next": "16.4.3",
+    "qrcode": "^1.5.4",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^22.10.2",
+    "@types/qrcode": "^1.5.5",
+    "@types/react": "^19.0.2",
+    "@types/react-dom": "^19.0.2",
+    "fake-indexeddb": "^6.0.1",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.9"
+  }
+}
