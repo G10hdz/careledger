@@ -3,12 +3,17 @@ import { colaSync, marcarSincronizado } from './cobro'
 
 export const SPEI_ETA_HORAS = 24
 
-/** YYYY-MM-DD en hora local a partir de un ISO. */
+/** El día de negocio es CDMX sin importar la zona del servidor/navegador. */
+const fmtDia = new Intl.DateTimeFormat('en-CA', {
+  timeZone: 'America/Mexico_City',
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit',
+})
+
+/** YYYY-MM-DD del día de negocio (America/Mexico_City) a partir de un ISO. */
 export function dateKey(iso: string): string {
-  const d = new Date(iso)
-  const mes = String(d.getMonth() + 1).padStart(2, '0')
-  const dia = String(d.getDate()).padStart(2, '0')
-  return `${d.getFullYear()}-${mes}-${dia}`
+  return fmtDia.format(new Date(iso))
 }
 
 export function cobrosDelDia(store: ComercioStore, key: string) {
