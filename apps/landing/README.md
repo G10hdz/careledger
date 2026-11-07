@@ -1,7 +1,9 @@
 # apps/landing
 
-Sitio público de EntreManos. Explica la ruta del tiempo, la calculadora de
-Puntos Cívicos, las garantías, la afiliación de comercios y la FAQ.
+Sitio público de EntreManos. La raíz `/` redirige al banco de tiempo en
+`public/cuidared/` (la historia del pitch). La página de Puntos Cívicos vive en
+`/puntos-civicos` como visión: ruta del tiempo, calculadora, garantías,
+afiliación de comercios y FAQ.
 
 ## Comandos
 
@@ -16,7 +18,8 @@ El puerto de desarrollo sale de `.wt-port` del worktree.
 
 ## Estructura
 
-- `src/app/page.tsx`: composición de las secciones.
+- `src/app/puntos-civicos/page.tsx`: composición de las secciones de Puntos Cívicos.
+- `next.config.ts`: redirect de `/` a `/cuidared`.
 - `src/components/`: hero, ruta, calculadora, niveles, garantías, audiencias,
   comercios, FAQ y contacto.
 - `src/lib/estimate.ts`: estimación semanal y matriz de niveles. Usa
