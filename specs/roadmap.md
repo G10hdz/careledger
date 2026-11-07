@@ -4,25 +4,36 @@ Orden de ataque. Cada fase sale por PRs chicos (<400 líneas) a `main`.
 Territorios independientes: varios agentes pueden avanzar en paralelo, cada
 uno en su worktree, sin tocar los archivos de otro.
 
-## Build for Her (cierre 21:00, 2026-11-07) — entregado
+## Build for Her (cierre 21:00, 2026-11-07)
 
-Demo de punta a punta funcional: la cuidadora registra en la PWA (<60 s,
-offline), el oráculo valida 3 de 3 y emite Puntos Cívicos, la cuidadora
-canjea un vale QR y la terminal de comercios lo cobra con verificación
-Ed25519. El panel de gobierno muestra horas certificadas y SROI.
+Código congelado. Lo que queda es el pitch, guiado por
+`specs/10-pitch-y-evaluacion.md` (rúbrica oficial: impacto 30%, problema y
+políticas 25%, solución 20%, storytelling 15%, IA responsable 10%).
 
-Entregado en main (CI verde, 0 PRs abiertos):
+Entregado en main (CI verde):
 
-- Vale PWA cobrable en comercios: contrato QR v1 Ed25519, PRs #13 y #14.
-  Documentado en `docs/adr/0002-firma-vales-ed25519.md`.
+- Demo de punta a punta: la cuidadora registra en la PWA (<60 s, offline), el
+  oráculo valida 3 de 3 y emite Puntos Cívicos, canjea un vale QR y la
+  terminal de comercios lo cobra. PRs #13 y #14; el vale emitido en vivo
+  quedó cobrable con el PR #18 (antes salía `firma_invalida`). ADR 0002.
 - Panel de gobierno con simulador y libro mayor: PR #11.
-- Marketplace de servicios con ciclo completo y tarifa uniforme: PR #1.
-  Documentado en `docs/adr/0003-tarifa-uniforme-marketplace.md`.
-- URLs públicas del demo en GitHub Pages: explainer y CuidaRed.
+- Marketplace de servicios con tarifa uniforme: PR #1, ADR 0003.
+- Spike antifraude: `docs/spike-verificacion-antifraude.md` (PR #15).
+- URLs públicas en GitHub Pages: explainer y CuidaRed.
 
-Pendiente externo (no es código): la URL de la landing en Vercel existe pero
-el proyecto trae Deployment Protection activada; hay que apagarla en el
-dashboard del proyecto para que el jurado entre.
+Pendiente para el pitch:
+
+| Pendiente | Spec | Estado |
+| --- | --- | --- |
+| Elegir la economía principal: Puntos Cívicos o banco de tiempo (EntreManos) | REQ-EVA-019 | sin decidir |
+| 2 cifras oficiales con fuente (INEGI ENASIC, Cuenta Satélite, ENUT) | REQ-EVA-010 | pendiente |
+| Programas existentes y su brecha, montos verificados | REQ-EVA-012 | pendiente |
+| Métricas del piloto (horas, autocuidado, escala Zarit) | REQ-EVA-003 | pendiente |
+| Slide de IA responsable; quitar del borrador la venta de datos de fatiga a aseguradoras | REQ-EVA-040..043 | pendiente |
+| Video de respaldo del demo | REQ-EVA-021 | pendiente |
+| Banco de 8 preguntas del jurado | REQ-EVA-032 | pendiente |
+| Landing en Vercel accesible sin Deployment Protection | REQ-EVA-020 | por verificar tras `b6958d0` |
+| Piloto Iztapalapa: el documento fuente dice 20 transacciones a la semana, spec 09 dice al día | 09 | por aclarar |
 
 Datos del piloto semilla (−53% caídas, 94% satisfacción) y SROI 3.42x se
 presentan como proyección metodológica, no como resultado medido.
