@@ -151,7 +151,23 @@ describe('flujo crítico', () => {
       publicKeys: { cuidadora: keys.publicJwk },
       status: 'pendiente',
     })
-    expect(JSON.stringify(body)).not.toContain(String(keys.privateJwk.d))
+    expect(keys.privateKey.extractable).toBe(false)
+    expect(JSON.stringify(body)).not.toContain('"d"')
+  })
+
+  it('la llave privada del dispositivo no es extraíble y firma tras guardarse', async () => {
+    const dbName = `t-${crypto.randomUUID()}`
+    const { care } = harness({ dbName })
+    const { done } = await care.submit(cuidado('2026-11-07T15:00:00.000Z'))
+    await done
+    const raw = await new CareDB(dbName).profile.get('local')
+    expect(raw).toBeDefined()
+    expect(raw).not.toHaveProperty('privateJwk')
+    const key = (raw as unknown as { privateKey: CryptoKey }).privateKey
+    expect(key.extractable).toBe(false)
+    await expect(crypto.subtle.exportKey('jwk', key)).rejects.toThrow()
+    const snap = await care.snapshot()
+    expect(snap.attestations[0]?.status).toBe('validada')
   })
 
   it('migra la llave privada v1 a CryptoKey no extraíble', async () => {
