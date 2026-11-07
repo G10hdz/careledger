@@ -19,21 +19,25 @@ Entregado en main (CI verde):
 - Panel de gobierno con simulador y libro mayor: PR #11.
 - Marketplace de servicios con tarifa uniforme: PR #1, ADR 0003.
 - Spike antifraude: `docs/spike-verificacion-antifraude.md` (PR #15).
-- URLs públicas en GitHub Pages: explainer y CuidaRed.
+- Landing EntreManos del equipo como demo del banco de tiempo en `/cuidared`.
 
 Pendiente para el pitch:
 
 | Pendiente | Spec | Estado |
 | --- | --- | --- |
-| Elegir la economía principal: Puntos Cívicos o banco de tiempo (EntreManos) | REQ-EVA-019 | sin decidir |
-| 2 cifras oficiales con fuente (INEGI ENASIC, Cuenta Satélite, ENUT) | REQ-EVA-010 | pendiente |
-| Programas existentes y su brecha, montos verificados | REQ-EVA-012 | pendiente |
-| Métricas del piloto (horas, autocuidado, escala Zarit) | REQ-EVA-003 | pendiente |
-| Slide de IA responsable; quitar del borrador la venta de datos de fatiga a aseguradoras | REQ-EVA-040..043 | pendiente |
+| Economía principal | REQ-EVA-019 | decidido: EntreManos (banco de tiempo, doc v4); demo en `/cuidared` |
+| Cifras oficiales con fuente y programas con su brecha | REQ-EVA-010, 012 | hecho: `docs/pitch/problema-y-politicas.md` |
+| Puente de la causa raíz al banco de tiempo (pobreza de tiempo) | REQ-EVA-011 | pendiente |
+| Métrica de éxito del piloto (horas, carga Zarit) | REQ-EVA-003 | pendiente; el doc v4 también la marca |
+| Slide de IA responsable y banco de preguntas | REQ-EVA-032, 040..042 | hecho: `docs/pitch/ia-y-preguntas.md`; falta el riesgo propio de EntreManos (identidad) |
+| Venta de datos de fatiga en doc v4, spec 00 y pitch-borrador | REQ-EVA-043 | decisión del equipo |
+| Reescribir `docs/pitch-borrador.md` para EntreManos | REQ-EVA-030 | pendiente |
+| Confirmación de horas: familia o tercero contra doble código | REQ-BT-003 | decisión del equipo |
+| Volumen del piloto: 20 al día (doc v4) o por semana | 09 | decisión del equipo |
 | Video de respaldo del demo | REQ-EVA-021 | pendiente |
-| Banco de 8 preguntas del jurado | REQ-EVA-032 | pendiente |
-| Landing en Vercel accesible sin Deployment Protection | REQ-EVA-020 | por verificar tras `b6958d0` |
-| Piloto Iztapalapa: el documento fuente dice 20 transacciones a la semana, spec 09 dice al día | 09 | por aclarar |
+| Landing en Vercel accesible sin Deployment Protection | REQ-EVA-020 | por verificar |
+
+Detalle y puntaje estimado (~68, meta ~80): `docs/auditoria-rubrica.md`.
 
 Datos del piloto semilla (−53% caídas, 94% satisfacción) y SROI 3.42x se
 presentan como proyección metodológica, no como resultado medido.
@@ -76,7 +80,7 @@ antifraude (`docs/spike-verificacion-antifraude.md`). Resta:
   GitHub Pages (`docs/cuidared/`) y hay una primera versión en
   `apps/cuidared`. La integración completa al monorepo sigue la spec `09`:
   paridad hora-hora, saldo −5h, doble confirmación QR, topes 8h/día y
-  20h/mes por par de cuentas, piloto Iztapalapa ~20 tx/día.
+  20h/mes por par de cuentas; volumen del piloto por decidir (doc v4: ~20 al día).
 - Verificación foto antes/después on-device con solo hash a BD en México
   (REQ-ORA-024): decidir con base en el spike.
 - Canal WhatsApp: evaluar Capsule (partner de Meta, free tier) contra Twilio.
