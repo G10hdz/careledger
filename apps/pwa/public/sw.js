@@ -1,4 +1,4 @@
-/* Cuando cuidas, te descuidas: red primero, caché si no hay conexión.
+/* EntreManos: red primero, caché si no hay conexión.
    Así el registro y los vales siguen abriendo después de una visita. */
 const CACHE = 'careledger-shell-v1'
 const SHELL = ['/', '/registrar', '/autocuidado', '/impacto', '/billetera', '/formacion', '/perfil', '/manifest.webmanifest']

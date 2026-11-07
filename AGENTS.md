@@ -31,7 +31,7 @@ solo la toca quien integra.
 
 ## Qué se construye
 
-Cuando cuidas, te descuidas: infra cívica que certifica horas de cuidado informal y las vuelve
+EntreManos: infra cívica que certifica horas de cuidado informal y las vuelve
 Puntos Cívicos canjeables (luz, transporte, relevo). PWA mobile-first,
 offline-first. El dispositivo objetivo es un Android de entrada con datos
 intermitentes. Si una pantalla exige muchos clics, está mal: la cuidadora

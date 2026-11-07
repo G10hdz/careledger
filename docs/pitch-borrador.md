@@ -1,4 +1,4 @@
-# Borrador de pitch — Cuando cuidas, te descuidas
+# Borrador de pitch — EntreManos (Cuando cuidas, te descuidas)
 
 Fuente: documento v4 (`docs/fuente-cuando-cuidas-te-descuidas-v3.md`).
 Narrativa en 5 secciones para la presentación.

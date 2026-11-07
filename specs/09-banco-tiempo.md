@@ -52,9 +52,9 @@ cualquier localidad.
 
 ## Nombre
 
-El doc v4 propone **EntreManos** como nombre de la app del banco de tiempo.
-`CuidaRed` es el nombre de trabajo del prototipo; la decisión final queda
-abierta — el programa madre es "Cuando cuidas, te descuidas".
+El doc v4 propone **EntreManos** como nombre de la app, adoptado como nombre
+de producto (ver spec 00). `CuidaRed` queda como nombre interno del prototipo
+del banco de tiempo; el programa madre es "Cuando cuidas, te descuidas".
 
 ## Estado del prototipo
 
