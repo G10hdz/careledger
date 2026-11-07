@@ -14,7 +14,10 @@ export const DEMO_LEDGER_PUBLIC_JWK: JsonWebKey = {
   x: '7BGxaJvxMCV6V6lGospqiUKRT8rqR2dulyQzuLrPQ78',
 }
 
-/** Solo para generar vales de demo (scripts/E2E). No entra en la app. */
+/**
+ * Simula al ledger emisor dentro del demo (app.ts, redeem). En producción
+ * la firma la hace el servidor y esta llave no existe en el cliente.
+ */
 export const DEMO_LEDGER_PRIVATE_JWK: JsonWebKey = {
   kty: 'OKP',
   crv: 'Ed25519',

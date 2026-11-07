@@ -41,6 +41,7 @@ import type { Lang } from './langs'
 import { assignVeedor, createSimulatedOracle, type ExternalSignatures } from './oracle'
 import { gradeQuiz } from './quizzes'
 import { assertCanonical, canonicalFromSession, semanticHashInput } from './payload'
+import { DEMO_LEDGER_PRIVATE_JWK } from '../../fixtures/demoLedger'
 
 export class CareError extends Error {
   constructor(public code: 'saldo' | 'minutos' | 'apoyo' | 'beneficio' | 'modulo') {
@@ -581,8 +582,10 @@ export function createCareApp(opts: CareAppOptions = {}) {
         const payloadHash = await Dexie.waitFor(sha256Hex(payload))
         const ledgerSignature = await Dexie.waitFor(signText(profile.privateJwk, payload))
         // Firma separada para el QR: payload compacto sin caregiverId
-        // (REQ-PWA-011). El terminal del comercio la verifica con la
-        // clave pública del llavero municipal distribuida en su app.
+        // (REQ-PWA-011). La firma el ledger, no el teléfono: el terminal
+        // del comercio verifica contra el llavero municipal. En el demo el
+        // ledger está simulado en el cliente, igual que el oráculo; en
+        // producción esta firma la pone el servidor al emitir el vale.
         const qrPayload = stableStringify({
           benefitId: benefit.id,
           costPoints: benefit.costPoints,
@@ -590,7 +593,7 @@ export function createCareApp(opts: CareAppOptions = {}) {
           issuedAt,
           validUntil,
         })
-        const qrSignature = await Dexie.waitFor(signText(profile.privateJwk, qrPayload))
+        const qrSignature = await Dexie.waitFor(signText(DEMO_LEDGER_PRIVATE_JWK, qrPayload))
         const voucher: StoredVoucher = {
           folio,
           benefitId: benefit.id,
