@@ -36,7 +36,7 @@ apps/             pwa, gobierno, comercios, landing, servicios (por spec)
 packages/
   domain/         tipos + puntos + consenso + SROI + catálogo (contrato)
   design-tokens/  tema Tailwind v4 "Civic Care & Human Dignity"
-explainer.html    explicación del proyecto en un solo archivo
+docs/explainer.html   explicación del proyecto en un solo archivo
 ```
 
 ## Lo mínimo
@@ -49,7 +49,8 @@ pnpm -r test        # tests del dominio (vitest)
 pnpm -r typecheck   # tsc estricto
 ```
 
-Abrir `explainer.html` en el navegador para el panorama completo.
+Abrir `docs/explainer.html` en el navegador para el panorama completo, o
+https://g10hdz.github.io/careledger/ (GitHub Pages).
 
 ## Desarrollo en paralelo
 

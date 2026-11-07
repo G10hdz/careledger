@@ -57,6 +57,11 @@ obligatorio en el modelo de puntos, no opcional. Y por decisión de diseño
 (nota Granola 2026-11-07): **también por completar cursos** — la formación es
 la tercera vía de acumulación (tabla `COURSE_POINTS` en `packages/domain`).
 
+Doc v3 agrega una segunda economía en paralelo: el **banco de tiempo**
+(spec `09`) — trueque hora por hora entre la comunidad, donde la cuidadora
+gasta su saldo en relevo directo o delegación logística. Comparte la
+atestación de origen con el ledger municipal pero no el libro mayor.
+
 ## Modelo de capital
 
 - Fondo Municipal de Cuidados (partida presupuestaria) respalda cada punto.

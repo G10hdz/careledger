@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CuidaRed — Banco de tiempo para cuidados</title>
+<meta name="description" content="MVP de banco de tiempo para cuidados en CDMX: registra horas de cuidado, gana créditos y pide apoyo de la red." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          cream: '#FBF7F2',
+          ink: '#1F2A24',
+          terra: '#C05A3E',
+          teal: '#2F6B5A',
+          gold: '#E9B44C',
+          sand: '#F1E7DA'
+        },
+        fontFamily: {
+          display: ['Fraunces', 'Georgia', 'serif'],
+          sans: ['Inter', 'system-ui', 'sans-serif']
+        }
+      }
+    }
+  }
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: Inter, system-ui, sans-serif; background: #FBF7F2; color: #1F2A24; -webkit-font-smoothing: antialiased; }
+  .font-display { font-family: Fraunces, Georgia, serif; }
+  .view { display: none; }
+  .view.active { display: block; animation: fade .3s ease; }
+  @keyframes fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  .nav-btn.active { background: #1F2A24; color: #FBF7F2; }
+  .nav-btn.active .nav-ico { color: #E9B44C; }
+  .chip.active { background: #2F6B5A; color: #fff; border-color: #2F6B5A; }
+  input:focus, select:focus, textarea:focus { outline: 2px solid #2F6B5A; outline-offset: 2px; }
+  ::selection { background: #E9B44C; color: #1F2A24; }
+</style>
+</head>
+<body class="min-h-screen">
+
+<!-- ============ SIDEBAR (desktop) ============ -->
+<aside class="fixed inset-y-0 left-0 z-30 hidden w-64 flex-col border-r border-black/5 bg-white/70 px-5 py-6 backdrop-blur md:flex">
+  <div class="flex items-center gap-3">
+    <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-teal text-cream">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-6 w-6" aria-hidden="true">
+        <path d="M12 20s-7-4.35-7-8.5A3.9 3.9 0 0 1 12 8a3.9 3.9 0 0 1 7 3.5C19 15.65 12 20 12 20Z" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </div>
+    <div>
+      <p class="font-display text-xl leading-none">CuidaRed</p>
+      <p class="mt-1 text-[11px] uppercase tracking-[0.14em] text-ink/50">Banco de tiempo</p>
+    </div>
+  </div>
+
+  <nav class="mt-9 flex flex-col gap-1.5" aria-label="Navegación principal">
+    <button class="nav-btn active flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition hover:bg-sand/70" data-go="inicio">
+      <svg class="nav-ico h-5 w-5 text-ink/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 9.5V20h14V9.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Inicio
+    </button>
+    <button class="nav-btn flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition hover:bg-sand/70" data-go="registrar">
+      <svg class="nav-ico h-5 w-5 text-ink/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 8v8M8 12h8" stroke-linecap="round"/></svg>
+      Registrar horas
+    </button>
+    <button class="nav-btn flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition hover:bg-sand/70" data-go="pedir">
+      <svg class="nav-ico h-5 w-5 text-ink/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 20s-7-4.35-7-8.5A3.9 3.9 0 0 1 12 8a3.9 3.9 0 0 1 7 3.5C19 15.65 12 20 12 20Z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Pedir cuidado
+    </button>
+    <button class="nav-btn flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition hover:bg-sand/70" data-go="mitiempo">
+      <svg class="nav-ico h-5 w-5 text-ink/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Mi tiempo
+    </button>
+    <button class="nav-btn flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition hover:bg-sand/70" data-go="impacto">
+      <svg class="nav-ico h-5 w-5 text-ink/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Impacto
+    </button>
+  </nav>
+
+  <div class="mt-auto">
+    <div class="rounded-2xl bg-ink p-4 text-cream">
+      <p class="text-[11px] uppercase tracking-[0.14em] text-cream/60">Tu saldo</p>
+      <p class="mt-1 font-display text-3xl leading-none"><span id="sidebarSaldo">3</span> <span class="text-base font-sans text-cream/70">créditos</span></p>
+      <p class="mt-2 text-[11px] leading-snug text-cream/60">1 crédito = 1 hora de cuidado</p>
+    </div>
+    <button id="resetBtn" class="mt-3 w-full rounded-xl border border-black/10 px-3 py-2 text-xs font-medium text-ink/60 transition hover:bg-sand/70 hover:text-ink">
+      Reiniciar demo
+    </button>
+  </div>
+</aside>
+
+<!-- ============ MAIN ============ -->
+<main class="min-h-screen pb-28 md:pl-64 md:pb-12">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-20 border-b border-black/5 bg-cream/85 px-5 py-3 backdrop-blur md:px-10">
+    <div class="mx-auto flex max-w-5xl items-center justify-between gap-4">
+      <div class="flex items-center gap-3 md:hidden">
+        <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-teal text-cream">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-5 w-5" aria-hidden="true"><path d="M12 20s-7-4.35-7-8.5A3.9 3.9 0 0 1 12 8a3.9 3.9 0 0 1 7 3.5C19 15.65 12 20 12 20Z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <p class="font-display text-lg leading-none">CuidaRed</p>
+      </div>
+      <div class="hidden md:block">
+        <p class="text-sm text-ink/50">Hola de nuevo,</p>
+        <p class="font-display text-xl leading-tight"><span id="greetName">María</span></p>
+      </div>
+      <div class="flex items-center gap-3">
+        <div class="rounded-full border border-teal/20 bg-teal/10 px-3.5 py-1.5 text-sm font-semibold text-teal">
+          <span id="saldoPill">3</span> créditos
+        </div>
+        <div class="flex h-9 w-9 items-center justify-center rounded-full bg-gold/80 font-display text-sm font-semibold text-ink">M</div>
+      </div>
+    </div>
+  </header>
+  <div class="mx-auto max-w-5xl px-5 py-7 md:px-10 md:py-10">
+
+    <!-- ===== INICIO ===== -->
+    <section class="view active" data-view="inicio" aria-labelledby="inicioTitle">
+      <div class="relative overflow-hidden rounded-3xl bg-teal px-6 py-8 text-cream md:px-10 md:py-12">
+        <div class="absolute -right-14 -top-14 h-48 w-48 rounded-full bg-gold/20 blur-2xl" aria-hidden="true"></div>
+        <div class="relative max-w-xl">
+          <p class="text-[11px] uppercase tracking-[0.18em] text-cream/70">Red de cuidados · CDMX</p>
+          <h1 id="inicioTitle" class="mt-3 font-display text-3xl leading-tight md:text-[2.6rem]">
+            Tu cuidado también<br class="hidden md:block" /> cuenta.
+          </h1>
+          <p class="mt-4 text-sm leading-relaxed text-cream/80 md:text-base">
+            Cada hora que cuidas a alguien se convierte en un crédito. Úsalo cuando tú necesites un respiro. Sin dinero de por medio.
+          </p>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <button data-go="registrar" class="rounded-xl bg-cream px-5 py-2.5 text-sm font-semibold text-ink transition hover:bg-white">Registrar horas</button>
+            <button data-go="pedir" class="rounded-xl border border-cream/30 px-5 py-2.5 text-sm font-semibold text-cream transition hover:bg-cream/10">Pedir cuidado</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-6 grid grid-cols-3 gap-3">
+        <div class="rounded-2xl border border-black/5 bg-white p-4 shadow-sm">
+          <p class="text-[11px] uppercase tracking-[0.12em] text-ink/45">Saldo</p>
+          <p class="mt-1 font-display text-2xl leading-none text-teal"><span id="statSaldo">3</span><span class="text-sm font-sans text-ink/40"> h</span></p>
+        </div>
+        <div class="rounded-2xl border border-black/5 bg-white p-4 shadow-sm">
+          <p class="text-[11px] uppercase tracking-[0.12em] text-ink/45">Has cuidado</p>
+          <p class="mt-1 font-display text-2xl leading-none text-terra"><span id="statDadas">4</span><span class="text-sm font-sans text-ink/40"> h</span></p>
+        </div>
+        <div class="rounded-2xl border border-black/5 bg-white p-4 shadow-sm">
+          <p class="text-[11px] uppercase tracking-[0.12em] text-ink/45">Te cuidaron</p>
+          <p class="mt-1 font-display text-2xl leading-none text-ink"><span id="statRecibidas">1</span><span class="text-sm font-sans text-ink/40"> h</span></p>
+        </div>
+      </div>
+
+      <div class="mt-8">
+        <h2 class="font-display text-xl">Cómo funciona</h2>
+        <div class="mt-4 grid gap-3 md:grid-cols-3">
+          <div class="rounded-2xl border border-black/5 bg-white p-5">
+            <div class="flex h-9 w-9 items-center justify-center rounded-full bg-gold/25 font-display text-sm font-semibold text-ink">1</div>
+            <p class="mt-3 font-semibold">Cuida</p>
+            <p class="mt-1 text-sm leading-relaxed text-ink/60">Acompaña a una consulta, cocina, cuida a un niño o da respiro a otra cuidadora.</p>
+          </div>
+          <div class="rounded-2xl border border-black/5 bg-white p-5">
+            <div class="flex h-9 w-9 items-center justify-center rounded-full bg-gold/25 font-display text-sm font-semibold text-ink">2</div>
+            <p class="mt-3 font-semibold">Registra</p>
+            <p class="mt-1 text-sm leading-relaxed text-ink/60">Anota las horas. Se suman a tu saldo como créditos, validados por ambas partes.</p>
+          </div>
+          <div class="rounded-2xl border border-black/5 bg-white p-5">
+            <div class="flex h-9 w-9 items-center justify-center rounded-full bg-gold/25 font-display text-sm font-semibold text-ink">3</div>
+            <p class="mt-3 font-semibold">Recibe</p>
+            <p class="mt-1 text-sm leading-relaxed text-ink/60">Cuando lo necesites, pide cuidado con tus créditos. Alguien de la red te apoya.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-6 rounded-2xl border border-terra/20 bg-terra/5 p-5">
+        <p class="text-[11px] uppercase tracking-[0.14em] text-terra">El problema</p>
+        <p class="mt-2 font-display text-lg leading-snug">
+          8 de cada 10 personas cuidadoras en CDMX no se sienten cuidadas.
+        </p>
+        <p class="mt-2 text-sm leading-relaxed text-ink/60">
+          CuidaRed convierte el cuidado no remunerado en un activo que se puede usar, sin sustituir la política pública que exige la nueva Ley del Sistema de Cuidados.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== REGISTRAR ===== -->
+    <section class="view" data-view="registrar" aria-labelledby="registrarTitle">
+      <div>
+        <h1 id="registrarTitle" class="font-display text-2xl md:text-3xl">Registrar horas de cuidado</h1>
+        <p class="mt-2 text-sm text-ink/60">Anota el cuidado que diste. Cada hora = 1 crédito para cuando tú lo necesites.</p>
+      </div>
+
+      <div class="mt-6 grid gap-5 lg:grid-cols-[1.4fr_1fr]">
+        <form id="careForm" class="rounded-2xl border border-black/5 bg-white p-5 shadow-sm md:p-6" novalidate>
+          <div class="grid gap-4 sm:grid-cols-2">
+            <div class="sm:col-span-2">
+              <label for="servicio" class="text-xs font-semibold uppercase tracking-[0.08em] text-ink/50">Tipo de cuidado</label>
+              <select id="servicio" class="mt-1.5 w-full rounded-xl border border-black/10 bg-cream px-3 py-2.5 text-sm" required>
+                <option value="">Selecciona una opción</option>
+                <option>Acompañamiento</option>
+                <option>Respiro</option>
+                <option>Trámites</option>
+                <option>Cuidado infantil</option>
+                <option>Alimentos</option>
+                <option>Salud</option>
+              </select>
+            </div>
+            <div>
+              <label for="horas" class="text-xs font-semibold uppercase tracking-[0.08em] text-ink/50">Horas</label>
+              <input id="horas" type="number" min="0.5" max="12" step="0.5" inputmode="decimal" placeholder="2" class="mt-1.5 w-full rounded-xl border border-black/10 bg-cream px-3 py-2.5 text-sm" required />
+            </div>
+            <div>
+              <label for="colonia" class="text-xs font-semibold uppercase tracking-[0.08em] text-ink/50">Colonia</label>
+              <input id="colonia" type="text" placeholder="Del Valle" class="mt-1.5 w-full rounded-xl border border-black/10 bg-cream px-3 py-2.5 text-sm" required />
+            </div>
+            <div class="sm:col-span-2">
+              <label for="notas" class="text-xs font-semibold uppercase tracking-[0.08em] text-ink/50">Notas <span class="font-normal normal-case tracking-normal text-ink/40">(opcional)</span></label>
+              <textarea id="notas" rows="3" placeholder="Acompañé a doña Rosa a su cita en el IMSS." class="mt-1.5 w-full resize-none rounded-xl border border-black/10 bg-cream px-3 py-2.5 text-sm"></textarea>
+            </div>
+          </div>
+
+          <label class="mt-4 flex items-start gap-3 rounded-xl bg-sand/60 p-3 text-sm text-ink/70">
+            <input id="consent" type="checkbox" class="mt-0.5 h-4 w-4 rounded border-black/20 accent-teal" />
+            <span>Ambas personas confirmamos las horas. Entiendo que los datos de salud son sensibles y solo se comparten dentro de la red.</span>
+          </label>
+
+          <p id="formError" class="mt-3 hidden rounded-lg bg-terra/10 px-3 py-2 text-sm text-terra"></p>
+
+          <button type="submit" class="mt-5 w-full rounded-xl bg-teal px-5 py-3 text-sm font-semibold text-cream transition hover:bg-teal/90">
+            Sumar horas a mi saldo
+          </button>
+        </form>
+
+        <div class="space-y-4">
+          <div class="rounded-2xl bg-ink p-5 text-cream">
+            <p class="text-[11px] uppercase tracking-[0.14em] text-cream/60">Saldo actual</p>
+            <p class="mt-1 font-display text-4xl leading-none"><span id="formSaldo">3</span></p>
+            <p class="mt-1 text-sm text-cream/60">créditos disponibles</p>
+          </div>
+          <div class="rounded-2xl border border-black/5 bg-white p-5">
+            <p class="font-semibold">Qué cuenta como cuidado</p>
+            <ul class="mt-3 space-y-2 text-sm text-ink/65">
+              <li class="flex gap-2"><span class="text-teal">·</span> Acompañar a consultas o trámites</li>
+              <li class="flex gap-2"><span class="text-teal">·</span> Preparar alimentos para alguien</li>
+              <li class="flex gap-2"><span class="text-teal">·</span> Dar respiro a otra persona cuidadora</li>
+              <li class="flex gap-2"><span class="text-teal">·</span> Cuidado de niñas y niños</li>
+            </ul>
+            <p class="mt-3 text-xs leading-relaxed text-ink/45">Máximo 12 h por registro. Las horas se validan con la persona cuidada.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PEDIR ===== -->
+    <section class="view" data-view="pedir" aria-labelledby="pedirTitle">
+      <div class="flex flex-wrap items-end justify-between gap-3">
+        <div>
+          <h1 id="pedirTitle" class="font-display text-2xl md:text-3xl">Pedir cuidado</h1>
+          <p class="mt-2 text-sm text-ink/60">Personas de la red cerca de ti. Pagas con créditos, no con dinero.</p>
+        </div>
+        <div class="rounded-full border border-teal/20 bg-teal/10 px-3.5 py-1.5 text-sm font-semibold text-teal">
+          Saldo: <span id="pedirSaldo">3</span> créditos
+        </div>
+      </div>
+
+      <div id="filters" class="mt-5 flex flex-wrap gap-2" role="group" aria-label="Filtrar por tipo de cuidado"></div>
+
+      <div id="offerGrid" class="mt-5 grid gap-4 sm:grid-cols-2"></div>
+    </section>
+
+    <!-- ===== MI TIEMPO ===== -->
+    <section class="view" data-view="mitiempo" aria-labelledby="mitiempoTitle">
+      <div>
+        <h1 id="mitiempoTitle" class="font-display text-2xl md:text-3xl">Mi tiempo</h1>
+        <p class="mt-2 text-sm text-ink/60">Tu historial de horas dadas y recibidas.</p>
+      </div>
+
+      <div class="mt-6 grid gap-4 sm:grid-cols-3">
+        <div class="rounded-2xl bg-teal p-5 text-cream sm:col-span-1">
+          <p class="text-[11px] uppercase tracking-[0.14em] text-cream/70">Créditos disponibles</p>
+          <p class="mt-2 font-display text-5xl leading-none" id="timeSaldo">3</p>
+          <p class="mt-2 text-sm text-cream/70">Puedes pedir hasta <span id="timeCan">3</span> h de cuidado.</p>
+        </div>
+        <div class="rounded-2xl border border-black/5 bg-white p-5 sm:col-span-2">
+          <p class="text-[11px] uppercase tracking-[0.14em] text-ink/45">Balance de la red</p>
+          <p class="mt-2 text-sm leading-relaxed text-ink/65">
+            CuidaRed no premia cuidar más: redistribuye el cuidado. Si tu saldo crece demasiado, la red te invita a usarlo —
+            el objetivo es que nadie cargue sola con todo.
+          </p>
+          <div class="mt-4 flex gap-6">
+            <div>
+              <p class="font-display text-2xl leading-none text-terra"><span id="timeDadas">4</span> h</p>
+              <p class="text-xs text-ink/50">dadas</p>
+            </div>
+            <div>
+              <p class="font-display text-2xl leading-none text-teal"><span id="timeRecibidas">1</span> h</p>
+              <p class="text-xs text-ink/50">recibidas</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="mt-8 font-display text-lg">Movimientos</h2>
+      <div id="txList" class="mt-3 space-y-2"></div>
+    </section>
+
+    <!-- ===== IMPACTO ===== -->
+    <section class="view" data-view="impacto" aria-labelledby="impactoTitle">
+      <div>
+        <h1 id="impactoTitle" class="font-display text-2xl md:text-3xl">Impacto de la red</h1>
+        <p class="mt-2 text-sm text-ink/60">Datos agregados y anónimos. Así se mide el Sistema de Información que exige la ley.</p>
+      </div>
+
+      <div class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="rounded-2xl border border-black/5 bg-white p-5 shadow-sm">
+          <p class="text-[11px] uppercase tracking-[0.12em] text-ink/45">Horas reconocidas</p>
+          <p class="mt-2 font-display text-3xl leading-none text-teal" id="impactHours">1245</p>
+          <p class="mt-1 text-xs text-ink/45">acumuladas en CDMX</p>
+        </div>
+        <div class="rounded-2xl border border-black/5 bg-white p-5 shadow-sm">
+          <p class="text-[11px] uppercase tracking-[0.12em] text-ink/45">Cuidadoras activas</p>
+          <p class="mt-2 font-display text-3xl leading-none text-terra" id="impactCaregivers">129</p>
+          <p class="mt-1 text-xs text-ink/45">personas en la red</p>
+        </div>
+        <div class="rounded-2xl border border-black/5 bg-white p-5 shadow-sm">
+          <p class="text-[11px] uppercase tracking-[0.12em] text-ink/45">Créditos en circulación</p>
+          <p class="mt-2 font-display text-3xl leading-none text-ink" id="impactCredits">3971</p>
+          <p class="mt-1 text-xs text-ink/45">horas por redimir</p>
+        </div>
+        <div class="rounded-2xl border border-black/5 bg-white p-5 shadow-sm">
+          <p class="text-[11px] uppercase tracking-[0.12em] text-ink/45">Valor social</p>
+          <p class="mt-2 font-display text-3xl leading-none text-gold" id="impactValue">$74,700</p>
+          <p class="mt-1 text-xs text-ink/45">a $60 MXN por hora</p>
+        </div>
+      </div>
+
+      <div class="mt-6 grid gap-5 lg:grid-cols-[1.3fr_1fr]">
+        <div class="rounded-2xl border border-black/5 bg-white p-5">
+          <p class="font-display text-lg">Qué se está cuidando</p>
+          <div id="bars" class="mt-4 space-y-3"></div>
+        </div>
+        <div class="rounded-2xl border border-black/5 bg-white p-5">
+          <p class="text-[11px] uppercase tracking-[0.14em] text-ink/45">Base de política pública</p>
+          <p class="mt-2 text-sm leading-relaxed text-ink/65">
+            La Ley del Sistema de Cuidados de CDMX manda crear un Sistema de Información e Indicadores.
+            CuidaRed produce esos datos desde el primer día: horas, tipos de cuidado, territorios y carga por persona.
+          </p>
+          <ul class="mt-3 space-y-2 text-sm text-ink/60">
+            <li class="flex gap-2"><span class="text-teal">·</span> Art. 10 — apoyo psicosocial y desgaste</li>
+            <li class="flex gap-2"><span class="text-teal">·</span> Art. 12 — valor económico del cuidado</li>
+            <li class="flex gap-2"><span class="text-teal">·</span> Art. 14 — cooperativas de cuidado</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<!-- ============ BOTTOM NAV (mobile) ============ -->
+<nav class="fixed inset-x-0 bottom-0 z-30 border-t border-black/5 bg-white/90 px-2 pb-[env(safe-area-inset-bottom)] backdrop-blur md:hidden" aria-label="Navegación principal móvil">
+  <div class="flex items-stretch justify-around">
+    <button class="nav-btn active flex flex-1 flex-col items-center gap-0.5 rounded-xl px-1 py-2 text-[10px] font-medium transition" data-go="inicio">
+      <svg class="nav-ico h-5 w-5 text-ink/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 9.5V20h14V9.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Inicio
+    </button>
+    <button class="nav-btn flex flex-1 flex-col items-center gap-0.5 rounded-xl px-1 py-2 text-[10px] font-medium transition" data-go="registrar">
+      <svg class="nav-ico h-5 w-5 text-ink/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 8v8M8 12h8" stroke-linecap="round"/></svg>
+      Registrar
+    </button>
+    <button class="nav-btn flex flex-1 flex-col items-center gap-0.5 rounded-xl px-1 py-2 text-[10px] font-medium transition" data-go="pedir">
+      <svg class="nav-ico h-5 w-5 text-ink/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 20s-7-4.35-7-8.5A3.9 3.9 0 0 1 12 8a3.9 3.9 0 0 1 7 3.5C19 15.65 12 20 12 20Z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Pedir
+    </button>
+    <button class="nav-btn flex flex-1 flex-col items-center gap-0.5 rounded-xl px-1 py-2 text-[10px] font-medium transition" data-go="mitiempo">
+      <svg class="nav-ico h-5 w-5 text-ink/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Mi tiempo
+    </button>
+    <button class="nav-btn flex flex-1 flex-col items-center gap-0.5 rounded-xl px-1 py-2 text-[10px] font-medium transition" data-go="impacto">
+      <svg class="nav-ico h-5 w-5 text-ink/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Impacto
+    </button>
+  </div>
+</nav>
+
+<!-- ============ TOAST ============ -->
+<div id="toast" class="pointer-events-none fixed bottom-24 left-1/2 z-50 -translate-x-1/2 rounded-xl bg-ink px-4 py-2.5 text-sm font-medium text-cream opacity-0 shadow-lg transition md:bottom-8" role="status" aria-live="polite"></div>
+
+<!-- ============ MODAL ============ -->
+<div id="modal" class="fixed inset-0 z-50 hidden items-end justify-center bg-ink/40 p-0 backdrop-blur-sm sm:items-center sm:p-4" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="w-full max-w-md rounded-t-3xl bg-cream p-6 shadow-2xl sm:rounded-3xl">
+    <div id="modalBody"></div>
+  </div>
+</div>
+<script>
+(function () {
+  'use strict';
+
+  var KEY = 'cuidared-v1';
+  var CATS = ['Todas', 'Acompañamiento', 'Respiro', 'Trámites', 'Cuidado infantil', 'Alimentos', 'Salud'];
+
+  function seed() {
+    return {
+      user: { name: 'María', saldo: 3, dadas: 4, recibidas: 1 },
+      offers: [
+        { id: 'o1', nombre: 'Lucía', categoria: 'Acompañamiento', colonia: 'Del Valle', horas: 2, rating: '4.9', tel: '55 1234 5678', desc: 'Acompaño a consultas médicas y trámites en el IMSS o ISSSTE.', taken: false },
+        { id: 'o2', nombre: 'Carmen', categoria: 'Respiro', colonia: 'Coyoacán', horas: 3, rating: '5.0', tel: '55 2345 6789', desc: 'Doy respiro a cuidadoras: me quedo con la persona mientras descansas.', taken: false },
+        { id: 'o3', nombre: 'Diego', categoria: 'Trámites', colonia: 'Roma Norte', horas: 1.5, rating: '4.7', tel: '55 3456 7890', desc: 'Hago trámites y filas por ti. Llevo documentos y comprobantes.', taken: false },
+        { id: 'o4', nombre: 'Ana', categoria: 'Cuidado infantil', colonia: 'Narvarte', horas: 2, rating: '4.8', tel: '55 4567 8901', desc: 'Cuido niñas y niños por las tardes. Tengo experiencia y referencias.', taken: false },
+        { id: 'o5', nombre: 'Rosa', categoria: 'Alimentos', colonia: 'Iztapalapa', horas: 1, rating: '4.9', tel: '55 5678 9012', desc: 'Cocino comida casera y la llevo a tu casa. Menús sencillos.', taken: false },
+        { id: 'o6', nombre: 'Mateo', categoria: 'Salud', colonia: 'Centro', horas: 2, rating: '4.6', tel: '55 6789 0123', desc: 'Enfermero: apoyo con curaciones, medicamentos y signos vitales.', taken: false }
+      ],
+      txs: [
+        { id: 't1', tipo: 'ganado', horas: 2, titulo: 'Cuidado de adulto mayor', colonia: 'Del Valle', fecha: 'Hace 3 días' },
+        { id: 't2', tipo: 'usado', horas: 1, titulo: 'Acompañamiento a consulta', colonia: 'Coyoacán', fecha: 'Hace 5 días' },
+        { id: 't3', tipo: 'ganado', horas: 1.5, titulo: 'Trámite en ventanilla', colonia: 'Roma Norte', fecha: 'Hace 8 días' },
+        { id: 't4', tipo: 'ganado', horas: 0.5, titulo: 'Comida preparada', colonia: 'Narvarte', fecha: 'Hace 12 días' }
+      ]
+    };
+  }
+
+  var state = load();
+  var activeFilter = 'Todas';
+  var pending = null;
+
+  function load() {
+    try {
+      var raw = localStorage.getItem(KEY);
+      if (raw) {
+        var parsed = JSON.parse(raw);
+        if (parsed && parsed.user && Array.isArray(parsed.offers) && Array.isArray(parsed.txs)) return parsed;
+      }
+    } catch (e) { /* estado corrupto: se reinicia */ }
+    return seed();
+  }
+
+  function save() {
+    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) { /* modo privado */ }
+  }
+
+  function fmt(n) {
+    var v = Number(n);
+    return Number.isInteger(v) ? String(v) : String(v);
+  }
+
+  function money(n) {
+    return '$' + Math.round(n).toLocaleString('es-MX');
+  }
+
+  function $(id) { return document.getElementById(id); }
+
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  /* ---------- navegación ---------- */
+  function showView(name) {
+    document.querySelectorAll('.view').forEach(function (v) {
+      v.classList.toggle('active', v.getAttribute('data-view') === name);
+    });
+    document.querySelectorAll('.nav-btn').forEach(function (b) {
+      b.classList.toggle('active', b.getAttribute('data-go') === name);
+    });
+    try { history.replaceState(null, '', '#' + name); } catch (e) { /* file:// sin historial */ }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (name === 'pedir') renderOffers();
+    if (name === 'mitiempo') renderTx();
+    if (name === 'impacto') renderImpact();
+  }
+
+  document.addEventListener('click', function (e) {
+    var go = e.target.closest('[data-go]');
+    if (go) { showView(go.getAttribute('data-go')); return; }
+    var chip = e.target.closest('[data-filter]');
+    if (chip) { activeFilter = chip.getAttribute('data-filter'); renderFilters(); renderOffers(); return; }
+    var req = e.target.closest('[data-request]');
+    if (req) { openConfirm(req.getAttribute('data-request')); return; }
+    if (e.target.closest('[data-close]')) { closeModal(); return; }
+    if (e.target.closest('[data-confirm]')) { confirmRequest(); return; }
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  /* ---------- header / saldos ---------- */
+  function renderBalances() {
+    var u = state.user;
+    ['saldoPill', 'sidebarSaldo', 'statSaldo', 'formSaldo', 'pedirSaldo', 'timeSaldo', 'timeCan', 'timeDadas', 'timeRecibidas'].forEach(function (id) {
+      var el = $(id);
+      if (!el) return;
+      if (id === 'saldoPill' || id === 'sidebarSaldo' || id === 'statSaldo' || id === 'formSaldo' || id === 'pedirSaldo' || id === 'timeSaldo' || id === 'timeCan') el.textContent = fmt(u.saldo);
+      if (id === 'timeDadas') el.textContent = fmt(u.dadas);
+      if (id === 'timeRecibidas') el.textContent = fmt(u.recibidas);
+    });
+    var g = $('greetName');
+    if (g) g.textContent = u.name;
+  }
+
+  /* ---------- ofertas ---------- */
+  function renderFilters() {
+    var box = $('filters');
+    if (!box) return;
+    box.innerHTML = CATS.map(function (c) {
+      var active = c === activeFilter ? 'active' : 'border-black/10 bg-white text-ink/60 hover:bg-sand/60';
+      return '<button type="button" data-filter="' + esc(c) + '" class="chip ' + active + ' rounded-full border px-3.5 py-1.5 text-xs font-medium transition">' + esc(c) + '</button>';
+    }).join('');
+  }
+
+  function renderOffers() {
+    var grid = $('offerGrid');
+    if (!grid) return;
+    var list = state.offers.filter(function (o) {
+      return !o.taken && (activeFilter === 'Todas' || o.categoria === activeFilter);
+    });
+
+    if (!list.length) {
+      grid.innerHTML = '<div class="rounded-2xl border border-dashed border-black/10 p-6 text-center text-sm text-ink/50 sm:col-span-2">No hay personas disponibles en esta categoría. Prueba con otra.</div>';
+      return;
+    }
+
+    grid.innerHTML = list.map(function (o) {
+      var can = state.user.saldo >= o.horas;
+      var falta = Math.round((o.horas - state.user.saldo) * 10) / 10;
+      var btn = can
+        ? '<button type="button" data-request="' + o.id + '" class="mt-4 w-full rounded-xl bg-teal px-4 py-2.5 text-sm font-semibold text-cream transition hover:bg-teal/90">Pedir ' + fmt(o.horas) + ' h</button>'
+        : '<button type="button" disabled class="mt-4 w-full cursor-not-allowed rounded-xl bg-sand px-4 py-2.5 text-sm font-semibold text-ink/40">Te faltan ' + fmt(falta) + ' créditos</button>';
+
+      return '' +
+        '<article class="flex flex-col rounded-2xl border border-black/5 bg-white p-5 shadow-sm">' +
+          '<div class="flex items-start justify-between gap-3">' +
+            '<div>' +
+              '<p class="text-[10px] uppercase tracking-[0.12em] text-teal">' + esc(o.categoria) + '</p>' +
+              '<h3 class="mt-0.5 font-display text-xl leading-tight">' + esc(o.nombre) + '</h3>' +
+            '</div>' +
+            '<span class="shrink-0 rounded-full bg-gold/25 px-2.5 py-1 text-xs font-semibold text-ink">' + fmt(o.horas) + ' h</span>' +
+          '</div>' +
+          '<p class="mt-1 text-xs text-ink/50">' + esc(o.colonia) + ' · ★ ' + esc(o.rating) + '</p>' +
+          '<p class="mt-3 flex-1 text-sm leading-relaxed text-ink/70">' + esc(o.desc) + '</p>' +
+          btn +
+        '</article>';
+    }).join('');
+  }
+
+  /* ---------- transacciones ---------- */
+  function renderTx() {
+    var box = $('txList');
+    if (!box) return;
+    if (!state.txs.length) {
+      box.innerHTML = '<p class="rounded-2xl border border-dashed border-black/10 p-6 text-center text-sm text-ink/50">Todavía no hay movimientos.</p>';
+      return;
+    }
+    box.innerHTML = state.txs.map(function (t) {
+      var ganado = t.tipo === 'ganado';
+      var signo = ganado ? '+' : '−';
+      var color = ganado ? 'text-teal' : 'text-terra';
+      var fondo = ganado ? 'bg-teal/10' : 'bg-terra/10';
+      var icono = ganado
+        ? '<path d="M12 5v14M6 13l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/>'
+        : '<path d="M12 19V5M6 11l6-6 6 6" stroke-linecap="round" stroke-linejoin="round"/>';
+      return '' +
+        '<div class="flex items-center gap-3 rounded-2xl border border-black/5 bg-white p-3.5">' +
+          '<div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full ' + fondo + ' ' + color + '">' +
+            '<svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">' + icono + '</svg>' +
+          '</div>' +
+          '<div class="min-w-0 flex-1">' +
+            '<p class="truncate text-sm font-medium">' + esc(t.titulo) + '</p>' +
+            '<p class="text-xs text-ink/45">' + esc(t.colonia) + ' · ' + esc(t.fecha) + '</p>' +
+          '</div>' +
+          '<p class="shrink-0 text-sm font-semibold ' + color + '">' + signo + fmt(t.horas) + ' h</p>' +
+        '</div>';
+    }).join('');
+  }
+
+  /* ---------- impacto ---------- */
+  var DIST = [
+    { nombre: 'Acompañamiento', pct: 38 },
+    { nombre: 'Respiro', pct: 24 },
+    { nombre: 'Trámites', pct: 18 },
+    { nombre: 'Cuidado infantil', pct: 12 },
+    { nombre: 'Alimentos', pct: 8 }
+  ];
+
+  function renderImpact() {
+    var u = state.user;
+    var horas = 1240 + u.dadas + u.recibidas;
+    var cuidadoras = 128 + (u.dadas > 0 ? 1 : 0);
+    var creditos = 3968 + u.saldo;
+
+    if ($('impactHours')) $('impactHours').textContent = horas.toLocaleString('es-MX');
+    if ($('impactCaregivers')) $('impactCaregivers').textContent = String(cuidadoras);
+    if ($('impactCredits')) $('impactCredits').textContent = creditos.toLocaleString('es-MX');
+    if ($('impactValue')) $('impactValue').textContent = money(horas * 60);
+
+    var bars = $('bars');
+    if (!bars) return;
+    bars.innerHTML = DIST.map(function (d) {
+      return '' +
+        '<div>' +
+          '<div class="flex justify-between text-xs text-ink/60"><span>' + esc(d.nombre) + '</span><span>' + d.pct + '%</span></div>' +
+          '<div class="mt-1 h-2 overflow-hidden rounded-full bg-sand">' +
+            '<div class="h-full rounded-full bg-teal" style="width:' + d.pct + '%"></div>' +
+          '</div>' +
+        '</div>';
+    }).join('');
+  }
+
+  /* ---------- toast ---------- */
+  var toastTimer = null;
+  function toast(msg) {
+    var el = $('toast');
+    if (!el) return;
+    el.textContent = msg;
+    el.classList.remove('opacity-0');
+    el.classList.add('opacity-100');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () {
+      el.classList.remove('opacity-100');
+      el.classList.add('opacity-0');
+    }, 2800);
+  }
+
+  /* ---------- modal ---------- */
+  function openModal(html) {
+    var m = $('modal');
+    if (!m) return;
+    $('modalBody').innerHTML = html;
+    m.classList.remove('hidden');
+    m.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+    var focusable = m.querySelector('button');
+    if (focusable) focusable.focus();
+  }
+
+  function closeModal() {
+    var m = $('modal');
+    if (!m) return;
+    m.classList.add('hidden');
+    m.classList.remove('flex');
+    document.body.style.overflow = '';
+    pending = null;
+  }
+
+  function openConfirm(id) {
+    var o = state.offers.find(function (x) { return x.id === id; });
+    if (!o || o.taken) return;
+    pending = o;
+
+    var despues = Math.round((state.user.saldo - o.horas) * 10) / 10;
+    openModal('' +
+      '<div class="flex items-start justify-between gap-3">' +
+        '<div>' +
+          '<p class="text-[10px] uppercase tracking-[0.14em] text-teal">Confirmar solicitud</p>' +
+          '<h2 id="modalTitle" class="mt-1 font-display text-2xl leading-tight">' + fmt(o.horas) + ' h con ' + esc(o.nombre) + '</h2>' +
+        '</div>' +
+        '<button type="button" data-close class="rounded-lg px-2 py-1 text-lg leading-none text-ink/40 transition hover:bg-sand" aria-label="Cerrar">×</button>' +
+      '</div>' +
+      '<p class="mt-3 text-sm leading-relaxed text-ink/65">Al confirmar, ' + esc(o.nombre) + ' recibe tu solicitud y te contacta para acordar día y hora.</p>' +
+      '<dl class="mt-4 space-y-2 rounded-xl bg-white p-4 text-sm">' +
+        '<div class="flex justify-between"><dt class="text-ink/50">Servicio</dt><dd class="font-medium">' + esc(o.categoria) + '</dd></div>' +
+        '<div class="flex justify-between"><dt class="text-ink/50">Colonia</dt><dd class="font-medium">' + esc(o.colonia) + '</dd></div>' +
+        '<div class="flex justify-between"><dt class="text-ink/50">Costo</dt><dd class="font-medium text-terra">− ' + fmt(o.horas) + ' créditos</dd></div>' +
+        '<div class="flex justify-between border-t border-black/5 pt-2"><dt class="text-ink/50">Saldo después</dt><dd class="font-semibold text-teal">' + fmt(despues) + ' créditos</dd></div>' +
+      '</dl>' +
+      '<div class="mt-5 flex flex-col gap-2">' +
+        '<button type="button" data-confirm class="w-full rounded-xl bg-teal px-4 py-3 text-sm font-semibold text-cream transition hover:bg-teal/90">Confirmar y descontar</button>' +
+        '<button type="button" data-close class="w-full rounded-xl px-4 py-2.5 text-sm font-medium text-ink/55 transition hover:bg-sand">Cancelar</button>' +
+      '</div>'
+    );
+  }
+
+  function confirmRequest() {
+    var o = pending;
+    if (!o) return;
+    if (state.user.saldo < o.horas) {
+      closeModal();
+      toast('No tienes créditos suficientes para esta solicitud.');
+      return;
+    }
+
+    state.user.saldo = Math.round((state.user.saldo - o.horas) * 10) / 10;
+    state.user.recibidas = Math.round((state.user.recibidas + o.horas) * 10) / 10;
+    o.taken = true;
+    state.txs.unshift({
+      id: 't' + Date.now(),
+      tipo: 'usado',
+      horas: o.horas,
+      titulo: o.categoria + ' con ' + o.nombre,
+      colonia: o.colonia,
+      fecha: 'Hoy'
+    });
+    save();
+    renderBalances();
+    if (activeFilter !== 'Todas') { /* mantiene filtro */ }
+    renderOffers();
+
+    openModal('' +
+      '<div class="text-center">' +
+        '<div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-teal/10 text-teal">' +
+          '<svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+        '</div>' +
+        '<h2 id="modalTitle" class="mt-4 font-display text-2xl">Solicitud enviada</h2>' +
+        '<p class="mt-2 text-sm leading-relaxed text-ink/65">' + esc(o.nombre) + ' fue notificada. Te escribirá por WhatsApp para acordar el día.</p>' +
+      '</div>' +
+      '<div class="mt-4 rounded-xl bg-white p-4 text-sm">' +
+        '<div class="flex justify-between"><span class="text-ink/50">Contacto simulado</span><span class="font-medium">' + esc(o.tel) + '</span></div>' +
+        '<div class="mt-2 flex justify-between"><span class="text-ink/50">Créditos usados</span><span class="font-medium text-terra">− ' + fmt(o.horas) + '</span></div>' +
+        '<div class="mt-2 flex justify-between"><span class="text-ink/50">Saldo restante</span><span class="font-semibold text-teal">' + fmt(state.user.saldo) + '</span></div>' +
+      '</div>' +
+      '<button type="button" data-close class="mt-5 w-full rounded-xl bg-ink px-4 py-3 text-sm font-semibold text-cream transition hover:bg-ink/90">Entendido</button>'
+    );
+
+    pending = null;
+    toast('Solicitud enviada a ' + o.nombre + '.');
+  }
+
+  /* ---------- formulario ---------- */
+  var form = $('careForm');
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var servicio = $('servicio').value.trim();
+      var horas = parseFloat($('horas').value);
+      var colonia = $('colonia').value.trim();
+      var notas = $('notas').value.trim();
+      var consent = $('consent').checked;
+      var err = $('formError');
+
+      function fail(msg) {
+        err.textContent = msg;
+        err.classList.remove('hidden');
+      }
+
+      if (!servicio) return fail('Elige el tipo de cuidado que diste.');
+      if (!isFinite(horas) || horas < 0.5 || horas > 12) return fail('Las horas deben estar entre 0.5 y 12.');
+      if (!colonia) return fail('Escribe la colonia donde cuidaste.');
+      if (!consent) return fail('Necesitas confirmar que ambas personas validaron las horas.');
+
+      err.classList.add('hidden');
+
+      state.user.saldo = Math.round((state.user.saldo + horas) * 10) / 10;
+      state.user.dadas = Math.round((state.user.dadas + horas) * 10) / 10;
+      state.txs.unshift({
+        id: 't' + Date.now(),
+        tipo: 'ganado',
+        horas: horas,
+        titulo: servicio + (notas ? ' · ' + notas.slice(0, 42) : ''),
+        colonia: colonia,
+        fecha: 'Hoy'
+      });
+      save();
+      renderBalances();
+      renderTx();
+      form.reset();
+      toast('Sumaste ' + fmt(horas) + ' h. Tu nuevo saldo es ' + fmt(state.user.saldo) + ' créditos.');
+      showView('mitiempo');
+    });
+  }
+
+  /* ---------- reset ---------- */
+  var resetBtn = $('resetBtn');
+  if (resetBtn) {
+    resetBtn.addEventListener('click', function () {
+      if (!window.confirm('¿Reiniciar la demo a su estado inicial?')) return;
+      state = seed();
+      save();
+      activeFilter = 'Todas';
+      renderAll();
+      showView('inicio');
+      toast('Demo reiniciada.');
+    });
+  }
+
+  /* ---------- arranque ---------- */
+  function renderAll() {
+    renderBalances();
+    renderFilters();
+    renderOffers();
+    renderTx();
+    renderImpact();
+  }
+
+  renderAll();
+  var inicio = (location.hash || '').replace('#', '');
+  var conocidas = ['inicio', 'registrar', 'pedir', 'mitiempo', 'impacto'];
+  showView(conocidas.indexOf(inicio) >= 0 ? inicio : 'inicio');
+})();
+</script>
+</body>
+</html>

@@ -30,7 +30,7 @@ against these specs. Reference screens exported from the prototype live in
 
 See `README.md` (Spanish) — structure is identical. Entry points:
 `specs/` (source of truth), `packages/domain`, `packages/design-tokens`,
-`explainer.html` (single-file project overview).
+`docs/explainer.html` (single-file project overview, also on GitHub Pages).
 
 ## Quick start
 

@@ -121,7 +121,44 @@ Financiamiento (Las Propinas): Habilita una función para que la familia extendi
 
 Problema: Visibilizar la economía del cuidado y ofrecer incentivos a las personas cuidadoras.
 
-Crea una plataforma mobile web que conecta proveedores de servicios de cuidado con familias, de acuerdo a tu zona podrás acceder a los servicios públicos y privados que se ofrecen, como médicos, terapeutas, fisioterapeutas, enfermeras, los servicios se ofrecen de acuerdo al presupuesto familiar pero también tendrán acceso a la oferta de servicios públicos. Además si eres persona cuidadora podrás registrar las tareas que registras y obtener puntos en distintos comercios afiliados (accediendo a comercios en tu colonia como estéticas, deportivos, tiendas, diversos servicios) descuentos en servicios (luz, agua, transporte, guarderías, transporte especializado para adultos mayores o discapacitados haca una cita médica). Además los cuidadores también podrían acceder a formación profesional y alfabetización digital con  cursos y obtener  certificados.  
+Crea una plataforma mobile web que conecta proveedores de servicios de cuidado con familias, de acuerdo a tu zona podrás acceder a los servicios públicos y privados que se ofrecen, como médicos, terapeutas, fisioterapeutas, enfermeras, los servicios se ofrecen de acuerdo al presupuesto familiar pero también tendrán acceso a la oferta de servicios públicos. Además si eres persona cuidadora podrás registrar las tareas que registras y obtener puntos en distintos comercios afiliados (accediendo a comercios en tu colonia como estéticas,deportivos, tiendas, diversos servicios) descuentos en servicios (luz, agua, transporte público, guarderías, apoyo psicológico, transporte especializado para adultos mayores o discapacitados haga una cita médica). Además los cuidadores también podrían acceder a formación profesional y alfabetización digital con  cursos y obtener  certificados.  
 Hazme todas las preguntas necesarias para entender el problema que quiero solucionar y definir qué debe tener mi landing.  
 Haz una revisión adversarial
+
+Banco de tiempo: plataforma mobile web, el sistema funciona como un trueque de servicios, se mide por hora, por ejemplo: por cada hora que el cuidador realice podrá intercambiarla por una hora del servicio que este necesite, de acuerdo a los servicios disponibles en la comunidad (terapia, dentista, alguna actividad de oficios: plomería, estética, jardinería, limpieza, mantenimiento, los que los participantes de la comunidad ofrezcan).
+
+- un mapa de servicios que se encuentre en la localidad del cuidador   
+- los servidores públicos no pueden ofrecer sus servicios como intercambio.   
+- Forma tu propia red de apoyo con tu familia, amigos o vecinos. O busca cuidadores que pertenezcan a tu comunidad. 
+
+Especificaciones
+
+- Hora por hora, las horas valen lo mismo por servicio, sin excepciones, incluyendo los profesionales, por ejemplo, un dentista puede intercambiar limpieza dental por 2 horas de cuidado de un familiar.  
+- Las Horas de cuidado son acreditables con verificación básica (confirmación de la familia cuidada o de un tercero)  
+- Se permite un saldo negativo de horas con un límite de 5 horas.   
+- El banco de tiempo es sólo de cuidado  
+- La comunidad se puede formar de dos maneras: forma tu propia red de apoyo con tu familia, amigos o vecinos. O busca cuidadores que pertenezcan a su localidad..   
+- El piloto se podría correr en la alcaldía iztapalapa con aprox 20 transacciones al día, inicialmente.
+
+Impacto en la mujeres y comunidades  
+\-  
+al permitir el intercambio de diferentes servicios de cuidados rompemos el pensamiento de que solo el género femenino es responsable y lo volvemos a un valor comunitario 
+
+- el sistema permite que cualquier persona, género, idioma pueda ofrecer y recibir servicios sin distinción ni discriminación  
+- al poder crear redes de apoyos y vincular comunidades esto es replicable en cualquier localidad.
+
+El tiempo es una medida inmutable. 
+
+**1\. La Divisa Inmutable** La unidad de medida es la hora. Un crédito en la plataforma equivale a una hora de servicio. No hay inflación, no hay tipos de cambio complejos. Una hora es una hora, sin importar si es de limpieza o de cuidado médico básico. Esto elimina la fricción cognitiva para la usuaria.
+
+**2\. Los Depósitos (Quién inyecta liquidez al banco)** Una cuidadora exhausta está en bancarrota de tiempo. No puede generar horas de la nada. El sistema necesita inyecciones externas:
+
+* **Voluntariado Estratégico:** Estudiantes universitarios de enfermería, gerontología o psicología que necesitan liberar horas de servicio social o prácticas profesionales. Ellos depositan su tiempo en la plataforma.  
+* **El Trueque:** El familiar ausente (el hermano que vive lejos) no puede donar tiempo físico. En su lugar, compra "Horas Profesionales" con dinero real dentro de la app para pagar a un relevo certificado, depositando esas horas directamente en la cuenta de la cuidadora principal.  
+* **Responsabilidad Corporativa B2B:** Empresas de servicios (lavanderías, supermercados, transporte) donan lotes de horas de su trabajo al banco central de la plataforma a cambio de deducciones fiscales o métricas de impacto social.
+
+**3\. Los Retiros (El Respiro)** La cuidadora entra a la plataforma, revisa su saldo y hace un retiro para salvar su propia cordura:
+
+* **Relevo Directo:** Gasta 4 horas de su saldo para que alguien capacitado cuide a su paciente mientras ella simplemente cierra la puerta de su cuarto y duerme.  
+* **Delegación Logística:** Gasta 2 horas para que un voluntario haga las compras del supermercado o pague los servicios, quitándole carga mental.
 
