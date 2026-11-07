@@ -1,795 +1,99 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>CuidaRed — Banco de tiempo para cuidados</title>
-<meta name="description" content="MVP de banco de tiempo para cuidados en CDMX: registra horas de cuidado, gana créditos y pide apoyo de la red." />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: {
-          cream: '#FBF7F2',
-          ink: '#1F2A24',
-          terra: '#C05A3E',
-          teal: '#2F6B5A',
-          gold: '#E9B44C',
-          sand: '#F1E7DA'
-        },
-        fontFamily: {
-          display: ['Fraunces', 'Georgia', 'serif'],
-          sans: ['Inter', 'system-ui', 'sans-serif']
-        }
-      }
-    }
-  }
-</script>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#374B42">
+<title>EntreManos · El cuidado se comparte</title>
+<meta name="description" content="Una red de cuidados para Iztapalapa. Intercambia horas, encuentra apoyo cercano y cuida también de ti. Prototipo de demostración.">
 <style>
-  html { scroll-behavior: smooth; }
-  body { font-family: Inter, system-ui, sans-serif; background: #FBF7F2; color: #1F2A24; -webkit-font-smoothing: antialiased; }
-  .font-display { font-family: Fraunces, Georgia, serif; }
-  .view { display: none; }
-  .view.active { display: block; animation: fade .3s ease; }
-  @keyframes fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
-  .nav-btn.active { background: #1F2A24; color: #FBF7F2; }
-  .nav-btn.active .nav-ico { color: #E9B44C; }
-  .chip.active { background: #2F6B5A; color: #fff; border-color: #2F6B5A; }
-  input:focus, select:focus, textarea:focus { outline: 2px solid #2F6B5A; outline-offset: 2px; }
-  ::selection { background: #E9B44C; color: #1F2A24; }
+:root{--paper:#F6F1E9;--sage:#DDE5CB;--leaf:#A9B99D;--rose:#E5B9B5;--ink:#374B42;--muted:#596359;--line:#d7d9cc;--white:#fffdf8;--yellow:#f1d898}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,select{font:inherit;color:inherit}button,a{touch-action:manipulation}button{cursor:pointer}a{color:inherit}button:disabled{cursor:not-allowed;opacity:.5}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #82514b;outline-offset:4px}button{border:0}h1,h2,h3,p{margin-top:0}h1,h2,.serif{font-family:Georgia,"Times New Roman",serif;font-weight:400}h1{font-size:clamp(54px,6.6vw,92px);line-height:1.03;letter-spacing:-.065em;margin-bottom:28px}h2{font-size:clamp(34px,4vw,53px);line-height:1.12;letter-spacing:-.035em;margin-bottom:18px}h3{line-height:1.3;font-size:20px}p{margin-bottom:18px}.wrap{width:min(1200px,90%);margin:auto}.skip{position:absolute;left:10px;top:-100px;background:white;padding:12px;z-index:20}.skip:focus{top:10px}.demo-bar{text-align:center;padding:7px 20px;font-size:12px;background:var(--ink);color:var(--paper);letter-spacing:.035em}.header{position:sticky;top:0;background:#f6f1e9f5;backdrop-filter:blur(12px);border-bottom:1px solid var(--line);z-index:8}.nav{display:flex;justify-content:space-between;align-items:center;min-height:84px;gap:25px}.brand{text-decoration:none;font-weight:750;font-size:24px;letter-spacing:-1px;display:flex;align-items:center;gap:9px}.brand-icon{display:grid;grid-template-columns:repeat(2,10px);gap:3px;transform:rotate(-12deg)}.brand-icon i{width:10px;height:15px;background:var(--ink);border-radius:9px}.brand-icon i:nth-child(2),.brand-icon i:nth-child(3){background:#829773}.links{display:flex;align-items:center;gap:26px;font-size:14px}.links a{text-decoration:none}.links a:hover{text-decoration:underline}.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;border:1px solid var(--ink);border-radius:40px;background:var(--ink);color:var(--white);font-weight:650;font-size:14px;min-height:48px;padding:12px 23px;text-decoration:none;transition:background .15s,transform .15s}.btn:hover{background:#25362e;transform:translateY(-1px)}.btn.outline{background:transparent;color:var(--ink)}.btn.outline:hover{background:var(--sage)}.btn.light{background:var(--paper);color:var(--ink);border-color:var(--paper)}.btn.small{padding:8px 17px;min-height:44px;font-size:13px}.eyebrow{text-transform:uppercase;letter-spacing:.17em;font-size:11px;font-weight:750;display:flex;align-items:center;gap:9px;margin-bottom:24px}.dot{width:7px;height:7px;border-radius:50%;background:#6b805d;display:inline-block}.hero{display:grid;grid-template-columns:1.05fr 1fr;gap:65px;align-items:center;padding:70px 0 60px}.hero-copy>p:not(.eyebrow){max-width:480px;color:var(--muted);font-size:18px}.hero h1 em{font-weight:400;color:#647455}.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin:30px 0 24px}.tiny{font-size:12px;color:var(--muted)}.hero-note{display:flex;gap:12px;align-items:center;font-size:12px}.faces{display:flex;padding-left:0}.face{width:30px;height:30px;background:var(--sage);border:2px solid var(--paper);border-radius:50%;display:grid;place-items:center;font-size:12px;margin-left:-5px}.face:first-child{margin-left:0}.face:nth-child(2){background:var(--rose)}.face:nth-child(3){background:var(--yellow)}.hero-art{position:relative;min-width:0}.scene{background:var(--sage);border-radius:180px 180px 24px 24px;overflow:hidden;height:470px;position:relative}.scene svg{width:100%;height:100%}.float-card{position:absolute;background:var(--white);padding:17px 20px;border:1px solid #d9dbce;border-radius:16px;box-shadow:0 12px 30px #374b4212}.float-card p{margin:0}.float-card strong{font-size:18px}.float-card.top{top:39px;left:-26px;transform:rotate(-5deg)}.float-card.bottom{bottom:19px;right:-18px;transform:rotate(3deg);display:flex;align-items:center;gap:14px}.check{height:36px;width:36px;background:var(--sage);border-radius:50%;display:grid;place-items:center}.art-caption{text-align:right;font-size:11px;letter-spacing:.08em;margin-top:12px}.principles{border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:grid;grid-template-columns:repeat(3,1fr);gap:30px;padding:25px 0}.principle{display:flex;gap:15px;align-items:center;font-size:13px}.principle>span{font-size:25px}.principle p{margin:0}.principle strong{display:block}.section{padding:80px 0}.section-top{display:flex;justify-content:space-between;gap:40px;align-items:end;margin-bottom:28px}.section-top p{max-width:350px;color:var(--muted);font-size:14px;margin-bottom:5px}.section-top .eyebrow{margin-bottom:15px}.section-top h2{margin-bottom:0}.notice{padding:12px 16px;border-left:3px solid #859273;background:#e8e9dc;font-size:12px;border-radius:0 8px 8px 0;margin-bottom:24px}.filters{display:grid;grid-template-columns:1fr 1.25fr 1fr 1fr;gap:12px;padding:20px;background:var(--white);border:1px solid var(--line);border-radius:15px;margin-bottom:22px}label{display:block;font-size:12px;font-weight:650}input,select{width:100%;background:var(--white);border:1px solid #b5beb0;border-radius:8px;padding:11px 10px;min-height:46px;margin-top:6px;font-size:14px}.explorer{display:grid;grid-template-columns:1fr .9fr;gap:24px;align-items:start}.results-head{display:flex;justify-content:space-between;gap:12px;font-size:12px;margin:0 0 12px}.textbtn{background:transparent;padding:0;min-height:26px;text-decoration:underline;font-size:12px}.cards{display:grid;gap:12px}.service{background:var(--white);border:1px solid var(--line);padding:22px;border-radius:14px}.service-header{display:flex;gap:14px;align-items:flex-start}.service-icon{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;font-size:22px;background:var(--sage);flex-shrink:0}.service:nth-child(2n) .service-icon{background:#ead6cc}.service h3{font-size:17px;margin:4px 0 3px}.service p{font-size:13px;color:var(--muted);margin:6px 0 14px}.tag{font-size:10px;letter-spacing:.06em;font-weight:750;text-transform:uppercase}.service-bottom{display:flex;justify-content:space-between;gap:10px;align-items:center}.price{font-size:16px;font-weight:750}.price small{font-size:11px;display:block;color:var(--muted);font-weight:400}.map-panel{position:sticky;top:110px;border:1px solid #c8ceba;border-radius:18px;overflow:hidden;background:#e7e9d9}.map-top{padding:15px 19px;display:flex;justify-content:space-between;font-size:12px;background:#f3f1e5}.map{height:335px;position:relative;overflow:hidden;background-color:#e5e8d8;background-image:linear-gradient(32deg,transparent 45%,#f9f6e9 45%,#f9f6e9 49%,transparent 49%),linear-gradient(105deg,transparent 41%,#f9f6e9 41%,#f9f6e9 46%,transparent 46%),repeating-linear-gradient(0deg,transparent 0 66px,#f8f6ea 66px 74px),repeating-linear-gradient(90deg,transparent 0 79px,#f8f6ea 79px 87px)}.park{position:absolute;background:#b7c99b;border-radius:45% 35% 50% 20%;width:135px;height:95px;right:8%;top:12%;transform:rotate(-15deg)}.map-label{position:absolute;font-size:10px;font-weight:650;color:#55644c;letter-spacing:.04em;pointer-events:none}.pin{position:absolute;width:40px;height:40px;border-radius:50% 50% 50% 5px;transform:rotate(-45deg);background:var(--ink);border:3px solid var(--white);box-shadow:0 3px 8px #374b422a;display:grid;place-items:center;color:white;font-size:13px}.pin span{transform:rotate(45deg)}.pin:hover{background:#81534d}.map-bottom{padding:16px 19px;background:#f3f1e5;font-size:12px}.map-bottom p{margin:0}.map-bottom .tiny{margin-top:6px;font-size:11px}.empty{padding:30px;border:1px dashed #9ba58f;border-radius:15px}.time-section{background:var(--ink);color:var(--paper);border-radius:28px;padding:48px;display:grid;grid-template-columns:1.1fr 1fr;gap:60px}.time-section .eyebrow{color:#c5d0b4}.time-section h2{font-size:46px}.time-section p{color:#e0e4d6;font-size:14px}.time-section .tiny{font-size:12px}.steps{padding:0;list-style:none;margin:28px 0}.steps li{display:flex;align-items:flex-start;gap:15px;margin:19px 0;font-size:13px}.stepno{display:grid;place-items:center;border:1px solid #85917f;border-radius:50%;width:29px;height:29px;flex-shrink:0}.steps strong{display:block;margin-bottom:3px}.wallet{background:var(--paper);color:var(--ink);border-radius:20px;padding:28px}.wallet-top{display:flex;justify-content:space-between;align-items:center;font-size:12px}.badge{background:var(--sage);border-radius:20px;padding:3px 9px;font-size:10px;font-weight:700}.balance{font-family:Georgia,serif;font-size:70px;line-height:1.2;margin:16px 0 0;letter-spacing:-.04em}.balance small{font-size:24px}.wallet p{color:var(--muted)}.balance-label{font-size:12px!important;margin-bottom:18px}.meter{height:7px;background:#dce0d1;border-radius:6px;margin:14px 0 8px;overflow:hidden}.meter span{display:block;height:100%;background:#71885b;transition:width .2s}.wallet .limit{font-size:11px;margin-bottom:22px}.wallet .btn{width:100%;margin-bottom:9px}.ledger{margin-top:20px;border-top:1px solid var(--line);padding-top:15px}.ledger-row{display:flex;justify-content:space-between;gap:15px;font-size:12px;margin-top:10px}.ledger-row span:first-child{max-width:75%}.ledger-empty{font-size:12px!important;margin-bottom:0}.economy{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}.economy span{padding:5px 11px;border:1px solid #809079;border-radius:20px;font-size:11px}.network{display:grid;grid-template-columns:1fr 1fr;gap:45px;align-items:center}.network-art{background:#e8d9ce;border-radius:22px;padding:30px;min-height:340px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}.orbit{width:230px;height:230px;border:1px dashed #a18b7d;border-radius:50%;position:relative;display:grid;place-items:center}.orbit:before{content:"";position:absolute;inset:35px;border:1px dashed #ad9d8c;border-radius:50%}.orbit-center{background:var(--ink);color:var(--paper);width:90px;height:90px;border-radius:50%;display:grid;place-items:center;font-family:Georgia,serif;font-size:20px;z-index:1}.orb{position:absolute;min-width:92px;text-align:center;background:var(--white);border-radius:30px;padding:12px;font-size:12px;box-shadow:0 4px 12px #493d3210}.orb.a{top:-10px;left:70px}.orb.b{right:-47px;top:100px}.orb.c{bottom:-5px;left:60px}.orb.d{left:-48px;top:95px}.network-copy p{font-size:15px;color:var(--muted)}.tabs{display:flex;border-bottom:1px solid var(--line);margin:24px 0 18px;gap:22px}.tab{background:none;padding:10px 0;font-size:13px;border-bottom:3px solid transparent;min-height:44px}.tab[aria-selected=true]{border-color:var(--ink);font-weight:750}.network-copy .btn{margin-top:7px}.perks{display:grid;grid-template-columns:1fr 1fr;gap:22px}.perk{background:var(--sage);padding:32px;border-radius:20px;position:relative}.perk.rose{background:#ead4d0}.perk h3{font-family:Georgia,serif;font-size:28px;font-weight:400;max-width:300px;margin:18px 0 12px}.perk p{font-size:14px;max-width:390px}.perk .big-icon{float:right;font-size:35px}.perk .btn{margin-top:8px}.impact{border-top:1px solid var(--line);padding-top:70px;display:grid;grid-template-columns:.9fr 1.1fr;gap:60px}.impact-items{display:grid;gap:24px}.impact-item{border-bottom:1px solid var(--line);padding-bottom:20px;display:grid;grid-template-columns:35px 1fr;gap:15px}.impact-item>span{font-family:Georgia,serif;font-size:25px;color:#7a836b}.impact-item h3{font-size:17px;margin-bottom:7px}.impact-item p{font-size:14px;color:var(--muted);margin:0}.faq{display:grid;grid-template-columns:.8fr 1.2fr;gap:60px}details{border-bottom:1px solid var(--line);padding:17px 0}summary{cursor:pointer;font-size:15px;font-weight:600;min-height:30px}details p{font-size:14px;color:var(--muted);margin:14px 0 4px}.cta{background:var(--sage);text-align:center;padding:55px 25px;border-radius:24px;margin-bottom:55px}.cta h2{max-width:650px;margin:0 auto 20px}.cta p{font-size:14px}.footer{border-top:1px solid var(--line);padding:25px 0 35px}.footer-inner{display:flex;justify-content:space-between;align-items:center;gap:20px}.footer p{margin:0;font-size:12px}.footer .brand{font-size:21px}.mobile-nav{display:none}dialog{color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:20px;width:min(530px,92vw);max-height:88vh;padding:30px;overflow:auto}dialog::backdrop{background:#21352bc2;backdrop-filter:blur(3px)}.dialog-head{display:flex;justify-content:space-between;gap:15px;align-items:start}.dialog-head h2{font-size:30px;line-height:1.2}.close{width:40px;height:40px;border-radius:50%;background:#e4e4d8;font-size:22px;flex-shrink:0}.dialog-content p{font-size:14px}.dialog-content label{margin-bottom:14px}.dialog-content .btn{margin-top:8px;width:100%}.dialog-content .notice{margin-top:18px}.checklabel{display:flex;gap:10px;align-items:start;font-size:13px!important;font-weight:400}.checklabel input{width:19px;height:19px;min-height:19px;margin-top:3px;flex-shrink:0}.info-row{display:flex;justify-content:space-between;gap:15px;padding:12px 0;border-bottom:1px solid var(--line);font-size:14px}.status{background:#e4e8d8;padding:14px;border-radius:10px;font-size:14px;margin-top:16px}.error{color:#883e37;font-size:13px}.hidden{display:none!important}#toast{position:fixed;bottom:25px;left:50%;transform:translateX(-50%);z-index:30;background:var(--ink);color:white;border:1px solid #8e9c81;padding:14px 22px;border-radius:12px;max-width:90vw;font-size:14px;box-shadow:0 10px 25px #0002}#toast:empty{display:none}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}@media(min-width:1000px){.hero h1{max-width:630px}}@media(max-width:1000px){.links{gap:15px}.links a:nth-child(3){display:none}.hero{gap:35px}.scene{height:400px}.time-section{gap:30px;padding:35px}.float-card.top{left:-10px}.float-card.bottom{right:-8px}.filters{grid-template-columns:1fr 1fr}.impact,.faq{gap:35px}}@media(max-width:720px){.wrap{width:90%}.nav{min-height:70px}.brand{font-size:21px}.links>a{display:none!important}.links .btn{font-size:12px;min-height:42px;padding:9px 16px}.hero{grid-template-columns:1fr;padding:35px 0 30px;gap:30px}.hero h1{font-size:61px;max-width:480px}.hero-copy>p:not(.eyebrow){font-size:16px}.hero-actions{margin:23px 0 20px}.hero-art{margin:0 15px}.scene{height:335px;max-width:450px;margin:auto;border-radius:140px 140px 18px 18px}.float-card{padding:12px 16px}.float-card.top{left:-10px;top:25px}.float-card.bottom{right:-10px;bottom:16px}.float-card strong{font-size:15px}.art-caption{font-size:9px}.principles{grid-template-columns:1fr;gap:17px;padding:24px 0}.principle{font-size:13px}.principle>span{width:28px}.section{padding:48px 0}.section-top{display:block}.section-top p{margin-top:17px;max-width:100%}.filters{padding:14px;gap:10px}.filters label{font-size:11px}.filters select{font-size:12px}.explorer{grid-template-columns:1fr}.map-panel{position:static;order:-1}.map{height:215px}.map-top{padding:11px 14px}.map-bottom{padding:10px 14px}.time-section{grid-template-columns:1fr;padding:28px 23px;border-radius:20px;gap:20px}.time-section h2{font-size:38px}.wallet{padding:23px}.network{grid-template-columns:1fr;gap:30px}.network-art{min-height:305px;order:2}.network-copy h2{max-width:400px}.perks{grid-template-columns:1fr}.perk{padding:25px}.impact,.faq{grid-template-columns:1fr;gap:22px}.impact{padding-top:45px}.cta{padding:35px 22px;margin-bottom:30px}.footer-inner{align-items:start;flex-direction:column}.footer{padding-bottom:85px}.mobile-nav{display:flex;position:fixed;bottom:0;left:0;width:100%;background:var(--paper);border-top:1px solid var(--line);justify-content:space-around;z-index:9;padding:7px 0 max(7px,env(safe-area-inset-bottom))}.mobile-nav a{text-decoration:none;font-size:11px;text-align:center;min-width:65px;min-height:44px}.mobile-nav span{display:block;font-size:17px;line-height:1.4}#toast{bottom:82px}.eyebrow{font-size:10px}.service{padding:17px}.service h3{font-size:16px}}@media(max-width:360px){.hero h1{font-size:51px}.btn{padding:11px 17px}.filters{grid-template-columns:1fr}.float-card.top{left:-12px}.float-card.bottom{right:-12px}.service-bottom{align-items:start;flex-direction:column}}
 </style>
 </head>
-<body class="min-h-screen">
-
-<!-- ============ SIDEBAR (desktop) ============ -->
-<aside class="fixed inset-y-0 left-0 z-30 hidden w-64 flex-col border-r border-black/5 bg-white/70 px-5 py-6 backdrop-blur md:flex">
-  <div class="flex items-center gap-3">
-    <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-teal text-cream">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-6 w-6" aria-hidden="true">
-        <path d="M12 20s-7-4.35-7-8.5A3.9 3.9 0 0 1 12 8a3.9 3.9 0 0 1 7 3.5C19 15.65 12 20 12 20Z" stroke-linecap="round" stroke-linejoin="round" />
-      </svg>
-    </div>
-    <div>
-      <p class="font-display text-xl leading-none">CuidaRed</p>
-      <p class="mt-1 text-[11px] uppercase tracking-[0.14em] text-ink/50">Banco de tiempo</p>
-    </div>
-  </div>
-
-  <nav class="mt-9 flex flex-col gap-1.5" aria-label="Navegación principal">
-    <button class="nav-btn active flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition hover:bg-sand/70" data-go="inicio">
-      <svg class="nav-ico h-5 w-5 text-ink/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 9.5V20h14V9.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      Inicio
-    </button>
-    <button class="nav-btn flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition hover:bg-sand/70" data-go="registrar">
-      <svg class="nav-ico h-5 w-5 text-ink/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 8v8M8 12h8" stroke-linecap="round"/></svg>
-      Registrar horas
-    </button>
-    <button class="nav-btn flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition hover:bg-sand/70" data-go="pedir">
-      <svg class="nav-ico h-5 w-5 text-ink/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 20s-7-4.35-7-8.5A3.9 3.9 0 0 1 12 8a3.9 3.9 0 0 1 7 3.5C19 15.65 12 20 12 20Z" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      Pedir cuidado
-    </button>
-    <button class="nav-btn flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition hover:bg-sand/70" data-go="mitiempo">
-      <svg class="nav-ico h-5 w-5 text-ink/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      Mi tiempo
-    </button>
-    <button class="nav-btn flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition hover:bg-sand/70" data-go="impacto">
-      <svg class="nav-ico h-5 w-5 text-ink/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      Impacto
-    </button>
-  </nav>
-
-  <div class="mt-auto">
-    <div class="rounded-2xl bg-ink p-4 text-cream">
-      <p class="text-[11px] uppercase tracking-[0.14em] text-cream/60">Tu saldo</p>
-      <p class="mt-1 font-display text-3xl leading-none"><span id="sidebarSaldo">3</span> <span class="text-base font-sans text-cream/70">créditos</span></p>
-      <p class="mt-2 text-[11px] leading-snug text-cream/60">1 crédito = 1 hora de cuidado</p>
-    </div>
-    <button id="resetBtn" class="mt-3 w-full rounded-xl border border-black/10 px-3 py-2 text-xs font-medium text-ink/60 transition hover:bg-sand/70 hover:text-ink">
-      Reiniciar demo
-    </button>
-  </div>
-</aside>
-
-<!-- ============ MAIN ============ -->
-<main class="min-h-screen pb-28 md:pl-64 md:pb-12">
-
-  <!-- Header -->
-  <header class="sticky top-0 z-20 border-b border-black/5 bg-cream/85 px-5 py-3 backdrop-blur md:px-10">
-    <div class="mx-auto flex max-w-5xl items-center justify-between gap-4">
-      <div class="flex items-center gap-3 md:hidden">
-        <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-teal text-cream">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-5 w-5" aria-hidden="true"><path d="M12 20s-7-4.35-7-8.5A3.9 3.9 0 0 1 12 8a3.9 3.9 0 0 1 7 3.5C19 15.65 12 20 12 20Z" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <p class="font-display text-lg leading-none">CuidaRed</p>
-      </div>
-      <div class="hidden md:block">
-        <p class="text-sm text-ink/50">Hola de nuevo,</p>
-        <p class="font-display text-xl leading-tight"><span id="greetName">María</span></p>
-      </div>
-      <div class="flex items-center gap-3">
-        <div class="rounded-full border border-teal/20 bg-teal/10 px-3.5 py-1.5 text-sm font-semibold text-teal">
-          <span id="saldoPill">3</span> créditos
-        </div>
-        <div class="flex h-9 w-9 items-center justify-center rounded-full bg-gold/80 font-display text-sm font-semibold text-ink">M</div>
-      </div>
-    </div>
-  </header>
-  <div class="mx-auto max-w-5xl px-5 py-7 md:px-10 md:py-10">
-
-    <!-- ===== INICIO ===== -->
-    <section class="view active" data-view="inicio" aria-labelledby="inicioTitle">
-      <div class="relative overflow-hidden rounded-3xl bg-teal px-6 py-8 text-cream md:px-10 md:py-12">
-        <div class="absolute -right-14 -top-14 h-48 w-48 rounded-full bg-gold/20 blur-2xl" aria-hidden="true"></div>
-        <div class="relative max-w-xl">
-          <p class="text-[11px] uppercase tracking-[0.18em] text-cream/70">Red de cuidados · CDMX</p>
-          <h1 id="inicioTitle" class="mt-3 font-display text-3xl leading-tight md:text-[2.6rem]">
-            Tu cuidado también<br class="hidden md:block" /> cuenta.
-          </h1>
-          <p class="mt-4 text-sm leading-relaxed text-cream/80 md:text-base">
-            Cada hora que cuidas a alguien se convierte en un crédito. Úsalo cuando tú necesites un respiro. Sin dinero de por medio.
-          </p>
-          <div class="mt-6 flex flex-wrap gap-3">
-            <button data-go="registrar" class="rounded-xl bg-cream px-5 py-2.5 text-sm font-semibold text-ink transition hover:bg-white">Registrar horas</button>
-            <button data-go="pedir" class="rounded-xl border border-cream/30 px-5 py-2.5 text-sm font-semibold text-cream transition hover:bg-cream/10">Pedir cuidado</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="mt-6 grid grid-cols-3 gap-3">
-        <div class="rounded-2xl border border-black/5 bg-white p-4 shadow-sm">
-          <p class="text-[11px] uppercase tracking-[0.12em] text-ink/45">Saldo</p>
-          <p class="mt-1 font-display text-2xl leading-none text-teal"><span id="statSaldo">3</span><span class="text-sm font-sans text-ink/40"> h</span></p>
-        </div>
-        <div class="rounded-2xl border border-black/5 bg-white p-4 shadow-sm">
-          <p class="text-[11px] uppercase tracking-[0.12em] text-ink/45">Has cuidado</p>
-          <p class="mt-1 font-display text-2xl leading-none text-terra"><span id="statDadas">4</span><span class="text-sm font-sans text-ink/40"> h</span></p>
-        </div>
-        <div class="rounded-2xl border border-black/5 bg-white p-4 shadow-sm">
-          <p class="text-[11px] uppercase tracking-[0.12em] text-ink/45">Te cuidaron</p>
-          <p class="mt-1 font-display text-2xl leading-none text-ink"><span id="statRecibidas">1</span><span class="text-sm font-sans text-ink/40"> h</span></p>
-        </div>
-      </div>
-
-      <div class="mt-8">
-        <h2 class="font-display text-xl">Cómo funciona</h2>
-        <div class="mt-4 grid gap-3 md:grid-cols-3">
-          <div class="rounded-2xl border border-black/5 bg-white p-5">
-            <div class="flex h-9 w-9 items-center justify-center rounded-full bg-gold/25 font-display text-sm font-semibold text-ink">1</div>
-            <p class="mt-3 font-semibold">Cuida</p>
-            <p class="mt-1 text-sm leading-relaxed text-ink/60">Acompaña a una consulta, cocina, cuida a un niño o da respiro a otra cuidadora.</p>
-          </div>
-          <div class="rounded-2xl border border-black/5 bg-white p-5">
-            <div class="flex h-9 w-9 items-center justify-center rounded-full bg-gold/25 font-display text-sm font-semibold text-ink">2</div>
-            <p class="mt-3 font-semibold">Registra</p>
-            <p class="mt-1 text-sm leading-relaxed text-ink/60">Anota las horas. Se suman a tu saldo como créditos, validados por ambas partes.</p>
-          </div>
-          <div class="rounded-2xl border border-black/5 bg-white p-5">
-            <div class="flex h-9 w-9 items-center justify-center rounded-full bg-gold/25 font-display text-sm font-semibold text-ink">3</div>
-            <p class="mt-3 font-semibold">Recibe</p>
-            <p class="mt-1 text-sm leading-relaxed text-ink/60">Cuando lo necesites, pide cuidado con tus créditos. Alguien de la red te apoya.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="mt-6 rounded-2xl border border-terra/20 bg-terra/5 p-5">
-        <p class="text-[11px] uppercase tracking-[0.14em] text-terra">El problema</p>
-        <p class="mt-2 font-display text-lg leading-snug">
-          8 de cada 10 personas cuidadoras en CDMX no se sienten cuidadas.
-        </p>
-        <p class="mt-2 text-sm leading-relaxed text-ink/60">
-          CuidaRed convierte el cuidado no remunerado en un activo que se puede usar, sin sustituir la política pública que exige la nueva Ley del Sistema de Cuidados.
-        </p>
-      </div>
-    </section>
-
-    <!-- ===== REGISTRAR ===== -->
-    <section class="view" data-view="registrar" aria-labelledby="registrarTitle">
-      <div>
-        <h1 id="registrarTitle" class="font-display text-2xl md:text-3xl">Registrar horas de cuidado</h1>
-        <p class="mt-2 text-sm text-ink/60">Anota el cuidado que diste. Cada hora = 1 crédito para cuando tú lo necesites.</p>
-      </div>
-
-      <div class="mt-6 grid gap-5 lg:grid-cols-[1.4fr_1fr]">
-        <form id="careForm" class="rounded-2xl border border-black/5 bg-white p-5 shadow-sm md:p-6" novalidate>
-          <div class="grid gap-4 sm:grid-cols-2">
-            <div class="sm:col-span-2">
-              <label for="servicio" class="text-xs font-semibold uppercase tracking-[0.08em] text-ink/50">Tipo de cuidado</label>
-              <select id="servicio" class="mt-1.5 w-full rounded-xl border border-black/10 bg-cream px-3 py-2.5 text-sm" required>
-                <option value="">Selecciona una opción</option>
-                <option>Acompañamiento</option>
-                <option>Respiro</option>
-                <option>Trámites</option>
-                <option>Cuidado infantil</option>
-                <option>Alimentos</option>
-                <option>Salud</option>
-              </select>
-            </div>
-            <div>
-              <label for="horas" class="text-xs font-semibold uppercase tracking-[0.08em] text-ink/50">Horas</label>
-              <input id="horas" type="number" min="0.5" max="12" step="0.5" inputmode="decimal" placeholder="2" class="mt-1.5 w-full rounded-xl border border-black/10 bg-cream px-3 py-2.5 text-sm" required />
-            </div>
-            <div>
-              <label for="colonia" class="text-xs font-semibold uppercase tracking-[0.08em] text-ink/50">Colonia</label>
-              <input id="colonia" type="text" placeholder="Del Valle" class="mt-1.5 w-full rounded-xl border border-black/10 bg-cream px-3 py-2.5 text-sm" required />
-            </div>
-            <div class="sm:col-span-2">
-              <label for="notas" class="text-xs font-semibold uppercase tracking-[0.08em] text-ink/50">Notas <span class="font-normal normal-case tracking-normal text-ink/40">(opcional)</span></label>
-              <textarea id="notas" rows="3" placeholder="Acompañé a doña Rosa a su cita en el IMSS." class="mt-1.5 w-full resize-none rounded-xl border border-black/10 bg-cream px-3 py-2.5 text-sm"></textarea>
-            </div>
-          </div>
-
-          <label class="mt-4 flex items-start gap-3 rounded-xl bg-sand/60 p-3 text-sm text-ink/70">
-            <input id="consent" type="checkbox" class="mt-0.5 h-4 w-4 rounded border-black/20 accent-teal" />
-            <span>Ambas personas confirmamos las horas. Entiendo que los datos de salud son sensibles y solo se comparten dentro de la red.</span>
-          </label>
-
-          <p id="formError" class="mt-3 hidden rounded-lg bg-terra/10 px-3 py-2 text-sm text-terra"></p>
-
-          <button type="submit" class="mt-5 w-full rounded-xl bg-teal px-5 py-3 text-sm font-semibold text-cream transition hover:bg-teal/90">
-            Sumar horas a mi saldo
-          </button>
-        </form>
-
-        <div class="space-y-4">
-          <div class="rounded-2xl bg-ink p-5 text-cream">
-            <p class="text-[11px] uppercase tracking-[0.14em] text-cream/60">Saldo actual</p>
-            <p class="mt-1 font-display text-4xl leading-none"><span id="formSaldo">3</span></p>
-            <p class="mt-1 text-sm text-cream/60">créditos disponibles</p>
-          </div>
-          <div class="rounded-2xl border border-black/5 bg-white p-5">
-            <p class="font-semibold">Qué cuenta como cuidado</p>
-            <ul class="mt-3 space-y-2 text-sm text-ink/65">
-              <li class="flex gap-2"><span class="text-teal">·</span> Acompañar a consultas o trámites</li>
-              <li class="flex gap-2"><span class="text-teal">·</span> Preparar alimentos para alguien</li>
-              <li class="flex gap-2"><span class="text-teal">·</span> Dar respiro a otra persona cuidadora</li>
-              <li class="flex gap-2"><span class="text-teal">·</span> Cuidado de niñas y niños</li>
-            </ul>
-            <p class="mt-3 text-xs leading-relaxed text-ink/45">Máximo 12 h por registro. Las horas se validan con la persona cuidada.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== PEDIR ===== -->
-    <section class="view" data-view="pedir" aria-labelledby="pedirTitle">
-      <div class="flex flex-wrap items-end justify-between gap-3">
-        <div>
-          <h1 id="pedirTitle" class="font-display text-2xl md:text-3xl">Pedir cuidado</h1>
-          <p class="mt-2 text-sm text-ink/60">Personas de la red cerca de ti. Pagas con créditos, no con dinero.</p>
-        </div>
-        <div class="rounded-full border border-teal/20 bg-teal/10 px-3.5 py-1.5 text-sm font-semibold text-teal">
-          Saldo: <span id="pedirSaldo">3</span> créditos
-        </div>
-      </div>
-
-      <div id="filters" class="mt-5 flex flex-wrap gap-2" role="group" aria-label="Filtrar por tipo de cuidado"></div>
-
-      <div id="offerGrid" class="mt-5 grid gap-4 sm:grid-cols-2"></div>
-    </section>
-
-    <!-- ===== MI TIEMPO ===== -->
-    <section class="view" data-view="mitiempo" aria-labelledby="mitiempoTitle">
-      <div>
-        <h1 id="mitiempoTitle" class="font-display text-2xl md:text-3xl">Mi tiempo</h1>
-        <p class="mt-2 text-sm text-ink/60">Tu historial de horas dadas y recibidas.</p>
-      </div>
-
-      <div class="mt-6 grid gap-4 sm:grid-cols-3">
-        <div class="rounded-2xl bg-teal p-5 text-cream sm:col-span-1">
-          <p class="text-[11px] uppercase tracking-[0.14em] text-cream/70">Créditos disponibles</p>
-          <p class="mt-2 font-display text-5xl leading-none" id="timeSaldo">3</p>
-          <p class="mt-2 text-sm text-cream/70">Puedes pedir hasta <span id="timeCan">3</span> h de cuidado.</p>
-        </div>
-        <div class="rounded-2xl border border-black/5 bg-white p-5 sm:col-span-2">
-          <p class="text-[11px] uppercase tracking-[0.14em] text-ink/45">Balance de la red</p>
-          <p class="mt-2 text-sm leading-relaxed text-ink/65">
-            CuidaRed no premia cuidar más: redistribuye el cuidado. Si tu saldo crece demasiado, la red te invita a usarlo —
-            el objetivo es que nadie cargue sola con todo.
-          </p>
-          <div class="mt-4 flex gap-6">
-            <div>
-              <p class="font-display text-2xl leading-none text-terra"><span id="timeDadas">4</span> h</p>
-              <p class="text-xs text-ink/50">dadas</p>
-            </div>
-            <div>
-              <p class="font-display text-2xl leading-none text-teal"><span id="timeRecibidas">1</span> h</p>
-              <p class="text-xs text-ink/50">recibidas</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <h2 class="mt-8 font-display text-lg">Movimientos</h2>
-      <div id="txList" class="mt-3 space-y-2"></div>
-    </section>
-
-    <!-- ===== IMPACTO ===== -->
-    <section class="view" data-view="impacto" aria-labelledby="impactoTitle">
-      <div>
-        <h1 id="impactoTitle" class="font-display text-2xl md:text-3xl">Impacto de la red</h1>
-        <p class="mt-2 text-sm text-ink/60">Datos agregados y anónimos. Así se mide el Sistema de Información que exige la ley.</p>
-      </div>
-
-      <div class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-        <div class="rounded-2xl border border-black/5 bg-white p-5 shadow-sm">
-          <p class="text-[11px] uppercase tracking-[0.12em] text-ink/45">Horas reconocidas</p>
-          <p class="mt-2 font-display text-3xl leading-none text-teal" id="impactHours">1245</p>
-          <p class="mt-1 text-xs text-ink/45">acumuladas en CDMX</p>
-        </div>
-        <div class="rounded-2xl border border-black/5 bg-white p-5 shadow-sm">
-          <p class="text-[11px] uppercase tracking-[0.12em] text-ink/45">Cuidadoras activas</p>
-          <p class="mt-2 font-display text-3xl leading-none text-terra" id="impactCaregivers">129</p>
-          <p class="mt-1 text-xs text-ink/45">personas en la red</p>
-        </div>
-        <div class="rounded-2xl border border-black/5 bg-white p-5 shadow-sm">
-          <p class="text-[11px] uppercase tracking-[0.12em] text-ink/45">Créditos en circulación</p>
-          <p class="mt-2 font-display text-3xl leading-none text-ink" id="impactCredits">3971</p>
-          <p class="mt-1 text-xs text-ink/45">horas por redimir</p>
-        </div>
-        <div class="rounded-2xl border border-black/5 bg-white p-5 shadow-sm">
-          <p class="text-[11px] uppercase tracking-[0.12em] text-ink/45">Valor social</p>
-          <p class="mt-2 font-display text-3xl leading-none text-gold" id="impactValue">$74,700</p>
-          <p class="mt-1 text-xs text-ink/45">a $60 MXN por hora</p>
-        </div>
-      </div>
-
-      <div class="mt-6 grid gap-5 lg:grid-cols-[1.3fr_1fr]">
-        <div class="rounded-2xl border border-black/5 bg-white p-5">
-          <p class="font-display text-lg">Qué se está cuidando</p>
-          <div id="bars" class="mt-4 space-y-3"></div>
-        </div>
-        <div class="rounded-2xl border border-black/5 bg-white p-5">
-          <p class="text-[11px] uppercase tracking-[0.14em] text-ink/45">Base de política pública</p>
-          <p class="mt-2 text-sm leading-relaxed text-ink/65">
-            La Ley del Sistema de Cuidados de CDMX manda crear un Sistema de Información e Indicadores.
-            CuidaRed produce esos datos desde el primer día: horas, tipos de cuidado, territorios y carga por persona.
-          </p>
-          <ul class="mt-3 space-y-2 text-sm text-ink/60">
-            <li class="flex gap-2"><span class="text-teal">·</span> Art. 10 — apoyo psicosocial y desgaste</li>
-            <li class="flex gap-2"><span class="text-teal">·</span> Art. 12 — valor económico del cuidado</li>
-            <li class="flex gap-2"><span class="text-teal">·</span> Art. 14 — cooperativas de cuidado</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-  </div>
-</main>
-
-<!-- ============ BOTTOM NAV (mobile) ============ -->
-<nav class="fixed inset-x-0 bottom-0 z-30 border-t border-black/5 bg-white/90 px-2 pb-[env(safe-area-inset-bottom)] backdrop-blur md:hidden" aria-label="Navegación principal móvil">
-  <div class="flex items-stretch justify-around">
-    <button class="nav-btn active flex flex-1 flex-col items-center gap-0.5 rounded-xl px-1 py-2 text-[10px] font-medium transition" data-go="inicio">
-      <svg class="nav-ico h-5 w-5 text-ink/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 9.5V20h14V9.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      Inicio
-    </button>
-    <button class="nav-btn flex flex-1 flex-col items-center gap-0.5 rounded-xl px-1 py-2 text-[10px] font-medium transition" data-go="registrar">
-      <svg class="nav-ico h-5 w-5 text-ink/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 8v8M8 12h8" stroke-linecap="round"/></svg>
-      Registrar
-    </button>
-    <button class="nav-btn flex flex-1 flex-col items-center gap-0.5 rounded-xl px-1 py-2 text-[10px] font-medium transition" data-go="pedir">
-      <svg class="nav-ico h-5 w-5 text-ink/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 20s-7-4.35-7-8.5A3.9 3.9 0 0 1 12 8a3.9 3.9 0 0 1 7 3.5C19 15.65 12 20 12 20Z" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      Pedir
-    </button>
-    <button class="nav-btn flex flex-1 flex-col items-center gap-0.5 rounded-xl px-1 py-2 text-[10px] font-medium transition" data-go="mitiempo">
-      <svg class="nav-ico h-5 w-5 text-ink/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      Mi tiempo
-    </button>
-    <button class="nav-btn flex flex-1 flex-col items-center gap-0.5 rounded-xl px-1 py-2 text-[10px] font-medium transition" data-go="impacto">
-      <svg class="nav-ico h-5 w-5 text-ink/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      Impacto
-    </button>
-  </div>
-</nav>
-
-<!-- ============ TOAST ============ -->
-<div id="toast" class="pointer-events-none fixed bottom-24 left-1/2 z-50 -translate-x-1/2 rounded-xl bg-ink px-4 py-2.5 text-sm font-medium text-cream opacity-0 shadow-lg transition md:bottom-8" role="status" aria-live="polite"></div>
-
-<!-- ============ MODAL ============ -->
-<div id="modal" class="fixed inset-0 z-50 hidden items-end justify-center bg-ink/40 p-0 backdrop-blur-sm sm:items-center sm:p-4" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-  <div class="w-full max-w-md rounded-t-3xl bg-cream p-6 shadow-2xl sm:rounded-3xl">
-    <div id="modalBody"></div>
-  </div>
-</div>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<div class="demo-bar">PROTOTIPO HACKATHON · IZTAPALAPA · Datos y operaciones de demostración</div>
+<header class="header"><div class="wrap nav"><a class="brand" href="#" aria-label="EntreManos, inicio"><span class="brand-icon" aria-hidden="true"><i></i><i></i><i></i><i></i></span>entremanos<span style="font-size:14px">↗</span></a><nav class="links" aria-label="Principal"><a href="#explorar">Encuentra apoyo</a><a href="#banco">Banco de tiempo</a><a href="#impacto">Nuestra comunidad</a><a class="btn small" href="#red">Crea tu red <span aria-hidden="true">↗</span></a></nav></div></header>
+<main id="contenido">
+<div class="wrap">
+<section class="hero" aria-labelledby="hero-title"><div class="hero-copy"><p class="eyebrow"><span class="dot"></span> Una red de cuidados en Iztapalapa</p><h1 id="hero-title">Cuidas de alguien.<br><em>Alguien cuida<br>de ti.</em></h1><p>El cuidado pesa menos cuando se comparte. Intercambia horas de cuidado, encuentra apoyo cerca de casa y construye una comunidad que también te sostenga.</p><div class="hero-actions"><a class="btn" href="#explorar">Encuentra apoyo <span aria-hidden="true">↗</span></a><a class="btn outline" href="#banco">Así funciona <span aria-hidden="true">↓</span></a></div><div class="hero-note"><div class="faces" aria-hidden="true"><span class="face">↗</span><span class="face">♡</span><span class="face">⌂</span></div><span>Familia, amistades y vecinos.<br>Una red que empieza contigo.</span></div></div>
+<div class="hero-art"><div class="scene"><svg viewBox="0 0 480 470" role="img" aria-label="Ilustración de tres personas compartiendo un espacio de cuidado comunitario">
+<circle cx="372" cy="97" r="40" fill="#f1d898"/><path d="M10 300 Q80 160 140 300T280 300T480 260V470H0Z" fill="#becda7"/><path d="M46 95h35M63 78v35M400 180h25M412 168v25" stroke="#8d9f7b" stroke-width="2"/>
+<path d="M92 290Q105 237 158 256L205 351H67Z" fill="#E5B9B5"/><path d="M100 328l-8 114h37l30-106M158 331l39 111h37l-34-122" fill="#374B42"/><path d="M88 439h43v15H73q-4-12 15-15M196 439h40l11 15h-56Z" fill="#24392f"/><circle cx="133" cy="212" r="36" fill="#bc8d6d"/><path d="M98 212q-9-65 43-48 34 9 28 51l-18-25q-24 14-53 22" fill="#374B42"/><path d="M151 263q37 4 72 44l-13 17q-45-19-69-40" fill="#bc8d6d"/>
+<path d="M315 263q18-24 62-10l38 111h-122Z" fill="#f6f1e9"/><path d="M311 352l-24 90h35l28-78 16 78h34l-9-90Z" fill="#8c9c79"/><path d="M285 439h39v15h-51q-2-10 12-15M366 440h35l12 14h-48Z" fill="#374B42"/><circle cx="350" cy="211" r="34" fill="#9b7259"/><path d="M317 210q-8-49 33-44 39-4 34 43l-15-22-19 9-20-3Z" fill="#d6d9cb"/><path d="M323 263q-36 5-70 47l16 15 64-44" fill="#9b7259"/>
+<path d="M184 312q45-46 96-2l20 73H169Z" fill="#a9b99d"/><circle cx="234" cy="273" r="28" fill="#d1a07c"/><path d="M205 274q-8-45 31-40 29-2 29 37l-16-19-31 3Z" fill="#493c32"/><path d="M193 374l-8 65h28l19-59 18 59h28l-5-65Z" fill="#64765a"/><path d="M181 437h32v13h-42ZM249 438h30l8 12h-39Z" fill="#374B42"/>
+<path d="M28 419q-2-56 9-81 26 34 16 81M34 404q-33-29-24-49 33 9 38 49" fill="#6b815c"/><path d="M15 418h47l-9 36H24Z" fill="#d2a18c"/><path d="M428 392q-12-55 5-93 26 34 15 93M439 367q31-49 41-25-3 34-32 44" fill="#789365"/><path d="M414 390h49l-9 64h-30Z" fill="#e5b9b5"/>
+<path d="M218 164c-20-20-43 10 16 38 59-28 36-58 16-38l-8 8Z" fill="#e5b9b5"/>
+</svg></div><div class="float-card top"><p class="tiny">Aquí tu tiempo tiene valor</p><strong>1 hora = 1 hora</strong></div><div class="float-card bottom"><span class="check" aria-hidden="true">♡</span><div><strong>El cuidado se comparte</strong><p class="tiny">Sin distinción. Sin dejarte atrás.</p></div></div><p class="art-caption">MENOS CARGA INDIVIDUAL. MÁS FUERZA COMUNITARIA.</p></div></section>
+<div class="principles"><div class="principle"><span aria-hidden="true">◷</span><p><strong>Tu tiempo vale lo mismo</strong>Para todas las personas y profesiones.</p></div><div class="principle"><span aria-hidden="true">⌁</span><p><strong>Apoyo cerca de casa</strong>Conecta con tu red o con tu localidad.</p></div><div class="principle"><span aria-hidden="true">✳</span><p><strong>Cuidar es de todas las personas</strong>Una responsabilidad compartida.</p></div></div>
+<section class="section" id="explorar"><div class="section-top"><div><p class="eyebrow">01 / Tu comunidad, más cerca</p><h2>Encuentra esas<br>manos que hacen falta.</h2></div><p>Explora cuidados por colonia y presupuesto. Elige un intercambio, una opción privada o información de servicios públicos.</p></div>
+<div class="notice">Explorador de demostración: perfiles, precios y ubicaciones son ficticios. El mapa es esquemático; no representa domicilios ni distancias reales.</div>
+<div class="filters"><label>Tu colonia<select id="zone"><option value="">Todas las colonias</option><option>Santa Martha Acatitla</option><option>Santa Cruz Meyehualco</option><option>San Miguel Teotongo</option><option>Escuadrón 201</option></select></label><label>¿Qué apoyo necesitas?<select id="category"><option value="">Todos los cuidados</option><option value="relevo">Relevo y acompañamiento</option><option value="salud">Salud y rehabilitación</option><option value="emocional">Apoyo emocional</option><option value="traslado">Acompañamiento a citas</option></select></label><label>Forma de acceso<select id="access"><option value="">Todas las opciones</option><option value="horas">Intercambio de horas</option><option value="privado">Servicio privado</option><option value="publico">Oferta pública</option></select></label><label>Presupuesto máximo<select id="budget"><option value="">Sin límite</option><option value="0">Sin pago en dinero</option><option value="300">Hasta $300 MXN</option><option value="600">Hasta $600 MXN</option></select></label></div>
+<div class="explorer"><div><div class="results-head"><span id="count" role="status"></span><button class="textbtn" id="resetFilters">Limpiar filtros</button></div><div id="cards" class="cards"></div></div><aside class="map-panel" aria-label="Esquema de servicios"><div class="map-top"><strong>IZTAPALAPA · CDMX</strong><span>Esquema ilustrativo</span></div><div class="map" id="map"><div class="park"></div><span class="map-label" style="left:12%;top:14%">IZTAPALAPA</span><span class="map-label" style="left:59%;top:29%">COMUNIDAD</span><span class="map-label" style="left:24%;top:73%">RED DE CUIDADOS</span><div id="pins"></div></div><div class="map-bottom"><p>Selecciona un punto para ver el servicio.</p><p class="tiny">La lista muestra los mismos resultados y funciona sin el mapa.</p></div></aside></div></section>
+<section id="banco" class="section" style="padding-top:10px"><div class="time-section"><div><p class="eyebrow">02 / Banco de tiempo</p><h2>Una hora tuya.<br>Una hora para ti.</h2><p>El cuidado no tiene una sola profesión. Una limpieza dental de dos horas puede intercambiarse por dos horas de cuidado de un familiar. Sin multiplicadores ni excepciones.</p><ol class="steps"><li><span class="stepno">1</span><div><strong>Ofrece un cuidado</strong>Acompañamiento, relevo o atención profesional vinculada al cuidado.</div></li><li><span class="stepno">2</span><div><strong>Confirma las horas compartidas</strong>La familia cuidada o un tercero confirma el servicio para acreditar el tiempo.</div></li><li><span class="stepno">3</span><div><strong>Recibe cuidado cuando lo necesites</strong>Puedes empezar con saldo cero y llegar hasta −5 horas, sujeto a disponibilidad.</div></li></ol><div class="economy"><span>Horas ↔ cuidados</span><span>Puntos → beneficios</span><span>Dinero → contratación privada</span></div></div>
+<div class="wallet"><div class="wallet-top"><strong>Tu banco de tiempo</strong><span class="badge">DEMO</span></div><div class="balance"><span id="balance">0</span> <small>horas</small></div><p class="balance-label">Saldo de intercambio comunitario</p><div class="meter"><span id="meter" style="width:100%"></span></div><p class="limit" id="capacity">Puedes solicitar hasta 5 horas antes del límite de −5.</p><button class="btn" id="registerHours">Registrar cuidado ofrecido <span aria-hidden="true">+</span></button><a class="btn outline" href="#explorar">Buscar un intercambio <span aria-hidden="true">↗</span></a><div class="ledger"><strong style="font-size:12px">Movimientos de esta sesión</strong><div id="ledger"><p class="ledger-empty">Todavía no hay movimientos. Prueba un intercambio.</p></div></div><p class="tiny" style="margin:16px 0 0">Saldo ficticio. Las solicitudes y confirmaciones se simulan; no se contacta a ninguna persona.</p></div></div></section>
+<section id="red" class="section"><div class="network"><div class="network-art" aria-hidden="true"><div class="orbit"><div class="orbit-center">Tú</div><span class="orb a">♡ Familia</span><span class="orb b">⌂ Vecindario</span><span class="orb c">↗ Comunidad</span><span class="orb d">✳ Amistades</span></div></div><div class="network-copy"><p class="eyebrow">03 / Nadie cuida en soledad</p><h2>Tu red puede empezar<br>con alguien que ya conoces.</h2><div class="tabs" role="tablist" aria-label="Cómo formar tu red"><button class="tab" role="tab" id="tab-known" aria-selected="true" aria-controls="network-panel">Mi círculo cercano</button><button class="tab" role="tab" id="tab-local" aria-selected="false" tabindex="-1" aria-controls="network-panel">Mi localidad</button></div><div id="network-panel" role="tabpanel" aria-labelledby="tab-known"><p id="network-text">Reúne a tu familia, amistades y vecinos. Reparte acompañamientos y momentos de relevo: pedir apoyo también es cuidar.</p><button class="btn outline" id="networkAction">Organizar mi red <span aria-hidden="true">↗</span></button></div><p class="tiny" id="network-status" role="status" style="margin-top:15px"></p></div></div></section>
+<section class="section" style="padding-top:10px"><div class="section-top"><div><p class="eyebrow">04 / También hay espacio para ti</p><h2>Tu bienestar cuenta.</h2></div><p>El autocuidado genera puntos, no deudas de trabajo para otra persona. Los puntos nunca se convierten en horas.</p></div><div class="perks"><article class="perk"><span class="big-icon" aria-hidden="true">✳</span><span class="tag">Bitácora de bienestar</span><h3>Un pequeño respiro.<br>Un gran comienzo.</h3><p>Registra un momento para ti y explora cómo funcionarían los beneficios de comercios afiliados.</p><p><strong id="points">0 puntos de autocuidado</strong> <span class="tiny">· demostración</span></p><button class="btn outline" id="wellbeing">Registrar mi respiro <span aria-hidden="true">+</span></button><button class="textbtn" id="benefits" style="display:block;margin-top:14px">Explorar beneficios propuestos</button></article><article class="perk rose"><span class="big-icon" aria-hidden="true">↗</span><span class="tag">Aprende a tu ritmo</span><h3>Herramientas para cuidar.<br>Y para crecer.</h3><p>Formación en cuidados y alfabetización digital. Una ruta de aprendizaje para ganar autonomía y fortalecer tu comunidad.</p><p class="tiny">Catálogo conceptual. Instituciones y avales por confirmar.</p><button class="btn outline" id="courses">Explorar la formación <span aria-hidden="true">↗</span></button></article></div></section>
+<section class="section" id="impacto"><div class="impact"><div><p class="eyebrow">05 / Un cambio que empieza cerca</p><h2>Cuidar no tiene género.<br>Tiene comunidad.</h2><p style="color:var(--muted);font-size:15px">Queremos redistribuir una responsabilidad que suele recaer en las mujeres. Hacer visible su tiempo es el comienzo; compartir el trabajo es el cambio.</p><span class="badge">Piloto propuesto · Iztapalapa</span></div><div class="impact-items"><article class="impact-item"><span>01</span><div><h3>De una carga individual a un valor común</h3><p>Intercambiar cuidados permite que más personas participen y que las mujeres tengan más oportunidades de recibir apoyo y tiempo propio.</p></div></article><article class="impact-item"><span>02</span><div><h3>Todas las personas pueden dar y recibir</h3><p>Sin distinción de género, origen o idioma. La propuesta contempla acompañamiento y adaptación lingüística; esta demo está disponible en español.</p></div></article><article class="impact-item"><span>03</span><div><h3>Una red local que puede multiplicarse</h3><p>Empezamos diseñando para Iztapalapa, con una meta inicial de aproximadamente 20 transacciones diarias. El modelo busca replicarse con las redes y necesidades de cada localidad.</p></div></article></div></div></section>
+<section class="section" id="preguntas"><div class="faq"><div><p class="eyebrow">Cuentas claras, cuidados compartidos</p><h2>Antes de dar<br>el primer paso.</h2><p class="tiny">Reglas del prototipo y compromisos para un futuro piloto.</p></div><div>
+<details><summary>¿Todas las horas valen lo mismo?</summary><p>Sí. Una hora equivale a una hora, también para profesionales. Por ejemplo, dos horas de atención dental pueden intercambiarse por dos horas de cuidado de un familiar. Quienes participen acuerdan el servicio y su duración; no hay multiplicadores por profesión.</p></details>
+<details><summary>¿Cómo se acreditan y cuál es el límite?</summary><p>El cuidado ofrecido necesita confirmación de la familia cuidada o de un tercero. Puedes solicitar apoyo con saldo cero, hasta un mínimo de −5 horas. La disponibilidad depende de las ofertas de la red; tener saldo no garantiza un horario. En esta demo ambas confirmaciones son simuladas y el saldo solo dura esta sesión.</p></details>
+<details><summary>¿Qué servicios pueden intercambiarse?</summary><p>Solo se intercambian horas de cuidado: acompañar a citas, cuidar a niñas, niños o adultos mayores, traslados y apoyo en casa. Si tienes una profesión u oficio (dentista, terapia, plomería, estética, jardinería, limpieza, mantenimiento), puedes ofrecerlo, pero solo a cambio de horas de cuidado: cada intercambio lleva cuidado de al menos un lado. Se excluyen servicios sexuales y actividades que causen daño físico o moral, abuso o discriminación. Los servidores públicos no pueden ofrecer servicios como intercambio; la oferta pública aparece únicamente como directorio.</p></details>
+<details><summary>¿Cómo se cuida la confianza de la comunidad?</summary><p>El piloto requerirá revisión de identidad, credenciales profesionales cuando correspondan, consentimiento, alcance claro de las tareas y un canal de incidentes. La confirmación de horas no sustituye estas verificaciones. En esta demo no se verifican identidades ni se solicitan documentos. Los convenios universitarios requieren supervisión y autorización institucional.</p></details>
+<details><summary>¿Horas, puntos y dinero son lo mismo?</summary><p>No. Las horas se intercambian por cuidado. Los puntos de autocuidado se usarían para beneficios de afiliados, sin comprar horas humanas. Las aportaciones familiares podrían contratar servicios privados por separado. Esta versión no procesa pagos, propinas ni aportaciones.</p></details>
+<details><summary>¿Ya existen convenios, descuentos y certificados?</summary><p>No se han acreditado convenios para este prototipo. El piloto buscaría acuerdos con universidades, profesionales y un primer comercio o clínica afiliada. Los descuentos de agua, luz, transporte o guardería y los cursos certificados dependen de acuerdos y avales futuros; no son beneficios disponibles hoy.</p></details>
+</div></div></section>
+<section class="cta"><p class="eyebrow" style="justify-content:center">El primer paso es compartir</p><h2>No necesitas hacerlo todo.<br>Necesitas una red.</h2><p>Explora la propuesta para Iztapalapa. Imagina lo que podemos cuidar en comunidad.</p><a class="btn" href="#explorar">Probar el intercambio <span aria-hidden="true">↗</span></a></section>
+</div></main>
+<footer class="footer"><div class="wrap footer-inner"><a class="brand" href="#">entremanos ↗</a><p>Hecho para compartir el cuidado.<br>Prototipo local · Sin registros ni pagos reales.</p><button class="textbtn" id="resetDemo">Reiniciar demostración</button></div></footer>
+<nav class="mobile-nav" aria-label="Navegación móvil"><a href="#explorar"><span aria-hidden="true">⌁</span>Explorar</a><a href="#banco"><span aria-hidden="true">◷</span>Mis horas</a><a href="#red"><span aria-hidden="true">♡</span>Mi red</a><a href="#impacto"><span aria-hidden="true">✳</span>Comunidad</a></nav>
+<dialog id="dialog" aria-labelledby="dialogTitle"><div class="dialog-head"><h2 id="dialogTitle"></h2><button class="close" id="closeDialog" aria-label="Cerrar ventana">×</button></div><div class="dialog-content" id="dialogContent"></div></dialog>
+<div id="toast" role="status" aria-live="polite"></div>
 <script>
-(function () {
-  'use strict';
-
-  var KEY = 'cuidared-v1';
-  var CATS = ['Todas', 'Acompañamiento', 'Respiro', 'Trámites', 'Cuidado infantil', 'Alimentos', 'Salud'];
-
-  function seed() {
-    return {
-      user: { name: 'María', saldo: 3, dadas: 4, recibidas: 1 },
-      offers: [
-        { id: 'o1', nombre: 'Lucía', categoria: 'Acompañamiento', colonia: 'Del Valle', horas: 2, rating: '4.9', tel: '55 1234 5678', desc: 'Acompaño a consultas médicas y trámites en el IMSS o ISSSTE.', taken: false },
-        { id: 'o2', nombre: 'Carmen', categoria: 'Respiro', colonia: 'Coyoacán', horas: 3, rating: '5.0', tel: '55 2345 6789', desc: 'Doy respiro a cuidadoras: me quedo con la persona mientras descansas.', taken: false },
-        { id: 'o3', nombre: 'Diego', categoria: 'Trámites', colonia: 'Roma Norte', horas: 1.5, rating: '4.7', tel: '55 3456 7890', desc: 'Hago trámites y filas por ti. Llevo documentos y comprobantes.', taken: false },
-        { id: 'o4', nombre: 'Ana', categoria: 'Cuidado infantil', colonia: 'Narvarte', horas: 2, rating: '4.8', tel: '55 4567 8901', desc: 'Cuido niñas y niños por las tardes. Tengo experiencia y referencias.', taken: false },
-        { id: 'o5', nombre: 'Rosa', categoria: 'Alimentos', colonia: 'Iztapalapa', horas: 1, rating: '4.9', tel: '55 5678 9012', desc: 'Cocino comida casera y la llevo a tu casa. Menús sencillos.', taken: false },
-        { id: 'o6', nombre: 'Mateo', categoria: 'Salud', colonia: 'Centro', horas: 2, rating: '4.6', tel: '55 6789 0123', desc: 'Enfermero: apoyo con curaciones, medicamentos y signos vitales.', taken: false }
-      ],
-      txs: [
-        { id: 't1', tipo: 'ganado', horas: 2, titulo: 'Cuidado de adulto mayor', colonia: 'Del Valle', fecha: 'Hace 3 días' },
-        { id: 't2', tipo: 'usado', horas: 1, titulo: 'Acompañamiento a consulta', colonia: 'Coyoacán', fecha: 'Hace 5 días' },
-        { id: 't3', tipo: 'ganado', horas: 1.5, titulo: 'Trámite en ventanilla', colonia: 'Roma Norte', fecha: 'Hace 8 días' },
-        { id: 't4', tipo: 'ganado', horas: 0.5, titulo: 'Comida preparada', colonia: 'Narvarte', fecha: 'Hace 12 días' }
-      ]
-    };
-  }
-
-  var state = load();
-  var activeFilter = 'Todas';
-  var pending = null;
-
-  function load() {
-    try {
-      var raw = localStorage.getItem(KEY);
-      if (raw) {
-        var parsed = JSON.parse(raw);
-        if (parsed && parsed.user && Array.isArray(parsed.offers) && Array.isArray(parsed.txs)) return parsed;
-      }
-    } catch (e) { /* estado corrupto: se reinicia */ }
-    return seed();
-  }
-
-  function save() {
-    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) { /* modo privado */ }
-  }
-
-  function fmt(n) {
-    var v = Number(n);
-    return Number.isInteger(v) ? String(v) : String(v);
-  }
-
-  function money(n) {
-    return '$' + Math.round(n).toLocaleString('es-MX');
-  }
-
-  function $(id) { return document.getElementById(id); }
-
-  function esc(s) {
-    return String(s).replace(/[&<>"']/g, function (c) {
-      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
-    });
-  }
-
-  /* ---------- navegación ---------- */
-  function showView(name) {
-    document.querySelectorAll('.view').forEach(function (v) {
-      v.classList.toggle('active', v.getAttribute('data-view') === name);
-    });
-    document.querySelectorAll('.nav-btn').forEach(function (b) {
-      b.classList.toggle('active', b.getAttribute('data-go') === name);
-    });
-    try { history.replaceState(null, '', '#' + name); } catch (e) { /* file:// sin historial */ }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    if (name === 'pedir') renderOffers();
-    if (name === 'mitiempo') renderTx();
-    if (name === 'impacto') renderImpact();
-  }
-
-  document.addEventListener('click', function (e) {
-    var go = e.target.closest('[data-go]');
-    if (go) { showView(go.getAttribute('data-go')); return; }
-    var chip = e.target.closest('[data-filter]');
-    if (chip) { activeFilter = chip.getAttribute('data-filter'); renderFilters(); renderOffers(); return; }
-    var req = e.target.closest('[data-request]');
-    if (req) { openConfirm(req.getAttribute('data-request')); return; }
-    if (e.target.closest('[data-close]')) { closeModal(); return; }
-    if (e.target.closest('[data-confirm]')) { confirmRequest(); return; }
-  });
-
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') closeModal();
-  });
-
-  /* ---------- header / saldos ---------- */
-  function renderBalances() {
-    var u = state.user;
-    ['saldoPill', 'sidebarSaldo', 'statSaldo', 'formSaldo', 'pedirSaldo', 'timeSaldo', 'timeCan', 'timeDadas', 'timeRecibidas'].forEach(function (id) {
-      var el = $(id);
-      if (!el) return;
-      if (id === 'saldoPill' || id === 'sidebarSaldo' || id === 'statSaldo' || id === 'formSaldo' || id === 'pedirSaldo' || id === 'timeSaldo' || id === 'timeCan') el.textContent = fmt(u.saldo);
-      if (id === 'timeDadas') el.textContent = fmt(u.dadas);
-      if (id === 'timeRecibidas') el.textContent = fmt(u.recibidas);
-    });
-    var g = $('greetName');
-    if (g) g.textContent = u.name;
-  }
-
-  /* ---------- ofertas ---------- */
-  function renderFilters() {
-    var box = $('filters');
-    if (!box) return;
-    box.innerHTML = CATS.map(function (c) {
-      var active = c === activeFilter ? 'active' : 'border-black/10 bg-white text-ink/60 hover:bg-sand/60';
-      return '<button type="button" data-filter="' + esc(c) + '" class="chip ' + active + ' rounded-full border px-3.5 py-1.5 text-xs font-medium transition">' + esc(c) + '</button>';
-    }).join('');
-  }
-
-  function renderOffers() {
-    var grid = $('offerGrid');
-    if (!grid) return;
-    var list = state.offers.filter(function (o) {
-      return !o.taken && (activeFilter === 'Todas' || o.categoria === activeFilter);
-    });
-
-    if (!list.length) {
-      grid.innerHTML = '<div class="rounded-2xl border border-dashed border-black/10 p-6 text-center text-sm text-ink/50 sm:col-span-2">No hay personas disponibles en esta categoría. Prueba con otra.</div>';
-      return;
-    }
-
-    grid.innerHTML = list.map(function (o) {
-      var can = state.user.saldo >= o.horas;
-      var falta = Math.round((o.horas - state.user.saldo) * 10) / 10;
-      var btn = can
-        ? '<button type="button" data-request="' + o.id + '" class="mt-4 w-full rounded-xl bg-teal px-4 py-2.5 text-sm font-semibold text-cream transition hover:bg-teal/90">Pedir ' + fmt(o.horas) + ' h</button>'
-        : '<button type="button" disabled class="mt-4 w-full cursor-not-allowed rounded-xl bg-sand px-4 py-2.5 text-sm font-semibold text-ink/40">Te faltan ' + fmt(falta) + ' créditos</button>';
-
-      return '' +
-        '<article class="flex flex-col rounded-2xl border border-black/5 bg-white p-5 shadow-sm">' +
-          '<div class="flex items-start justify-between gap-3">' +
-            '<div>' +
-              '<p class="text-[10px] uppercase tracking-[0.12em] text-teal">' + esc(o.categoria) + '</p>' +
-              '<h3 class="mt-0.5 font-display text-xl leading-tight">' + esc(o.nombre) + '</h3>' +
-            '</div>' +
-            '<span class="shrink-0 rounded-full bg-gold/25 px-2.5 py-1 text-xs font-semibold text-ink">' + fmt(o.horas) + ' h</span>' +
-          '</div>' +
-          '<p class="mt-1 text-xs text-ink/50">' + esc(o.colonia) + ' · ★ ' + esc(o.rating) + '</p>' +
-          '<p class="mt-3 flex-1 text-sm leading-relaxed text-ink/70">' + esc(o.desc) + '</p>' +
-          btn +
-        '</article>';
-    }).join('');
-  }
-
-  /* ---------- transacciones ---------- */
-  function renderTx() {
-    var box = $('txList');
-    if (!box) return;
-    if (!state.txs.length) {
-      box.innerHTML = '<p class="rounded-2xl border border-dashed border-black/10 p-6 text-center text-sm text-ink/50">Todavía no hay movimientos.</p>';
-      return;
-    }
-    box.innerHTML = state.txs.map(function (t) {
-      var ganado = t.tipo === 'ganado';
-      var signo = ganado ? '+' : '−';
-      var color = ganado ? 'text-teal' : 'text-terra';
-      var fondo = ganado ? 'bg-teal/10' : 'bg-terra/10';
-      var icono = ganado
-        ? '<path d="M12 5v14M6 13l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/>'
-        : '<path d="M12 19V5M6 11l6-6 6 6" stroke-linecap="round" stroke-linejoin="round"/>';
-      return '' +
-        '<div class="flex items-center gap-3 rounded-2xl border border-black/5 bg-white p-3.5">' +
-          '<div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full ' + fondo + ' ' + color + '">' +
-            '<svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">' + icono + '</svg>' +
-          '</div>' +
-          '<div class="min-w-0 flex-1">' +
-            '<p class="truncate text-sm font-medium">' + esc(t.titulo) + '</p>' +
-            '<p class="text-xs text-ink/45">' + esc(t.colonia) + ' · ' + esc(t.fecha) + '</p>' +
-          '</div>' +
-          '<p class="shrink-0 text-sm font-semibold ' + color + '">' + signo + fmt(t.horas) + ' h</p>' +
-        '</div>';
-    }).join('');
-  }
-
-  /* ---------- impacto ---------- */
-  var DIST = [
-    { nombre: 'Acompañamiento', pct: 38 },
-    { nombre: 'Respiro', pct: 24 },
-    { nombre: 'Trámites', pct: 18 },
-    { nombre: 'Cuidado infantil', pct: 12 },
-    { nombre: 'Alimentos', pct: 8 }
-  ];
-
-  function renderImpact() {
-    var u = state.user;
-    var horas = 1240 + u.dadas + u.recibidas;
-    var cuidadoras = 128 + (u.dadas > 0 ? 1 : 0);
-    var creditos = 3968 + u.saldo;
-
-    if ($('impactHours')) $('impactHours').textContent = horas.toLocaleString('es-MX');
-    if ($('impactCaregivers')) $('impactCaregivers').textContent = String(cuidadoras);
-    if ($('impactCredits')) $('impactCredits').textContent = creditos.toLocaleString('es-MX');
-    if ($('impactValue')) $('impactValue').textContent = money(horas * 60);
-
-    var bars = $('bars');
-    if (!bars) return;
-    bars.innerHTML = DIST.map(function (d) {
-      return '' +
-        '<div>' +
-          '<div class="flex justify-between text-xs text-ink/60"><span>' + esc(d.nombre) + '</span><span>' + d.pct + '%</span></div>' +
-          '<div class="mt-1 h-2 overflow-hidden rounded-full bg-sand">' +
-            '<div class="h-full rounded-full bg-teal" style="width:' + d.pct + '%"></div>' +
-          '</div>' +
-        '</div>';
-    }).join('');
-  }
-
-  /* ---------- toast ---------- */
-  var toastTimer = null;
-  function toast(msg) {
-    var el = $('toast');
-    if (!el) return;
-    el.textContent = msg;
-    el.classList.remove('opacity-0');
-    el.classList.add('opacity-100');
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(function () {
-      el.classList.remove('opacity-100');
-      el.classList.add('opacity-0');
-    }, 2800);
-  }
-
-  /* ---------- modal ---------- */
-  function openModal(html) {
-    var m = $('modal');
-    if (!m) return;
-    $('modalBody').innerHTML = html;
-    m.classList.remove('hidden');
-    m.classList.add('flex');
-    document.body.style.overflow = 'hidden';
-    var focusable = m.querySelector('button');
-    if (focusable) focusable.focus();
-  }
-
-  function closeModal() {
-    var m = $('modal');
-    if (!m) return;
-    m.classList.add('hidden');
-    m.classList.remove('flex');
-    document.body.style.overflow = '';
-    pending = null;
-  }
-
-  function openConfirm(id) {
-    var o = state.offers.find(function (x) { return x.id === id; });
-    if (!o || o.taken) return;
-    pending = o;
-
-    var despues = Math.round((state.user.saldo - o.horas) * 10) / 10;
-    openModal('' +
-      '<div class="flex items-start justify-between gap-3">' +
-        '<div>' +
-          '<p class="text-[10px] uppercase tracking-[0.14em] text-teal">Confirmar solicitud</p>' +
-          '<h2 id="modalTitle" class="mt-1 font-display text-2xl leading-tight">' + fmt(o.horas) + ' h con ' + esc(o.nombre) + '</h2>' +
-        '</div>' +
-        '<button type="button" data-close class="rounded-lg px-2 py-1 text-lg leading-none text-ink/40 transition hover:bg-sand" aria-label="Cerrar">×</button>' +
-      '</div>' +
-      '<p class="mt-3 text-sm leading-relaxed text-ink/65">Al confirmar, ' + esc(o.nombre) + ' recibe tu solicitud y te contacta para acordar día y hora.</p>' +
-      '<dl class="mt-4 space-y-2 rounded-xl bg-white p-4 text-sm">' +
-        '<div class="flex justify-between"><dt class="text-ink/50">Servicio</dt><dd class="font-medium">' + esc(o.categoria) + '</dd></div>' +
-        '<div class="flex justify-between"><dt class="text-ink/50">Colonia</dt><dd class="font-medium">' + esc(o.colonia) + '</dd></div>' +
-        '<div class="flex justify-between"><dt class="text-ink/50">Costo</dt><dd class="font-medium text-terra">− ' + fmt(o.horas) + ' créditos</dd></div>' +
-        '<div class="flex justify-between border-t border-black/5 pt-2"><dt class="text-ink/50">Saldo después</dt><dd class="font-semibold text-teal">' + fmt(despues) + ' créditos</dd></div>' +
-      '</dl>' +
-      '<div class="mt-5 flex flex-col gap-2">' +
-        '<button type="button" data-confirm class="w-full rounded-xl bg-teal px-4 py-3 text-sm font-semibold text-cream transition hover:bg-teal/90">Confirmar y descontar</button>' +
-        '<button type="button" data-close class="w-full rounded-xl px-4 py-2.5 text-sm font-medium text-ink/55 transition hover:bg-sand">Cancelar</button>' +
-      '</div>'
-    );
-  }
-
-  function confirmRequest() {
-    var o = pending;
-    if (!o) return;
-    if (state.user.saldo < o.horas) {
-      closeModal();
-      toast('No tienes créditos suficientes para esta solicitud.');
-      return;
-    }
-
-    state.user.saldo = Math.round((state.user.saldo - o.horas) * 10) / 10;
-    state.user.recibidas = Math.round((state.user.recibidas + o.horas) * 10) / 10;
-    o.taken = true;
-    state.txs.unshift({
-      id: 't' + Date.now(),
-      tipo: 'usado',
-      horas: o.horas,
-      titulo: o.categoria + ' con ' + o.nombre,
-      colonia: o.colonia,
-      fecha: 'Hoy'
-    });
-    save();
-    renderBalances();
-    if (activeFilter !== 'Todas') { /* mantiene filtro */ }
-    renderOffers();
-
-    openModal('' +
-      '<div class="text-center">' +
-        '<div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-teal/10 text-teal">' +
-          '<svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
-        '</div>' +
-        '<h2 id="modalTitle" class="mt-4 font-display text-2xl">Solicitud enviada</h2>' +
-        '<p class="mt-2 text-sm leading-relaxed text-ink/65">' + esc(o.nombre) + ' fue notificada. Te escribirá por WhatsApp para acordar el día.</p>' +
-      '</div>' +
-      '<div class="mt-4 rounded-xl bg-white p-4 text-sm">' +
-        '<div class="flex justify-between"><span class="text-ink/50">Contacto simulado</span><span class="font-medium">' + esc(o.tel) + '</span></div>' +
-        '<div class="mt-2 flex justify-between"><span class="text-ink/50">Créditos usados</span><span class="font-medium text-terra">− ' + fmt(o.horas) + '</span></div>' +
-        '<div class="mt-2 flex justify-between"><span class="text-ink/50">Saldo restante</span><span class="font-semibold text-teal">' + fmt(state.user.saldo) + '</span></div>' +
-      '</div>' +
-      '<button type="button" data-close class="mt-5 w-full rounded-xl bg-ink px-4 py-3 text-sm font-semibold text-cream transition hover:bg-ink/90">Entendido</button>'
-    );
-
-    pending = null;
-    toast('Solicitud enviada a ' + o.nombre + '.');
-  }
-
-  /* ---------- formulario ---------- */
-  var form = $('careForm');
-  if (form) {
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var servicio = $('servicio').value.trim();
-      var horas = parseFloat($('horas').value);
-      var colonia = $('colonia').value.trim();
-      var notas = $('notas').value.trim();
-      var consent = $('consent').checked;
-      var err = $('formError');
-
-      function fail(msg) {
-        err.textContent = msg;
-        err.classList.remove('hidden');
-      }
-
-      if (!servicio) return fail('Elige el tipo de cuidado que diste.');
-      if (!isFinite(horas) || horas < 0.5 || horas > 12) return fail('Las horas deben estar entre 0.5 y 12.');
-      if (!colonia) return fail('Escribe la colonia donde cuidaste.');
-      if (!consent) return fail('Necesitas confirmar que ambas personas validaron las horas.');
-
-      err.classList.add('hidden');
-
-      state.user.saldo = Math.round((state.user.saldo + horas) * 10) / 10;
-      state.user.dadas = Math.round((state.user.dadas + horas) * 10) / 10;
-      state.txs.unshift({
-        id: 't' + Date.now(),
-        tipo: 'ganado',
-        horas: horas,
-        titulo: servicio + (notas ? ' · ' + notas.slice(0, 42) : ''),
-        colonia: colonia,
-        fecha: 'Hoy'
-      });
-      save();
-      renderBalances();
-      renderTx();
-      form.reset();
-      toast('Sumaste ' + fmt(horas) + ' h. Tu nuevo saldo es ' + fmt(state.user.saldo) + ' créditos.');
-      showView('mitiempo');
-    });
-  }
-
-  /* ---------- reset ---------- */
-  var resetBtn = $('resetBtn');
-  if (resetBtn) {
-    resetBtn.addEventListener('click', function () {
-      if (!window.confirm('¿Reiniciar la demo a su estado inicial?')) return;
-      state = seed();
-      save();
-      activeFilter = 'Todas';
-      renderAll();
-      showView('inicio');
-      toast('Demo reiniciada.');
-    });
-  }
-
-  /* ---------- arranque ---------- */
-  function renderAll() {
-    renderBalances();
-    renderFilters();
-    renderOffers();
-    renderTx();
-    renderImpact();
-  }
-
-  renderAll();
-  var inicio = (location.hash || '').replace('#', '');
-  var conocidas = ['inicio', 'registrar', 'pedir', 'mitiempo', 'impacto'];
-  showView(conocidas.indexOf(inicio) >= 0 ? inicio : 'inicio');
-})();
+"use strict";
+const $=id=>document.getElementById(id);
+const services=[
+{id:1,name:"Relevo para quien cuida",person:"Red vecinal · perfil ilustrativo",zone:"Santa Martha Acatitla",category:"relevo",access:"horas",hours:2,price:0,icon:"♡",detail:"Dos horas de acompañamiento y relevo no clínico para que la persona cuidadora tenga tiempo propio.",x:20,y:38},
+{id:2,name:"Limpieza dental",person:"Profesional · perfil ilustrativo",zone:"Santa Cruz Meyehualco",category:"salud",access:"horas",hours:2,price:0,icon:"✧",detail:"Ejemplo solicitado para el banco: dos horas de atención dental a cambio de dos horas de cuidado de un familiar. Alcance, insumos y credenciales se acuerdan antes del servicio.",x:55,y:55},
+{id:3,name:"Acompañamiento a una cita",person:"Comunidad · perfil ilustrativo",zone:"San Miguel Teotongo",category:"traslado",access:"horas",hours:1,price:0,icon:"↗",detail:"Una hora de acompañamiento a consulta. No incluye vehículo ni transporte especializado. Los gastos y el trayecto se acuerdan antes.",x:75,y:73},
+{id:4,name:"Fisioterapia en comunidad",person:"Profesional · perfil ilustrativo",zone:"Escuadrón 201",category:"salud",access:"horas",hours:1,price:0,icon:"✳",detail:"Una hora de fisioterapia por una hora de cuidado. La atención real requeriría revisión de credenciales y condiciones individuales.",x:35,y:65},
+{id:5,name:"Relevo profesional privado",person:"Profesional · perfil ilustrativo",zone:"Santa Martha Acatitla",category:"relevo",access:"privado",hours:2,price:600,icon:"◷",detail:"Ejemplo de contratación privada de dos horas por $600 MXN. Precio ficticio, sin cobro ni reserva real. No modifica el saldo del banco de tiempo.",x:38,y:24},
+{id:6,name:"Apoyo emocional privado",person:"Profesional · perfil ilustrativo",zone:"Santa Cruz Meyehualco",category:"emocional",access:"privado",hours:1,price:300,icon:"☀",detail:"Ejemplo de una sesión privada de apoyo emocional por $300 MXN. No constituye orientación clínica ni una oferta disponible.",x:65,y:20},
+{id:7,name:"Orientación sobre servicios públicos",person:"Ficha conceptual · sin institución afiliada",zone:"San Miguel Teotongo",category:"salud",access:"publico",hours:0,price:0,icon:"⌂",detail:"Esta ficha muestra cómo se separaría la oferta pública del intercambio. No representa una unidad médica real. Consulta requisitos y disponibilidad directamente en los canales oficiales de la alcaldía.",x:81,y:42}
+];
+let balance=0,points=0,ledger=[],requests=new Set(),wellness=new Set(),network=[],networkMode="known",timer;
+const escapeHtml=value=>String(value).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+function toast(message){$("toast").textContent=message;clearTimeout(timer);timer=setTimeout(()=>$("toast").textContent="",4500)}
+function openDialog(title,content){$("dialogTitle").textContent=title;$("dialogContent").innerHTML=content;if(!$("dialog").open)$("dialog").showModal()}
+function closeDialog(){$("dialog").close()}
+$("closeDialog").addEventListener("click",closeDialog);
+$("dialog").addEventListener("click",e=>{if(e.target===$("dialog")){const r=$("dialog").getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)closeDialog()}});
+function visibleServices(){return services.filter(s=>(!$("zone").value||s.zone===$("zone").value)&&(!$("category").value||s.category===$("category").value)&&(!$("access").value||s.access===$("access").value)&&(!$("budget").value||s.price<=Number($("budget").value)))}
+function renderServices(){const list=visibleServices();$("count").textContent=list.length+" opciones de demostración";$("cards").innerHTML=list.length?list.map(s=>'<article class="service"><div class="service-header"><span class="service-icon" aria-hidden="true">'+s.icon+'</span><div><span class="tag">'+(s.access==="horas"?"Banco de tiempo":s.access==="privado"?"Servicio privado":"Directorio público")+'</span><h3>'+s.name+'</h3><span class="tiny">'+s.zone+'</span></div></div><p>'+s.person+'</p><div class="service-bottom"><div class="price">'+(s.access==="horas"?s.hours+" hora"+(s.hours===1?"":"s"):s.access==="privado"?"$"+s.price+" MXN":"Consulta informativa")+'<small>'+(s.access==="horas"?"Mismo valor para todas las profesiones":s.access==="privado"?"Precio ilustrativo por servicio":"Sin intercambio de horas")+'</small></div><button class="btn outline small" data-service="'+s.id+'">'+(s.access==="horas"?"Ver intercambio":"Ver información")+' ↗</button></div></article>').join(""):'<div class="empty"><h3>No hay ejemplos con estos filtros.</h3><p>Prueba otra colonia, modalidad o presupuesto.</p><button class="btn outline small" data-reset-filters>Limpiar filtros</button></div>';$("pins").innerHTML=list.map(s=>'<button class="pin" style="left:'+s.x+'%;top:'+s.y+'%" data-service="'+s.id+'" aria-label="Ver '+s.name+' en '+s.zone+'"><span>'+s.id+'</span></button>').join("")}
+function renderWallet(){$("balance").textContent=balance;$("capacity").textContent="Puedes solicitar hasta "+(balance+5)+" horas antes del límite de −5.";$("meter").style.width=Math.max(0,Math.min(100,(balance+5)/5*100))+"%";$("ledger").innerHTML=ledger.length?ledger.map(l=>'<div class="ledger-row"><span>'+escapeHtml(l.label)+'</span><strong>'+(l.delta>0?"+":"−")+Math.abs(l.delta)+' h</strong></div>').join(""):'<p class="ledger-empty">Todavía no hay movimientos. Prueba un intercambio.</p>';$("points").textContent=points+" puntos de autocuidado"}
+function showService(id){const s=services.find(s=>s.id===id);if(!s)return;if(s.access!=="horas"){openDialog(s.name,'<span class="badge">EJEMPLO NO DISPONIBLE PARA RESERVA</span><p style="margin-top:18px">'+s.detail+'</p><div class="info-row"><span>Zona ilustrativa</span><strong>'+s.zone+'</strong></div>'+(s.access==="publico"?'<a class="btn outline" href="https://www.iztapalapa.cdmx.gob.mx/" target="_blank" rel="noopener noreferrer">Consultar portal de la alcaldía ↗</a>':'<div class="notice">La contratación privada se mantendría separada del banco. No hay pagos habilitados.</div>'));return}
+const unavailable=balance-s.hours < -5;const duplicate=requests.has(s.id);
+openDialog(s.name,'<span class="badge">INTERCAMBIO · DEMOSTRACIÓN</span><p style="margin-top:18px">'+s.detail+'</p><div class="info-row"><span>Tiempo a intercambiar</span><strong>'+s.hours+' h</strong></div><div class="info-row"><span>Tu saldo actual</span><strong>'+balance+' h</strong></div><div class="info-row"><span>Saldo tras el intercambio</span><strong>'+(balance-s.hours)+' h</strong></div><p class="tiny" style="margin-top:14px">En el piloto, primero se acordarán fecha y disponibilidad. El cargo ocurrirá tras confirmar el servicio realizado. Aquí simulamos el ciclo completo.</p><form id="requestForm"><label class="checklabel"><input type="checkbox" required> Entiendo que esto simula una solicitud aceptada y un servicio ya realizado y confirmado; no contactará a nadie.</label><button class="btn" type="submit" '+(unavailable||duplicate?"disabled":"")+'>'+(duplicate?"Ya simulado en esta sesión":unavailable?"Superaría el límite de −5 horas":"Simular intercambio confirmado")+'</button></form>'+(unavailable?'<p class="error">No tienes margen suficiente. Registra un cuidado confirmado o solicita un servicio de menor duración.</p>':''));
+$("requestForm").addEventListener("submit",e=>{e.preventDefault();if(requests.has(s.id)||balance-s.hours < -5)return;balance-=s.hours;requests.add(s.id);ledger.unshift({label:s.name+" · recibido",delta:-s.hours});renderWallet();closeDialog();toast("Intercambio simulado: −"+s.hours+" h. Saldo: "+balance+" h.")})}
+function showRegister(){openDialog("El cuidado que compartiste",'<p>Solo se acreditan horas de cuidado con confirmación de la familia cuidada o de un tercero. Todos los campos representan una simulación.</p><form id="hoursForm"><label>Cuidado ofrecido<select id="careType"><option>Relevo y acompañamiento</option><option>Atención dental</option><option>Fisioterapia</option><option>Acompañamiento a consulta</option><option>Apoyo emocional</option></select></label><label>Duración<select id="careHours"><option value="1">1 hora</option><option value="2">2 horas</option><option value="3">3 horas</option><option value="4">4 horas</option></select></label><label>¿Quién confirmaría el cuidado?<select id="confirmer"><option>Familia cuidada</option><option>Tercero que presenció el servicio</option></select></label><label class="checklabel"><input type="checkbox" required> Simular que la persona seleccionada confirmó la duración y que el cuidado sí se realizó.</label><button class="btn" type="submit">Simular confirmación y acreditar horas</button></form><div class="notice">No se validan horas reales ni se solicita información de pacientes. Un profesional recibe exactamente las mismas horas.</div>');
+$("hoursForm").addEventListener("submit",e=>{e.preventDefault();const n=Number($("careHours").value);if(!Number.isInteger(n)||n<1||n>4)return;balance+=n;ledger.unshift({label:$("careType").value+" · ofrecido · "+$("confirmer").value+" (simulado)",delta:n});renderWallet();closeDialog();toast("Confirmación simulada: +"+n+" h acreditadas.")})}
+function setNetwork(mode){networkMode=mode;const known=mode==="known";["known","local"].forEach(m=>{const t=$("tab-"+m);t.setAttribute("aria-selected",String(m===mode));t.tabIndex=m===mode?0:-1});$("network-panel").setAttribute("aria-labelledby","tab-"+mode);$("network-text").textContent=known?"Reúne a tu familia, amistades y vecinos. Reparte acompañamientos y momentos de relevo: pedir apoyo también es cuidar.":"Encuentra personas cuidadoras de tu localidad. Empieza por una colonia y explora los intercambios que podrían formar tu nueva red.";$("networkAction").innerHTML=known?'Organizar mi red <span aria-hidden="true">↗</span>':'Buscar en mi localidad <span aria-hidden="true">↗</span>'}
+function showNetwork(){if(networkMode==="local"){$("access").value="horas";renderServices();$("explorar").scrollIntoView();toast("Mostrando intercambios comunitarios. Puedes elegir tu colonia.");return}openDialog("Tu círculo de apoyo",'<p>Organiza una red de ejemplo sin introducir nombres ni datos de contacto.</p><form id="networkForm"><label>Persona que sumarías<select id="relation"><option>Familiar</option><option>Amistad</option><option>Vecino o vecina</option></select></label><label>Forma de apoyo<select id="support"><option>Una hora de relevo</option><option>Acompañamiento a una cita</option><option>Apoyo emocional</option></select></label><button class="btn" type="submit">Añadir a mi red de ejemplo</button></form><div class="notice">No se envían invitaciones. La red permanece solo en esta sesión.</div>');
+$("networkForm").addEventListener("submit",e=>{e.preventDefault();if(network.length>=6){toast("La red de demostración tiene un máximo de 6 personas.");return}network.push($("relation").value+" · "+$("support").value);$("network-status").textContent="Tu red de ejemplo ("+network.length+"): "+network.join("; ")+". No se han enviado invitaciones.";closeDialog();toast("Apoyo añadido a tu red de demostración.")})}
+function showWellbeing(){openDialog("Hoy también cuentas tú",'<p>Elige un pequeño momento para ti. Cada opción suma 10 puntos una vez por sesión; nunca genera horas.</p><form id="wellnessForm"><label>Mi momento de autocuidado<select id="wellnessType"><option value="respiro">Tuve un momento de descanso</option><option value="agua">Me di tiempo para hidratarme</option><option value="red">Pedí apoyo a mi red</option></select></label><button class="btn" type="submit">Registrar y sumar 10 puntos de ejemplo</button></form><p class="tiny" style="margin-top:18px">No hay metas obligatorias ni penalización por no registrar. No recopilamos información de salud.</p>');$("wellnessForm").addEventListener("submit",e=>{e.preventDefault();const type=$("wellnessType").value;if(wellness.has(type)){toast("Ese momento ya está registrado en esta sesión. Prueba otro.");return}wellness.add(type);points+=10;renderWallet();closeDialog();toast("+10 puntos de autocuidado. Tus horas no cambiaron.")})}
+function showBenefits(){openDialog("Beneficios que queremos construir",'<span class="badge">PROPUESTA · SIN CONVENIOS ACTIVOS</span><p style="margin-top:18px">El piloto buscaría un primer comercio o clínica afiliada. Estos son ejemplos de posibles beneficios, no cupones disponibles.</p><div class="info-row"><span>Farmacia o clínica local</span><strong>Por acordar</strong></div><div class="info-row"><span>Bienestar y apoyo psicológico</span><strong>Por acordar</strong></div><div class="info-row"><span>Comercios de tu colonia</span><strong>Por acordar</strong></div><p class="tiny" style="margin-top:16px">Luz, agua, transporte y guarderías requieren acuerdos específicos. No se prometen descuentos ni se descuentan puntos en esta demo.</p>')}
+function showCourses(){openDialog("Aprender para cuidar mejor",'<span class="badge">RUTA DE FORMACIÓN PROPUESTA</span><p style="margin-top:18px">Tres módulos que podrían formar parte del piloto. No hay inscripción ni certificación habilitada.</p><div class="info-row"><span>01 · Cuidados y relevo responsable</span><span>Conceptual</span></div><div class="info-row"><span>02 · Primeros pasos digitales</span><span>Conceptual</span></div><div class="info-row"><span>03 · Construir una red de apoyo</span><span>Conceptual</span></div><div class="notice">Las constancias y certificados necesitan una institución y un aval confirmados. No se emiten documentos profesionales desde este prototipo.</div>')}
+["zone","category","access","budget"].forEach(id=>$(id).addEventListener("change",renderServices));
+function resetFilters(){["zone","category","access","budget"].forEach(id=>$(id).value="");renderServices()}
+$("resetFilters").addEventListener("click",resetFilters);
+document.addEventListener("click",e=>{const service=e.target.closest("[data-service]");if(service)showService(Number(service.dataset.service));if(e.target.closest("[data-reset-filters]"))resetFilters()});
+$("registerHours").addEventListener("click",showRegister);
+["known","local"].forEach(mode=>{$("tab-"+mode).addEventListener("click",()=>setNetwork(mode));$("tab-"+mode).addEventListener("keydown",e=>{if(["ArrowLeft","ArrowRight","Home","End"].includes(e.key)){e.preventDefault();const next=e.key==="Home"?"known":e.key==="End"?"local":mode==="known"?"local":"known";setNetwork(next);$("tab-"+next).focus()}})});
+$("networkAction").addEventListener("click",showNetwork);
+$("wellbeing").addEventListener("click",showWellbeing);
+$("benefits").addEventListener("click",showBenefits);
+$("courses").addEventListener("click",showCourses);
+$("resetDemo").addEventListener("click",()=>{openDialog("¿Reiniciar la demostración?",'<p>El saldo volverá a cero. Se limpiarán los movimientos, puntos y la red de ejemplo de esta sesión.</p><button class="btn" id="confirmReset">Reiniciar demo</button>');$("confirmReset").addEventListener("click",()=>{balance=0;points=0;ledger=[];requests.clear();wellness.clear();network=[];$("network-status").textContent="";setNetwork("known");resetFilters();renderWallet();closeDialog();toast("Demostración reiniciada.")})});
+renderServices();renderWallet();
 </script>
 </body>
 </html>

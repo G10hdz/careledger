@@ -127,6 +127,8 @@ Haz una revisión adversarial
 
 Banco de tiempo: plataforma mobile web, el sistema funciona como un trueque de servicios, se mide por hora, por ejemplo: por cada hora que el cuidador realice podrá intercambiarla por una hora del servicio que este necesite, de acuerdo a los servicios disponibles en la comunidad (terapia, dentista, alguna actividad de oficios: plomería, estética, jardinería, limpieza, mantenimiento, los que los participantes de la comunidad ofrezcan).
 
+- 
+
 - un mapa de servicios que se encuentre en la localidad del cuidador   
 - los servidores públicos no pueden ofrecer sus servicios como intercambio.   
 - Forma tu propia red de apoyo con tu familia, amigos o vecinos. O busca cuidadores que pertenezcan a tu comunidad. 
@@ -138,7 +140,54 @@ Especificaciones
 - Se permite un saldo negativo de horas con un límite de 5 horas.   
 - El banco de tiempo es sólo de cuidado  
 - La comunidad se puede formar de dos maneras: forma tu propia red de apoyo con tu familia, amigos o vecinos. O busca cuidadores que pertenezcan a su localidad..   
-- El piloto se podría correr en la alcaldía iztapalapa con aprox 20 transacciones a la semana, inicialmente.
+- El piloto se podría correr en la alcaldía iztapalapa con aprox 20 transacciones a la semana, inicialmente.  
+- 
+
+Resumen de especificaciones
+
+Concepto  
+\- Banco de tiempo en plataforma mobile web.  
+\- Funciona como trueque de servicios medido por hora, sin dinero de por medio.  
+\- Una hora vale lo mismo en todos los servicios, sin excepciones, incluidos los profesionales.
+
+Qué se intercambia  
+\- Solo se intercambian horas de cuidado. Es la moneda del sistema.  
+\- Cuidado incluye: acompañar a citas, cuidar a niños o adultos mayores, traslados y apoyo en casa para personas dependientes.  
+\- Las personas registradas pueden ofrecer, además, su profesión u oficio (por ejemplo, dentista, terapeuta, plomería, estética, jardinería, limpieza, mantenimiento). Esos servicios solo se intercambian por horas de cuidado.
+
+Roles de los participantes  
+\- Demandante: persona que necesita cuidado para un familiar dependiente. Puede ofrecer su profesión u oficio, y también recibe horas de cuidado.  
+\- Vecino cuidador: persona sin familiar dependiente que se registra para ofrecer horas de cuidado. Las intercambia por servicios de oficio o profesión de un demandante.
+
+Comunidad  
+\- Hay dos formas de formarla: red propia (familia, amigos, vecinos) o cuidadores de la comunidad.  
+\- Se organiza con el modelo de dos tipos de membresía (opción B): demandantes con dependiente y colaboradores sin dependiente.
+
+Verificación  
+\- Las horas de cuidado son acreditables con verificación básica: confirmación de la familia cuidada o de un tercero.  
+\- La verificación de la dependencia y de las horas se hace de varias formas (pendiente de detallar cuáles).
+
+Saldo  
+\- Se permite saldo negativo de hasta 5 horas.
+
+Piloto  
+\- Alcaldía Iztapalapa.  
+\- Aproximadamente 20 transacciones al día al inicio.  
+\- El equipo de 5 personas coordina el grupo piloto. Se omite para el arranque.
+
+Interpretaciones que tomé
+
+\- "Sólo se intercambian por horas de cuidado": entiendo que ningún intercambio puede ser oficio por oficio. Cada transacción necesita una hora de cuidado de al menos un lado. Confírmalo, porque cambia si dos profesionales pueden intercambiar entre sí.  
+\- Vecino cuidador: puede intercambiar sus horas de cuidado por un servicio de oficio que ofrezca la familia demandante. Esto también significa que el vecino no necesita dependiente para participar.
+
+Pendientes que no están en las especificaciones
+
+\- Métodos concretos de verificación de dependencia y de horas. Ya sabes que hay varios, pero hay que listarlos.  
+\- Qué pasa con las horas de quien deja la comunidad. Sigue sin definir.  
+\- Seguro de responsabilidad civil para cuidado de personas dependientes.  
+\- Métrica de éxito del piloto, más allá del volumen de transacciones.  
+\- Tratamiento fiscal del intercambio y aviso de privacidad para datos de salud.  
+\- Realismo de las 20 transacciones diarias, que implican un número mínimo de participantes activos.
 
 Impacto en la mujeres y comunidades  
 \-  
