@@ -30,9 +30,14 @@ from the prototype live in `design/stitch/`.
 
 Live demos:
 
+- Landing (public site): <https://careledger-ashy.vercel.app>
 - Explainer: <https://g10hdz.github.io/careledger/>
 - CuidaRed (time-bank prototype, spec 09):
   <https://g10hdz.github.io/careledger/cuidared/>
+
+The product is named **Cuando cuidas, te descuidas**. Internal identifiers
+keep the `careledger` slug: `@careledger/*` packages, the `careledger://`
+scheme, storage keys and the repository name.
 
 ## Layout
 
