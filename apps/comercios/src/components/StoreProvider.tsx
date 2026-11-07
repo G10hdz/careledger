@@ -12,13 +12,16 @@ import {
 import type { ComercioStore } from '@/lib/types'
 import { loadStore, saveStore } from '@/lib/store'
 import { registrarComercio, type AfiliacionDatos, type AfiliacionResult } from '@/lib/afiliacion'
-import { cobrarVale, marcarSincronizado, type CobroInput } from '@/lib/cobro'
+import { cobrarVale, type CobroInput } from '@/lib/cobro'
+import { confirmarLiquidacion, liquidarDia, sincronizarTodo, type LiquidarResult } from '@/lib/liquidacion'
 import type { CobroResult } from '@/lib/types'
 
 export interface StoreActions {
   registrar: (datos: AfiliacionDatos) => AfiliacionResult
   cobrar: (input: CobroInput) => CobroResult
   sincronizar: () => void
+  liquidar: () => LiquidarResult
+  confirmarLiquidacion: (id: string) => boolean
 }
 
 interface StoreContextValue {
@@ -28,6 +31,9 @@ interface StoreContextValue {
 }
 
 const StoreContext = createContext<StoreContextValue | null>(null)
+
+/** Resultado de liquidar el día. Tipo re-exportado para la UI. */
+export type { LiquidarResult }
 
 export function StoreProvider({ children }: { children: ReactNode }) {
   const [store, setStore] = useState<ComercioStore | null>(null)
@@ -62,13 +68,33 @@ export function StoreProvider({ children }: { children: ReactNode }) {
 
   const sincronizar = useCallback(() => {
     if (!store) return
-    for (const cobro of store.cobros) marcarSincronizado(store, cobro.folio)
+    sincronizarTodo(store)
     setStore({ ...store })
   }, [store])
 
+  const liquidar = useCallback((): LiquidarResult => {
+    if (!store) return { ok: false, reason: 'sin_comercio' }
+    const resultado = liquidarDia(store)
+    if (resultado.ok) setStore({ ...store })
+    return resultado
+  }, [store])
+
+  const confirmar = useCallback(
+    (id: string): boolean => {
+      if (!store) return false
+      const confirmada = confirmarLiquidacion(store, id)
+      if (confirmada) setStore({ ...store })
+      return confirmada
+    },
+    [store],
+  )
+
   const value = useMemo(
-    () => ({ store, actions: { registrar, cobrar, sincronizar } }),
-    [store, registrar, cobrar, sincronizar],
+    () => ({
+      store,
+      actions: { registrar, cobrar, sincronizar, liquidar, confirmarLiquidacion: confirmar },
+    }),
+    [store, registrar, cobrar, sincronizar, liquidar, confirmar],
   )
 
   return <StoreContext.Provider value={value}>{children}</StoreContext.Provider>
