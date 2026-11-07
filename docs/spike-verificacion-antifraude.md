@@ -44,11 +44,11 @@ monto en juego.
 | Integridad del dispositivo | Sin TWA ni Play Integrity. |
 | Sybil | `caregiverId = crypto.randomUUID()` por instalación, sin ancla de identidad. |
 | Reloj offline | `occurredAt` sale del reloj del teléfono, sin contador de la contraparte. TTL de 72 h lo acota. |
-| Colusión (REQ-ORA-005) | Solo un comentario en `config.ts`; sin implementación ni test. |
+| Colusión (REQ-ORA-005) | Implementada: `needsAudit` en `app.ts` cuando una terna repite más de `COLLUSION_REPEAT_LIMIT`, con test en `flow.test.ts`. Solo detecta repetición, no proximidad imposible ni ráfagas. |
 | Auditoría 5% (REQ-ORA-020) | Prometida en la FAQ de la landing; sin código. |
 | Aviso de privacidad | No existe; falta ADR de datos personales. |
 
-Cubierto: idempotencia por hash (REQ-ORA-023) y datos mínimos en la atestación
+Cubierto: colusión por repetición (REQ-ORA-005, parcial), idempotencia por hash (REQ-ORA-023) y datos mínimos en la atestación
 (`CANONICAL_KEYS`, `assertCanonical`).
 
 ## Choques con la spec
