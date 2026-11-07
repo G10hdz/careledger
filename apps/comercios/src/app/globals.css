@@ -59,6 +59,16 @@
     }
   }
 
+  /* Chip táctil: min 44px, selección mint con borde teal (DESIGN.md). */
+  .chip {
+    @apply inline-flex min-h-[44px] items-center justify-center gap-xs rounded-full border-[1.5px] border-outline-variant bg-surface-container-low px-md text-label-md text-on-surface-variant;
+    &:active {
+      background: var(--color-primary-fixed);
+      color: var(--color-on-primary-fixed);
+      border-color: var(--color-primary);
+    }
+  }
+
   .etiqueta {
     @apply mb-xs block text-label-md font-semibold text-on-surface-variant;
   }
