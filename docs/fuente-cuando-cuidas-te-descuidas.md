@@ -138,7 +138,7 @@ Especificaciones
 - Se permite un saldo negativo de horas con un límite de 5 horas.   
 - El banco de tiempo es sólo de cuidado  
 - La comunidad se puede formar de dos maneras: forma tu propia red de apoyo con tu familia, amigos o vecinos. O busca cuidadores que pertenezcan a su localidad..   
-- El piloto se podría correr en la alcaldía iztapalapa con aprox 20 transacciones al día, inicialmente.
+- El piloto se podría correr en la alcaldía iztapalapa con aprox 20 transacciones a la semana, inicialmente.
 
 Impacto en la mujeres y comunidades  
 \-  
@@ -146,6 +146,8 @@ al permitir el intercambio de diferentes servicios de cuidados rompemos el pensa
 
 - el sistema permite que cualquier persona, género, idioma pueda ofrecer y recibir servicios sin distinción ni discriminación  
 - al poder crear redes de apoyos y vincular comunidades esto es replicable en cualquier localidad.
+
+Propuesta de nombre de la app EntreManos
 
 El tiempo es una medida inmutable. 
 
@@ -162,3 +164,52 @@ El tiempo es una medida inmutable.
 * **Relevo Directo:** Gasta 4 horas de su saldo para que alguien capacitado cuide a su paciente mientras ella simplemente cierra la puerta de su cuarto y duerme.  
 * **Delegación Logística:** Gasta 2 horas para que un voluntario haga las compras del supermercado o pague los servicios, quitándole carga mental.
 
+
+
+## Cómo nos evalúan y qué presentamos
+
+La rúbrica de Build for Her pesa así: impacto 30%, problema y políticas 25%, solución 20%, presentación 15% e IA responsable 10%. El código ya cubre la parte de solución. Más de la mitad del puntaje se gana en el pitch.
+
+**Antes de todo: una sola historia.** Elegimos una economía como historia principal, Puntos Cívicos o el banco de tiempo (EntreManos). La otra va en una slide de visión. Si contamos las dos, el jurado no entiende cuál es la propuesta.
+
+### 1. Impacto en las mujeres y comunidades (30%)
+
+- **A quién ayuda:** a la cuidadora familiar no remunerada de una persona con dependencia en CDMX. También a la persona cuidada, a la veedora del barrio y al comercio local.
+- **Mujeres en realidades distintas:** la app funciona sin datos y en un Android de entrada, se usa con una mano y registra en menos de 60 segundos. Tiene contraste accesible y selector de español y náhuatl.
+- **Cómo lo medimos en un piloto:** horas certificadas por cuidadora al mes, qué parte de los puntos viene de autocuidado, carga de la cuidadora con la escala Zarit (al inicio y a los 3 meses) y canjes por categoría.
+- **Escala:** la unidad es el nodo barrial. Cualquier municipio con un fondo o anexo de cuidados lo puede replicar.
+
+### 2. El problema y las políticas (25%)
+
+- **Datos:** dos cifras oficiales con fuente al pie (INEGI: ENASIC 2022, Cuenta Satélite del Trabajo No Remunerado, ENUT). Sin fuente, la cifra no va. Esto incluye el "99% de la HealthTech mira al paciente".
+- **Síntoma y causa:** el síntoma es el agotamiento. La causa es que el cuidado informal no se registra, y sin registro el gobierno no puede focalizar, pagar ni auditar los apoyos.
+- **Lo que ya existe y su hueco:** Sistema Público de Cuidados CDMX, apoyo de 6,000 MXN al año solo para altísima dependencia, reforma al Art. 4, anexo de cuidados de Jalisco y Chile Cuida como ejemplo de registro. Hay que verificar montos y vigencia antes de presentarlos.
+- **Actores:** alcaldía y Secretaría de Bienestar, veedoras y nodo barrial, comercios y farmacias, sociedad civil.
+
+### 3. La solución (20%)
+
+- **Demo en vivo de 90 segundos, un solo flujo:** la cuidadora registra, se valida 3 de 3, ve su saldo, canjea un vale y el comercio lo cobra. Llevamos un video del mismo flujo por si falla la red.
+- **Quién paga:** un fondo municipal de cuidados en el piloto. No decimos que ese dinero ya existe.
+- **Barreras que ya resolvimos:** conectividad (offline), confianza (ningún dato médico sale del teléfono), fraude (validación vecinal 3 de 3) y alfabetización digital (máximo 3 pantallas).
+- **Siguiente paso:** piloto de 3 meses en un nodo de una alcaldía, medido con las métricas de arriba.
+
+### 4. Presentación (15%)
+
+- Una sola cuidadora ficticia, con inicio, desarrollo y cierre. El hilo es "Cuando cuidas, te descuidas".
+- Ensayo con cronómetro.
+- Respuestas listas para 8 preguntas: fraude, privacidad, quién paga, si convertimos el cuidado en mercancía, adopción, por qué puntos y no dinero, datos simulados, IA.
+
+### 5. Uso responsable de la IA (10%)
+
+- **Dónde no usamos IA y por qué:** ningún modelo decide sobre la cuidadora. Los puntos salen de horas que validan personas.
+- **Lo que descartamos a propósito:** fotos del domicilio y biometría (spike antifraude), datos médicos en servidor, rastreo por ubicación.
+- **A futuro:** si entra IA para evaluar cursos, va con revisión humana y diciendo cómo califica.
+- **Cambio al borrador:** la proyección a 10 años vende los datos de fatiga y deterioro de la cuidadora a aseguradoras y gobiernos, con monitoreo por wearables. Eso nos baja en este criterio. Lo reemplazamos por datos agregados y anónimos para política pública, con consentimiento.
+
+### Desempate: innovación
+
+Se ganan puntos también por autocuidado, la validación es vecinal y no burocrática, y miramos a quien cuida, no al paciente.
+
+### Datos que se presentan como proyección
+
+−53% caídas, 94% satisfacción y SROI 3.42x son proyección metodológica, no resultados medidos.
