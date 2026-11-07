@@ -58,6 +58,12 @@ export interface StoredVoucher {
   manualCode: string
   costPoints: number
   payloadHash: string
+  /**
+   * Firma del vale compacto que viaja en el QR (sin caregiverId ni
+   * benefitName: privacidad REQ-PWA-011). Ed25519 sobre el payload
+   * canónico {benefitId, costPoints, folio, issuedAt, validUntil}.
+   */
+  qrSignature: string
 }
 
 export interface CourseProgress {

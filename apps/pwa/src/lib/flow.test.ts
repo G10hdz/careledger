@@ -203,7 +203,19 @@ describe('flujo crítico', () => {
     expect(voucher.costPoints).toBe(30)
     expect(voucher.manualCode).toHaveLength(12)
     expect(Date.parse(voucher.validUntil) - Date.parse(voucher.issuedAt)).toBe(30 * 24 * 60 * 60 * 1000)
+    const qr = JSON.parse(voucherQrText(voucher)) as Record<string, unknown>
     expect(voucherQrText(voucher)).not.toContain('caregiver')
+    expect(qr).toMatchObject({
+      folio: voucher.folio,
+      benefitId: 'metro-semanal',
+      points: 30,
+      mxn: 300,
+      issuedAt: voucher.issuedAt,
+      validUntil: voucher.validUntil,
+      code: voucher.manualCode,
+    })
+    expect(typeof qr.sig).toBe('string')
+    expect(qr.sig).toHaveLength(86)
     let snap = await care.snapshot()
     expect(snap.wallet.points).toBe(5)
     advance(31 * 24 * 60 * 60 * 1000)
