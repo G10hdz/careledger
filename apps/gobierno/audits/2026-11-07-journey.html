@@ -1,0 +1,69 @@
+<!doctype html><html lang="es"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Auditoría de recorridos · Gobierno</title><style>:root {
+  --bg: #fafafc; --surface: #ffffff; --fg: #18182b; --fg-muted: #65657a;
+  --border: #d8d8e4; --accent: #4338ca;
+  --sans: "Hanken Grotesk", Inter, system-ui, -apple-system, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, monospace;
+  --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px;
+  --s5: 20px; --s6: 24px; --s7: 32px; --s8: 48px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #18182b; --surface: #1f1f36; --fg: #f0f0f8; --fg-muted: #8888a8;
+    --border: #2a2a44; --accent: #7c6ff0;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #18182b; --surface: #1f1f36; --fg: #f0f0f8; --fg-muted: #8888a8;
+  --border: #2a2a44; --accent: #7c6ff0;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: var(--sans); background: var(--bg); color: var(--fg);
+  padding: var(--s7); line-height: 1.5; margin: 0;
+}
+.visual-diagram {
+  margin: 0; padding: var(--s5);
+  background: var(--surface); border-radius: 8px;
+  border: 1px solid var(--border); overflow-x: auto;
+}
+.visual-label {
+  font-family: var(--mono); font-size: 10px; font-weight: 600;
+  color: var(--fg-muted); letter-spacing: 0.06em;
+  margin-bottom: var(--s4); text-transform: uppercase;
+}
+.flow-grid {
+  display: grid;
+  grid-template-columns: auto 16px 1fr 16px 1fr 16px 1fr 16px 1fr 16px 1fr;
+  align-items: center; padding: var(--s3) 0; row-gap: var(--s2);
+}
+.flow-node {
+  padding: var(--s2); background: var(--bg);
+  border: 1px solid var(--border); border-radius: 4px;
+  text-align: center; min-width: 0;
+}
+.flow-node-step { font-family: var(--mono); font-size: 10px; font-weight: 600; color: var(--accent); margin-bottom: 1px; }
+.flow-node-label { font-size: 11px; font-weight: 600; color: var(--fg); }
+.flow-node-detail { font-size: 10px; color: var(--fg-muted); margin-top: 1px; }
+.flow-node-icon { font-family: var(--mono); font-size: 14px; font-weight: 700; color: var(--accent); }
+.flow-start { border-color: var(--accent); border-width: 2px; padding: var(--s2) var(--s3); }
+.flow-end { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 6%, var(--bg)); }
+.flow-arrow { height: 1px; background: var(--border); position: relative; }
+.flow-arrow::after {
+  content: ''; position: absolute; right: 0; top: -3px;
+  border-left: 4px solid var(--border);
+  border-top: 3px solid transparent; border-bottom: 3px solid transparent;
+}
+.flow-gate { text-align: center; padding-top: var(--s1); }
+.flow-gate-connector { width: 1px; height: 10px; background: var(--border); margin: 0 auto; }
+.flow-gate-diamond {
+  width: 10px; height: 10px; background: var(--surface);
+  border: 1px solid var(--border);
+  transform: rotate(45deg); margin: 0 auto 4px;
+}
+.flow-gate-label { font-size: 10px; font-weight: 600; color: var(--fg-muted); }
+.flow-gate-action { font-size: 10px; color: var(--fg-muted); opacity: 0.6; }
+.flow-metric { margin-top: var(--s3); padding-top: var(--s3); border-top: 1px solid var(--border); font-size: 11px; }
+.flow-metric-value { font-weight: 600; color: var(--accent); }
+.flow-metric-label { color: var(--fg-muted); }
+main{max-width:1100px;margin:auto}h1{font-size:clamp(28px,4vw,44px);line-height:1.15}h2{margin-top:40px}p{max-width:85ch}.flow-grid{grid-template-columns:1fr 16px 1fr 16px 1fr 16px 1fr 16px 1fr}.flow-node-label{font-size:14px}.flow-node-detail,.flow-node-step,.visual-label{font-size:12px}.people,.findings{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.findings{grid-template-columns:repeat(2,1fr)}article{padding:20px;border:1px solid var(--border);border-radius:8px;background:var(--surface)}article h3{margin:8px 0}.priority{font-family:var(--mono);color:var(--accent);font-weight:700}small,.muted{color:var(--fg-muted)}table{border-collapse:collapse;width:100%;font-size:14px}td,th{text-align:left;padding:12px;border-bottom:1px solid var(--border)}a{color:var(--accent)}@media(max-width:650px){body{padding:16px}.people,.findings{grid-template-columns:1fr}.visual-diagram{min-width:800px}.scroll{overflow-x:auto}}
+</style><main><p class="muted">EntreManos · Panel de gobierno · 7 noviembre 2026</p><h1>El cálculo funciona.<br>El recorrido todavía no termina en evidencia.</h1><p>Auditoría de Journey y Happy Path. Ocho hallazgos reproducibles: tres afectan la entrada o la confianza y cinco añaden fricción. <a href="https://github.com/G10hdz/careledger/issues/42">Informe completo publicado en el issue #42</a>.</p><p class="muted">Alcance: entrada pública y build local del panel. La fuente de gobierno coincide con main da45808. El build conserva la marca anterior. Recorridos sintéticos, sin participantes reales.</p><h2>Usuarios de demostración</h2><div class="people"><article><h3>Elena · funcionaria nueva</h3><p>Quiere entender el retorno antes de presentar el piloto.</p><strong>Parcial</strong><p>La entrada pública termina en contacto. El panel requiere acceso directo.</p></article><article><h3>Raúl · analista presupuestal</h3><p>Quiere comparar un escenario y llevarlo a una reunión.</p><strong>Parcial</strong><p>Puede simular; pierde los parámetros al recargar y no puede compartirlos.</p></article><article><h3>Irene · auditora escéptica</h3><p>Quiere comprobar el respaldo de un movimiento.</p><strong>Parcial</strong><p>Encuentra un folio ficticio; no puede abrir sus firmas o respaldo.</p></article></div><h2>Recorrido observado</h2><div class="scroll"><div class="visual-diagram"><div class="visual-label">Flujo: de la entrada pública a la justificación presupuestaria</div><div class="flow-grid"><div class="flow-node flow-start"><div class="flow-node-step">1</div><div class="flow-node-label">Entrada pública</div><div class="flow-node-detail">Gobiernos → contacto</div></div><div class="flow-arrow"></div><div class="flow-node "><div class="flow-node-step">2</div><div class="flow-node-label">Resumen</div><div class="flow-node-detail">Lee 3.42x e IC</div></div><div class="flow-arrow"></div><div class="flow-node "><div class="flow-node-step">3</div><div class="flow-node-label">Simulación</div><div class="flow-node-detail">Ajusta con teclado</div></div><div class="flow-arrow"></div><div class="flow-node "><div class="flow-node-step">4</div><div class="flow-node-label">Consulta</div><div class="flow-node-detail">Busca folio</div></div><div class="flow-arrow"></div><div class="flow-node flow-end"><div class="flow-node-step">5</div><div class="flow-node-label">Evidencia</div><div class="flow-node-detail">Detalle y exportación pendientes</div></div></div><div class="flow-metric"><span class="flow-metric-value">Leer → explorar → comprobar → compartir</span><span class="flow-metric-label"> · Comprobar y compartir siguen incompletos.</span></div></div></div><p class="muted">Hipótesis de confianza: interés al ver el retorno, comprensión al simular y duda al buscar respaldo. Esta curva no fue medida con personas.</p><h2>Pruebas de happy path y recuperación</h2><table><thead><tr><th>Caso</th><th>Resultado observado</th></tr></thead><tbody><tr><td>USD 1M y 50,000 horas</td><td>USD 3,420,100 · 3.42x</td></tr><tr><td>Una flecha derecha en horas</td><td>51,000 h · USD 3,488,502 · 3.49x</td></tr><tr><td>Home en horas</td><td>0 h · USD 0 · 0.00x</td></tr><tr><td>Recargar un escenario modificado</td><td>Regresa a 50,000 horas</td></tr><tr><td>Buscar 0013 / inexistente / borrar</td><td>1 fila / 0 filas / 2 filas de datos</td></tr><tr><td>Móvil 390 × 844</td><td>Sin desbordamiento global; resultado fuera de vista al ajustar</td></tr></tbody></table><h2>Hallazgos y correcciones propuestas</h2><div class="findings"><article><span class="priority">P1</span><h3>Entrada de demo interrumpida</h3><p>La puerta de gobiernos lleva a contacto. Ofrecer acceso visible a la demo y retorno al sitio.</p></article><article><span class="priority">P1</span><h3>Procedencia de las cifras</h3><p>La landing alude a evaluación y encuesta; el panel usa datos simulados. Aclarar el carácter ilustrativo o enlazar estudio, periodo y muestra.</p></article><article><span class="priority">P1</span><h3>Verificación sin cierre</h3><p>El folio permite buscar, pero no abrir el respaldo ni exportar la metodología. Completar el detalle de demostración y su salida documental.</p></article><article><span class="priority">P2</span><h3>Escenario sin continuidad</h3><p>Recargar restaura los valores iniciales. Conservar y compartir los parámetros y supuestos.</p></article><article><span class="priority">P2</span><h3>Resultado fuera de vista en móvil</h3><p>A 390 × 844 los controles y el resultado requieren desplazamientos alternados. Acercar un resumen del cálculo.</p></article><article><span class="priority">P2</span><h3>Lectura y área táctil</h3><p>Se midieron etiquetas de 10–11 px e inputs range de 16 px de alto. Llevarlos al mínimo del sistema de diseño.</p></article><article><span class="priority">P2</span><h3>Selección de navegación falsa</h3><p>El primer enlace permanece resaltado aunque cambie el hash. Sincronizar la ubicación y aria-current.</p></article><article><span class="priority">P2</span><h3>Resultado sin anuncio accesible</h3><p>No hay output ni aria-live. Ofrecer un resumen anunciado y validar con lector de pantalla real.</p></article></div><h2>Orden recomendado</h2><ol><li>Conectar la entrada de demo y aclarar la procedencia de cifras.</li><li>Cerrar el recorrido con respaldo verificable y continuidad del escenario.</li><li>Corregir navegación, lectura y ajuste móvil.</li></ol><p>Antes de conectar información municipal real, completar autenticación y roles de REQ-GOB-009. Los perfiles anteriores son guiones ficticios, no cuentas ni permisos implementados.</p><h2>Límites de la evaluación</h2><p>No se modificó la app ni se repitieron compilación, typecheck o suite. No hubo pruebas con participantes reales, lector de pantalla ni auditoría WCAG completa. Las observaciones del panel local no certifican un despliegue público del mismo.</p></main></html>
