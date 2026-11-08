@@ -31,10 +31,15 @@ from the prototype live in `design/stitch/`.
 
 Live demos:
 
-- Site (landing + demos on one domain): <https://entremanos-mx.vercel.app>
-- Time bank: <https://entremanos-mx.vercel.app/cuidared>
-- Explainer: <https://entremanos-mx.vercel.app/explainer>
-- GitHub Pages mirror: <https://g10hdz.github.io/careledger/>
+- Landing: <https://g10hdz.github.io/entremanos/>
+- Time bank (sign in as Ana or Luis): <https://g10hdz.github.io/entremanos/app/>
+- Government panel: <https://g10hdz.github.io/entremanos/gobierno/>
+- 79-second walkthrough video: <https://github.com/G10hdz/careledger/releases/tag/demo-2026-11-07>
+
+These are a static build of `main` at `059ba55`, served from GitHub Pages
+([G10hdz/entremanos](https://github.com/G10hdz/entremanos)). The main domain,
+<https://entremanos-mx.vercel.app>, still shows the previous version because
+Vercel hit its limit of 100 deployments a day.
 
 The app is named **EntreManos**; the program is *Cuando cuidas, te
 descuidas*. Internal identifiers keep the `careledger` slug: `@careledger/*`
