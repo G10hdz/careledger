@@ -41,5 +41,7 @@ test y build antes de publicar, y el smoke al final.
   `status`, `rollback` y `deploy`. `smoke` solo necesita `curl`.
 - Secrets del repo: `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`.
   Si el job `deploy` falla en `vercel pull` por auth, el token expiró o
-  está vacío: `scripts/vercel.sh ci-token` crea uno limitado al proyecto,
-  lo guarda sin mostrarlo y reintenta el deploy.
+  está vacío. Crear uno en vercel.com/account/tokens (el CLI no puede),
+  pegarlo en Doppler como `VERCEL_TOKEN` en `careledger/prd` y correr
+  `scripts/vercel.sh ci-token`: lo copia al repo sin mostrarlo y reintenta
+  el deploy.
