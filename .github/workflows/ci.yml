@@ -63,9 +63,4 @@ jobs:
       - run: npx --yes vercel@65.10.0 deploy --prebuilt --prod --token="$VERCEL_TOKEN"
 
       - name: Smoke de producción
-        run: |
-          for path in / /cuidared; do
-            code=$(curl -s -L -o /dev/null -w '%{http_code}' "https://entremanos-mx.vercel.app$path")
-            echo "$path $code"
-            test "$code" = 200
-          done
+        run: scripts/vercel.sh smoke
