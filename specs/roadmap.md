@@ -27,16 +27,16 @@ Pendiente para el pitch:
 | --- | --- | --- |
 | Economía principal | REQ-EVA-019 | decidido: EntreManos (banco de tiempo, doc v4); demo en `/cuidared` |
 | Cifras oficiales con fuente y programas con su brecha | REQ-EVA-010, 012 | hecho: `docs/pitch/problema-y-politicas.md` |
-| Puente de la causa raíz al banco de tiempo (pobreza de tiempo) | REQ-EVA-011 | pendiente |
-| Métrica de éxito del piloto (horas, carga Zarit) | REQ-EVA-003 | pendiente; el doc v4 también la marca |
-| Slide de IA responsable y banco de preguntas | REQ-EVA-032, 040..042 | hecho: `docs/pitch/ia-y-preguntas.md`; falta el riesgo propio de EntreManos (identidad) |
+| Puente de la causa raíz al banco de tiempo (pobreza de tiempo) | REQ-EVA-011 | hecho: `docs/pitch/causa-raiz.md` |
+| Métrica de éxito del piloto (horas, carga Zarit) | REQ-EVA-003 | hecho: REQ-EVA-003 reescrita para el banco de tiempo; sin metas hasta tener línea base |
+| Slide de IA responsable y banco de preguntas | REQ-EVA-032, 040..042 | hecho: `docs/pitch/ia-y-preguntas.md`, con el riesgo de identidad de EntreManos |
 | Venta de datos de fatiga en doc v4, spec 00 y pitch-borrador | REQ-EVA-043 | decisión del equipo |
-| Reescribir `docs/pitch-borrador.md` para EntreManos | REQ-EVA-030 | pendiente |
+| Reescribir `docs/pitch-borrador.md` para EntreManos | REQ-EVA-030 | hecho: borrador reescrito con la historia de una cuidadora ficticia |
 | Confirmación de horas: familia o tercero contra doble código | REQ-BT-003 | decisión del equipo |
 | Volumen del piloto: 20 al día (doc v4) o por semana | 09 | decisión del equipo |
 | Video de respaldo del demo | REQ-EVA-021 | pendiente |
 | Demo público | REQ-EVA-020 | hecho: `entremanos-mx.vercel.app` y `/cuidared` responden 200 (verificado 17:46) |
-| Nombre único: sigue en línea `/hora-por-hora/` además de EntreManos | REQ-EVA-019 | decisión del equipo: quitarla del pitch o enlazarla como versión alterna |
+| Nombre único: `/hora-por-hora/` sigue en línea con otro diseño | REQ-EVA-019 | la raíz de `entremanos-mx` ya sirve EntreManos con el copy de Hora por Hora y sin puntos; falta decidir si `/hora-por-hora/` se enlaza o se quita |
 | Ensayo cronometrado del pitch completo | REQ-EVA-031 | pendiente |
 
 Detalle y puntaje estimado (~68, meta ~80): `docs/auditoria-rubrica.md`.

@@ -78,8 +78,7 @@ Play Integrity, NFC en domicilio y liveness se activan al crecer, no antes.
   y el relevo habilitado de REQ-BT-009. El aviso de privacidad requiere
   redacción legal y debe publicarse antes de abrir el registro del piloto.
 - **Pendientes del doc v4:** qué pasa con las horas de quien deja la comunidad;
-  seguro de responsabilidad civil; métrica de éxito del piloto más allá del
-  volumen; tratamiento fiscal.
+  seguro de responsabilidad civil; tratamiento fiscal.
 - **Disputas:** responsable y plazo.
 - **BT-006:** cómo se verifica que alguien es servidor público (hoy es
   autodeclaración en el catálogo).
@@ -105,6 +104,15 @@ landing de revisión usa "Hora por Hora" (ver tabla abajo).
 
 Copy de revisión: [`docs/hora-por-hora-landing.md`](../docs/hora-por-hora-landing.md).
 
+### Lo que ya resolvió el copy publicado
+
+El copy en línea (landing EntreManos) ya cambió respecto a la versión de
+revisión: dice que confirman las dos partes, reemplaza "Todo intercambio
+incluye cuidado" por "Se gana cuidando", responde las cinco preguntas
+frecuentes, explica los tres niveles de ayuda y dice que solo se guarda
+duración y tipo de apoyo. Ojo: publicar la doble confirmación adelanta una
+decisión que REQ-BT-003 todavía marca como del equipo.
+
 ### Copy contra spec
 
 | Copy o ausencia | Diferencia real | Resolución propuesta |
@@ -123,11 +131,22 @@ Copy de revisión: [`docs/hora-por-hora-landing.md`](../docs/hora-por-hora-landi
 
 ## Estado del prototipo
 
-La demo pública es la landing EntreManos del equipo, en
-`apps/landing/public/cuidared/index.html` (copia en `docs/cuidared/` para
-GitHub Pages). Reemplazó al MVP CuidaRed, que sigue en el historial de git.
+La demo pública es la landing EntreManos en
+`apps/landing/public/cuidared/index.html`: diseño del equipo con el copy de
+Hora por Hora, sin Puntos Cívicos ni puntos de autocuidado, y sin las partes
+interactivas del demo anterior. En `entremanos-mx.vercel.app` la raíz sirve
+esta página (rewrite por host en `apps/landing/next.config.ts`); el otro
+dominio conserva la landing de Puntos Cívicos. `/hora-por-hora/` sigue en
+línea como versión alterna con su propio diseño. La copia de `docs/cuidared/`
+para GitHub Pages está desactualizada.
+
 Es demo navegable, no implementación de referencia: las reglas de arriba son
 el contrato si se reescribe dentro del monorepo.
+
+## Métrica del piloto
+
+Ver REQ-EVA-003 en spec 10: horas intercambiadas, horas usadas como relevo,
+retención, escala Zarit, disputas y saldo negativo sin devolver.
 
 ## No-goals
 
