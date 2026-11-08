@@ -1,7 +1,13 @@
-# Runbook: despliegue de la landing
+# Runbook: despliegue
 
-Producción es `https://entremanos-mx.vercel.app`, proyecto `entremanos` en
-Vercel, con root `apps/landing`.
+Producción es `https://entremanos-mx.vercel.app`. Son dos proyectos de Vercel:
+
+| Proyecto | Root | Sirve |
+| --- | --- | --- |
+| `entremanos` | `apps/landing` | `/`, `/cuidared`, `/hora-por-hora`, `/explainer` y el rewrite de `/gobierno` |
+| `entremanos-gobierno` | `apps/gobierno` | el panel, con `basePath` `/gobierno` |
+
+El panel no tiene dominio propio. Se llega por `entremanos-mx.vercel.app/gobierno`.
 
 ## Publicar un cambio
 
@@ -9,15 +15,15 @@ Vercel, con root `apps/landing`.
 2. Esperar `checks` en verde (typecheck, test, build, gitleaks).
 3. Mergear con "rebase and merge".
 
-El job `deploy` de `.github/workflows/ci.yml` publica a producción solo
-si `checks` pasó, y termina con `scripts/vercel.sh smoke`. Nadie tiene que
-entrar a Vercel. El auto-deploy de `main` está apagado en
-`apps/landing/vercel.json` para que no se publique nada en rojo.
+El job `deploy` de `.github/workflows/ci.yml` corre solo si `checks` pasó.
+Ejecuta `scripts/vercel.sh publish`: despliega primero `entremanos-gobierno` y
+luego `entremanos`, y termina con el smoke. Nadie tiene que entrar a Vercel.
+El auto-deploy de `main` está apagado en `apps/landing/vercel.json`.
 
 ## Revisar que está arriba
 
     scripts/vercel.sh status   # últimos deploys de producción y corridas de CI en main
-    scripts/vercel.sh smoke    # / y /cuidared con 200
+    scripts/vercel.sh smoke    # /, /cuidared y /gobierno responden 200
 
 ## Si producción se rompió
 
@@ -33,15 +39,16 @@ apuntar el dominio.
     scripts/vercel.sh deploy
 
 Exige estar en `main` limpio e igual a `origin/main`. Corre typecheck,
-test y build antes de publicar, y el smoke al final.
+test y build antes de publicar los dos proyectos, y el smoke al final.
 
 ## Requisitos
 
-- `gh` con sesión, y `vercel login` en la cuenta dueña del proyecto para
+- `gh` con sesión, y `vercel login` en la cuenta dueña de los proyectos para
   `status`, `rollback` y `deploy`. `smoke` solo necesita `curl`.
-- Secrets del repo: `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`.
-  Si el job `deploy` falla en `vercel pull` por auth, el token expiró o
-  está vacío. Crear uno en vercel.com/account/tokens (el CLI no puede),
-  pegarlo en Doppler como `VERCEL_TOKEN` en `careledger/prd` y correr
-  `scripts/vercel.sh ci-token`: lo copia al repo sin mostrarlo y reintenta
-  el deploy.
+- Secret del repo: solo `VERCEL_TOKEN`. Los IDs de organización y de proyecto
+  están fijos en `scripts/vercel.sh`.
+- Si el job `deploy` falla en `vercel pull` por auth, el token expiró o está
+  vacío. Crear uno en vercel.com/account/tokens (el CLI no puede), pegarlo en
+  Doppler como `VERCEL_TOKEN` en `careledger/prd` y correr
+  `scripts/vercel.sh ci-token`: lo copia al repo sin mostrarlo y reintenta el
+  deploy.

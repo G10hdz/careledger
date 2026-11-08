@@ -1,7 +1,21 @@
 # apps/landing
 
-Sitio público de EntreManos. Explica la ruta del tiempo, la calculadora de
-Puntos Cívicos, las garantías, la afiliación de comercios y la FAQ.
+Proyecto `entremanos` en Vercel. Sirve el sitio público de EntreManos y
+reenvía el panel de gobierno. Despliegue: `docs/runbook-despliegue.md`.
+
+## Qué sirve cada ruta
+
+- `/` y `/cuidared`: landing EntreManos del banco de tiempo, HTML estático en
+  `public/cuidared/index.html`. En producción, un rewrite de `next.config.ts`
+  manda la raíz a ese archivo.
+- `/hora-por-hora`, `/entremanos` y `/explainer`: páginas estáticas en
+  `public/`.
+- `/gobierno` y `/gobierno/:path+`: rewrite hacia el proyecto
+  `entremanos-gobierno`.
+- La página Next de `src/app/page.tsx` explica Puntos Cívicos: hero, ruta del
+  tiempo, calculadora, niveles, garantías, audiencias, comercios, FAQ y
+  contacto. En producción no se ve en `/`; se sirve en los hosts que no son
+  `entremanos-mx.vercel.app`, como previews.
 
 ## Comandos
 
@@ -16,9 +30,10 @@ El puerto de desarrollo sale de `.wt-port` del worktree.
 
 ## Estructura
 
-- `src/app/page.tsx`: composición de las secciones.
-- `src/components/`: hero, ruta, calculadora, niveles, garantías, audiencias,
-  comercios, FAQ y contacto.
+- `src/app/page.tsx`: composición de las secciones de la página Next.
+- `src/components/`: hero, ruta (`route-timeline`), calculadora, niveles,
+  garantías, audiencias, comercios, FAQ y contacto, más header, footer y
+  piezas compartidas.
 - `src/lib/estimate.ts`: estimación semanal y matriz de niveles. Usa
   `computePoints`, `clinicalSavingsUsd`, `POINT_VALUE_MXN` y los costos del
   catálogo de `@careledger/domain`.
