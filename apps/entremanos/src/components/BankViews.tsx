@@ -9,6 +9,7 @@ import {
   type BankService,
 } from '@/lib/timebank'
 import { btnGhost, btnPrimary, btnSecondary, card, choiceOff, choiceOn } from './styles'
+import type { Suggestion, SuggestRequest } from '@/lib/suggest'
 
 const bank = createBank()
 
@@ -50,6 +51,7 @@ export function BankHome() {
   const [serviceLevel, setServiceLevel] = useState<Level>('N0')
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [suggestedId, setSuggestedId] = useState<string | null>(null)
 
   const refresh = useCallback(async () => {
     const [activeMember, allMembers] = await Promise.all([bank.current(), bank.members()])
@@ -216,6 +218,21 @@ export function BankHome() {
 
       <section>
         <h2 className="font-display text-xl font-semibold">Pedir</h2>
+        <AiBox
+          label="Cuéntanos qué necesitas"
+          placeholder="Ej. que alguien acompañe a mi papá a su cita del jueves, como 2 horas"
+          onSubmit={async (text) => {
+            const result = await askSuggestion({
+              mode: 'pedido',
+              text,
+              catalog: catalog.map(({ id, title, kind, minLevel }) => ({ id, title, kind, minLevel })),
+            })
+            if (result?.mode !== 'pedido' || !result.serviceId) return 'No encontramos un servicio que encaje. Elige uno de la lista.'
+            setSuggestedId(result.serviceId)
+            if (result.hours) setHours(result.hours)
+            return null
+          }}
+        />
         <label className="mt-3 grid gap-2 font-display font-semibold">
           Horas
           <input
@@ -229,9 +246,14 @@ export function BankHome() {
           />
         </label>
         <div className="mt-3 grid gap-3 md:grid-cols-2">
-          {catalog.map((service) => (
-            <article key={service.id} className={`${card} grid gap-3`}>
+          {[...catalog]
+            .sort((a, b) => Number(b.id === suggestedId) - Number(a.id === suggestedId))
+            .map((service) => (
+            <article key={service.id} className={`${card} grid gap-3 ${service.id === suggestedId ? 'border-2 border-primary' : ''}`}>
               <div>
+                {service.id === suggestedId ? (
+                  <p className="text-xs font-bold uppercase tracking-[0.17em]">Sugerido</p>
+                ) : null}
                 <h3 className="font-display text-lg font-semibold">{service.title}</h3>
                 <p className="text-sm text-on-surface-variant">
                   {memberById.get(service.memberId)?.alias} · {serviceKindLabel(service.kind)} · Nivel {service.minLevel}
@@ -306,6 +328,18 @@ export function BankHome() {
             </li>
           ))}
         </ul>
+        <AiBox
+          label="Describe lo que puedes ofrecer"
+          placeholder="Ej. soy estilista y corto el cabello a domicilio"
+          onSubmit={async (text) => {
+            const result = await askSuggestion({ mode: 'servicio', text })
+            if (result?.mode !== 'servicio') return 'No pudimos sugerir un servicio. Llena el formulario.'
+            setServiceTitle(result.title)
+            setServiceKind(result.kind)
+            setServiceLevel(result.minLevel)
+            return null
+          }}
+        />
         <form
           className={`${card} mt-3 grid gap-3`}
           onSubmit={(event) => {
@@ -392,5 +426,63 @@ function ExchangeActions({
         </div>
       )}
     </section>
+  )
+}
+
+async function askSuggestion(body: SuggestRequest): Promise<Suggestion | null> {
+  const response = await fetch('/api/sugerir', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify(body),
+  })
+  if (response.status === 422) return null
+  if (!response.ok) throw new Error('asistente')
+  return (await response.json()) as Suggestion
+}
+
+function AiBox({
+  label,
+  placeholder,
+  onSubmit,
+}: {
+  label: string
+  placeholder: string
+  onSubmit: (text: string) => Promise<string | null>
+}) {
+  const [text, setText] = useState('')
+  const [pending, setPending] = useState(false)
+  const [message, setMessage] = useState<string | null>(null)
+
+  return (
+    <form
+      className={`${card} mt-3 grid gap-3`}
+      onSubmit={(event) => {
+        event.preventDefault()
+        setPending(true)
+        setMessage(null)
+        onSubmit(text)
+          .then((result) => setMessage(result))
+          .catch(() => setMessage('Sin conexión con el asistente. Usa el formulario.'))
+          .finally(() => setPending(false))
+      }}
+    >
+      <label className="grid gap-2 font-display font-semibold">
+        {label}
+        <textarea
+          className="min-h-20 w-full rounded-2xl border border-outline bg-surface px-4 py-3 font-sans font-normal"
+          maxLength={280}
+          placeholder={placeholder}
+          value={text}
+          onChange={(event) => setText(event.target.value)}
+        />
+      </label>
+      <p className="text-xs text-on-surface-variant">
+        Lo que escribes solo se usa para sugerir y no se guarda. No incluyas nombres ni diagnósticos.
+      </p>
+      {message ? <p className="text-sm text-error" role="status">{message}</p> : null}
+      <button type="submit" className={btnSecondary} disabled={pending || text.trim().length < 3}>
+        {pending ? 'Pensando…' : 'Sugerir con IA'}
+      </button>
+    </form>
   )
 }

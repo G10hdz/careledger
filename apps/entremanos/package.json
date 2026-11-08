@@ -13,10 +13,12 @@
   "dependencies": {
     "@careledger/design-tokens": "workspace:*",
     "@careledger/domain": "workspace:*",
+    "ai": "^7.0.165",
     "dexie": "^4.0.11",
     "next": "16.4.3",
     "react": "19.3.0",
-    "react-dom": "19.3.0"
+    "react-dom": "19.3.0",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
