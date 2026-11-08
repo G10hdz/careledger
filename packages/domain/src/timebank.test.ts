@@ -153,6 +153,32 @@ describe('banco de tiempo (specs/09)', () => {
     }
   })
 
+  it('tope de 8 h acreditables al día por proveedor', () => {
+    const base = {
+      provider: caregiver,
+      receiver: dentist,
+      service: homeCare,
+      counterService: dentalCare,
+      receiverBalance: 3,
+      hours: 2,
+    }
+    expect(validateExchange({ ...base, providerHoursToday: 6 })).toEqual({ ok: true })
+    expect(validateExchange({ ...base, providerHoursToday: 6.25 })).toEqual({ ok: false, reason: 'tope_diario' })
+  })
+
+  it('tope de 20 h al mes entre las mismas dos cuentas', () => {
+    const base = {
+      provider: caregiver,
+      receiver: dentist,
+      service: homeCare,
+      counterService: dentalCare,
+      receiverBalance: 3,
+      hours: 2,
+    }
+    expect(validateExchange({ ...base, pairHoursThisMonth: 18 })).toEqual({ ok: true })
+    expect(validateExchange({ ...base, pairHoursThisMonth: 18.5 })).toEqual({ ok: false, reason: 'tope_pareja' })
+  })
+
   it('un miembro no puede intercambiar consigo mismo', () => {
     expect(
       validateExchange({

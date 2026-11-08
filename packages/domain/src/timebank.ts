@@ -46,8 +46,14 @@ export type TimebankRejection =
   | 'sin_cuidado'
   | 'duracion'
   | 'mismo_miembro'
+  | 'tope_diario'
+  | 'tope_pareja'
 
 const LEVEL_RANK: Record<Level, number> = { N0: 0, N1: 1, N2: 2 }
+
+/** Topes anti-fraude. specs/09, tabla de estandarización. */
+export const TIMEBANK_MAX_HOURS_PER_DAY = 8
+export const TIMEBANK_MAX_HOURS_PER_PAIR_MONTH = 20
 
 /** Mínimo por servicio. specs/09, tabla de estandarización. */
 export const TIMEBANK_MIN_HOURS_PER_SERVICE = 0.5
@@ -74,8 +80,13 @@ export function validateExchange(opts: {
   counterService?: TimebankService
   hours: number
   receiverBalance: number
+  /** Horas que el proveedor ya acreditó hoy. */
+  providerHoursToday?: number
+  /** Horas ya intercambiadas este mes entre estas dos cuentas, en cualquier sentido. */
+  pairHoursThisMonth?: number
 }): { ok: true } | { ok: false; reason: TimebankRejection } {
   const { provider, receiver, service, counterService, hours, receiverBalance } = opts
+  const { providerHoursToday = 0, pairHoursThisMonth = 0 } = opts
 
   if (provider.id === receiver.id) return { ok: false, reason: 'mismo_miembro' }
   if (!isValidDuration(hours)) return { ok: false, reason: 'duracion' }
@@ -96,6 +107,10 @@ export function validateExchange(opts: {
   if (!hasCare) return { ok: false, reason: 'sin_cuidado' }
   // REQ-BT-004: el saldo del receptor no puede quedar por debajo de -5 h.
   if (receiverBalance - hours < TIMEBANK_MIN_BALANCE) return { ok: false, reason: 'saldo' }
+  if (providerHoursToday + hours > TIMEBANK_MAX_HOURS_PER_DAY) return { ok: false, reason: 'tope_diario' }
+  if (pairHoursThisMonth + hours > TIMEBANK_MAX_HOURS_PER_PAIR_MONTH) {
+    return { ok: false, reason: 'tope_pareja' }
+  }
   return { ok: true }
 }
 
