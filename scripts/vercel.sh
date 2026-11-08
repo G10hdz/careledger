@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
-# Operación del despliegue de la landing en Vercel. Ver docs/runbook-despliegue.md.
+# Operación del despliegue en Vercel (landing y panel de gobierno). Ver docs/runbook-despliegue.md.
 #
 #   scripts/vercel.sh status          últimos deploys de producción y corridas de CI en main
-#   scripts/vercel.sh smoke           / y /cuidared responden 200 en producción
+#   scripts/vercel.sh smoke           /, /cuidared y /gobierno responden 200 en producción
+#   scripts/vercel.sh publish         pull, build y deploy --prod de los dos proyectos (lo usa el CI)
 #   scripts/vercel.sh rollback [url]  vuelve al deploy anterior (o al indicado) y corre smoke
 #   scripts/vercel.sh deploy          deploy manual desde main, solo si Actions no corre
 #   scripts/vercel.sh ci-token        copia VERCEL_TOKEN de Doppler al repo y reintenta el deploy
@@ -11,14 +12,29 @@ set -euo pipefail
 URL=https://entremanos-mx.vercel.app
 SCOPE=g10hdzs-projects
 REPO=G10hdz/careledger
-# IDs del proyecto, no son credenciales. El login sale de `vercel login`.
+# IDs de proyecto, no son credenciales. En local el login sale de
+# `vercel login`; en CI, de VERCEL_TOKEN.
 export VERCEL_ORG_ID=team_nsq0cjSdqQkaMQ1vNm5ch9yj
-export VERCEL_PROJECT_ID=prj_vh1qzlxyvFeLTyUSza8bQ06cDY5R
-vercel() { npx --yes vercel@65.10.0 "$@"; }
+LANDING_ID=prj_vh1qzlxyvFeLTyUSza8bQ06cDY5R
+GOBIERNO_ID=prj_zgJpZf80YCksCQpCCT4f1sy4NUkF
+export VERCEL_PROJECT_ID=$LANDING_ID
+vercel() { npx --yes vercel@65.10.0 "$@" ${VERCEL_TOKEN:+--token="$VERCEL_TOKEN"}; }
+
+# Gobierno primero: la landing reescribe /gobierno hacia él.
+publish() {
+  cd "$(git rev-parse --show-toplevel)"
+  for VERCEL_PROJECT_ID in "$GOBIERNO_ID" "$LANDING_ID"; do
+    export VERCEL_PROJECT_ID
+    vercel pull --yes --environment=production
+    vercel build --prod
+    vercel deploy --prebuilt --prod
+  done
+  export VERCEL_PROJECT_ID=$LANDING_ID
+}
 
 smoke() {
   local path code fail=0
-  for path in / /cuidared; do
+  for path in / /cuidared /gobierno; do
     code=$(curl -s -L -o /dev/null -w '%{http_code}' "$URL$path")
     echo "$path $code"
     [ "$code" = 200 ] || fail=1
@@ -32,6 +48,10 @@ case "${1:-status}" in
     gh run list --repo "$REPO" --branch main --limit 5
     ;;
   smoke)
+    smoke
+    ;;
+  publish)
+    publish
     smoke
     ;;
   rollback)
@@ -49,9 +69,7 @@ case "${1:-status}" in
     pnpm -r test
     pnpm -r build
     git checkout -q -- apps/pwa/next-env.d.ts 2>/dev/null || true
-    vercel pull --yes --environment=production
-    vercel build --prod
-    vercel deploy --prebuilt --prod
+    publish
     smoke
     ;;
   ci-token)
@@ -66,7 +84,7 @@ case "${1:-status}" in
     gh run rerun "$run" --repo "$REPO" --failed && echo "VERCEL_TOKEN copiado de Doppler. Reintentando deploy en la corrida $run."
     ;;
   *)
-    sed -n '2,8p' "$0" >&2
+    sed -n '2,9p' "$0" >&2
     exit 2
     ;;
 esac

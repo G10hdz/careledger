@@ -44,8 +44,6 @@ jobs:
       name: production
       url: https://entremanos-mx.vercel.app
     env:
-      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
       VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
     steps:
       - uses: actions/checkout@v4
@@ -58,9 +56,5 @@ jobs:
           cache: pnpm
 
       - run: pnpm install --frozen-lockfile
-      - run: npx --yes vercel@65.10.0 pull --yes --environment=production --token="$VERCEL_TOKEN"
-      - run: npx --yes vercel@65.10.0 build --prod --token="$VERCEL_TOKEN"
-      - run: npx --yes vercel@65.10.0 deploy --prebuilt --prod --token="$VERCEL_TOKEN"
-
-      - name: Smoke de producción
-        run: scripts/vercel.sh smoke
+      - name: Deploy de gobierno y landing, y smoke
+        run: scripts/vercel.sh publish
