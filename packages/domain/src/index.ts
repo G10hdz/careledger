@@ -1,4 +1,5 @@
 export * from './types'
 export * from './points'
+export * from './timebank'
 export * from './sroi'
 export * from './catalog'
