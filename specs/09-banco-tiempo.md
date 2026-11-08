@@ -23,7 +23,7 @@ en bancarrota de tiempo: el sistema existe para devolvérselo.
 | --- | --- | --- |
 | REQ-BT-001 | THE unidad de cuenta SHALL ser la hora: 1 hora de cualquier servicio intercambiable por 1 hora de cualquier otro, sin excepciones, incluidos profesionales (un dentista puede intercambiar limpieza dental por horas de cuidado). | Test de paridad |
 | REQ-BT-002 | THE app SHALL mostrar un mapa/directorio de servicios disponibles en la localidad de la cuidadora. | Test + screenshot |
-| REQ-BT-003 | THE hora de cuidado SHALL acreditarse con verificación básica: confirmación de la familia cuidada o de un tercero (doc v4). **Propuesta del spike, por decidir con el equipo:** doble confirmación por código de quien da y quien recibe, con el tercero solo para desempatar. | Test de confirmación |
+| REQ-BT-003 | THE hora de cuidado SHALL acreditarse con verificación básica: confirmación de la familia cuidada o de un tercero (doc v4). Quien da el servicio no puede confirmarse a sí mismo. **Decidido el 2026-11-07** con el documento del equipo; la doble confirmación por código queda como mejora a evaluar en el piloto. | Test de confirmación |
 | REQ-BT-004 | THE sistema SHALL permitir saldo negativo de hasta 5 horas. **Por decidir:** a quién se le permite (solo identidad validada en el alta, o con aval de la red de apoyo). Sin ancla de identidad, una cuenta nueva recibe servicio y desaparece. | Test de saldo |
 | REQ-BT-005 | THE comunidad SHALL formarse de dos vías: red de apoyo propia (familia, amigos, vecinos — REQ-ORA-025) o buscador de cuidadores de la localidad. | Test de alta |
 | REQ-BT-006 | THE sistema SHALL NOT permitir que servidores públicos ofrezcan sus servicios como intercambio. | Regla de catálogo |
@@ -58,7 +58,7 @@ descartes en `docs/spike-verificacion-antifraude.md`.
 Para el piloto bastan:
 
 - Una cuenta por dispositivo, con identidad validada en el alta.
-- Doble confirmación de cada hora (REQ-BT-003).
+- Confirmación de cada hora por la familia o un tercero (REQ-BT-003).
 - Los topes de la tabla.
 
 Play Integrity, NFC en domicilio y liveness se activan al crecer, no antes.
@@ -110,8 +110,8 @@ El copy en línea (landing EntreManos) ya cambió respecto a la versión de
 revisión: dice que confirman las dos partes, reemplaza "Todo intercambio
 incluye cuidado" por "Se gana cuidando", responde las cinco preguntas
 frecuentes, explica los tres niveles de ayuda y dice que solo se guarda
-duración y tipo de apoyo. Ojo: publicar la doble confirmación adelanta una
-decisión que REQ-BT-003 todavía marca como del equipo.
+duración y tipo de apoyo. Ese texto de doble confirmación ya no coincide con
+REQ-BT-003, que se decidió por la confirmación de la familia o un tercero.
 
 ### Copy contra spec
 
@@ -119,7 +119,7 @@ decisión que REQ-BT-003 todavía marca como del equipo.
 | --- | --- | --- |
 | "Sin dinero. Las horas no se compran ni se venden" | No contradice la versión vigente de REQ-BT-007. Su inciso (b) es B2B y la compra de horas por familiares ya está fuera. La premisa de una compra familiar vigente está desactualizada. | Mantener el copy. REQ-BT-007 dice "3 fuentes", pero solo enumera dos; corregir el número o definir la fuente faltante queda por decidir. |
 | "Todo intercambio incluye cuidado" | REQ-BT-001 permite intercambiar cualquier servicio por cualquier otro, mientras la regla REQ-BT-012 exige cuidado en uno de los lados. El copy adopta la regla más estricta antes de decidirla. | Por decidir (interpretación por confirmar, REQ-BT-012). Si se acepta, armonizar REQ-BT-001 y confirmar REQ-BT-014; mientras tanto, marcarla como propuesta en la landing. |
-| "Confirmación de la familia cuidada o de una tercera persona" | Coincide con el texto de doc v4 de REQ-BT-003; la propuesta del spike (doble confirmación, tercero solo desempata) sigue por decidir. | Por decidir con REQ-BT-003. Si gana el spike, cambiar a: "Cada hora se confirma: quien da y quien recibe confirman el intercambio. Si no coinciden, una tercera persona revisa el caso." |
+| "Confirmación de la familia cuidada o de una tercera persona" | Coincide con REQ-BT-003, decidido el 2026-11-07. | Mantener el copy. Las landings que dicen "confirman las dos partes" deben cambiar a esta regla. |
 | "Verificamos tu identidad" | No existía un requisito de alta con ancla anti-sybil. | Cubierto por REQ-BT-013. El mecanismo y su relación con el saldo negativo de REQ-BT-004 quedan por decidir. |
 | "Necesidad de cuidado comprobada" | No existía un requisito explícito de comprobación y el copy no limita los datos recopilados. | Cubierto por REQ-BT-014: un tercero valida el tier de REQ-BT-010 sin guardar nombres de pacientes, diagnósticos ni fotos. |
 | "Información de salud y de tu familia solo se usa para el servicio" | Implica recopilar información de salud, pero REQ-BT-014 exige minimizarla y el aviso de privacidad no está redactado. | Cambiar a: "No guardamos nombres de la persona cuidada, diagnósticos ni fotos. Consulta el aviso de privacidad." No abrir el registro hasta publicar el aviso. |

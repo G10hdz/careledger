@@ -35,7 +35,9 @@ jobs:
     # (apps/landing/vercel.json lo apaga en main), así que no se publica
     # nada que no haya pasado checks. Los previews de PR siguen en Vercel.
     needs: checks
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    # VERCEL_DEPLOY=off (variable del repo) pausa el deploy sin tocar este
+    # archivo, por ejemplo cuando Vercel agota sus 100 deploys diarios.
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && vars.VERCEL_DEPLOY != 'off'
     runs-on: ubuntu-latest
     concurrency:
       group: vercel-production

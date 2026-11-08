@@ -52,3 +52,15 @@ test y build antes de publicar los dos proyectos, y el smoke al final.
   Doppler como `VERCEL_TOKEN` en `careledger/prd` y correr
   `scripts/vercel.sh ci-token`: lo copia al repo sin mostrarlo y reintenta el
   deploy.
+
+## Si Vercel agota los deploys del día
+
+El plan gratis permite 100 deploys en 24 horas, y los previews de cada PR
+cuentan. Al pasarlo, el job `deploy` falla con
+`api-deployments-free-per-day`. Para que `main` no quede en rojo mientras
+tanto:
+
+    gh variable set VERCEL_DEPLOY --body off   # pausa el job deploy
+    gh variable set VERCEL_DEPLOY --body on    # lo reactiva
+
+Al reactivarlo, el siguiente push a `main` publica lo último.
