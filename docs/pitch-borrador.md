@@ -1,60 +1,48 @@
-# Borrador de pitch — EntreManos (Cuando cuidas, te descuidas)
+# Borrador de pitch: EntreManos
 
-Fuente: documento v4 (`docs/fuente-cuando-cuidas-te-descuidas-v3.md`).
-Narrativa en 5 secciones para la presentación.
+Historia ficticia para la presentación. Ana no representa a una persona real.
 
-## 1. El gancho (el silencio inicial)
+## 1. Gancho
 
-> Hay un sector en nuestra sociedad que administra presupuestos millonarios
-> en salud, trabaja sin descanso y está al borde del colapso total de sus
-> sistemas. No son las clínicas ni los médicos. Son los cuidadores informales,
-> esa "generación sándwich" de alrededor de 38 años que sostiene a sus propias
-> familias y a pacientes dependientes al mismo tiempo. Para ellos, el sistema
-> dicta una regla importante: **cuando cuidas, te descuidas**.
-
-## 2. El problema (la falla estructural)
-
-> El 99% de la tecnología médica actual enfoca todos sus recursos en el
-> paciente, haciendo que el cuidador sea invisible. Asumimos su carga física,
-> su desgaste mental y su abandono personal como un daño colateral. No tienen
-> tiempo, carecen de redes de apoyo diarias, y el resto de la familia suele
-> observar desde una distancia cómoda. Este desgaste crónico no solo destruye
-> a la persona, sino que termina costando millones al sector salud en crisis
-> y reingresos hospitalarios por errores derivados del agotamiento.
-
-## 3. La solución (nuestra arquitectura)
-
-> Un ecosistema digital que hackea este ciclo destructivo: una plataforma de
-> economía conductual que valida, gamifica y financia el autocuidado. Tres
-> ejes:
+> Ana cuida a su mamá todos los días. Cuando necesita ir a una cita, descansar o resolver un trámite, no tiene dinero para pagar un relevo. Tampoco tiene una forma clara de pedirle tiempo a su comunidad.
 >
-> - **Algoritmo de carga**: perfil que rankea la dificultad real del cuidado
->   (físico, cognitivo y logístico).
-> - **Minería de tokens por autocuidado**: no premiamos a la cuidadora por
->   atender al paciente; la premiamos por cuidarse a sí misma. ¿Registraste
->   una hora libre? ¿Acudiste a tu red de apoyo? Ganas tokens.
-> - **Mercado de recompensas**: los tokens se canjean por valor real —
->   descuentos en apoyo psicológico, masajes de descarga muscular, entregas
->   de farmacia.
+> Cuando cuidas, te descuidas.
 
-## 4. El modelo de negocios (el flujo de capital)
+## 2. Problema
 
-> Gratuita para la cuidadora. El capital entra desde los nodos que se
-> benefician de su estabilidad:
+> El agotamiento de Ana es el síntoma. La causa es la pobreza de tiempo: el cuidado queda concentrado en pocas manos, no se registra y no se puede pedir de vuelta. El problema completo y su fuente están en la [slide de causa raíz](pitch/causa-raiz.md).
+
+## 3. Solución
+
+> EntreManos es un banco de tiempo de cuidados. Una hora vale una hora, sin dinero de por medio.
 >
-> 1. **Comisión transaccional (la red familiar)**: billetera donde la
->    familia extendida fondea la cuenta de la cuidadora o envía propinas.
->    Cobramos un porcentaje por el procesamiento.
-> 2. **CPA y afiliados B2B**: las cuidadoras toman las decisiones de compra
->    de insumos médicos; canalizamos esa demanda a farmacias y servicios.
-> 3. **Licencias corporativas**: la plataforma como prestación laboral de
->    RRHH contra burnout y ausentismo del talento que cuida en casa.
+> Ana puede ofrecer una hora de cuidado a otra familia y recibir una hora para pedir relevo o un servicio que necesite. Cada hora se acredita con la confirmación de la familia cuidada o de una tercera persona.
+>
+> Los niveles de confianza indican qué puede ofrecer cada participante: N0 para apoyos sin capacitación, N1 para cuidado básico y N2 para servicios certificados o profesionales. El nivel habilita el servicio, pero no cambia el valor de la hora.
 
-## 5. La proyección
+## 4. Desarrollo
 
-> Empezamos gestionando propinas y descuentos comunitarios. En 5 años, la
-> base de datos sobre la fatiga del cuidador será el estándar predictivo
-> para aseguradoras y hospitales. No es una app de caridad: es la
-> infraestructura financiera y de datos para sostener la economía del
-> cuidado. Sostener al cuidador es la inversión preventiva más rentable
-> que existe.
+> Ana registra una hora de cuidado confirmada. Días después pide esa hora de vuelta. Una persona habilitada toma el relevo mientras ella acude a su cita. Nadie compra ni vende horas.
+>
+> EntreManos no le pide que aguante más. Le da una forma concreta de devolver el cuidado a la comunidad y de recibirlo cuando lo necesita.
+
+## 5. Cómo se mide
+
+> El piloto medirá horas intercambiadas por participante al mes, porcentaje usado como relevo, retención a tres meses, carga de quien cuida con la escala Zarit al inicio y al cierre, disputas y horas en saldo negativo sin devolver. No habrá metas numéricas hasta contar con una línea base.
+
+Métricas definidas en [REQ-EVA-003](../specs/10-pitch-y-evaluacion.md#impacto-30).
+
+## 6. Próximo paso y cierre
+
+> El siguiente paso es un piloto de tres meses en un nodo barrial de Iztapalapa. Ahí probaremos si las horas circulan, si se usan para relevar a quien cuida y si la carga cambia entre la línea base y el cierre.
+>
+> Al final, Ana no deja de cuidar. Deja de hacerlo sola. Cuando cuidas, también puedes pedir tiempo de vuelta.
+
+## 7. Visión, una sola slide
+
+> EntreManos puede conectar el banco de tiempo con un directorio de servicios y formación para habilitar cuidados de mayor responsabilidad. Esta es visión futura, no parte del piloto de tres meses.
+
+## Notas para el equipo
+
+- Se quitaron la venta de datos de fatiga, el monitoreo por wearables, los tokens, la cripto y la minería.
+- REQ-EVA-043 es decisión del equipo: esos usos no se presentan como modelo de negocio. Los datos agregados y anónimos para política pública solo se contemplan con consentimiento.

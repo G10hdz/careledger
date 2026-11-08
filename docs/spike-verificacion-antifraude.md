@@ -39,7 +39,7 @@ monto en juego.
 
 | Gap | Estado en `main` |
 | --- | --- |
-| Clave ligada al hardware | `keys.ts` crea Ed25519 con `extractable: true`; `app.ts:174` guarda `privateJwk` en IndexedDB. Sin WebAuthn. |
+| Clave ligada al hardware | Parcial: desde el PR #35 la llave Ed25519 es no extraíble y se guarda como `CryptoKey` en IndexedDB. Sin WebAuthn. |
 | 3 de 3 entre dispositivos | `oracle.ts` es simulado: beneficiario y veedor son llaves del mismo teléfono. |
 | Integridad del dispositivo | Sin TWA ni Play Integrity. |
 | Sybil | `caregiverId = crypto.randomUUID()` por instalación, sin ancla de identidad. |

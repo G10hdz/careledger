@@ -25,7 +25,7 @@ Esta spec no agrega código. El código está congelado desde la auditoría del
 | --- | --- | --- |
 | REQ-EVA-001 | THE pitch SHALL nombrar a la beneficiaria primaria (cuidadora familiar no remunerada de una persona con dependencia, CDMX) y a las secundarias (persona cuidada, veedora, comercio del barrio), y decir qué cambia para cada una. | Slide de beneficiarias |
 | REQ-EVA-002 | THE pitch SHALL mostrar cómo llega a mujeres en distintas realidades, citando solo lo que el producto ya cumple: sin datos (REQ-PWA-002), Android de entrada, uso a una mano (REQ-PWA-013), ≤3 pantallas (REQ-PWA-001), WCAG AA y selector ES/NAH (REQ-PWA-010). | Slide + demo |
-| REQ-EVA-003 | THE pitch SHALL proponer métricas medibles en un piloto: horas certificadas por cuidadora al mes, porcentaje de puntos ganados por autocuidado, carga de la cuidadora con la escala Zarit (línea base y a 3 meses) y canjes por categoría. | Slide de métricas |
+| REQ-EVA-003 | THE pitch SHALL proponer métricas medibles en el piloto de EntreManos (spec 09): horas intercambiadas por participante al mes; porcentaje de esas horas usadas como relevo para quien cuida; retención de participantes a 3 meses; carga de quien cuida con la escala Zarit (línea base y a 3 meses); tasa de disputas de horas y horas en saldo negativo sin devolver. Sin metas numéricas hasta tener línea base. | Slide de métricas |
 | REQ-EVA-004 | THE pitch SHALL explicar la escala: el nodo barrial es la unidad de despliegue y el modelo se replica en cualquier municipio con fondo o anexo de cuidados. | Slide de escala |
 
 ### Problema y políticas (25%)

@@ -15,6 +15,7 @@
 - Vigilancia por geolocalización: no se plantea guardar coordenadas crudas. La prueba zero-knowledge tampoco existe hoy.
 - Dependencia de un proveedor de CareTech: la emisión actual no depende de un modelo ni de un proveedor de IA.
 - Venta de datos de fatiga o deterioro y monitoreo automático por wearables: no forman parte del modelo. Cualquier uso de datos agregados para política pública requeriría anonimización y consentimiento.
+- Identidad, necesidad de cuidado y cuentas múltiples en EntreManos: el alta requiere una identidad como ancla anti-sybil y una tercera persona valida la necesidad de cuidado. El método de verificación sigue pendiente y puede excluir a quien no tenga documentos o exponer datos sensibles. La validación no debe guardar nombres de pacientes, diagnósticos ni fotos.
 
 **El sesgo que sí debemos vigilar**
 
@@ -59,3 +60,11 @@ No. Las cifras de 53% menos caídas, 94% de satisfacción y SROI de 3.42x son pr
 ## 8. ¿Dónde usan IA?
 
 Hoy no usamos IA para validar cuidados, asignar puntos ni decidir sobre una cuidadora. La fórmula es código determinístico y la validación es humana; cualquier evaluación futura de cursos tendría que ser transparente y quedar sujeta a revisión humana.
+
+## 9. ¿Cómo evitan cuentas duplicadas sin excluir a quien no tiene documentos?
+
+EntreManos requiere verificar una identidad y usarla como ancla anti-sybil. El mecanismo todavía no está decidido. Antes del piloto debe definirse una vía accesible, el tratamiento de duplicados y quién puede usar saldo negativo; no presentamos ese control como resuelto.
+
+## 10. ¿Cómo comprueban la necesidad de cuidado sin recopilar datos médicos?
+
+Una tercera persona valida el nivel de necesidad. EntreManos no debe guardar nombres de pacientes, diagnósticos ni fotos. El aviso de privacidad, el responsable de los datos y el procedimiento de validación deben quedar definidos antes de abrir el registro.
