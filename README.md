@@ -37,8 +37,11 @@ Demos en vivo:
 
 - Sitio (landing + demos en el mismo dominio): <https://entremanos-mx.vercel.app>
 - Banco de tiempo: <https://entremanos-mx.vercel.app/cuidared>
+- Panel de gobierno: <https://entremanos-mx.vercel.app/gobierno>
 - Explainer: <https://entremanos-mx.vercel.app/explainer>
 - Espejo en GitHub Pages: <https://g10hdz.github.io/careledger/>
+
+Cómo se publica cada proyecto y qué hacer si falla: `docs/runbook-despliegue.md`.
 
 La app se llama **EntreManos**; el programa es "Cuando cuidas, te
 descuidas". Los identificadores internos conservan el slug `careledger`:
