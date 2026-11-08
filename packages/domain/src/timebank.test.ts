@@ -137,6 +137,22 @@ describe('banco de tiempo (specs/09)', () => {
     expect(validateExchange({ ...base, receiverBalance: 3, hours: 8 })).toEqual({ ok: true })
   })
 
+  it('bloques de 15 min con mínimo de 30 (spec 09, estandarización)', () => {
+    const base = {
+      provider: caregiver,
+      receiver: dentist,
+      service: homeCare,
+      counterService: dentalCare,
+      receiverBalance: 3,
+    }
+    for (const hours of [0.5, 0.75, 1.25, 7.75]) {
+      expect(validateExchange({ ...base, hours })).toEqual({ ok: true })
+    }
+    for (const hours of [0.25, 0.6, 1.1]) {
+      expect(validateExchange({ ...base, hours })).toEqual({ ok: false, reason: 'duracion' })
+    }
+  })
+
   it('un miembro no puede intercambiar consigo mismo', () => {
     expect(
       validateExchange({
