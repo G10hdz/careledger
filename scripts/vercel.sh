@@ -5,7 +5,7 @@
 #   scripts/vercel.sh smoke           / y /cuidared responden 200 en producción
 #   scripts/vercel.sh rollback [url]  vuelve al deploy anterior (o al indicado) y corre smoke
 #   scripts/vercel.sh deploy          deploy manual desde main, solo si Actions no corre
-#   scripts/vercel.sh ci-token        crea el token de CI, lo guarda en el repo y reintenta el deploy
+#   scripts/vercel.sh ci-token        copia VERCEL_TOKEN de Doppler al repo y reintenta el deploy
 set -euo pipefail
 
 URL=https://entremanos-mx.vercel.app
@@ -55,30 +55,15 @@ case "${1:-status}" in
     smoke
     ;;
   ci-token)
-    # El token no pasa por pantalla ni por el chat: va directo a gh.
-    token=$(vercel tokens create "careledger CI $(date +%Y-%m-%d)" --project "$VERCEL_PROJECT_ID" --json | python3 -c '
-import json, sys
-def find(o):
-    if isinstance(o, dict):
-        for k, v in o.items():
-            if isinstance(v, str) and "token" in k.lower() and len(v) > 20:
-                return v
-            r = find(v)
-            if r:
-                return r
-    if isinstance(o, list):
-        for v in o:
-            r = find(v)
-            if r:
-                return r
-    return ""
-print(find(json.load(sys.stdin)))
-')
-    [ -n "$token" ] || { echo "Vercel no devolvió token; el secret no se tocó." >&2; exit 1; }
+    # El CLI de Vercel no puede crear tokens: se crean en
+    # vercel.com/account/tokens y se pegan en Doppler (careledger/prd).
+    # De ahí van directo a gh, sin pasar por pantalla.
+    token=$(doppler secrets get VERCEL_TOKEN -p careledger -c prd --plain 2>/dev/null || true)
+    [ -n "$token" ] || { echo "Doppler careledger/prd no tiene VERCEL_TOKEN." >&2; exit 1; }
     printf %s "$token" | gh secret set VERCEL_TOKEN --repo "$REPO"
     unset token
-    run=$(gh run list --repo "$REPO" --branch main --limit 1 --json databaseId --jq '.[0].databaseId')
-    gh run rerun "$run" --repo "$REPO" --failed && echo "VERCEL_TOKEN guardado. Reintentando deploy en la corrida $run."
+    run=$(gh run list --repo "$REPO" --workflow CI --branch main --limit 1 --json databaseId --jq '.[0].databaseId')
+    gh run rerun "$run" --repo "$REPO" --failed && echo "VERCEL_TOKEN copiado de Doppler. Reintentando deploy en la corrida $run."
     ;;
   *)
     sed -n '2,8p' "$0" >&2
