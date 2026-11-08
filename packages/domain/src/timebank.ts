@@ -49,9 +49,16 @@ export type TimebankRejection =
 
 const LEVEL_RANK: Record<Level, number> = { N0: 0, N1: 1, N2: 2 }
 
-/** Duraciones válidas: horas enteras o medias horas, mayor que 0 y máximo 8. */
+/** Mínimo por servicio. specs/09, tabla de estandarización. */
+export const TIMEBANK_MIN_HOURS_PER_SERVICE = 0.5
+
+/** Duraciones válidas: bloques de 15 min, de 30 min a 8 h. specs/09. */
 function isValidDuration(hours: number): boolean {
-  return hours > 0 && hours <= TIMEBANK_MAX_HOURS_PER_EXCHANGE && Number.isInteger(hours * 2)
+  return (
+    hours >= TIMEBANK_MIN_HOURS_PER_SERVICE &&
+    hours <= TIMEBANK_MAX_HOURS_PER_EXCHANGE &&
+    Number.isInteger(hours * 4)
+  )
 }
 
 /** Valida un intercambio sin ejecutarlo. El proveedor da `service` y el
