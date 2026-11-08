@@ -41,20 +41,10 @@ function IconBook() {
   )
 }
 
-function IconClock() {
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
-      <circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" strokeWidth="1.8" />
-      <path d="M12 7v5l3 2" fill="none" stroke="currentColor" strokeWidth="1.8" />
-    </svg>
-  )
-}
-
 const TABS = [
   { href: '/', label: 'tabRegister' as const, icon: IconHeart },
   { href: '/impacto', label: 'tabImpact' as const, icon: IconLeaf },
   { href: '/billetera', label: 'tabWallet' as const, icon: IconCard },
-  { href: '/banco', label: 'tabBank' as const, icon: IconClock },
   { href: '/formacion', label: 'tabTraining' as const, icon: IconBook },
 ]
 
