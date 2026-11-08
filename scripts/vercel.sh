@@ -32,12 +32,18 @@ publish() {
   export VERCEL_PROJECT_ID=$LANDING_ID
 }
 
+# El alias tarda unos segundos en apuntar al deploy nuevo: cada ruta se
+# reintenta hasta 60 s antes de darla por caída.
 smoke() {
-  local path code fail=0
+  local path code tries fail=0
   for path in / /cuidared /gobierno; do
-    code=$(curl -s -L -o /dev/null -w '%{http_code}' "$URL$path")
+    for tries in $(seq 1 12); do
+      code=$(curl -s -L -o /dev/null -w '%{http_code}' "$URL$path")
+      [ "$code" = 200 ] && break
+      sleep 5
+    done
     echo "$path $code"
-    [ "$code" = 200 ] || fail=1
+    [ "$code" = 200 ] || { echo "$path no respondió 200 en 60 s" >&2; fail=1; }
   done
   return "$fail"
 }
