@@ -2,8 +2,27 @@
 @import "@careledger/design-tokens";
 
 @theme inline {
-  --font-display: var(--font-plus), "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-body: var(--font-atkinson), "Atkinson Hyperlegible", ui-sans-serif, system-ui, sans-serif;
+  --font-display: Georgia, "Times New Roman", serif;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* Paleta de la landing EntreManos (public/landing.html). */
+@theme {
+  --color-background: #f6f1e9;
+  --color-surface: #fffdf8;
+  --color-surface-dim: #f6f1e9;
+  --color-surface-container-lowest: #fffdf8;
+  --color-surface-container: #efe9df;
+  --color-on-surface: #374b42;
+  --color-on-surface-variant: #596359;
+  --color-outline: #a9b99d;
+  --color-outline-variant: #d7d9cc;
+  --color-primary: #374b42;
+  --color-on-primary: #fffdf8;
+  --color-primary-fixed: #dde5cb;
+  --color-on-primary-fixed: #374b42;
+  --color-secondary: #e5b9b5;
+  --color-on-secondary: #374b42;
 }
 
 html {

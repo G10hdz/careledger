@@ -110,10 +110,13 @@ export function BankHome() {
 
   if (!member) {
     return (
-      <div className="flex flex-col gap-6">
-        <div>
-          <h1 className="font-display text-[1.625rem] font-bold leading-8">Banco de tiempo</h1>
-          <p className="mt-2 text-base text-on-surface-variant">Una hora de ayuda vale una hora.</p>
+      <div className="grid gap-8 md:grid-cols-2 md:items-start">
+        <div className="md:col-span-2">
+          <p className="text-xs font-bold uppercase tracking-[0.17em]">Banco de tiempo · Piloto Iztapalapa</p>
+          <h1 className="mt-3 font-display text-4xl leading-tight tracking-tight md:text-5xl">
+            Una hora de cuidado, <em className="text-[#829773]">una hora de vuelta.</em>
+          </h1>
+          <p className="mt-3 text-base text-on-surface-variant">Entra como una de las personas de prueba o crea tu cuenta.</p>
         </div>
 
         <section>
@@ -152,7 +155,7 @@ export function BankHome() {
           <label className="grid gap-2 font-display font-semibold">
             Alias ficticio
             <input
-              className="min-h-12 rounded-xl border border-outline bg-surface px-3 font-sans font-normal"
+              className="min-h-12 w-full rounded-full border border-outline bg-surface px-5 font-sans font-normal"
               value={alias}
               maxLength={40}
               required
@@ -190,24 +193,25 @@ export function BankHome() {
   const toConfirm = exchanges.filter((exchange) => exchange.receiverId === member.id && exchange.status === 'hecho')
 
   return (
-    <div className="flex flex-col gap-6">
-      <header className="grid gap-3">
+    <div className="grid gap-8 lg:grid-cols-[320px_1fr] lg:items-start">
+      <header className="grid gap-3 lg:sticky lg:top-24">
         <div className="flex items-start justify-between gap-3">
           <div>
             <p className="text-sm text-on-surface-variant">Sesión de</p>
-            <h1 className="font-display text-[1.625rem] font-bold leading-8">{member.alias}</h1>
+            <h1 className="font-display text-4xl leading-tight">{member.alias}</h1>
           </div>
           <button type="button" className={btnGhost} disabled={busy} onClick={() => void run(() => bank.logout())}>
             Cambiar de persona
           </button>
         </div>
-        <section className="rounded-2xl bg-primary px-4 py-5 text-on-primary">
+        <section className="rounded-3xl bg-primary px-5 py-6 text-on-primary">
           <p className="font-display text-sm font-semibold">Saldo</p>
-          <p className="mt-1 font-display text-5xl font-bold">{balance} h</p>
+          <p className="mt-1 font-sans text-5xl font-bold tracking-tight">{balance} h</p>
           <p className="mt-2 text-sm">Nivel {member.level} · Identidad pendiente</p>
         </section>
       </header>
 
+      <div className="flex min-w-0 flex-col gap-8">
       {error ? <p className="text-base text-error" role="alert">{error}</p> : null}
 
       <section>
@@ -215,7 +219,7 @@ export function BankHome() {
         <label className="mt-3 grid gap-2 font-display font-semibold">
           Horas
           <input
-            className="min-h-12 rounded-xl border border-outline bg-surface px-3 font-sans text-lg font-normal"
+            className="min-h-12 w-full rounded-full border border-outline bg-surface px-5 font-sans text-lg font-normal md:max-w-[20rem]"
             type="number"
             min="0.5"
             max="8"
@@ -224,7 +228,7 @@ export function BankHome() {
             onChange={(event) => setHours(event.target.valueAsNumber)}
           />
         </label>
-        <div className="mt-3 grid gap-3">
+        <div className="mt-3 grid gap-3 md:grid-cols-2">
           {catalog.map((service) => (
             <article key={service.id} className={`${card} grid gap-3`}>
               <div>
@@ -315,7 +319,7 @@ export function BankHome() {
           <label className="grid gap-2 font-display font-semibold">
             Servicio
             <input
-              className="min-h-12 rounded-xl border border-outline bg-surface px-3 font-sans font-normal"
+              className="min-h-12 w-full rounded-full border border-outline bg-surface px-5 font-sans font-normal"
               value={serviceTitle}
               maxLength={80}
               required
@@ -324,14 +328,14 @@ export function BankHome() {
           </label>
           <label className="grid gap-2 font-display font-semibold">
             Tipo
-            <select className="min-h-12 rounded-xl border border-outline bg-surface px-3 font-sans font-normal" value={serviceKind} onChange={(event) => setServiceKind(event.target.value as ServiceKind)}>
+            <select className="min-h-12 w-full rounded-full border border-outline bg-surface px-5 font-sans font-normal" value={serviceKind} onChange={(event) => setServiceKind(event.target.value as ServiceKind)}>
               <option value="cuidado">Cuidado</option>
               <option value="oficio">Oficio</option>
             </select>
           </label>
           <label className="grid gap-2 font-display font-semibold">
             Nivel mínimo
-            <select className="min-h-12 rounded-xl border border-outline bg-surface px-3 font-sans font-normal" value={serviceLevel} onChange={(event) => setServiceLevel(event.target.value as Level)}>
+            <select className="min-h-12 w-full rounded-full border border-outline bg-surface px-5 font-sans font-normal" value={serviceLevel} onChange={(event) => setServiceLevel(event.target.value as Level)}>
               <option value="N0">N0</option>
               <option value="N1">N1</option>
               <option value="N2">N2</option>
@@ -340,6 +344,7 @@ export function BankHome() {
           <button type="submit" className={btnSecondary} disabled={busy}>Agregar servicio</button>
         </form>
       </section>
+      </div>
     </div>
   )
 }
